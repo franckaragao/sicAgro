@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="solicitacao" value="#{solicitacaoServicoViewBean.solicitacaoServico}"/>
+		<f:event listener="#{solicitacaoServicoViewBean.preRenderView}" type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">Detalhes da solicitação</ui:define>
+	<ui:define name="content-header">Detalhes da solicitação<small>Visualização de detalhes de solicitação</small></ui:define>
+	<ui:define name="breadcrumb-active">Detalhe Solicitação</ui:define>
+	
+
+	<ui:define name="content">
+		<h:form id="detailForm">
+
+			<p:messages id="messages" autoUpdate="true" closable="true"/>
+
+			<h:panelGrid columns="5">
+
+				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
+					<f:param name="solicitacao" value="#{solicitacaoServicoViewBean.solicitacaoServico.id}"/>	
+				</p:button>
+
+				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+					<p:printer target="infor_detail" />
+				</p:commandButton> 
+
+				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/solicitacao/solicitacoes" />
+				
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" style="margin-top: 8px">
+							<p:outputLabel value="Concluir Solicitação" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}"/>
+							<p:inputSwitch id="completed" value="#{solicitacaoServicoViewBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}">
+								<p:ajax oncomplete="PF('dlgConclusion').show();" update="@this label_dte_realization value_dte_realization"/>
+							</p:inputSwitch>
+						</p:panelGrid>
+			</h:panelGrid>
+				
+			<div class="ui-fluid">
+				<p:dialog 
+					id="dlg" 
+					header="Solicitação já concluída"
+					widgetVar="dlgConclusion" 
+					modal="true" 
+					width="320"
+					resizable="false" 
+					closable="false" 
+					responsive="true">
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+						<p:outputPanel id="panel">
+							<p:messages closable="true" />
+							<p:outputLabel for="dtaRealization" value="Data da Realização" />
+							<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" required="true" requiredMessage="Data Realização deve ser informado" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoViewBean.solicitacaoServico.dateRealization}" />
+							
+							<p:outputLabel for="timesWork" value="Horas trabalhadas" />
+							<p:spinner id="timesWork" value="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds}" required="true" requiredMessage="Horas trabalhadas deve ser informado" />
+						</p:outputPanel>
+					</p:panelGrid>
+					<br />
+					<p:commandButton value="CONCLUIR" id="btn_ok" actionListener="#{solicitacaoServicoViewBean.completarSolicitacao()}" styleClass="btnn-primary" style="margin-top:5px;" oncomplete="handleDialogRequest(xhr, status, args)" process="detailForm" update="completed label_dte_realization value_dte_realization"/>
+					<p:commandButton value="NÃO CONCLUIR" id="btn_clear" styleClass="btnn-primary" style="margin-top:5px;" actionListener="#{solicitacaoServicoViewBean.cancelConclusao()}" oncomplete="PF('dlgConclusion').hide()" update="completed label_dte_realization value_dte_realization" process="@this completed">
+						<p:resetInput target="panel"/>
+					</p:commandButton>
+				</p:dialog>
+			</div>
+
+			<p:separator style="border-color: #098554" />
+
+			<p:fieldset id="infor_detail">
+				<div class="text-detail">
+					Solicitação do dia <p:outputLabel value="#{solicitacaoServicoViewBean.solicitacaoServico.dateSolicitation}">
+						<f:convertDateTime pattern="dd/MM/yyyy" /> <small style="font-size: 18px !important;"> #{solicitacaoServicoViewBean.solicitacaoServico.produtor.name} / #{solicitacaoServicoViewBean.solicitacaoServico.produtor.cod} </small>
+					</p:outputLabel>
+				</div>
+				<div class="panel panel-success">
+					 <div class="panel-heading">Informações Gerais</div>
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
+							<h:outputText value="Data de Solicitação: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.dateSolicitation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							
+							<h:outputText value="Resumo do serviço prestado" rendered="#{solicitacaoServicoViewBean.solicitacaoServico.resumoServico != null}"/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.resumoServico}" rendered="#{solicitacaoServicoViewBean.solicitacaoServico.resumoServico != null}"/>
+							
+							<h:outputText value="Dia Marcado: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.dateForRealization}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+							
+							<h:outputText value="Estado da solicitação"/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.state.description}" />
+							
+							<h:outputText id="label_dte_realization" value="Data de Realização: " rendered="#{solicitacaoServicoViewBean.solicitacaoServico.completed}"/>
+							<h:outputText id="value_dte_realization" value="#{solicitacaoServicoViewBean.solicitacaoServico.dateRealization}" rendered="#{solicitacaoServicoViewBean.solicitacaoServico.completed}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							
+							<h:outputText value="Horas Trabalhadas:" rendered="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds != null}"/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds}" rendered="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds != null}"/>
+							
+						</p:panelGrid>
+				</div>
+				<div class="panel panel-success">
+					 <div class="panel-heading">Produtor Beneficiado</div>
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
+							<h:outputText value="Nome: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.name}"/>
+							
+							<h:outputText value="Apelido: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.apelido}"/>
+							
+							<h:outputText value="CPF: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.cpf}"/>
+							
+							<h:outputText value="DAP: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.nDap}"/>
+							
+							<h:outputText value="Telefone: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.phone}"/>
+							
+							<h:outputText value="Endereço: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.address}"/>
+							
+							<h:outputText value="Zona: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.zone}"/>
+							
+							<h:outputText value="Complemento: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.complement}"/>
+							
+							<h:outputText value="Cidade: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.city}"/>
+							
+							<h:outputText value="Estado: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.state}"/>
+							
+							<h:outputText value="CEP: "/>
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.endereco.cep}"/>
+						</p:panelGrid>
+				</div>
+				<div class="panel panel-success">
+					 <div class="panel-heading">Máquina utilizada</div>
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
+							<h:outputText value="Identificação: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.veiculo.identification}"  />
+							
+							<h:outputText value="Tipo: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.veiculo.type.type}"  />
+							
+							<h:outputText value="Chassi: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.veiculo.chassi}"  />
+						</p:panelGrid>
+				</div>
+				<div class="panel panel-success">
+					 <div class="panel-heading">Funcionário Responsável</div>
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
+							<h:outputText value="Nome: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.funcionario.name}"  />
+							
+							<h:outputText value="CPF: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.funcionario.cpf}"  />
+							
+							<h:outputText value="Telefone: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.funcionario.phone}"  />
+							
+							<h:outputText value="Função: " />
+							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.funcionario.acount.userRole.role}"  />
+						</p:panelGrid>
+				</div>
+							
+			</p:fieldset>
+		</h:form>
+		
+		<!-- Valida dialog -->
+		<script type="text/javascript">
+		    function handleDialogRequest(xhr, status, args) {
+		        if(args.validationFailed) {
+		            PF('dlgConclusion').jq.effect("shake", {times:5}, 100);
+		        }
+		        else {
+		            PF('dlgConclusion').hide();
+		        }
+		    }
+	</script>
+	
+	</ui:define>
+</ui:composition>

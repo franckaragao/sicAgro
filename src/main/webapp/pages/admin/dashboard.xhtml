@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+	<f:metadata>
+		<f:viewParam name="dashBoard" />
+		<f:event listener="#{dashBoardBean.preRenderView}"
+			type="preRenderView" />
+		<f:viewParam name="barChart" />
+		<f:event listener="#{barChartBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">DashBoard</ui:define>
+	<ui:define name="content-header">Módulo do Administrador <small>Visão
+			Geral do Sistema</small>
+	</ui:define>
+	<ui:define name="breadcrumb-active">DashBoard</ui:define>
+	<div class="alert alert-success" role="alert">
+		Bem vindo(a) sr.(a) <strong>#{contaBean.conta.funcionario.name}</strong> ao
+		<strong>SicAgro!</strong> Sistema para controle de benefícios
+		agrícolas.
+	</div>
+	<h:body>
+		<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank"
+			columnClasses="ui-grid-col-3">
+
+			<p:fieldset id="fieldProdutor" styleClass="box box-success">
+				<div class="col-lg-2 col-xs-2">
+					<h3 style="font-family: 42px; font-weight: bold; margin-top: 0px;">#{dashBoardBean.numberProdutores}</h3>
+					<p>Produtores</p>
+				</div>
+				<div style="display: inline; float: right !important;">
+					<h:graphicImage library="images" name="farmer.png" />
+				</div>
+				<p:tooltip for="fieldProdutor"
+					value="Número de produtores cadastrados" />
+			</p:fieldset>
+			<p:fieldset id="fieldSolicitacao" styleClass="box box-warning">
+				<div class="col-lg-2 col-xs-2">
+					<h3 style="font-family: 42px; font-weight: bold; margin-top: 0px;">#{dashBoardBean.numberSolicitations}</h3>
+					<p>Solicitações</p>
+				</div>
+				<div style="display: inline; float: right !important;">
+					<h:graphicImage library="images" name="icon-solicitacoes.png" />
+				</div>
+				<p:tooltip for="fieldSolicitacao"
+					value="Número de solicitações realizadas até hoje" />
+			</p:fieldset>
+			<p:fieldset id="fieldEntrega" styleClass="box box-danger">
+				<div class="col-lg-2 col-xs-2">
+					<h3 style="font-family: 42px; font-weight: bold; margin-top: 0px;">#{dashBoardBean.numberEntregas}</h3>
+					<p>Entregas</p>
+				</div>
+				<div style="display: inline; float: right !important;">
+					<h:graphicImage library="images" name="icoon-delivery.png" />
+				</div>
+				<p:tooltip for="fieldEntrega"
+					value="Número de entregas realizadas até hoje" />
+			</p:fieldset>
+			<p:fieldset id="fieldRecebimento" styleClass="box box-info">
+				<div class="col-lg-2 col-xs-2">
+					<h3 style="font-family: 42px; font-weight: bold; margin-top: 0px;">#{dashBoardBean.numberCargas}</h3>
+					<p>Recebimentos</p>
+				</div>
+				<div style="display: inline; float: right !important;">
+					<h:graphicImage library="images" name="icon-recebimeto.png" />
+				</div>
+				<p:tooltip for="fieldRecebimento"
+					value="Número de cargas recebidas até hoje" />
+			</p:fieldset>
+		</p:panelGrid>
+
+		<p:panelGrid columns="2" layout="grid"
+				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
+		</p:panelGrid>
+		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+
+			<p:chart type="line" extender="ext"
+				model="#{dashBoardBean.modelChartLine}" responsive="true"
+				style="height:300px;" />
+		</p:fieldset>
+		<div class="ui-fluid">
+			<p:panelGrid columns="3" layout="grid"
+				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
+				<p:fieldset styleClass="box box-danger">
+					<p:chart type="bar" extender="ext"
+						model="#{barChartBean.barModelQuantEntregas}" style="height:300px"
+						responsive="true" />
+				</p:fieldset>
+				<p:fieldset styleClass="box box-info">
+					<p:chart type="bar" extender="ext"
+						model="#{barChartBean.barModelQuantCargas}" style="height:300px"
+						responsive="true" />
+				</p:fieldset>
+				<p:fieldset styleClass="box box-warning">
+					<p:chart type="bar" extender="ext"
+						model="#{barChartBean.barChartModelTotalSolicitacoes}"
+						style="height:300px" responsive="true" />
+				</p:fieldset>
+			</p:panelGrid>
+		</div>
+
+		<!-- <p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
+			columnClasses="10">
+			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+				<p:selectOneMenu id="som_dashBoard" value="#{dashBoardBean.itemCarga}"
+					converter="#{itemCargaConverter}" style="width:235px">
+					<f:selectItem noSelectionOption="true" itemLabel=""/>
+					<f:selectItems value="#{entregaEditBean.itemCargas}" var="item"
+						itemLabel="#{item.produto.name}" itemValue="#{item}" />
+					<p:ajax event="itemSelect" update="panel_carga panelInforItemDashBoard" />
+
+				</p:selectOneMenu>
+				<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+					<p:outputPanel id="panel_carga">
+						<div class="knob-container ui-corner-all">
+							<p:knob id="knob_dashboard_carga" disabled="true"
+								foregroundColor="#00c0ef" max="#{dashBoardBean.itemCarga.quantity}" value="#{dashBoardBean.itemCarga.quantidadeDisp}">
+								<p:tooltip for="knob_dashboard_carga" value="Entregas" />
+							</p:knob>
+						</div>
+					</p:outputPanel>
+				</p:panelGrid>
+					<p:outputPanel id="panelInforItemDashBoard">
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+								<h:outputText value="Produto:" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+								<h:outputText value="#{dashBoardBean.itemCarga.produto.name}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+								<h:outputText value="Unidade de Medida:" rendered="#{dashBoardBean.itemCarga.id != null}" />
+								<h:outputText value="#{dashBoardBean.itemCarga.measurementType.measurement}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+								<h:outputText value="Quantidade reb.:" rendered="#{dashBoardBean.itemCarga.id != null}" />
+								<h:outputText value="#{dashBoardBean.itemCarga.quantity}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+								<h:outputText value="Quantidade disp:" rendered="#{dashBoardBean.itemCarga.id != null}" />
+								<h:outputText value="#{dashBoardBean.itemCarga.quantidadeDisp}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+						</p:panelGrid>
+					</p:outputPanel>
+			</p:fieldset>
+		</p:panelGrid> -->
+	</h:body>
+
+	<h:outputScript>
+		function ext() {
+		   this.cfg.seriesDefaults = { 
+		       useSeriesColor: true, 
+		       min: 0, 
+		       max: 200, 
+		       tickInterval: 20, 
+		       tickOptions: { 
+		           formatString: '%d' 
+		       } 
+		   };
+		}
+	</h:outputScript>
+</ui:composition>
+</html>
+

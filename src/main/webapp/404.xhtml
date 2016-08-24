@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/dist/css/style-alt-components-prime.css" />
+	<link rel="icon" type="image/x-icon"
+		href="http://localhost:8080/sicAgro/resources/images/favicon.ico" />
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:100,400'
+		rel='stylesheet' type='text/css' />
+
+	<title>#{msg.pageNotFound}</title>
+</h:head>
+<h:body class="body-404">
+
+	<div class="ui-fluid error-head">
+		<i class="fa fa-frown-o fa-4x" aria-hidden="true"></i>
+		<h2>#{msg.pageNotFound}</h2>
+		<p:link value="VOLTAR PARA INÍCIO" class="back-btn" outcome="/pages/login.xhtml">
+		</p:link>
+
+	</div>
+</h:body>
+</html>

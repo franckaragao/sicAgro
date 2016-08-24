@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-07-23T22:49:09 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c7da158-b5b9-4701-9241-3b8e77e87610">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cHJvZHV0b3MgLDE1LDE1LGQxNjRhNjRjLTBhZjctNDAwYi1iNzg3LTZkZDUwOTQ3NTc3NTs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports-sicAgro"/>
+	<queryString>
+		<![CDATA[SELECT produtos.cod_produto,
+	produtos.descricao_produto,
+	produtos.nome_produto,
+	produtos.tipo_produto,
+	produtos.id
+FROM produtos]]>
+	</queryString>
+	<field name="cod_produto" class="java.lang.String"/>
+	<field name="nome_produto" class="java.lang.String"/>
+	<field name="descricao_produto" class="java.lang.String"/>
+	<field name="tipo_produto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="124" splitType="Stretch">
+			<image>
+				<reportElement x="219" y="1" width="89" height="83" uuid="4965bad5-6b7e-4e4a-a7cb-2f04770850e5"/>
+				<imageExpression><![CDATA["src/main/webapp/resources/images/logo_pref.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="169" y="102" width="250" height="19" uuid="b8a55e47-6b6f-4cd2-8397-ef97351b34ca"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Secretaria de Desenvolvimento Rural]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="87" width="214" height="30" uuid="80a35a19-c7f5-4af2-8f2d-850c34c87484"/>
+				<text><![CDATA[Prefeitura Municipal de Ouro Velho - PB]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="136" y="14" width="280" height="23" uuid="5271cca8-daa9-4d47-b198-7fdf3f2135c9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos Cadastrados]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="-7" y="-1" width="561" height="17" forecolor="rgba(255, 255, 255, 0.0)" backcolor="#F0F0F0" uuid="3db844ed-f3dd-41dc-a1c9-c1850ea8402b"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineColor="rgba(0, 0, 0, 0.0)"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="110" height="20" uuid="a4543c4c-f7c9-4850-bd94-f3b5879733a2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="1" width="139" height="20" uuid="e205317e-3b11-4cee-bc91-acfae0f6c1a6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="1" width="170" height="20" uuid="1f5340a3-9a92-434c-9681-0d2d2bed6342"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="1" width="138" height="20" uuid="ff89bf61-ef0f-44e2-9b22-84e5e39b2dff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Produto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="110" height="17" uuid="12c8612d-cc38-4736-a0ad-c4523aa5cb9c"/>
+				<textFieldExpression><![CDATA[$F{cod_produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="4" width="139" height="17" uuid="35628ab7-a445-42bf-857b-2f53c88fd5e7"/>
+				<textFieldExpression><![CDATA[$F{nome_produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="4" width="170" height="17" uuid="4a8a9247-f7c0-46ea-9594-74968fce55f8"/>
+				<textFieldExpression><![CDATA[$F{descricao_produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="4" width="138" height="17" uuid="3b8907a6-5a22-4004-a013-755329d3bdf3"/>
+				<textFieldExpression><![CDATA[$F{tipo_produto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement x="387" y="10" width="90" height="19" uuid="40a6986f-c329-4668-8f5d-b7f704701a70"/>
+				<text><![CDATA[Ouro Velho - PB, ]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="477" y="10" width="318" height="18" uuid="123f6ce2-9071-4a84-b4ee-ce0b5e5788de"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="63" width="553" height="19" uuid="9ed268ca-9a13-44a9-8c49-34a706984968"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[__________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="80" width="206" height="19" uuid="3db1a541-5cd4-404e-ae20-f79d3e5f3218"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Amara Célia Marinho de Menezes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="95" width="72" height="18" uuid="bb934870-404c-4252-b89e-7a7b6c329144"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Secretária]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

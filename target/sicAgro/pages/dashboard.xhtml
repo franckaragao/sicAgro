@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/__template_default.xhtml">
+
+	<h:head>
+		<meta charset="UTF-8" />
+		<!-- <h:outputStylesheet library="css" name="style-default.css" /> -->
+
+		<link rel="icon" type="image/x-icon"
+			href="http://localhost:8080/sicAgro/resources/images/icon.ico" />
+
+		<ui:define name="title">#{msg.produtos}</ui:define>
+		<ui:define name="content-header">#{msg.dashBoard}</ui:define>
+
+	</h:head>
+	<ui:define name="content">
+		<h:body>
+			<p:panelGrid columns="4" layout="grid"
+				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-3">
+
+				<p:fieldset id="fieldProdutor">
+					<table>
+						<tr>
+							<td>
+								<div>
+									<h:graphicImage library="images" name="farmer.png" />
+								</div>
+							</td>
+							<td align="center">
+								<h2>
+									<span>Total: </span>
+									<p:outputLabel value="8.026" />
+								</h2>
+							</td>
+						</tr>
+					</table>
+					<p:tooltip for="fieldProdutor" value="Total de produtores até hoje" />
+				</p:fieldset>
+				<p:fieldset id="fieldBeneficios">
+					<table>
+						<tr>
+							<td>
+								<div>
+									<h:graphicImage library="images" name="icon-beneficio.png" />
+								</div>
+							</td>
+							<td>
+								<h2>
+									<span>Total: </span>
+									<p:outputLabel value="8.026" />
+								</h2>
+							</td>
+						</tr>
+					</table>
+					<p:tooltip for="fieldBeneficios"
+						value="Total de benefícios até hoje" />
+				</p:fieldset>
+
+				<p:fieldset id="fieldRecebimentos">
+					<table style="text-align: center;">
+						<tr>
+							<td>
+								<div>
+									<h:graphicImage library="images" name="icon-recebimento.png" />
+								</div>
+							</td>
+							<td>
+								<h2>
+									<span>Total: </span>
+									<p:outputLabel value="8.026" />
+								</h2>
+							</td>
+						</tr>
+					</table>
+					<p:tooltip for="fieldRecebimentos"
+						value="Total de recebimetos até hoje" />
+				</p:fieldset>
+
+				<p:fieldset id="fieldDistribuicoes">
+					<table>
+						<tr>
+							<td>
+								<div>
+									<h:graphicImage library="images" name="icon-distribuicao.png" />
+								</div>
+							</td>
+							<td>
+								<h2>
+									<span>Total: </span>
+									<p:outputLabel value="32.00" />
+								</h2>
+							</td>
+						</tr>
+					</table>
+					<p:tooltip for="fieldDistribuicoes"
+						value="Total de distribuições até hoje" />
+				</p:fieldset>
+			</p:panelGrid>
+
+			<p:separator></p:separator>
+
+			<!-- Continua aqui -->
+
+		</h:body>
+	</ui:define>
+</ui:composition>

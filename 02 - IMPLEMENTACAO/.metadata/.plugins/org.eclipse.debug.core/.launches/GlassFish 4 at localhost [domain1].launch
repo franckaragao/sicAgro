@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.glassfish.jst.server.GlassfishServerLaunchConfigurationType">
+<stringAttribute key="server-id" value="GlassFish 4 at localhost [domain1]"/>
+</launchConfiguration>

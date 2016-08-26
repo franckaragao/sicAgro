@@ -1,7 +1,7 @@
 ![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/02%20-%20IMPLEMENTACAO/sicAgro/src/main/webapp/resources/images/sigagro_new.png)
 
 
-###Sistema Comercial para controle de benefício de agrícolas de um orgão 
+###Sistema Comercial para controle de benefícios agrícolas de um orgão 
 
 
 

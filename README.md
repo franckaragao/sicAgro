@@ -1,5 +1,6 @@
 # sicAgro
 Sistema Comercial para controle de benefício de agrícolas de um orgão 
 
-
-SicAgro® - Todos os direitos reservados.
+'''
+Copyright (c) 2016 SicAgro - Todos os direitos reservados.
+'''

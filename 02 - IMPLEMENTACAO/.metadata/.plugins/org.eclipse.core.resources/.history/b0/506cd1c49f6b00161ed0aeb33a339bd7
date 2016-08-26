@@ -1,0 +1,20 @@
+package br.edu.ifpb.sicAgro.serivices;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class TestTravis {
+	
+	@Before
+	public void setUp(){
+		
+	}
+	
+
+	@TestTravis
+	public void ciTravisTest(){
+		
+	}
+
+}

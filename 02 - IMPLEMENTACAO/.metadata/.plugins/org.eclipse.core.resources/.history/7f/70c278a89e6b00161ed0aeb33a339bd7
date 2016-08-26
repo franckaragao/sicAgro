@@ -1,0 +1,12 @@
+package br.edu.ifpb.sicAgro.serivices;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.equalTo;
+
+public class Test {
+	
+	public void testTravis(){
+		assertTr
+	}
+
+}

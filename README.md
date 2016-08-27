@@ -3,8 +3,7 @@
 
 ###Sistema Comercial para controle de benefícios agrícolas de um orgão 
 
-
-
+[![Build Status](https://travis-ci.org/FranckAJ/sicAgro.svg?branch=master)](https://travis-ci.org/FranckAJ/sicAgro)
 
 ```
 Copyright (c) 2016 

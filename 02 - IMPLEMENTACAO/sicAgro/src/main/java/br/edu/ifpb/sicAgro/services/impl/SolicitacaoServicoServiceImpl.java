@@ -15,18 +15,18 @@ import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
-public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<SolicitacaoServico, Long> implements SolicitacaoServicoService{
+public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<SolicitacaoServico, Long> implements SolicitacaoServicoService {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public SolicitacaoServicoServiceImpl() {
 	}
-	
+
 	@Inject
 	public SolicitacaoServicoServiceImpl(SolicitacaoServicoDAO dao) {
 		this.dao = dao;
 	}
-	
+
 	@Override
 	@Transactional
 	public void add(SolicitacaoServico entity) {
@@ -44,21 +44,21 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 		entity.setState(getCurrentStatus(entity));
 		return dao.update(entity);
 	}
-	
+
 	/**
 	 * 
 	 */
-	public SolicitationState getCurrentStatus(SolicitacaoServico solicitacao){
-		if(solicitacao == null){
+	public SolicitationState getCurrentStatus(SolicitacaoServico solicitacao) {
+		if (solicitacao == null) {
 			return SolicitationState.PROGRESS;
 		}
-		if(solicitacao.getCompleted()){
+		if (solicitacao.getCompleted()) {
 			return SolicitationState.COMPLETED;
-			
-		}else if(solicitacao.getDateForRealization().after(new Date())){
+
+		} else if (solicitacao.getDateForRealization().after(new Date())) {
 			return SolicitationState.PROGRESS;
-			
-		}else{
+
+		} else {
 			return SolicitationState.FAIL;
 		}
 	}
@@ -67,7 +67,8 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	 * 
 	 */
 	@Override
-	public Map<Date, Integer> getSolicitacoesPorPeriodo(Integer nDays, SolicitationState state) {
+	public Map<Date, Integer> getSolicitacoesPorPeriodo(Integer nDays,
+			SolicitationState state) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
 		return solicitacaoServicoDAO.getSolicitacoesPorPeriodo(nDays, state);
 	}
@@ -78,7 +79,7 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	@Override
 	public Long getTotalSolicitations() {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
-		
+
 		return solicitacaoServicoDAO.getTotalSolicitations();
 	}
 
@@ -87,9 +88,9 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	 */
 	@Override
 	public List<SolicitacaoServico> filter(SolicitacaoFilter filter) {
-		
+
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
-		
+
 		return solicitacaoServicoDAO.filter(filter);
 	}
 
@@ -97,9 +98,10 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	 * 
 	 */
 	@Override
-	public List<SolicitacaoServico> getSolicitacoesByFuncionario(Funcionario funcionario) {
+	public List<SolicitacaoServico> getSolicitacoesByFuncionario(
+			Funcionario funcionario) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
-		
+
 		return solicitacaoServicoDAO.getSolicitacoesByFuncionario(funcionario);
 	}
 
@@ -107,10 +109,12 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	 * 
 	 */
 	@Override
-	public Long getCountSolicitationsByFuncionario(Funcionario funcionario,SolicitationState status) {
+	public Long getCountSolicitationsByFuncionario(Funcionario funcionario,
+			SolicitationState status) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
-		
-		return solicitacaoServicoDAO.getCountSolicitationsByFuncionario(funcionario, status);
+
+		return solicitacaoServicoDAO.getCountSolicitationsByFuncionario(
+				funcionario, status);
 	}
 
 	/**

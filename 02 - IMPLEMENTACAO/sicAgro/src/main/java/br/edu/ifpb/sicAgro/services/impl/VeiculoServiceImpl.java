@@ -28,11 +28,10 @@ public class VeiculoServiceImpl extends GenericServiceImpl<Veiculo, Long>
 		List<Veiculo> list = veiculoDAO.findByIdentification(identification);
 		return list;
 	}
-	
+
 	@Transactional
-	public void setHorimetroVeiculo(Veiculo veiculo, Integer timesWorked){
-		veiculo.setHorimetro(veiculo.getHorimetro()+ timesWorked);
+	public void setHorimetroVeiculo(Veiculo veiculo, Integer timesWorked) {
+		veiculo.setHorimetro(veiculo.getHorimetro() + timesWorked);
 		this.update(veiculo);
 	}
-
 }

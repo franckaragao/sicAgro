@@ -26,21 +26,20 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
  */
 @ApplicationScoped
 public class UserSession {
-	
 
 	@Inject
 	private ContaService contaService;
-	
+
 	@Inject
 	private FuncionarioService funcionarioService;
-	
+
 	@Inject
 	private ProdutorService produtorService;
-	
+
 	private Conta conta;
-	
+
 	private String lastAccess;
-	
+
 	/**
 	 * recupera do BD a conta correpondente ao usuário logado
 	 * 
@@ -49,48 +48,49 @@ public class UserSession {
 	@Produces
 	@UserLogged
 	@RequestScoped
-	public Conta getAcount(){
+	public Conta getAcount() {
 		conta = contaService.findByUserName(recoverUserNameSession());
-		
-		if(conta != null){
+
+		if (conta != null) {
 			return conta;
-		}else{
+		} else {
 			Conta conta = new Conta();
 			conta.setUserName(" ");
 			return conta;
 		}
 	}
-	
+
 	@Produces
 	@UserNameSession
-	public String recoverUserNameSession(){
-		Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-		
-		return principal != null ? principal.getName():"";
+	public String recoverUserNameSession() {
+		Principal principal = FacesContext.getCurrentInstance()
+				.getExternalContext().getUserPrincipal();
+
+		return principal != null ? principal.getName() : "";
 	}
-	
 
 	@Produces
 	@UserLastAccess
 	public String getLastAccess() {
 		this.getAcount();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy 'às' HH:mm a", new Locale("pt" , "BR"));
-		if(conta.getLastAcess() != null){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy 'às' HH:mm a",
+				new Locale("pt", "BR"));
+		if (conta.getLastAcess() != null) {
 			lastAccess = sdf.format(conta.getLastAcess());
 			this.updateLastAccess();
-		}else{
+		} else {
 			this.updateLastAccess();
 			lastAccess = sdf.format(new Date());
 		}
 		return lastAccess;
 	}
-	
+
 	private void updateLastAccess() {
-			conta.setLastAcess(new Date());
-			if(conta.getUserRole().equals(UserRole.PRODUTOR)){
-				produtorService.update(conta.getProdutor());
-			}else{
-				funcionarioService.update(conta.getFuncionario());
-			}
+		conta.setLastAcess(new Date());
+		if (conta.getUserRole().equals(UserRole.PRODUTOR)) {
+			produtorService.update(conta.getProdutor());
+		} else {
+			funcionarioService.update(conta.getFuncionario());
+		}
 	}
 }

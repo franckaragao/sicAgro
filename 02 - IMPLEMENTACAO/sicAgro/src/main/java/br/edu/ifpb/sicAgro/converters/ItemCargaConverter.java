@@ -12,8 +12,8 @@ import br.edu.ifpb.sicAgro.model.ItemCarga;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 
 /**
- * Faces converter responsável por converter os atributos da entidade @ItemCarga para
- * string (visualização na pagina) e para objeto. 
+ * Faces converter responsável por converter os atributos da entidade @ItemCarga
+ * para string (visualização na pagina) e para objeto.
  * 
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -21,8 +21,8 @@ import br.edu.ifpb.sicAgro.services.ItemCargaService;
 @Named
 @RequestScoped
 @FacesConverter(forClass = ItemCarga.class)
-public class ItemCargaConverter implements Converter{
-	
+public class ItemCargaConverter implements Converter {
+
 	@Inject
 	private ItemCargaService itemCargaService;
 
@@ -30,7 +30,8 @@ public class ItemCargaConverter implements Converter{
 	 * 
 	 */
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+	public Object getAsObject(FacesContext context, UIComponent component,
+			String value) {
 		if (value == null || value.trim().isEmpty()) {
 			return null;
 		}
@@ -42,7 +43,8 @@ public class ItemCargaConverter implements Converter{
 	 * 
 	 */
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object value) {
+	public String getAsString(FacesContext context, UIComponent component,
+			Object value) {
 		if (value == null) {
 			return null;
 		}

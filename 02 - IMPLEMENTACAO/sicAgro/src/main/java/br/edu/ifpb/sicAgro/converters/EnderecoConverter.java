@@ -37,13 +37,15 @@ public class EnderecoConverter implements Converter{
 			return null;
 		}
 		Long id = null;
+		Endereco endereco = null;
 		try {
 			id = Long.parseLong(value);
-			return enderecoService.findById(id);
+			 endereco = enderecoService.findById(id);
 		} catch (NumberFormatException e) {
 			throw new ConverterException(new FacesMessage(String.format(
 					"%s é invalido para o endereço", id)), e);
 		}
+		return endereco;
 	}
 
 	/**

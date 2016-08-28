@@ -25,7 +25,7 @@ public class VeiculoBean implements Serializable {
 	private List<Veiculo> veiculos;
 
 	private Veiculo selectedVeiculo;
-	
+
 	@PostConstruct
 	public void init() {
 		this.listVeiculos();

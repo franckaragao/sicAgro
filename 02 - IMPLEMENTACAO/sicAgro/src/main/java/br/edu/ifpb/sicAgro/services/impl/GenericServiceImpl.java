@@ -28,7 +28,7 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 	 */
 	@Override
 	@Transactional
-	public void add(T entity) {
+	public void add(T entity){
 		dao.add(entity);
 
 	}

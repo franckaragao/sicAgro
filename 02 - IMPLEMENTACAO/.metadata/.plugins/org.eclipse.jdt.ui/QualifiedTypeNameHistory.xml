@@ -2,4 +2,14 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="javax.faces.validator.FacesValidator"/>
+<fullyQualifiedTypeName name="javax.inject.Named"/>
+<fullyQualifiedTypeName name="javax.enterprise.context.RequestScoped"/>
+<fullyQualifiedTypeName name="javax.faces.validator.Validator"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.services.ProdutorService"/>
+<fullyQualifiedTypeName name="javax.inject.Inject"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.util.messages.MessageUtils"/>
+<fullyQualifiedTypeName name="javax.faces.application.FacesMessage"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.exceptions.SicAgroException"/>
 </qualifiedTypeNameHistroy>

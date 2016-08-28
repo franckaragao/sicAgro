@@ -31,7 +31,7 @@
 						<h:outputText value="#{t.name}" />
 					</p:column>
 				</p:selectOneMenu>
-				<h:outputText value="Por Estado" />
+				<h:outputText value="Por Status" />
 				<p:selectOneMenu value="#{solicitacaoServicoBean.filter.status}">
 					<f:selectItem itemLabel=" " noSelectionOption="true"/>
 					<f:selectItems value="#{solicitacaoServicoBean.statusList}" var="status" itemLabel="#{status.description}" itemValue="#{status}"/>

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 import br.edu.ifpb.sicAgro.enumerations.ProdutoType;
-import br.edu.ifpb.sicAgro.validation.COD;
+import br.edu.ifpb.sicAgro.validators.COD;
 
 /**
  * Classe representa a entidade produto. Um produto é 

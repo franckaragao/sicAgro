@@ -8,6 +8,4 @@ public interface ProdutorService extends Service<Produtor, Long> {
 	
 	Produtor findByCPF(String cpf);
 	
-	boolean isCPFExists(String cpf);
-
 }

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="produtor" value="#{produtorEditBean.produtor}"
+			converter="#{produtorConverter}" />
+		<f:event listener="#{produtorEditBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">Novo Produtor</ui:define>
+	<ui:define name="content-header">Novo Produtor
+		<small>Cadastrar novo Produtor</small>
+	</ui:define>
+	<ui:define name="breadcrumb-active">Novo Produtor</ui:define>
+	<ui:define name="content">
+
+		<h:form id="formRegisterProdutor">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:fieldset>
+				<div class="ui-fluid">
+					<p:tabView>
+						<p:tab title="Dados Pessoais">
+							<p:panelGrid columns="2" layout="grid"
+								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
+
+								<p:outputLabel for="cod" value="Código" />
+								<p:inputMask mask="99999" id="cod"
+									value="#{produtorEditBean.produtor.cod}" />
+
+								<p:outputLabel for="name" value="Nome" />
+								<p:inputText id="name" value="#{produtorEditBean.produtor.name}" />
+
+								<p:outputLabel for="apelido" value="Apelido" />
+								<p:inputText id="apelido"
+									value="#{produtorEditBean.produtor.apelido}" />
+
+								<p:outputLabel for="rg" value="RG" />
+								<p:inputText id="rg" value="#{produtorEditBean.produtor.rg}" />
+
+								<p:outputLabel for="cpf" value="CPF" />
+								<p:inputMask mask="999.999.999-99" id="cpf"
+									value="#{produtorEditBean.produtor.cpf}">
+									<f:validator validatorId="CPFUnique" />
+
+								</p:inputMask>
+
+								<p:outputLabel for="nDap" value="Nº DAP" />
+								<p:inputText id="nDap" value="#{produtorEditBean.produtor.nDap}" />
+
+								<p:outputLabel for="civilState" value="Estado Cívil" />
+								<p:selectOneRadio id="civilState"
+									value="#{produtorEditBean.produtor.civilState}"
+									layout="responsive" columns="3">
+									<f:selectItems value="#{produtorEditBean.civelStates}"
+										var="civilState" itemLabel="#{civilState.state}"
+										itemValue="#{civilState}" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="phone" value="Telefone" />
+								<p:inputMask mask="(99) 99999-9999" id="phone"
+									value="#{produtorEditBean.produtor.phone}" />
+
+
+								<p:outputLabel for="dtaNasc" value="Data Nasc" />
+								<ui:include src="/WEB-INF/templates/_calendar.xhtml">
+									<ui:param name="id" value="dtaNasc" />
+									<ui:param name="required" value="true" />
+									<ui:param name="value"
+										value="#{produtorEditBean.produtor.dateNasc}" />
+									<ui:param name="name" value="Data Nascimento" />
+								</ui:include>
+
+								<p:outputLabel for="sex" value="Sexo" />
+								<p:selectOneRadio id="sex"
+									value="#{produtorEditBean.produtor.sexo}">
+									<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+									<f:selectItem itemLabel="Feminino" itemValue="Feminio" />
+								</p:selectOneRadio>
+
+							</p:panelGrid>
+						</p:tab>
+						<p:tab title="Dados de Endereço">
+
+							<p:panelGrid columns="2" layout="grid"
+								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
+
+								<p:outputLabel for="end" value="Endereço" />
+								<p:autoComplete id="end"
+									value="#{produtorEditBean.produtor.endereco.address}"
+									completeMethod="#{enderecoBean.completeCities}" var="ad"
+									itemLabel="#{ad}" itemValue="#{ad}">
+									<p:ajax event="itemSelect"
+										listener="#{produtorEditBean.updateCamposEnderecos(ad)}"
+										update="number zone complement cep state city" />
+								</p:autoComplete>
+
+								<p:outputLabel for="number" value="Número" />
+								<p:inputText id="number"
+									value="#{produtorEditBean.produtor.endereco.number}"
+									maxlength="4" size="5" />
+
+								<p:outputLabel for="zone" value="Zona" />
+								<p:selectOneMenu id="zone"
+									value="#{produtorEditBean.produtor.endereco.zone}">
+									<f:selectItem itemLabel="Selecione uma zona"
+										noSelectionOption="true" />
+									<f:selectItem itemLabel="Zona Urbana" itemValue="Zona Urbana" />
+									<f:selectItem itemLabel="Zona Rural" itemValue="Zona Rural" />
+								</p:selectOneMenu>
+
+								<p:outputLabel for="complement" value="Complemento" />
+								<p:inputTextarea id="complement"
+									value="#{produtorEditBean.produtor.endereco.complement}" />
+
+								<p:outputLabel for="cep" value="CEP" />
+								<p:inputMask mask="99999-999" id="cep"
+									value="#{produtorEditBean.produtor.endereco.cep}" size="3" />
+
+								<p:outputLabel for="state" value="Estado" />
+								<p:selectOneMenu id="state"
+									value="#{produtorEditBean.produtor.endereco.state}"
+									required="true"
+									requiredMessage="Um estado deve ser selecionado">
+
+									<f:selectItem itemLabel="Selecione um estado"
+										noSelectionOption="true" />
+									<f:selectItems value="#{enderecoBean.states}"
+										itemValue="#{state}" itemLabel="#{state.descricao}"
+										var="state" />
+									<p:ajax process="@this" event="itemSelect" update="city"
+										listener="#{produtorEditBean.loadCities}" />
+
+								</p:selectOneMenu>
+								<p:outputLabel for="city" value="Município" />
+
+								<p:selectOneMenu id="city"
+									value="#{produtorEditBean.produtor.endereco.city}"
+									filter="true" filterMatchMode="startsWith" required="true"
+									requiredMessage="Uma cidade deve ser selecionada"
+									disabled="#{produtorEditBean.produtor.endereco.state eq null}">
+									<f:selectItem itemLabel="Selecione uma cidade"
+										noSelectionOption="true" />
+									<f:selectItems value="#{enderecoBean.cities}"
+										itemValue="#{city}" itemLabel="#{city}" var="city" />
+								</p:selectOneMenu>
+
+
+							</p:panelGrid>
+
+						</p:tab>
+						<p:tab title="Demandas">
+
+							<p:outputLabel for="demanda" value="Necessidades Básicas" />
+							<p:selectManyCheckbox id="demanda" layout="responsive"
+								columns="3">
+								<f:selectItems value="#{produtoEditBean.produtoTypes}"
+									var="produtoTypes" itemLabel="#{produtoTypes.type}"
+									itemValue="#{produtoTypes}" />
+							</p:selectManyCheckbox>
+
+						</p:tab>
+					</p:tabView>
+				</div>
+			</p:fieldset>
+
+			<p:separator style="border-color: #098554" />
+			<h:panelGrid columns="3">
+
+				<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+					style="float: left;" styleClass="btnn btnn-primary"
+					action="#{produtorEditBean.save}" process="formRegisterProdutor" />
+
+
+				<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
+					style="float:left;" styleClass="btnn btnn-primary"
+					outcome="/pages/admin/produtor/produtores" />
+
+				<p:button value="Buscar Produtor" id="findProdutores"
+					style="float:left;" styleClass="btnn btnn-primary"
+					icon="fa fa-search" outcome="/pages/admin/produtor/produtores" />
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

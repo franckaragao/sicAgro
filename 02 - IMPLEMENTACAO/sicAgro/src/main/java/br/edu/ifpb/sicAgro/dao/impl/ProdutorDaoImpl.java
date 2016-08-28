@@ -38,7 +38,6 @@ public class ProdutorDaoImpl extends GenericDaoImpl<Produtor, Long> implements P
 	@Override
 	public Produtor findByCPF(String cpf) {
 		try{
-			
 			TypedQuery<Produtor> query = entityManager.createNamedQuery("Produtor.findByCPF", Produtor.class);
 			query.setParameter("cpf", cpf);
 			

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.model.ItemCarga;
@@ -65,7 +66,7 @@ public class EntregaEditBean implements Serializable {
 		measurements = Arrays.asList(MeasurementType.values());
 	}
 
-	public void save() throws SicAgroExceptionHandler {
+	public void save() throws SicAgroException {
 		if(entrega.getItemEntregas().size() < 1)
 			throw new SicAgroExceptionHandler("Um item de entrega deve ser adicionado");
 		
@@ -92,7 +93,7 @@ public class EntregaEditBean implements Serializable {
 		
 	}
 	
-	public void reDeleteItemEntrega(ItemEntrega itemEntrega) throws SicAgroExceptionHandler{
+	public void reDeleteItemEntrega(ItemEntrega itemEntrega) throws SicAgroException{
 		
 		ItemCarga itemCarga = itemEntrega.getItemCarga();
 		
@@ -113,7 +114,7 @@ public class EntregaEditBean implements Serializable {
 		this.itemCarga = itemCarga;
 	}
 	
-	public ItemEntrega reSetItemEntrega() throws SicAgroExceptionHandler {
+	public ItemEntrega reSetItemEntrega() throws SicAgroException {
 		
 		if(isEqualsMeasurement(itemCarga, itemEntrega)){
 			BigDecimal value = new BigDecimal(ConversionUtils.convert(itemEntrega.getMeasurementType(),itemCarga.getMeasurementType() , itemEntrega.getQuantity()));

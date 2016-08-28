@@ -14,7 +14,9 @@ import br.edu.ifpb.sicAgro.util.jpa.Transactional;
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
-public class PedidoSolicitacaoServiceImpl extends GenericServiceImpl<PedidoSolicitacao, Long> implements PedidoSolicitacaoService {
+public class PedidoSolicitacaoServiceImpl extends
+		GenericServiceImpl<PedidoSolicitacao, Long> implements
+		PedidoSolicitacaoService {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,8 @@ public class PedidoSolicitacaoServiceImpl extends GenericServiceImpl<PedidoSolic
 	 * Construtor responsável por ejetar o dao correspodente a entidade no
 	 * service generico
 	 * 
-	 * @param dao DAO referente a entidade
+	 * @param dao
+	 *            DAO referente a entidade
 	 */
 	@Inject
 	public PedidoSolicitacaoServiceImpl(PedidoSolicitacaoDAO dao) {
@@ -32,10 +35,10 @@ public class PedidoSolicitacaoServiceImpl extends GenericServiceImpl<PedidoSolic
 	public PedidoSolicitacaoServiceImpl() {
 
 	}
-	
+
 	@Override
 	@Transactional
-	public void add(PedidoSolicitacao entity){
+	public void add(PedidoSolicitacao entity) {
 		entity.setStatus(PedidoStatus.PROGRESS);
 		dao.add(entity);
 
@@ -52,7 +55,7 @@ public class PedidoSolicitacaoServiceImpl extends GenericServiceImpl<PedidoSolic
 	public void completarPedidoSolicitacao(PedidoSolicitacao pedidoSolicitacao) {
 		pedidoSolicitacao.setStatus(PedidoStatus.COMPLETED);
 		this.update(pedidoSolicitacao);
-		
+
 	}
 
 	@Override

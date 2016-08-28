@@ -3,7 +3,10 @@ package br.edu.ifpb.sicAgro.services.impl;
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.ProdutorDAO;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
+import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Produtor;
+import br.edu.ifpb.sicAgro.services.ContaService;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
@@ -11,6 +14,9 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 
 	
 	private static final long serialVersionUID = -9171041213373059450L;
+	
+	@Inject
+	private ContaService contaService;
 	
 	public ProdutorServiceImpl() {
 		
@@ -23,7 +29,14 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	
 	@Override
 	@Transactional
-	public void add(Produtor entity) {
+	public void add(Produtor entity) throws SicAgroExceptionHandler {
+		if(isCPFExists(entity.getCpf())){
+			throw new SicAgroExceptionHandler("Já existe um produtor cadastrado com este CPF:"+ entity.getCpf());
+		}
+		Conta conta = contaService.findByUserName(entity.getCpf());
+		if(conta != null){
+			throw new SicAgroExceptionHandler("Já existe um usuário cadastrado com este CPF:"+ entity.getCpf());
+		}
 		dao.add(entity);
 
 	}
@@ -31,9 +44,6 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	@Override
 	@Transactional
 	public Produtor update(Produtor entity) {
-		if(isCPFExists(entity.getCpf())){
-			//throw new SicAgroExceptionHandler("Já existe um produtor cadastrado com este CPF:"+ entity.getCpf());
-		}
 		return dao.update(entity);
 	}
 	

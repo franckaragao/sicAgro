@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.ProdutoType;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ProdutoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -46,10 +47,7 @@ public class ProdutoEditBean implements Serializable {
         }
     }
 	
-	/**
-	 * 
-	 */
-	public void save() {
+	public void save() throws SicAgroException {
 		if(isProdutoEdited()){
 			produtoService.update(produto);
 			MessageUtils.messageSucess("Produto atualizado com sucesso.");

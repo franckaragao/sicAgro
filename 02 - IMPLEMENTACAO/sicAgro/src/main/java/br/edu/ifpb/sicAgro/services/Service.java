@@ -2,7 +2,6 @@ package br.edu.ifpb.sicAgro.services;
 
 import java.util.List;
 
-import br.edu.ifpb.sicAgro.exceptions.ServiceSicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 
@@ -21,7 +20,7 @@ public interface Service<T,K> {
 	 * @throws SicAgroException 
 	 * @throws SicAgroExceptionHandler 
 	 */
-	public void add(T entity);
+	public void add(T entity) throws SicAgroException;
 	
 	/**
 	 * 

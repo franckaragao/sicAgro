@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.model.Produtor;
@@ -65,7 +66,7 @@ public class SolicitacaoServicoEditBean implements Serializable {
 		this.listProdutores();
 	}
 
-	public void save() {
+	public void save() throws SicAgroException {
 		if(solicitacaoServico.getTimeWorkeds() != null){
 			this.veiculoService.setHorimetroVeiculo(solicitacaoServico.getVeiculo(), solicitacaoServico.getTimeWorkeds());
 		}

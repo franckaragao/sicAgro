@@ -6,6 +6,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
@@ -45,7 +46,7 @@ public class SolicitacaoServicoViewBean implements Serializable {
 		solicitacaoServico = (SolicitacaoServico) JSFUtils.getParam("solicitacao");
 	}
 	
-	public void completarSolicitacao(){
+	public void completarSolicitacao() throws SicAgroException{
 		if(solicitacaoServico.getTimeWorkeds() != null){
 			this.veiculoService.setHorimetroVeiculo(solicitacaoServico.getVeiculo(), solicitacaoServico.getTimeWorkeds());
 		}

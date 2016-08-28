@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.UserRole;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Endereco;
@@ -57,7 +58,7 @@ public class FuncionarioEditBean implements Serializable {
 		roleTypes = Arrays.asList(UserRole.values());
 	}
 
-	public void save() {
+	public void save() throws SicAgroException {
 		try {
 			funcionario.setAcount(contaService.criptografarSenha(funcionario.getAcount()));
 		} catch (SicAgroExceptionHandler e) {

@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.Agencys;
 import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Carga;
 import br.edu.ifpb.sicAgro.model.ItemCarga;
 import br.edu.ifpb.sicAgro.model.OrigemCarga;
@@ -74,10 +75,7 @@ public class CargaEditBean implements Serializable {
 		}
 	}
 
-	/**
-	 * 
-	 */
-	public void save() {
+	public void save() throws SicAgroException {
 		if (carga.getId() != null) {
 			cargaService.update(carga);
 			MessageUtils.messageSucess("Carga atualizada com sucesso.");

@@ -30,13 +30,12 @@ public class CargaConverter implements Converter {
 	 * 
 	 */
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
+	public Object getAsObject(FacesContext context, UIComponent component,String value) {
 		if (value == null || value.trim().isEmpty()) {
 			return null;
 		}
 		Long id = Long.parseLong(value);
-		return cargaService.findById(id);
+			return cargaService.findById(id);
 	}
 
 	/**

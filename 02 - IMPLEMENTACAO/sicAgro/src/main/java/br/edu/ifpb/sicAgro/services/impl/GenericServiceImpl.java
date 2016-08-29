@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.edu.ifpb.sicAgro.dao.DAO;
+import br.edu.ifpb.sicAgro.exceptions.ServiceSicAgroException;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.services.Service;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
@@ -18,33 +20,22 @@ import br.edu.ifpb.sicAgro.util.jpa.Transactional;
  */
 public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 
-
 	private static final long serialVersionUID = 1026846993733369843L;
-	
+
 	protected DAO<T, K> dao;
 
-	/**
-	 * 
-	 */
 	@Override
 	@Transactional
-	public void add(T entity) {
+	public void add(T entity) throws SicAgroException {
 		dao.add(entity);
-
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	@Transactional
-	public T update(T entity) {
+	public T update(T entity){
 		return dao.update(entity);
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	@Transactional
 	public void remove(T entity) {
@@ -52,6 +43,7 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 	}
 
 	/**
+	 * @throws ServiceSicAgroException
 	 * 
 	 */
 	@Override
@@ -60,6 +52,7 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 	}
 
 	/**
+	 * @throws ServiceSicAgroException
 	 * 
 	 */
 	@Override

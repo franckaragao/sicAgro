@@ -34,7 +34,7 @@ public class ContaServiceImpl extends GenericServiceImpl<Conta, Long> implements
 	public ContaServiceImpl(ContaDAO dao) {
 		this.dao = dao;
 	}
-
+	
 	/**
 	 * 
 	 */

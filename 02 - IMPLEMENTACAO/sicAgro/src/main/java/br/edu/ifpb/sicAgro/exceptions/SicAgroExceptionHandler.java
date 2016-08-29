@@ -7,7 +7,7 @@ package br.edu.ifpb.sicAgro.exceptions;
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
-public class SicAgroExceptionHandler extends Exception {
+public class SicAgroExceptionHandler extends SicAgroException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.TypeMachine;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
@@ -56,10 +57,7 @@ public class PedidoSolicitacaoEditBean implements Serializable {
 		}
 	}
 
-	/**
-	 * 
-	 */
-	public void save() {
+	public void save() throws SicAgroException {
 		if (isPedidoEdited()) {
 			pedidoSolicitacaoService.update(pedidoSolicitacao);
 			MessageUtils

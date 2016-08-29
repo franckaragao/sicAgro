@@ -11,10 +11,9 @@ import javax.inject.Named;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.services.EntregaService;
 
-
 /**
- * Faces converter responsável por converter os atributos da entidade @Entrega para
- * string (visualização na pagina) e para objeto. 
+ * Faces converter responsável por converter os atributos da entidade @Entrega
+ * para string (visualização na pagina) e para objeto.
  * 
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -22,8 +21,8 @@ import br.edu.ifpb.sicAgro.services.EntregaService;
 @Named
 @RequestScoped
 @FacesConverter(forClass = Entrega.class)
-public class EntregaConverter implements Converter{
-	
+public class EntregaConverter implements Converter {
+
 	@Inject
 	private EntregaService entregaService;
 
@@ -31,7 +30,8 @@ public class EntregaConverter implements Converter{
 	 * 
 	 */
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+	public Object getAsObject(FacesContext context, UIComponent component,
+			String value) {
 		if (value == null || value.trim().isEmpty()) {
 			return null;
 		}
@@ -43,7 +43,8 @@ public class EntregaConverter implements Converter{
 	 * 
 	 */
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object value) {
+	public String getAsString(FacesContext context, UIComponent component,
+			Object value) {
 		if (value == null) {
 			return null;
 		}

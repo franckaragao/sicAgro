@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="solicitacao" value="#{solicitacaoServicoEditBean.solicitacaoServico}" converter="#{solicitacaoServicoConverter}" />
+		<o:viewParam name="pedidoSolicitacao" value="#{solicitacaoServicoEditBean.pedidoSolicitacao}" converter="#{pedidoSolicitacaoConverter}"/>
+		<f:event listener="#{solicitacaoServicoEditBean.preRenderView}" type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">Solicitação de Serviço</ui:define>
+	<ui:define name="content-header">Solicitação de Serviço
+		<small>Efetuar solicitação de serviços de máquinas</small>
+	</ui:define>
+	<ui:define name="breadcrumb-active">Solicitação serviço</ui:define>
+	<ui:define name="content">
+
+		<h:form id="formRegisterSolicitation">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<div class="ui-fluid">
+				<p:fieldset>
+						<p:dialog 
+							id="dlg" 
+							header="Solicitação já concluída?"
+							widgetVar="dlgC" 
+							modal="true" 
+							width="320"
+							resizable="false" 
+							closable="false" 
+							responsive="true">
+							<h:panelGrid columns="2" cellpadding="30px">
+								<p:outputPanel id="panel">
+								<p:outputLabel for="dtaRealization" value="Data da Realização" />
+								<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateRealization}" required="true" requiredMessage="Data Realização deve ser informado"/>
+								<p:outputLabel for="timesWork" value="Horas trabalhadas" />
+								<p:spinner id="timesWork" value="#{solicitacaoServicoEditBean.solicitacaoServico.timeWorkeds}" required="true" requiredMessage="Horas trabalhadas deve ser informado"/>
+								</p:outputPanel>
+							</h:panelGrid>
+							
+							<p:commandButton value="CONCLUIR" id="btn_ok" styleClass="btnn-primary" process="completed dtaRealization timesWork" style="margin-top:5px;" oncomplete="handleDialogRequest(xhr, status, args)"/>
+
+							<p:commandButton value="NÃO CONCLUIR" id="btn_clear"  styleClass="btnn-primary" style="margin-top:5px;" actionListener="#{solicitacaoServicoEditBean.cancelConclusao}" oncomplete="PF('dlgC').hide()" update="completed panel" process="@this completed">
+								<p:resetInput target="panel"/>
+							</p:commandButton>
+						</p:dialog>
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1 ui-grid-col-2" layout="grid">
+						<p:outputLabel for="auto_machine" value="Máquina" />
+						<p:autoComplete 
+							dropdown="true" 
+							id="auto_machine"
+							value="#{solicitacaoServicoEditBean.solicitacaoServico.veiculo}"
+							completeMethod="#{solicitacaoServicoEditBean.listVeiculos}"
+							required="true"
+							requiredMessage="Uma máquina deve ser selecionada" 
+							var="machine"
+							itemLabel="#{machine.identification}" 
+							itemValue="#{machine}"
+							converter="#{veiculoConverter}" 
+							forceSelection="true"
+							placeholder="Identificação da máquina">
+
+							<p:column>
+								<h:outputText value="#{machine.identification}" />
+							</p:column>
+							
+						</p:autoComplete>
+
+						<p:outputLabel for="auto_func" value="Funcionário" />
+
+						<p:autoComplete 
+							dropdown="true" 
+							id="auto_func"
+							value="#{solicitacaoServicoEditBean.solicitacaoServico.funcionario}"
+							completeMethod="#{solicitacaoServicoEditBean.listFuncionarios}"
+							required="true"
+							requiredMessage="Um funcionário deve ser selecionado" 
+							var="func"
+							itemLabel="#{func.name}" 
+							itemValue="#{func}"
+							converter="#{funcionarioConverter}" 
+							forceSelection="true"
+							placeholder="Nome do funcionário responsável">
+
+							<p:column>
+								<h:outputText value="#{func.name}" />
+							</p:column>
+						</p:autoComplete>
+
+						<p:outputLabel for="dtaSolicitation" value="Data da solicitação" />
+						<p:calendar id="dtaSolicitation" locale="pt_BR" title="Data Solicitação" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateSolicitation}" required="true" requiredMessage="Data da solicitação deve ser informada" />
+
+						<p:outputLabel for="dtaForExecution" value="Data Agendamento" />
+						<p:calendar id="dtaForExecution" locale="pt_BR" title="Data Marcada" pattern="dd/MM/yyyy HH:mm" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateForRealization}" required="true" requiredMessage="Data Marcada deve ser informada" placeholder="Data que o serviço será realizado"/>
+
+						<p:outputLabel for="advanced" value="Produtor" />
+						<p:selectOneMenu 
+							id="advanced"
+							value="#{solicitacaoServicoEditBean.solicitacaoServico.produtor}"
+							converter="#{produtorConverter}"
+							var="t"
+							filter="true"
+							filterMatchMode="startsWith"
+							required="true"
+							requiredMessage="Um Produtor deve ser selecionado">
+							<f:selectItem noSelectionOption="true" itemLabel="" />
+							<f:selectItems value="#{solicitacaoServicoEditBean.produtors}" var="produtor" itemLabel="#{produtor.name}" itemValue="#{produtor}" />
+
+							<p:column style="width:40%" filterBy="#{t.cod}">
+								<h:outputText value="#{t.cod}" />
+							</p:column>
+
+							<p:column filterBy="#{t.name}">
+								<h:outputText value="#{t.name}" />
+							</p:column>
+						</p:selectOneMenu>
+
+						<p:outputLabel for="resumo_solicitacao" value="Resumo do serviço" />
+						<p:inputText id="resumo_solicitacao" required="true" requiredMessage="Resumo do serviço deve ser informado" value="#{solicitacaoServicoEditBean.solicitacaoServico.resumoServico}" />
+						
+						<p:outputLabel value="Solicitação concluída?" />
+						<p:inputSwitch id="completed" value="#{solicitacaoServicoEditBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não">
+							<p:ajax oncomplete="PF('dlgC').show();" update="@this" />
+						</p:inputSwitch>
+
+					</p:panelGrid>
+				</p:fieldset>
+			</div>
+
+			<p:separator style="border-color: #098554" />
+			<h:panelGrid columns="3">
+				<p:commandButton value="Concluir" id="bt_Save" icon="fa fa-floppy-o" style="float: left;" styleClass="btnn btnn-primary" action="#{solicitacaoServicoEditBean.save}" process="@this auto_machine auto_func dtaSolicitation dtaForExecution advanced resumo_solicitacao completed" />
+
+				<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban" style="float:left;" styleClass="btnn btnn-primary" outcome="/pages/admin/solicitacao/solicitacoes" />
+
+				<p:button value="Solicitações" id="bt_findSolic" style="float:left;" styleClass="btnn btnn-primary" icon="fa fa-search" outcome="/pages/admin/solicitacao/solicitacoes" />
+			</h:panelGrid>
+		</h:form>
+
+		<!-- Valida dialog -->
+		<script type="text/javascript">
+		    function handleDialogRequest(xhr, status, args) {
+		        if(args.validationFailed) {
+		            PF('dlgC').jq.effect("shake", {times:5}, 100);
+		        }
+		        else {
+		            PF('dlgC').hide();
+		        }
+		    }
+	</script>
+
+	</ui:define>
+</ui:composition>

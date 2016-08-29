@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+	<c:if test="${contaBean.typerUserLogged != '4'}">
+		<li class="dropdown messages-menu"><a href="#"
+			class="dropdown-toggle" data-toggle="dropdown"><i
+				class="fa fa-bell"></i> <c:if test="${notificationBean.totalPedidos > '0'}">
+					<span class="label label-warning">#{notificationBean.totalPedidos}</span>
+				</c:if> </a>
+			<ul class="dropdown-menu">
+				<c:if test="${notificationBean.totalPedidos > '0'}">
+					<li class="footer">
+					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
+						<span>Novos pedidos de solicitações</span>
+					</p:link>
+				</li>
+				</c:if>
+				<c:if test="${notificationBean.totalPedidos == '0'}">
+					<li class="footer">
+					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
+						<span>Não há novos pedidos de solicitações</span>
+					</p:link>
+					</li>
+				</c:if>
+			</ul></li>
+	</c:if>
+	
+	<c:if test="${contaBean.typerUserLogged == '4'}">
+		<li class="dropdown messages-menu"><a href="#"
+			class="dropdown-toggle" data-toggle="dropdown"><i
+				class="fa fa-envelope"></i> <c:if test="${notificationBean.totalByMessages > '0'}">
+					<span class="label label-warning">#{notificationBean.totalByMessages}</span>
+				</c:if> </a>
+			<ul class="dropdown-menu">
+				<c:if test="${notificationBean.totalByMessages > '0'}">
+					<li class="footer">
+					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
+						<span>Novas mensagens</span>
+					</p:link>
+				</li>
+				</c:if>
+				<c:if test="${notificationBean.totalByMessages == '0'}">
+					<li class="footer">
+					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
+						<span>Não há novas mensagens</span>
+					</p:link>
+					</li>
+				</c:if>
+			</ul></li>
+	</c:if>
+</ui:composition>
+</html>

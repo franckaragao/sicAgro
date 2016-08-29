@@ -17,12 +17,10 @@
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.jboss.tools.cdi.ui"/>
 			<item value="org.eclipse.jdt.ui.java"/>
-			<item value="org.eclipse.jst.j2ee.internal"/>
 			<item value="org.eclipse.fx.ide"/>
 			<item value="org.eclipse.fx.ide/org.eclipse.fx.ide.clazz"/>
 			<item value="org.eclipse.jpt.jaxb"/>
 			<item value="org.jboss.tools.jst.web"/>
-			<item value="org.eclipse.jst.ws.ui.new"/>
 			<item value="org.eclipse.xtend.ide.wizards"/>
 		</list>
 	</section>
@@ -30,6 +28,17 @@
 		<item value="org.eclipse.m2e.core.wizards.Maven2ImportWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.m2e"/>
+		</list>
+	</section>
+	<section name="ShowViewDialog">
+		<item value="300" key="DIALOG_WIDTH"/>
+		<item value="1|Droid Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="org.eclipse.egit.ui.RepositoriesView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="431" key="DIALOG_HEIGHT"/>
+		<item value="536" key="DIALOG_X_ORIGIN"/>
+		<item value="84" key="DIALOG_Y_ORIGIN"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.egit.ui.GitCategory"/>
 		</list>
 	</section>
 </section>

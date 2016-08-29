@@ -10,8 +10,8 @@
 	</h:head>
 
 	<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade" styleClass="box-primary">
-		<p:commandButton process="detailForm" value="Sim" type="button" styleClass="btnn btnn-primary ui-confirmdialog-yes" />
-		<p:commandButton process="detailForm" value="Não" type="button" styleClass="btnn btnn-primary ui-confirmdialog-no" />
+		<p:commandButton process="@form" value="Sim" type="button" styleClass="btnn btnn-primary ui-confirmdialog-yes" />
+		<p:commandButton process="@form" value="Não" type="button" styleClass="btnn btnn-primary ui-confirmdialog-no" />
 	</p:confirmDialog>
 
 </ui:composition>

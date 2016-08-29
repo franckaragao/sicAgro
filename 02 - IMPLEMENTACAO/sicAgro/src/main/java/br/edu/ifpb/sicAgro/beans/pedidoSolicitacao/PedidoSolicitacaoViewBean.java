@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -35,12 +36,10 @@ public class PedidoSolicitacaoViewBean implements Serializable {
 	 * responsável por obter um produto pelo contexto de aplicação.
 	 */
 	public void preRenderView() {
-		pedidoSolicitacao = (PedidoSolicitacao) JSFUtils
-				.getParam("pedidoSolicitacao");
+		pedidoSolicitacao = (PedidoSolicitacao) JSFUtils.getParam("pedidoSolicitacao");
 	}
 
-	public void rejeitar() {
-		System.out.println(pedidoSolicitacao);
+	public void rejeitar() throws SicAgroException {
 		pedidoSolicitacao.setStatus(PedidoStatus.NOT_ACCEPTED);
 		pedidoSolicitacaoService.update(pedidoSolicitacao);
 

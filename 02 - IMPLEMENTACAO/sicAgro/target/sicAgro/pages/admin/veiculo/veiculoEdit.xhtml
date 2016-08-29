@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="veiculo" value="#{veiculoEditBean.veiculo}"
+			converter="#{veiculoConverter}" />
+		<f:event listener="#{veiculoEditBean.preRenderView}" type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">Cadastro de Veículo</ui:define>
+	<ui:define name="content-header">Novo Veículo
+		<small>Cadastrar novo Veículo</small>
+	</ui:define>
+	<ui:define name="breadcrumb-active">Novo Veículo</ui:define>
+	<ui:define name="content">
+
+		<h:form id="formRegisterFuncionario">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:fieldset>
+				<div class="ui-fluid">
+					<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+						columnClasses="ui-grid-col-1">
+						
+						<p:outputLabel for="identification" value="Identificação " />
+						<p:inputText  id="identification" value="#{veiculoEditBean.veiculo.identification}" placeholder="Exemplo: Pipa do MDA 1"/>
+						
+						<p:outputLabel for="type" value="Tipo" />
+						<p:selectOneMenu id="type"
+							value="#{veiculoEditBean.veiculo.type}">
+							<f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true" />
+							<f:selectItems value="#{veiculoEditBean.typesMachine}"
+								var="type" itemLabel="#{type.type}"
+								itemValue="#{type}" />
+						</p:selectOneMenu>
+						
+						<p:outputLabel for="chassi" value="Chassi" />
+						<p:inputText  id="chassi" value="#{veiculoEditBean.veiculo.chassi}"/>
+						
+						<p:outputLabel for="uf" value="UF" />
+						
+						<p:selectOneMenu id="uf" value="#{veiculoEditBean.veiculo.uf}">
+
+							<f:selectItem itemLabel="Selecione um estado"
+								noSelectionOption="true" />
+							<f:selectItems value="#{enderecoBean.states}"
+								itemValue="#{state}" itemLabel="#{state.descricao}"
+								var="state" />
+							<p:ajax process="@this" event="change" update="city"
+								listener="#{veiculoEditBean.loadCities}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="city" value="Município" />
+						
+						<p:selectOneMenu id="city" value="#{veiculoEditBean.veiculo.city}" filter="true"
+								filterMatchMode="startsWith"
+								disabled="#{veiculoEditBean.veiculo.uf eq null}">
+									<f:selectItem itemLabel="Selecione uma cidade" noSelectionOption="true" />
+									<f:selectItems value="#{enderecoBean.cities}"
+										itemValue="#{city}" itemLabel="#{city}" var="city" />
+								</p:selectOneMenu>
+						
+						<p:outputLabel for="yearAqui" value="Ano Aquisição" />
+						<p:inputText  id="yearAqui" value="#{veiculoEditBean.veiculo.aquisYear}"/>
+						
+						<p:outputLabel for="horimetro" value="Horimetro" />
+						<p:spinner id="horimetro" value="#{veiculoEditBean.veiculo.horimetro}"/>
+						
+
+					</p:panelGrid>
+				</div>
+
+				<p:separator style="border-color: #098554" />
+				<h:panelGrid columns="3">
+
+					<p:commandButton value="Salvar" id="bt_Save" icon="fa fa-floppy-o"
+						style="float: left;" styleClass="btnn btnn-primary"
+						action="#{veiculoEditBean.save}" />
+
+
+					<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban"
+						style="float:left;" styleClass="btnn btnn-primary"
+						outcome="/pages/admin/veiculo/veiculos" />
+
+					<p:button value="Buscar Veículo" id="bt_findFuncionario"
+						style="float:left;" styleClass="btnn btnn-primary"
+						icon="fa fa-search" outcome="/pages/admin/veiculo/veiculos" />
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

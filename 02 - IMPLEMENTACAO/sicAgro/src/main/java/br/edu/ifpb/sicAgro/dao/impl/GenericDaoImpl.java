@@ -96,8 +96,7 @@ public abstract class GenericDaoImpl<T, K> implements Serializable, DAO<T, K> {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		Query query = entityManager.createQuery("SELECT t FROM "
-				+ type.getName() + " t");
+		Query query = entityManager.createQuery("SELECT t FROM " + type.getName() + " t");
 		return query.getResultList();
 	}
 }

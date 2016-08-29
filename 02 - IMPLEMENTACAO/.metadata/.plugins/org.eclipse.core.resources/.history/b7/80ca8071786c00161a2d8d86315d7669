@@ -1,0 +1,27 @@
+package br.edu.ifpb.sicAgro.validation.impl;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
+
+import br.edu.ifpb.sicAgro.services.ProdutorService;
+
+public class CPFUniqueValidator{
+	
+	@Inject
+	private ProdutorService produtorSerice;
+
+	public void validate(String cpf) throws ValidatorException {
+		if(produtorSerice.isCPFExists(value.toString())){
+			FacesMessage msg = new FacesMessage("Já existe um produtor cadastraod com este CPF: "+value.toString());
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+		
+	}
+
+}

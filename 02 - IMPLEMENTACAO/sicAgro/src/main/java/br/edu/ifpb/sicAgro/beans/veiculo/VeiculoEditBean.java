@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.TypeMachine;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Veiculo;
 import br.edu.ifpb.sicAgro.services.EnderecoService;
 import br.edu.ifpb.sicAgro.services.VeiculoService;
@@ -44,7 +45,7 @@ public class VeiculoEditBean implements Serializable {
 		typesMachine = Arrays.asList(TypeMachine.values());
 	}
 
-	public void save() {
+	public void save() throws SicAgroException {
 		if (isVeiculoEdited()) {
 			veiculoService.update(veiculo);
 			MessageUtils.messageSucess("Veículo atualizado com sucesso.");

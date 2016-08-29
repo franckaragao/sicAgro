@@ -46,7 +46,7 @@
 
 								<p:outputLabel for="cpf" value="CPF" />
 								<p:inputMask mask="999.999.999-99" id="cpf"
-									value="#{produtorEditBean.produtor.cpf}" />
+									required="true" value="#{produtorEditBean.produtor.cpf}" />
 
 								<p:outputLabel for="nDap" value="Nº DAP" />
 								<p:inputText id="nDap" value="#{produtorEditBean.produtor.nDap}" />
@@ -89,9 +89,13 @@
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 								<p:outputLabel for="end" value="Endereço" />
-								<p:autoComplete id="end" value="#{produtorEditBean.produtor.endereco.address}" completeMethod="#{enderecoBean.completeCities}"
-								 	var="ad" itemLabel="#{ad}" itemValue="#{ad}">
-								 	<p:ajax event="itemSelect" listener="#{produtorEditBean.updateCamposEnderecos(ad)}" update="number zone complement cep state city"/>
+								<p:autoComplete id="end"
+									value="#{produtorEditBean.produtor.endereco.address}"
+									completeMethod="#{enderecoBean.completeCities}" var="ad"
+									itemLabel="#{ad}" itemValue="#{ad}">
+									<p:ajax event="itemSelect"
+										listener="#{produtorEditBean.updateCamposEnderecos(ad)}"
+										update="number zone complement cep state city" />
 								</p:autoComplete>
 
 								<p:outputLabel for="number" value="Número" />
@@ -100,14 +104,17 @@
 									maxlength="4" size="5" />
 
 								<p:outputLabel for="zone" value="Zona" />
-								<p:selectOneMenu id="zone" value="#{produtorEditBean.produtor.endereco.zone}">
-									<f:selectItem itemLabel="Selecione uma zona" noSelectionOption="true" />
+								<p:selectOneMenu id="zone"
+									value="#{produtorEditBean.produtor.endereco.zone}">
+									<f:selectItem itemLabel="Selecione uma zona"
+										noSelectionOption="true" />
 									<f:selectItem itemLabel="Zona Urbana" itemValue="Zona Urbana" />
 									<f:selectItem itemLabel="Zona Rural" itemValue="Zona Rural" />
 								</p:selectOneMenu>
 
 								<p:outputLabel for="complement" value="Complemento" />
-								<p:inputTextarea id="complement" value="#{produtorEditBean.produtor.endereco.complement}" />
+								<p:inputTextarea id="complement"
+									value="#{produtorEditBean.produtor.endereco.complement}" />
 
 								<p:outputLabel for="cep" value="CEP" />
 								<p:inputMask mask="99999-999" id="cep"
@@ -165,7 +172,7 @@
 
 				<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
 					style="float: left;" styleClass="btnn btnn-primary"
-					action="#{produtorEditBean.save}" process="formRegisterProdutor"/>
+					action="#{produtorEditBean.save}" process="formRegisterProdutor" />
 
 
 				<p:button value="Cancelar" id="cancel" icon="fa fa-ban"

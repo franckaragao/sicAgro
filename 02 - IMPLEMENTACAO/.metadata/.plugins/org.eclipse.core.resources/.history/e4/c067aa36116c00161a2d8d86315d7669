@@ -1,0 +1,5 @@
+package br.edu.ifpb.sicAgro.validation.impl;
+
+public class CPFUniqueValidator {
+
+}

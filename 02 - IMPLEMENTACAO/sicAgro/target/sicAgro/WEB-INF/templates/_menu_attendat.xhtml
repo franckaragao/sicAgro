@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+	<li class="header">MÓDULO RECEPSIONISTA</li>
+	<li class="treeview"><a href="#"><i class="fa fa-users"></i><span>Produtores</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li><a
+				href="#{request.contextPath}/pages/admin/produtor/produtorEdit.xhtml">Cadastrar Novo</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/produtor/produtores.xhtml">Pesquisar Produtor</a></li>
+		</ul></li>
+	
+	<li class="treeview"><a href="#"><i class="fa fa-cubes"></i><span>Distribuições</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li><a
+				href="#{request.contextPath}/pages/admin/entrega/entregaEdit.xhtml"><i class="fa fa-plus" aria-hidden="true"></i>Registrar entrega</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/entrega/entregas.xhtml">Pesquisar Entregas</a></li>
+		</ul></li>
+	
+	<li class="treeview"><a href="#"><i class="fa fa-cogs"></i><span>Solicitação de Serviços</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li><a
+				href="#{request.contextPath}/pages/admin/solicitacao/solicitacaoServicoEdit.xhtml">Efetuar solicitação</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/solicitacao/solicitacoes.xhtml">Pesquisar Solicitações</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/veiculo/veiculos.xhtml">Veículos</a></li>
+		</ul></li>
+	
+	<li class="treeview"><a href="#"><i class="fa fa-truck"></i><span>Recebimento de Cargas</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li><a
+				href="#{request.contextPath}/pages/admin/carga/cargaEdit.xhtml">Registrar Carga</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/carga/cargas.xhtml">Pesquisar Carga</a></li>
+			<li><a
+				href="#{request.contextPath}/pages/admin/produto/produtos.xhtml">Produtos de Carga</a></li>
+		</ul></li>
+	
+</ui:composition>
+</html>

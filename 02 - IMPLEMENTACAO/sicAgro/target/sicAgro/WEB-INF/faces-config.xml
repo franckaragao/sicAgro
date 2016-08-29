@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<application>
+		<!-- Seta mensagens properties no bean validation -->
+		<message-bundle>br.edu.ifpb.sicAgro.messages</message-bundle>
+		
+		<resource-bundle>
+		<base-name>MessagesApplication</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+		</locale-config>
+	</application>
+	
+	<factory>
+		<exception-handler-factory>
+			br.edu.ifpb.sicAgro.util.jsf.JSFExceptionHandlerFactory
+		</exception-handler-factory>
+	</factory>
+
+</faces-config>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/dist/css/style.css" />
+	</h:head>
+
+	<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade" styleClass="box-primary">
+		<p:commandButton process="detailForm" value="Sim" type="button" styleClass="btnn btnn-primary ui-confirmdialog-yes" />
+		<p:commandButton process="detailForm" value="Não" type="button" styleClass="btnn btnn-primary ui-confirmdialog-no" />
+	</p:confirmDialog>
+
+</ui:composition>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="SicAgroPU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<non-jta-data-source>jdbc/sicAgro</non-jta-data-source>
+
+		<class>br.edu.ifpb.sicAgro.model.Carga</class>
+		<class>br.edu.ifpb.sicAgro.model.Produtor</class>
+		<class>br.edu.ifpb.sicAgro.model.ItemCarga</class>
+		<class>br.edu.ifpb.sicAgro.model.Produto</class>
+		<class>br.edu.ifpb.sicAgro.model.Endereco</class>
+		<class>br.edu.ifpb.sicAgro.model.Entrega</class>
+		<class>br.edu.ifpb.sicAgro.model.ItemEntrega</class>
+		<class>br.edu.ifpb.sicAgro.model.Funcionario</class>
+		<class>br.edu.ifpb.sicAgro.model.Conta</class>
+		<class>br.edu.ifpb.sicAgro.model.Veiculo</class>
+		<class>br.edu.ifpb.sicAgro.model.SolicitacaoServico</class>
+		<class>br.edu.ifpb.sicAgro.model.PedidoSolicitacao</class>
+
+		<properties>
+			<!-- Configuração Hibernate SGBD PostgreSQL -->
+			<property name="hibernate.default_schema" value="public" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<!-- /Configuração Hibernate SGBD PostgreSQL -->
+			
+		</properties>
+	</persistence-unit>
+
+
+
+	<persistence-unit name="SicAgroPU-local" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>br.edu.ifpb.sicAgro.model.Carga</class>
+		<class>br.edu.ifpb.sicAgro.model.Produtor</class>
+		<class>br.edu.ifpb.sicAgro.model.ItemCarga</class>
+		<class>br.edu.ifpb.sicAgro.model.Produto</class>
+		<class>br.edu.ifpb.sicAgro.model.Endereco</class>
+		<class>br.edu.ifpb.sicAgro.model.Entrega</class>
+		<class>br.edu.ifpb.sicAgro.model.ItemEntrega</class>
+		<class>br.edu.ifpb.sicAgro.model.Funcionario</class>
+		<class>br.edu.ifpb.sicAgro.model.Conta</class>
+		<class>br.edu.ifpb.sicAgro.model.Veiculo</class>
+		<class>br.edu.ifpb.sicAgro.model.SolicitacaoServico</class>
+
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/sicAgro" />
+			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.PostgreSQL9" />
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="123" />
+			<property name="hibernate.default_schema" value="public" />
+			<property name="hibernate.hbm2ddl.auto" value="update" /> <!-- remove isso quando for implantar de verdade -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+
+		</properties>
+	</persistence-unit>
+
+</persistence>

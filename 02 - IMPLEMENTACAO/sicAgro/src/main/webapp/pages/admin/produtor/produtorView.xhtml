@@ -21,7 +21,6 @@
 	<ui:define name="content">
 
 		<h:form id="detailForm">
-			<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
 
 			<p:messages id="messages" autoUpdate="true" showDetail="true" />
 
@@ -31,10 +30,11 @@
 					<f:param name="produtor" value="#{produtorViewBean.produtor.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.remove}" id="btRemove" action="#{produtorBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
+				<p:commandButton value="REMOVER" id="btRemove" action="#{produtorBean.remove}" process="@this detailForm" icon="fa fa-trash" styleClass="btnn btnn-primary">
 					<f:setPropertyActionListener value="#{produtorViewBean.produtor}" target="#{produtorBean.selectedProdutor}" />
-                     <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
+					 <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
 					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
+					<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
     			</p:commandButton>
 
 				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">

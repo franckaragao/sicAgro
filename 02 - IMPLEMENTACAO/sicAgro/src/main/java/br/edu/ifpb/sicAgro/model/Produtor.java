@@ -33,8 +33,7 @@ public class Produtor extends Pessoa {
 	private String nDap;
 
 	@NotNull
-	@OneToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE, CascadeType.REMOVE })
+	@OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	@JoinColumn(name = "conta_fk", nullable = false)
 	private Conta acount;
 

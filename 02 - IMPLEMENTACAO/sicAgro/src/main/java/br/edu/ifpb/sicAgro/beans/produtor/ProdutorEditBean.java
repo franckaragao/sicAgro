@@ -13,7 +13,7 @@ import javax.inject.Named;
 import br.edu.ifpb.sicAgro.enumerations.CivelState;
 import br.edu.ifpb.sicAgro.enumerations.ProdutoType;
 import br.edu.ifpb.sicAgro.enumerations.UserRole;
-import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Endereco;
 import br.edu.ifpb.sicAgro.model.Produtor;
@@ -60,17 +60,15 @@ public class ProdutorEditBean implements Serializable {
 		civelStates = Arrays.asList(CivelState.values());
 	}
 
-	public void save() {
-		try {
-			produtor.setAcount(contaService.criptografarSenha(createDefaultAcount()));
-		} catch (SicAgroExceptionHandler e) {
-		}
+	public void save() throws SicAgroException {
+		
 
 		if (isProdutorEdited()) {
 			produtorService.update(produtor);
 			MessageUtils.messageSucess("Produtor atualizado com sucesso.");
 
 		} else {
+			produtor.setAcount(contaService.criptografarSenha(createDefaultAcount()));
 			produtorService.add(produtor);
 			MessageUtils.messageSucess("Produtor salvo com sucesso.");
 		}
@@ -79,7 +77,7 @@ public class ProdutorEditBean implements Serializable {
 	
 	private Conta createDefaultAcount(){
 		Conta conta = new Conta();
-		conta.setUserName("produtor");
+		conta.setUserName(produtor.getCpf());
 		conta.setPassword(produtor.getCpf());
 		conta.setMail("seuemail@mail.com");
 		conta.setUserRole(UserRole.PRODUTOR);

@@ -27,7 +27,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.edu.ifpb.sicAgro.enumerations.CivelState;
-import br.edu.ifpb.sicAgro.validation.RG;
+import br.edu.ifpb.sicAgro.validators.RG;
 
 /**
  * Classe Generica que representa a entidade Pessoa, está classe

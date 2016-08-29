@@ -31,14 +31,13 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	@Transactional
 	public void add(Produtor entity) throws SicAgroExceptionHandler {
 		if(isCPFExists(entity.getCpf())){
-			throw new SicAgroExceptionHandler("Já existe um produtor cadastrado com este CPF:"+ entity.getCpf());
+			throw new SicAgroExceptionHandler("Já existe um produtor cadastrado com este CPF: "+ entity.getCpf());
 		}
 		Conta conta = contaService.findByUserName(entity.getCpf());
 		if(conta != null){
-			throw new SicAgroExceptionHandler("Já existe um usuário cadastrado com este CPF:"+ entity.getCpf());
+			throw new SicAgroExceptionHandler("Já existe um usuário cadastrado com este CPF: "+ entity.getCpf());
 		}
 		dao.add(entity);
-
 	}
 
 	@Override

@@ -3165,3 +3165,91 @@ Caused by: java.net.UnknownHostException: github.com
 
 !ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-29 01:05:08.981
 !MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-08-29 01:15:56.450
+!MESSAGE An internal error occurred during: "populate auto detected configs".
+!STACK 0
+java.lang.IllegalMonitorStateException
+	at java.util.concurrent.locks.ReentrantReadWriteLock$Sync.tryRelease(ReentrantReadWriteLock.java:371)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.release(AbstractQueuedSynchronizer.java:1261)
+	at java.util.concurrent.locks.ReentrantReadWriteLock$WriteLock.unlock(ReentrantReadWriteLock.java:1131)
+	at org.springframework.ide.eclipse.beans.core.internal.model.BeansProject$1.run(BeansProject.java:1086)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-08-29 01:15:56.638
+!MESSAGE An internal error occurred during: "populate auto detected configs".
+!STACK 0
+java.lang.IllegalMonitorStateException
+	at java.util.concurrent.locks.ReentrantReadWriteLock$Sync.tryRelease(ReentrantReadWriteLock.java:371)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.release(AbstractQueuedSynchronizer.java:1261)
+	at java.util.concurrent.locks.ReentrantReadWriteLock$WriteLock.unlock(ReentrantReadWriteLock.java:1131)
+	at org.springframework.ide.eclipse.beans.core.internal.model.BeansProject$1.run(BeansProject.java:1086)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.jobs 4 2 2016-08-29 01:15:58.283
+!MESSAGE An internal error occurred during: "JAX-RS Metamodel build...".
+!STACK 0
+java.lang.OutOfMemoryError: Requested array size exceeds VM limit
+	at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:38)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:642)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.addQueryResults(DiskIndex.java:190)
+	at org.eclipse.jdt.internal.core.index.Index.query(Index.java:140)
+	at org.eclipse.jdt.core.search.SearchPattern.queryIn(SearchPattern.java:2598)
+	at org.eclipse.jdt.internal.core.search.matching.IntersectingPattern.findIndexMatches(IntersectingPattern.java:39)
+	at org.eclipse.jdt.internal.core.search.matching.MatchLocator.findIndexMatches(MatchLocator.java:273)
+	at org.eclipse.jdt.internal.core.search.PatternSearchJob.search(PatternSearchJob.java:109)
+	at org.eclipse.jdt.internal.core.search.PatternSearchJob.execute(PatternSearchJob.java:65)
+	at org.eclipse.jdt.internal.core.search.processing.JobManager.performConcurrentJob(JobManager.java:277)
+	at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:215)
+	at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:516)
+	at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.search.JavaElementsSearcher.searchForAnnotatedTypes(JavaElementsSearcher.java:363)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.search.JavaElementsSearcher.findApplicationTypes(JavaElementsSearcher.java:87)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.domain.JaxrsElementFactory.internalCreateElements(JaxrsElementFactory.java:90)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.domain.JaxrsElementFactory.createElements(JaxrsElementFactory.java:75)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.domain.JaxrsMetamodel.processJavaElement(JaxrsMetamodel.java:634)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.domain.JaxrsMetamodel.processResourceChange(JaxrsMetamodel.java:608)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.domain.JaxrsMetamodel.processAffectedResources(JaxrsMetamodel.java:574)
+	at org.jboss.tools.ws.jaxrs.core.internal.metamodel.builder.ResourceChangedBuildJob.run(ResourceChangedBuildJob.java:77)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.apache.log4j 4 0 2016-08-29 01:16:06.655
+!MESSAGE org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager  - Unable to add br/edu/ifpb/sicAgro/0.0.1-SNAPSHOT/sicAgro-0.0.1-SNAPSHOT.pom
+
+!STACK 0
+java.io.FileNotFoundException: /home/franck/Projects/sicAgro (Workspace)/sicAgro/02 - IMPLEMENTACAO/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_a (No such file or directory)
+	at java.io.RandomAccessFile.open0(Native Method)
+	at java.io.RandomAccessFile.open(RandomAccessFile.java:316)
+	at java.io.RandomAccessFile.<init>(RandomAccessFile.java:243)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput$Descriptor.<init>(FSDirectory.java:552)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput.<init>(FSDirectory.java:582)
+	at org.apache.lucene.store.FSDirectory.openInput(FSDirectory.java:488)
+	at org.apache.lucene.store.FSDirectory.openInput(FSDirectory.java:482)
+	at org.apache.lucene.index.SegmentInfos$2.doBody(SegmentInfos.java:369)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:653)
+	at org.apache.lucene.index.SegmentInfos.readCurrentVersion(SegmentInfos.java:366)
+	at org.apache.lucene.index.DirectoryIndexReader.isCurrent(DirectoryIndexReader.java:237)
+	at org.apache.maven.index.context.DefaultIndexingContext.getIndexReader(DefaultIndexingContext.java:456)
+	at org.apache.maven.index.context.DefaultIndexingContext.getIndexSearcher(DefaultIndexingContext.java:475)
+	at org.apache.maven.index.context.IndexUtils.getGroups(IndexUtils.java:251)
+	at org.apache.maven.index.context.IndexUtils.getRootGroups(IndexUtils.java:220)
+	at org.apache.maven.index.context.DefaultIndexingContext.getRootGroups(DefaultIndexingContext.java:785)
+	at org.apache.maven.index.DefaultIndexerEngine.updateGroups(DefaultIndexerEngine.java:150)
+	at org.apache.maven.index.DefaultIndexerEngine.update(DefaultIndexerEngine.java:82)
+	at org.apache.maven.index.DefaultNexusIndexer.addArtifactToIndex(DefaultNexusIndexer.java:338)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.addDocument(NexusIndexManager.java:580)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.mavenProjectChanged(NexusIndexManager.java:758)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:300)
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration0(ProjectConfigurationManager.java:398)
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:345)
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:1)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1351)
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration(ProjectConfigurationManager.java:342)
+	at org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob.runInWorkspace(UpdateMavenProjectJob.java:77)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

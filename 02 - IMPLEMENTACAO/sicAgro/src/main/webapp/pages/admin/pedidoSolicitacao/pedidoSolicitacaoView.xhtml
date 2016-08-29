@@ -28,7 +28,7 @@
 			<h:panelGrid columns="5">
 			
 				<c:if test="${contaBean.typerUserLogged != '4'}">
-					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico eq null}">
+					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" disabled="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico eq null}">
 						<p:tooltip for="id_accepted" value="Aceitar pedido de solicitação"/>
 						<f:param name="pedidoSolicitacao" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id}" />
 					</p:button>

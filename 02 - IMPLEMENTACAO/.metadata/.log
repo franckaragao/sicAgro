@@ -3162,3 +3162,6 @@ Caused by: java.net.UnknownHostException: github.com
 
 !ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-29 00:42:41.339
 !MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-29 01:05:08.981
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro

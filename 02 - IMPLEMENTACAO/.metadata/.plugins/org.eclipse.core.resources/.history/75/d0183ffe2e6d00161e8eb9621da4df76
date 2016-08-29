@@ -1,0 +1,48 @@
+package br.edu.ifpb.sicAgro.dao;
+
+import java.util.List;
+
+import br.edu.ifpb.sicAgro.exceptions.PersistenceSicAgroException;
+
+/**
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ * @param <T>
+ * @param <K>
+ */
+public interface DAO<T,K>{
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public void add(T entity) throws PersistenceSicAgroException;
+	
+	/**
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public T update(T entity) throws PersistenceSicAgroException;
+	
+	/**
+	 * 
+	 * @param entity
+	 */
+	public void remove(T entity);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public T findById(K id);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<T> findAll();
+
+}

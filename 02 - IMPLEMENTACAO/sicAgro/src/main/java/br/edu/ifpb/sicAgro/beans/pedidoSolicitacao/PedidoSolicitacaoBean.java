@@ -9,10 +9,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
+import br.edu.ifpb.sicAgro.enumerations.UserRole;
+import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
+import br.edu.ifpb.sicAgro.util.userSession.UserLogged;
 
 /**
  * Manage bean responsável por gerenciar a pedidos de solicitações
@@ -28,6 +31,10 @@ public class PedidoSolicitacaoBean implements Serializable {
 
 	@Inject
 	private PedidoSolicitacaoService pedidoSolicitacaoService;
+	
+	@Inject
+	@UserLogged
+	private Conta conta;
 
 	private List<PedidoSolicitacao> pedidosSolicitacao;
 
@@ -59,7 +66,17 @@ public class PedidoSolicitacaoBean implements Serializable {
 	}
 
 	public void listPedidos() {
-		this.pedidosSolicitacao = pedidoSolicitacaoService.findAll();
+		if(isUserLoggedIsProdutor()){
+			this.pedidosSolicitacao = pedidoSolicitacaoService.findPedidosByProdutor(conta.getProdutor());
+		}else{
+			this.pedidosSolicitacao = pedidoSolicitacaoService.findAll();
+		}
+	}
+	
+	public boolean isUserLoggedIsProdutor() {
+		if (conta.getUserRole().equals(UserRole.PRODUTOR))
+			return true;
+		return false;
 	}
 	
 	/**

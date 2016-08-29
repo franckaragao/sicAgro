@@ -1,7 +1,6 @@
 #GlassFish 3
-<<<<<<< HEAD
-#Mon Aug 29 01:08:48 BRT 2016
-=======
-#Mon Aug 29 01:05:08 BRT 2016
->>>>>>> 6ded9bc8863c26b52886d63e7c55842c91bb8cb1
+#Mon Aug 29 01:50:53 BRT 2016
+>>>>>>>=6ded9bc8863c26b52886d63e7c55842c91bb8cb1
 org.eclipse.jst.jee.server\:sicAgro=/home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

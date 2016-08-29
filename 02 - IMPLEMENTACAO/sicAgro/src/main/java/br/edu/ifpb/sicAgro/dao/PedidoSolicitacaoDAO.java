@@ -1,8 +1,11 @@
 package br.edu.ifpb.sicAgro.dao;
 
+import java.util.List;
+
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
+import br.edu.ifpb.sicAgro.model.Produtor;
 
 
 /**
@@ -26,5 +29,12 @@ public interface PedidoSolicitacaoDAO extends DAO<PedidoSolicitacao, Long>{
 	 * @return
 	 */
 	Long getTotalPedidosByMessage();
+	
+	/**
+	 * 
+	 * @param produtor
+	 * @return
+	 */
+	List<PedidoSolicitacao> findPedidosByProdutor(Produtor produtor);
 
 }

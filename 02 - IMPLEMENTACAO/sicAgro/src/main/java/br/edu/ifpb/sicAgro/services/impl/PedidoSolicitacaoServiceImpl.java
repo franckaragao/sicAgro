@@ -1,10 +1,13 @@
 package br.edu.ifpb.sicAgro.services.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.PedidoSolicitacaoDAO;
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
@@ -62,5 +65,11 @@ public class PedidoSolicitacaoServiceImpl extends
 	public Long getTotalPedidosByMessages() {
 		PedidoSolicitacaoDAO dao = (PedidoSolicitacaoDAO) this.dao;
 		return dao.getTotalPedidosByMessage();
+	}
+
+	@Override
+	public List<PedidoSolicitacao> findPedidosByProdutor(Produtor produtor) {
+		PedidoSolicitacaoDAO dao = (PedidoSolicitacaoDAO) this.dao;
+		return dao.findPedidosByProdutor(produtor);
 	}
 }

@@ -33,7 +33,8 @@ import br.edu.ifpb.sicAgro.enumerations.TypeMachine;
 @Table(name = "pedido_solicitacao")
 @NamedQueries({ 
 		@NamedQuery(name = "pedidoSolicitacao.getTotalByStatus", query = "SELECT COUNT(p.id) FROM PedidoSolicitacao p WHERE p.status = :status"),
-		@NamedQuery(name = "pedidoSolicitacao.getTotalByMessages", query = "SELECT COUNT(p.id) FROM PedidoSolicitacao p WHERE p.motivoRejeicao IS NOT NULL")
+		@NamedQuery(name = "pedidoSolicitacao.getTotalByMessages", query = "SELECT COUNT(p.id) FROM PedidoSolicitacao p WHERE p.motivoRejeicao IS NOT NULL"),
+		@NamedQuery(name = "pedidoSolicitacao.findPedidosByProdutor", query = "SELECT p FROM PedidoSolicitacao p WHERE p.produtor = :produtor")
 })
 	
 public class PedidoSolicitacao implements Serializable {

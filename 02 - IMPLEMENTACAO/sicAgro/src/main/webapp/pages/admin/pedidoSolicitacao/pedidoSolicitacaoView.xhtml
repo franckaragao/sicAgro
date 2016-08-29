@@ -28,16 +28,12 @@
 			<h:panelGrid columns="5">
 			
 				<c:if test="${contaBean.typerUserLogged != '4'}">
-<<<<<<< HEAD
-					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" rendered="#{!pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico eq null}">
-=======
-					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" disabled="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico eq null}">
->>>>>>> 6ded9bc8863c26b52886d63e7c55842c91bb8cb1
+					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" disabled="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}">
 						<p:tooltip for="id_accepted" value="Aceitar pedido de solicitação"/>
 						<f:param name="pedidoSolicitacao" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id}" />
 					</p:button>
 					
-					<p:commandButton id="bt_not_accepted" value="REJEITAR" onstart="PF('dlgMotivoRejeicao').show()" icon="fa fa-times" action="#{pedidoSolicitacaoViewBean.rejeitar}" update="detailPedidoForm:status" process="@this infor_detail" styleClass="btnn btnn-danger" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.status.description eq 'Aguardando'}">
+					<p:commandButton id="bt_not_accepted" value="REJEITAR" onstart="PF('dlgMotivoRejeicao').show()" icon="fa fa-times" action="#{pedidoSolicitacaoViewBean.rejeitar}" update="detailPedidoForm:status" process="@this infor_detail" styleClass="btnn btnn-danger" disabled="#{!(pedidoSolicitacaoViewBean.pedidoSolicitacao.status.description eq 'Aguardando')}">
 				 		<p:confirm header="Rejeitar Pedido" message="Deseja rejeitar este pedido?" icon="fa fa-times"/>
 						<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
 						<p:tooltip for="bt_not_accepted" value="Rejeitar pedido de solicitação"/>

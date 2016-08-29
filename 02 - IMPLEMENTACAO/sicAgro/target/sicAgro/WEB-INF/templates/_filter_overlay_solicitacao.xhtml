@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+	<p:overlayPanel id="#{id}" for="#{for}" value="#{value}"
+		showEvent="mouseover" dismissable="false" style="width:300px">
+		<div class="ui-fluid">
+			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
+				layout="grid">
+				<h:outputText value="Por Máquina" />
+				<p:selectOneMenu value="#{solicitacaoServicoBean.filter.veiculo}" converter="#{veiculoConverter}">
+					<f:selectItem itemLabel=" " noSelectionOption="true"/>
+					<f:selectItems value="#{solicitacaoServicoBean.veiculos}" var="veiculo" itemLabel="#{veiculo.identification}" itemValue="#{veiculo}"/>
+				</p:selectOneMenu>
+				<h:outputText value="Por Funcionário" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}"/>
+				<p:selectOneMenu 
+					id="advanced"
+					value="#{solicitacaoServicoBean.filter.funcionario}"
+					converter="#{funcionarioConverter}"
+					var="t"
+					filter="true"
+					filterMatchMode="startsWith" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
+					<f:selectItem noSelectionOption="true" itemLabel=" " />
+					<f:selectItems value="#{solicitacaoServicoBean.funcionarios}" var="funcionario" itemLabel="#{funcionario.name}" itemValue="#{funcionario}" />
+					<p:column filterBy="#{t.name}">
+						<h:outputText value="#{t.name}" />
+					</p:column>
+				</p:selectOneMenu>
+				<h:outputText value="Por Estado" />
+				<p:selectOneMenu value="#{solicitacaoServicoBean.filter.status}">
+					<f:selectItem itemLabel=" " noSelectionOption="true"/>
+					<f:selectItems value="#{solicitacaoServicoBean.statusList}" var="status" itemLabel="#{status.description}" itemValue="#{status}"/>
+				</p:selectOneMenu>
+				<p:panel header="Por Período">
+					<h:outputText value="De" />
+					<p:calendar id="dtaInit" locale="pt_BR" pattern="dd/MM/yyyy"
+						showButtonPanel="true" value="#{solicitacaoServicoBean.filter.dateInit}">
+					</p:calendar>
+					<h:outputText value="Até" />
+					<p:calendar id="dtaEnd" locale="pt_BR" pattern="dd/MM/yyyy"
+						showButtonPanel="true" value="#{solicitacaoServicoBean.filter.dateEnd}">
+					</p:calendar>
+				</p:panel>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" layout="grid">
+					<p:commandButton icon="fa fa-check" value="FILTRAR" process="@this tableSolicitations" action="#{solicitacaoServicoBean.filter}" update="@this tableSolicitations" styleClass="btnn-default">
+					</p:commandButton>
+					<p:commandButton icon="fa fa-eraser" value="LIMPAR" process="@this" update="tableSolicitations" styleClass="btnn-default"/>
+				</p:panelGrid>
+			</p:panelGrid>
+		</div>
+	</p:overlayPanel>
+</ui:composition>
+</html>

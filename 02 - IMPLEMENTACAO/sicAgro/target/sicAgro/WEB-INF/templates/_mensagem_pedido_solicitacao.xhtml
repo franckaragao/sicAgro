@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<div class="ui-fluid">
+		<p:dialog 
+			id="dlgMensagens" 
+			header="Motivo Rejeição"
+			widgetVar="dlgMotivoRejeicao" 
+			modal="true" 
+			width="520"
+			resizable="false" 
+			closable="false" 
+			responsive="true">
+			
+			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
+				<p:inputTextarea id="message_rejeicao" rows="6" cols="60" autoResize="true" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao}" placeholder="Justifique aqui o motivo da rejeição" required="true" requiredMessage="Campo motivo de rejeição deve ser informado"/>
+			</p:panelGrid>
+			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
+				<p:commandButton value="ENVIAR" action="#{pedidoSolicitacaoViewBean.updatePedidoSolicitacao}" oncomplete="handleDialogRequest(xhr, status, args)" process="detailPedidoForm message_rejeicao" id="btn_ok" styleClass="btnn-primary" />
+			</p:panelGrid>
+		</p:dialog>
+	</div>
+
+		<!-- Valida dialog -->
+		<script type="text/javascript">
+		    function handleDialogRequest(xhr, status, args) {
+		        if(args.validationFailed) {
+		            PF('dlgMotivoRejeicao').jq.effect("shake", {times:5}, 100);
+		        }
+		        else {
+		            PF('dlgMotivoRejeicao').hide();
+		        }
+		    }
+	</script>
+	
+</ui:composition>

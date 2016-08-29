@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="veiculo" value="#{veiculoViewBean.veiculo}"
+			converter="#{veiculoConverter}" />
+		<f:event listener="#{veiculoViewBean.preRenderView}" type="preRenderView" />
+			
+	</f:metadata>
+
+	<ui:define name="title">Detalhe do Veículo</ui:define>
+	<ui:define name="content-header">Detalhes do Veículo <small>Visualização de detalhes do veículo</small></ui:define>
+	<ui:define name="breadcrumb-active">Detalhe veículo</ui:define>
+	
+
+	<ui:define name="content">
+
+		<h:form id="detailForm">
+			<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
+
+			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+
+			<h:panelGrid columns="5">
+
+				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/veiculo/veiculoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+					<f:param name="veiculo" value="#{veiculoViewBean.veiculo.id}"/>	
+				</p:button>
+
+				<p:commandButton value="#{msg.remove}" id="btRemove" action="#{veiculoBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
+					<f:setPropertyActionListener value="#{veiculoViewBean.veiculo}" target="#{veiculoBean.selectedVeiculo}" />
+                     <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
+					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
+    			</p:commandButton>
+
+				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+					<p:printer target="infor_detail" />
+				</p:commandButton>
+
+				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/veiculo/veiculos" />
+
+			</h:panelGrid>
+
+			<p:separator style="border-color: #098554" />
+
+			<p:fieldset id="infor_detail">
+				<p:outputLabel value="#{veiculoViewBean.veiculo.identification}" styleClass="text-detail" />
+				<div class="panel panel-success">
+					 <div class="panel-heading">Informações Gerais</div>
+						<p:panelGrid columns="2" width="400" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
+							
+							<h:outputText  value="Identificação:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.identification}"  />
+						
+							<h:outputText value="Tipo:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.type.type}"  />
+		
+							<h:outputText value="Chassi:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.chassi}"  />
+		
+							<h:outputText value="Cidade:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.city}"  />
+		
+							<h:outputText value="Estado:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.uf}"  />
+							
+							<h:outputText value="Ano de Aquisição:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.aquisYear}"  />
+							
+							<h:outputText value="Horimetro:"  />
+							<h:outputText value="#{veiculoViewBean.veiculo.horimetro}"  />
+						</p:panelGrid>
+					</div>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

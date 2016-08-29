@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/WEB-INF/templates/__template_admin.xhtml">
+
+	<ui:define name="title">Veículos</ui:define>
+	<ui:define name="content-header">Veículo <small>Pesquisar
+			veículo cadastrado</small>
+	</ui:define>
+	<ui:define name="breadcrumb-active">Veículos</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="formVeiculos">
+			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+
+			<p:dataTable id="tableVeiculos" var="veiculo"
+				value="#{veiculoBean.veiculos}" paginatorPosition="bottom"
+				rows="10" paginator="true" paginatorAlwaysVisible="false"
+				widgetVar="findVeiculo" reflow="true"
+				emptyMessage="Nenhum veículo cadastrado"
+				rowKey="#{veiculo.id}" styleClass="ui-datatable"
+				selectionMode="single"
+				selection="#{veiculoBean.selectedVeiculo}">
+
+
+				<f:facet name="header">
+					<div align="left">
+						<p:inputText id="globalFilter"
+							onkeyup="PF('findVeiculo').filter()" style="width:300px;"
+							placeholder="Filtro de pesquisa de veículo" />
+
+						<p:button id="buttonNewVeiculo" icon="fa fa-plus"
+							value="#{msg.new}" styleClass="btnn-primary"
+							style="float:right;font-size: 17px"
+							outcome="/pages/admin/veiculo/veiculoEdit">
+							<p:tooltip for="buttonNewVeiculo"
+								value="Cadastrar novo veícuolo" />
+						</p:button>
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowSelect" listener="#{veiculoBean.renderTo}">
+					<f:setPropertyActionListener value="#{veiculo}"
+						target="#{veiculoViewBean.veiculo}" />
+				</p:ajax>
+				
+				<p:column headerText="Identificação" width="7%" filterBy="#{veiculo.identification}"
+					filterStyle="display:none;">
+					<h:outputText id="identification" value="#{veiculo.identification}" />
+				</p:column>
+
+				<p:column headerText="Tipo" width="5%"
+					filterBy="#{veiculo.type.type}" filterStyle="display:none;">
+					<h:outputText id="type" value="#{veiculo.type.type}" />
+				</p:column>
+
+				<p:column headerText="Chassi" width="5%" filterBy="#{veiculo.chassi}"
+					filterStyle="display:none;">
+					<h:outputText id="chassi" value="#{veiculo.chassi}" />
+				</p:column>
+
+				<p:column headerText="Ano de aquisição" width="3%">
+					<h:outputText id="yearAqui" value="#{veiculo.aquisYear}" />
+				</p:column>
+			</p:dataTable>
+			<ui:include src="/WEB-INF/templates/_loaderAjax.xhtml" />
+		</h:form>
+	</ui:define>
+</ui:composition>

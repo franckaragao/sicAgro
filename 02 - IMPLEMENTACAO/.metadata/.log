@@ -3566,3 +3566,6 @@ org.eclipse.swt.SWTException: Graphic is disposed
 
 !ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-29 01:50:45.964
 !MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-29 01:54:22.274
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro

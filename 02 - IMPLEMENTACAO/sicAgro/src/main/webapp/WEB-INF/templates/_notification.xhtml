@@ -32,28 +32,5 @@
 			</ul></li>
 	</c:if>
 	
-	<c:if test="${contaBean.typerUserLogged == '4'}">
-		<li class="dropdown messages-menu"><a href="#"
-			class="dropdown-toggle" data-toggle="dropdown"><i
-				class="fa fa-envelope"></i> <c:if test="${notificationBean.totalByMessages > '0'}">
-					<span class="label label-warning">#{notificationBean.totalByMessages}</span>
-				</c:if> </a>
-			<ul class="dropdown-menu">
-				<c:if test="${notificationBean.totalByMessages > '0'}">
-					<li class="footer">
-					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
-						<span>Novas mensagens</span>
-					</p:link>
-				</li>
-				</c:if>
-				<c:if test="${notificationBean.totalByMessages == '0'}">
-					<li class="footer">
-					<p:link outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao.xhtml">
-						<span>Não há novas mensagens</span>
-					</p:link>
-					</li>
-				</c:if>
-			</ul></li>
-	</c:if>
 </ui:composition>
 </html>

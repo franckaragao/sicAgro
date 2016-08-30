@@ -33,7 +33,9 @@
 								<p:inputText  id="name" value="#{funcionarioEditBean.funcionario.name}"/>
 								
 								<p:outputLabel for="cpf" value="CPF" />
-								<p:inputMask mask="999.999.999-99" id="cpf" value="#{funcionarioEditBean.funcionario.cpf}" />
+								<p:inputMask mask="999.999.999-99" id="cpf" value="#{funcionarioEditBean.funcionario.cpf}">
+									<p:ajax event="change" update="username_default" />
+								</p:inputMask>
 								
 								<p:outputLabel for="rg" value="RG" />
 								<p:inputText  id="rg" value="#{funcionarioEditBean.funcionario.rg}"/>
@@ -108,21 +110,15 @@
 						<p:tab title="Dados de Acesso">
 							<p:panelGrid columns="2" layout="grid"
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
-						
-								<p:outputLabel for="username" value="Nome de usuário"/>
-								<p:inputText id="username" value="#{funcionarioEditBean.funcionario.acount.userName}"/>
 								
+								<p:outputLabel value="Nome de usuário:"/>
+								<p:outputLabel id="username_default" value="#{funcionarioEditBean.funcionario.cpf}" />
+						
 								<p:outputLabel for="mail" value="E-mail"/>
 								<p:inputText id="mail" value="#{funcionarioEditBean.funcionario.acount.mail}"/>
 								
-								<p:outputLabel for="password" value="Senha"/>
-								<p:password id="password" value="#{funcionarioEditBean.funcionario.acount.password}"/>
-								
-								<p:outputLabel for="confirmPassword" value="Confirmação de Senha"/>
-								<p:password id="confirmPassword" value="#{funcionarioEditBean.confirmPassword}"/>
-								
 								<p:outputLabel for="role" value="Função" />
-									<p:selectOneMenu id="role"
+									<p:selectOneMenu id="role" required="true"
 									value="#{funcionarioEditBean.funcionario.acount.userRole}">
 									<f:selectItem itemLabel="Selecione uma opção"
 										noSelectionOption="true" />

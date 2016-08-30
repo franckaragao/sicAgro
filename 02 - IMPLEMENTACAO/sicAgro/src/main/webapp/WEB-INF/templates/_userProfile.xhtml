@@ -7,33 +7,60 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-       <p:dialog id="ProfileDlg" widgetVar="ProfileDialog" modal="true" closable="false" resizable="false" draggable="false" width="400" header="Usuário Logado">
+       <p:dialog id="ProfileDlg" widgetVar="ProfileDialog" responsive="true" modal="true" closable="false" resizable="false" draggable="false" width="500" header="Usuário Logado">
             <h:form id="ProfileForm">
-                <p:panelGrid columnClasses="column" columns="2" layout="grid">
-                    
-                    <h:outputText value="Nome :"/>
-                    <h:outputText value="#{contaBean.usuario.name}"/>
-                    
-                    <h:outputText value="Nome de usuário :"/>
-                    <h:outputText value="#{contaBean.userName}"/>
-
-                    <h:outputText value="Função :"/>
-                    <h:outputText value="#{contaBean.conta.userRole.role}"/>
-
-                    <h:outputText value="Último Acesso :"/>
-                    <h:outputText value="#{contaBean.lastAccess}"/>
-                    
-                    <h:outputText value="Data Registro :"/>
-                    <h:outputText value="#{contaBean.usuario.dateRegister}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
-                    
-                    <f:facet name="footer">
-                        <div class="footer-right">
-                            <p:commandButton icon="fa fa-close" value="FECHAR" styleClass="btnn btnn-default" onclick="PF('ProfileDialog').hide()" immediate="true" />
-                        </div>
-                    </f:facet>
-                </p:panelGrid>
+            	<div class="ui-fluid">
+            	<p:messages autoUpdate="true" closable="true"/>
+            	<div class="panel panel-success">
+					 <div class="panel-heading">Informações Gerais</div>
+		                <p:panelGrid columnClasses="column" styleClass="ui-panelgrid-blank"  columns="2" layout="grid">
+		                    
+		                    <h:outputText value="Nome:"/>
+		                    <h:outputText value="#{contaBean.usuario.name}"/>
+		                    
+		                    <h:outputText value="Nome de usuário:"/>
+		                    <h:outputText value=" #{contaBean.userName}"/>
+		                    
+							<h:outputText value="E-mail:"/>
+		                    <h:outputText id="mailLabel" value=" #{contaBean.conta.mail}"/>
+		
+		                    <h:outputText value="Função:"/>
+		                    <h:outputText value=" #{contaBean.conta.userRole.role}"/>
+		
+		                    <h:outputText value="Último Acesso :"/>
+		                    <h:outputText value=" #{contaBean.lastAccess}"/>
+		                    
+		                    <h:outputText value="Data Registro :"/>
+		                    <h:outputText value="#{contaBean.usuario.dateRegister}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+		                    </h:outputText>
+		                </p:panelGrid>
+		        </div>
+		        <div class="panel panel-success">
+					 <div class="panel-heading">Alteração de dados de acesso</div>
+						<p:panelGrid columnClasses="column" styleClass="ui-panelgrid-blank"  columns="2" layout="grid">
+							<h:outputText for="mail" value="E-mail:" />
+							<p:inputText id="mail" value="#{contaEditBean.conta.mail}"/>	
+							
+							<h:outputText for="currentPassword" value="Senha Atual:" />
+							<p:password id="currentPassword" required="true" value="#{contaEditBean.oldAcount.password}" />
+							
+							<h:outputText for="newPassword" value="Nova Senha:" />
+							<p:password id="newPassword" required="true" value="#{contaEditBean.newPassword}" feedback="true"
+										promptLabel=" " weakLabel="Fácil" goodLabel="Média" strongLabel="Díficil" inline="true" />
+						</p:panelGrid>
+						<h:panelGrid columns="3">
+							<p:commandButton id="changeAcess" icon="fa fa-floppy-o" action="#{contaEditBean.updateAcountLogged()}" process="@this mail currentPassword newPassword mailLabel" update="ProfileForm" value="Alterar" styleClass="btnn btnn-default">
+								<p:tooltip  for="changeAcess" value="Após alterar seus dados, você irá automaticamente fazer logout." />
+								<p:resetInput target="ProfileForm" />
+							</p:commandButton>
+						</h:panelGrid>
+				</div>
+                <p:separator style="border-color: #098554" />
+				<h:panelGrid columns="3">
+                   	<p:commandButton icon="fa fa-close" value="FECHAR" styleClass="btnn btnn-default" onclick="PF('ProfileDialog').hide()" immediate="true" />
+				</h:panelGrid>
+				</div>
             </h:form>
         </p:dialog>
 

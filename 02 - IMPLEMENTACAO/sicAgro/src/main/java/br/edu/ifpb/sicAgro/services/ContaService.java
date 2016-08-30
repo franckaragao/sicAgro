@@ -23,7 +23,7 @@ public interface ContaService extends Service<Conta, Long>{
 	 * @return
 	 * @throws SicAgroExceptionHandler
 	 */
-	Conta criptografarSenha(Conta conta) throws SicAgroExceptionHandler;
+	void criptografarSenha(Conta conta) throws SicAgroExceptionHandler;
 	
 	Conta findByUserName(String userName);
 

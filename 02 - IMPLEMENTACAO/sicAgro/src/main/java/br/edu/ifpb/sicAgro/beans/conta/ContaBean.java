@@ -36,11 +36,7 @@ public class ContaBean implements Serializable {
 	@Inject
 	@UserNameSession
 	private String userName;
-
-	public Conta getConta() {
-		return conta;
-	}
-
+	
 	public String getLastAccess() {
 		return lastAccess;
 	}
@@ -69,5 +65,9 @@ public class ContaBean implements Serializable {
 		default:
 			return 0;
 		}
+	}
+
+	public Conta getConta() {
+		return conta;
 	}
 }

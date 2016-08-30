@@ -60,10 +60,8 @@ public class ContaServiceImpl extends GenericServiceImpl<Conta, Long> implements
 	/**
 	 * 
 	 */
-	public Conta criptografarSenha(Conta conta) throws SicAgroExceptionHandler {
-		Conta conta2 = conta;
-		conta2.setPassword(criptografarSenha(conta.getPassword()));
-		return conta2;
+	public void criptografarSenha(Conta conta) throws SicAgroExceptionHandler {
+		conta.setPassword(criptografarSenha(conta.getPassword()));
 	}
 
 	/**

@@ -59,22 +59,25 @@ public class FuncionarioEditBean implements Serializable {
 	}
 
 	public void save() throws SicAgroException {
-		try {
-			funcionario.setAcount(contaService.criptografarSenha(funcionario.getAcount()));
-		} catch (SicAgroExceptionHandler e) {
-		}
-		funcionario.getAcount().setFuncionario(funcionario);
 		if (isEdited()) {
 			funcionarioService.update(funcionario);
 			MessageUtils.messageSucess("Funcionário atualizado com sucesso.");
 
 		} else {
+			setDefaultAtributtes();
 			funcionarioService.add(funcionario);
 			MessageUtils.messageSucess("Funcionário cadastrado com sucesso.");
 		}
 
 		JSFUtils.rederTo("funcionarios.xhtml");
 
+	}
+	
+	private void setDefaultAtributtes() throws SicAgroExceptionHandler{
+		funcionario.getAcount().setUserName(funcionario.getCpf());
+		funcionario.getAcount().setPassword(funcionario.getCpf());;
+		funcionario.getAcount().setFuncionario(funcionario);
+		contaService.criptografarSenha(funcionario.getAcount());
 	}
 
 	public boolean isEdited() {

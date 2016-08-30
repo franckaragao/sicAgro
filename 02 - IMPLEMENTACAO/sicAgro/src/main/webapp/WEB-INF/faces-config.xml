@@ -5,7 +5,7 @@
 	version="2.2">
 
 	<application>
-		<!-- Seta mensagens properties no bean validation -->
+		<!-- Seta mensagens properties no bean validation e JSF messages -->
 		<message-bundle>br.edu.ifpb.sicAgro.messages</message-bundle>
 		
 		<resource-bundle>

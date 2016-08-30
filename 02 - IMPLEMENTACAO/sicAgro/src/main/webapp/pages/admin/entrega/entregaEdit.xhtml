@@ -20,7 +20,7 @@
 
 		<h:form id="formRegisterEntrega">
 			<div class="ui-fluid">
-				<p:messages id="messages" autoUpdate="true" closable="true" />
+				<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 				<p:fieldset>
 
 					<p:outputPanel id="detail_item">
@@ -88,8 +88,7 @@
 							var="t" 
 							filter="true"
 							filterMatchMode="startsWith" 
-							required="true"
-							requiredMessage="Um produtor deve ser selecionado">
+							required="true">
 
 							<f:selectItem noSelectionOption="true" itemLabel="" />
 							<f:selectItems value="#{entregaEditBean.produtores}" var="produtor" itemLabel="#{produtor.name}"
@@ -122,8 +121,7 @@
 							converter="#{itemCargaConverter}" 
 							style="width:180px"
 							value="#{entregaEditBean.itemCarga}" 
-							required="true"
-							requiredMessage="Um produto deve ser selecionado">
+							required="true">
 							
 							<f:selectItem noSelectionOption="true" itemLabel="" />
 							<f:selectItems value="#{entregaEditBean.itemCargas}" var="item"
@@ -139,8 +137,7 @@
 						<p:selectOneMenu id="type" 
 							style="width:180px"
 							value="#{entregaEditBean.itemEntrega.measurementType}" 
-							required="true"
-							requiredMessage="Medida deve ser selecionado">
+							required="true">
 							<f:selectItem itemLabel="" noSelectionOption="true" />
 							<f:selectItems value="#{entregaEditBean.measurements}"
 								var="measurement" itemLabel="#{measurement.measurement}"
@@ -150,7 +147,7 @@
 						<p:outputLabel for="quant" value="#{msg.quant}" />
 						<p:spinner id="quant"
 							value="#{entregaEditBean.itemEntrega.quantity}" stepFactor="0.25"
-							required="true" requiredMessage="Quantidade deve ser informando">
+							required="true">
 							<p:ajax  event="change" update="detail_item"/>
 						</p:spinner>
 

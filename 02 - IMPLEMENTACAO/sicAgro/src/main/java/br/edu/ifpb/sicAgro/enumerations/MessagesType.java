@@ -2,12 +2,12 @@ package br.edu.ifpb.sicAgro.enumerations;
 
 /**
  * 
- * @author franck
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
 public enum MessagesType {
 
-	SUCESS("Sucesso"), ERROR("Erro"), WARNING("Atenção");
+	SUCESS("Sucesso! "), ERROR("Erro! "), WARNING("Atenção! ");
 
 	private String message;
 

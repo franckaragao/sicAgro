@@ -21,7 +21,7 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterCarga">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<p:fieldset>
 				<div class="ui-fluid">
@@ -43,9 +43,8 @@
 								<p:inputTextarea id="obs" rows="4" cols="20"
 									value="#{cargaEditBean.carga.obs}" />
 
-								<p:outputLabel for="responsabily" value="#{msg.responsabily}" />
-								<p:inputText id="responsabily"
-									value="#{cargaEditBean.carga.responsibleCarga}" />
+								<p:outputLabel for="responsabily" value="Responsável" />
+								<p:inputText id="responsabily" required="true" value="#{cargaEditBean.carga.responsibleCarga}" />
 
 							</p:panelGrid>
 						</p:tab>
@@ -55,7 +54,7 @@
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 								<p:outputLabel for="agency" value="#{msg.agency}" />
-								<p:selectOneMenu id="agency"
+								<p:selectOneMenu id="agency" required="true"
 									value="#{cargaEditBean.carga.originLoad.agency}">
 									<f:selectItem itemLabel="Selecione um orgão"
 										noSelectionOption="true" />
@@ -65,8 +64,8 @@
 
 								<p:outputLabel for="state" value="#{msg.state}" />
 
-								<p:selectOneMenu id="state" required="true" requiredMessage="Um estado deve ser selecionado"
-									value="#{cargaEditBean.carga.originLoad.state}">
+								<p:selectOneMenu id="state" required="true"
+									value="#{cargaEditBean.carga.originLoad.state}" rendered="true">
 
 									<f:selectItem itemLabel="Selecione um estado" noSelectionOption="true" />
 									<f:selectItems value="#{enderecoBean.states}"
@@ -78,7 +77,7 @@
 
 								<p:outputLabel for="city" value="#{msg.city}" />
 								<p:selectOneMenu id="city" value="#{cargaEditBean.carga.originLoad.city}" filter="true"
-									filterMatchMode="startsWith" required="true" requiredMessage="Uma cidade deve ser selecionada"
+									filterMatchMode="startsWith" required="true"
 									disabled="#{cargaEditBean.carga.originLoad.state eq null}">
 									<f:selectItem itemLabel="Selecione uma cidade" noSelectionOption="true" />
 									<f:selectItems value="#{enderecoBean.cities}"
@@ -96,8 +95,7 @@
 								<p:selectOneMenu id="itemEntrega"
 									converter="#{produtoConverter}" style="width:180px"
 									value="#{cargaEditBean.selectedItemCarga.produto}"
-									required="true"
-									requiredMessage="Um produto deve ser selecionado">
+									required="true">
 									<f:selectItem noSelectionOption="true" itemLabel="" />
 									<f:selectItems value="#{cargaEditBean.produtos}" var="item"
 										itemLabel="#{item.name}" itemValue="#{item}" />
@@ -105,7 +103,6 @@
 
 								<p:outputLabel for="type" value="#{msg.medida}" />
 								<p:selectOneMenu id="type" style="width:180px" required="true"
-									requiredMessage="Uma medida deve ser selecionada"
 									value="#{cargaEditBean.selectedItemCarga.measurementType}">
 									<f:selectItem itemLabel="" noSelectionOption="true" />
 									<f:selectItems value="#{cargaEditBean.measurements}"
@@ -116,8 +113,7 @@
 								<p:outputLabel for="quant" value="#{msg.quant}" />
 								<p:spinner id="quant"
 									value="#{cargaEditBean.selectedItemCarga.quantity}"
-									stepFactor="0.25" required="true"
-									requiredMessage="Quantidade deve ser informando" />
+									stepFactor="0.25" required="true"/>
 
 								<p:commandButton id="btn_add" value="Adicionar"
 									action="#{cargaEditBean.resetItemCarga}"

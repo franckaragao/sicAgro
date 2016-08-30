@@ -65,6 +65,6 @@ public class MessageUtils implements Serializable{
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         flash.setKeepMessages(true);
         flash.setRedirect(true);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, message, message));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, type, message));
 	}
 }

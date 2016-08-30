@@ -8,12 +8,9 @@
 
 <ui:composition>
 	<f:metadata>
-		<f:viewParam name="dashBoard" />
-		<f:event listener="#{dashBoardBean.preRenderView}"
-			type="preRenderView" />
-		<f:viewParam name="barChart" />
-		<f:event listener="#{barChartBean.preRenderView()}"
-			type="preRenderView" />
+		<f:event listener="#{dashBoardBean.preRenderView}" type="preRenderView" />
+		<f:event listener="#{barChartBean.preRenderView()}" type="preRenderView" />
+		<f:event listener="#{lineChartBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
 	<ui:define name="title">DashBoard</ui:define>
@@ -80,9 +77,8 @@
 				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
 		</p:panelGrid>
 		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-
 			<p:chart type="line" extender="ext"
-				model="#{dashBoardBean.modelChartLine}" responsive="true"
+				model="#{lineChartBean.modelChartLine}" responsive="true"
 				style="height:300px;" />
 		</p:fieldset>
 		<div class="ui-fluid">
@@ -105,6 +101,11 @@
 				</p:fieldset>
 			</p:panelGrid>
 		</div>
+		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+			<p:chart type="line" extender="ext"
+				model="#{lineChartBean.modelChartLine}" responsive="true"
+				style="height:300px;" />
+		</p:fieldset>
 
 		<!-- <p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
 			columnClasses="10">

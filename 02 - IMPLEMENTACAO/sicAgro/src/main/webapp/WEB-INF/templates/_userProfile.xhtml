@@ -10,7 +10,7 @@
        <p:dialog id="ProfileDlg" widgetVar="ProfileDialog" responsive="true" modal="true" closable="false" resizable="false" draggable="false" width="500" header="Usuário Logado">
             <h:form id="ProfileForm">
             	<div class="ui-fluid">
-            	<p:messages autoUpdate="true" closable="true"/>
+            	<p:messages showDetail="true" closable="true"/>
             	<div class="panel panel-success">
 					 <div class="panel-heading">Informações Gerais</div>
 		                <p:panelGrid columnClasses="column" styleClass="ui-panelgrid-blank"  columns="2" layout="grid">
@@ -39,13 +39,13 @@
 		        <div class="panel panel-success">
 					 <div class="panel-heading">Alteração de dados de acesso</div>
 						<p:panelGrid columnClasses="column" styleClass="ui-panelgrid-blank"  columns="2" layout="grid">
-							<h:outputText for="mail" value="E-mail:" />
+							<p:outputLabel for="mail" value="E-mail:" />
 							<p:inputText id="mail" value="#{contaEditBean.conta.mail}"/>	
 							
-							<h:outputText for="currentPassword" value="Senha Atual:" />
+							<p:outputLabel for="currentPassword" value="Senha Atual:" />
 							<p:password id="currentPassword" required="true" value="#{contaEditBean.oldAcount.password}" />
 							
-							<h:outputText for="newPassword" value="Nova Senha:" />
+							<p:outputLabel for="newPassword" value="Nova Senha:" />
 							<p:password id="newPassword" required="true" value="#{contaEditBean.newPassword}" feedback="true"
 										promptLabel=" " weakLabel="Fácil" goodLabel="Média" strongLabel="Díficil" inline="true" />
 						</p:panelGrid>

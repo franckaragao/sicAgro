@@ -14,13 +14,21 @@
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.exceptions.PersistenceSicAgroException"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.SolicitacaoServico"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.services.Service"/>
-<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.Produtor"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.Carga"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.Entrega"/>
 <fullyQualifiedTypeName name="javax.faces.convert.ConverterException"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.exceptions.SicAgroException"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler"/>
+<fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.services.ContaService"/>
 <fullyQualifiedTypeName name="javax.inject.Inject"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.util.userSession.UserLogged"/>
+<fullyQualifiedTypeName name="antlr.collections.List"/>
+<fullyQualifiedTypeName name="javax.persistence.NamedQuery"/>
+<fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceException"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.PedidoSolicitacao"/>
+<fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.Produtor"/>
 <fullyQualifiedTypeName name="br.edu.ifpb.sicAgro.model.Conta"/>
 </qualifiedTypeNameHistroy>

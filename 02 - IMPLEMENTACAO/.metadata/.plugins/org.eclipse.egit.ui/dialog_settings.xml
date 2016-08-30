@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="true" key="CommitDialog.showUntracked"/>
 	<list key="CommitDialog.authorValues">
 		<item value="Franck Aragão &lt;fjunior.aragao@gmail.com&gt;"/>
 	</list>
@@ -10,8 +11,8 @@
 		<item value="656" key="DIALOG_WIDTH"/>
 		<item value="1|Droid Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<item value="450" key="DIALOG_HEIGHT"/>
-		<item value="358" key="DIALOG_X_ORIGIN"/>
-		<item value="71" key="DIALOG_Y_ORIGIN"/>
+		<item value="458" key="DIALOG_X_ORIGIN"/>
+		<item value="288" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
 		<item value="373" key="DIALOG_WIDTH"/>

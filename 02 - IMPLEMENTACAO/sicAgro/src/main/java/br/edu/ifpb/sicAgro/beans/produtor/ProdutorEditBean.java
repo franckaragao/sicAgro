@@ -14,6 +14,7 @@ import br.edu.ifpb.sicAgro.enumerations.CivelState;
 import br.edu.ifpb.sicAgro.enumerations.ProdutoType;
 import br.edu.ifpb.sicAgro.enumerations.UserRole;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Endereco;
 import br.edu.ifpb.sicAgro.model.Produtor;
@@ -68,20 +69,21 @@ public class ProdutorEditBean implements Serializable {
 			MessageUtils.messageSucess("Produtor atualizado com sucesso.");
 
 		} else {
-			produtor.setAcount(contaService.criptografarSenha(createDefaultAcount()));
+			produtor.setAcount(createDefaultAcount());
 			produtorService.add(produtor);
 			MessageUtils.messageSucess("Produtor salvo com sucesso.");
 		}
 		JSFUtils.rederTo("produtores.xhtml");
 	}
 	
-	private Conta createDefaultAcount(){
+	private Conta createDefaultAcount() throws SicAgroExceptionHandler{
 		Conta conta = new Conta();
 		conta.setUserName(produtor.getCpf());
 		conta.setPassword(produtor.getCpf());
 		conta.setMail("seuemail@mail.com");
 		conta.setUserRole(UserRole.PRODUTOR);
 		conta.setProdutor(produtor);
+		contaService.criptografarSenha(conta);
 		return conta;
 	}
 

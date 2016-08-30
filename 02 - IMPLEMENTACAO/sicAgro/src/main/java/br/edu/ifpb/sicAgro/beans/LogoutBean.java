@@ -28,6 +28,6 @@ public class LogoutBean implements Serializable {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/login.xhtml?faces-redirect=true";
+		return "/pages/admin/index.xhtml?faces-redirect=true";
 	}
 }

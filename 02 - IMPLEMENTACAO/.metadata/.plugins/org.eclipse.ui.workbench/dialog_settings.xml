@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="377" key="DIALOG_X_ORIGIN"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="480" key="dialogHeight"/>
 		<item value="853" key="dialogWidth"/>
@@ -24,6 +28,13 @@
 			<item value="org.eclipse.xtend.ide.wizards"/>
 		</list>
 	</section>
+	<section name="InstallationDialogSettings">
+		<item value="576" key="DIALOG_WIDTH"/>
+		<item value="1|Droid Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="733" key="DIALOG_HEIGHT"/>
+		<item value="309" key="DIALOG_X_ORIGIN"/>
+		<item value="-153" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.m2e.core.wizards.Maven2ImportWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
@@ -33,7 +44,7 @@
 	<section name="ShowViewDialog">
 		<item value="300" key="DIALOG_WIDTH"/>
 		<item value="1|Droid Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="org.eclipse.egit.ui.RepositoriesView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="org.eclipse.egit.ui.StagingView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="431" key="DIALOG_HEIGHT"/>
 		<item value="536" key="DIALOG_X_ORIGIN"/>
 		<item value="84" key="DIALOG_Y_ORIGIN"/>

@@ -63,11 +63,11 @@
 
 									<li class="user-footer">
 										<div class="pull-left">
-											<p:commandLink value="Usuário" onclick="PF('ProfileDialog').show()" styleClass="btnn-primary" />
+											<p:commandLink value="Usuário" onclick="PF('ProfileDialog').show()" styleClass="btnn btnn-primary" />
 										</div> 
 										<h:form id="formLogount">
 											<div class="pull-right">
-												<p:commandButton value="Sair" action="#{logoutBean.efetuarLogout}" process="formLogount" immediate="true" styleClass="btnn-primary" />
+												<p:commandButton value="Sair" action="#{logoutBean.efetuarLogout}" process="formLogount" immediate="true" styleClass="btnn btnn-primary" />
 											</div>
 										</h:form>
 									</li>
@@ -128,7 +128,7 @@
 
 				</section>
 			</div>
-			<ui:include src="/WEB-INF/templates/_footer.xhtml" />
+			<!-- <ui:include src="/WEB-INF/templates/_footer.xhtml" /> -->
 		</div>
 	</h:form>
 

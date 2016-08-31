@@ -4176,3 +4176,222 @@ Caused by: java.io.FileNotFoundException: /home/franck/Projects/sicAgro (Workspa
 	at java.io.FileInputStream.<init>(FileInputStream.java:138)
 	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:377)
 	... 16 more
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:27:38.888
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:30:37.486
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:31:05.952
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:31:23.393
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:34:29.774
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:35:49.311
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:36:52.580
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 00:42:50.353
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 4 1 2016-08-30 00:49:44.722
+!MESSAGE GlassFish: page.showView
+!STACK 0
+org.eclipse.swt.SWTException: Device is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4441)
+	at org.eclipse.swt.SWT.error(SWT.java:4356)
+	at org.eclipse.swt.SWT.error(SWT.java:4327)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1214)
+	at org.eclipse.swt.widgets.Display.asyncExec(Display.java:727)
+	at oracle.eclipse.tools.glassfish.GlassfishServerLaunchDelegate.startLogging(GlassfishServerLaunchDelegate.java:406)
+	at oracle.eclipse.tools.glassfish.GlassfishServerLaunchDelegate.startDASAndTarget(GlassfishServerLaunchDelegate.java:221)
+	at oracle.eclipse.tools.glassfish.GlassfishServerLaunchDelegate.launch(GlassfishServerLaunchDelegate.java:133)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:731)
+	at org.eclipse.wst.server.core.internal.Server.startImpl2(Server.java:3541)
+	at org.eclipse.wst.server.core.internal.Server.startImpl(Server.java:3477)
+	at org.eclipse.wst.server.core.internal.Server$StartJob.run(Server.java:367)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.core.jobs 2 2 2016-08-30 00:49:47.228
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.wst.server.core.internal.Server$StartJob
+!SESSION 2016-08-30 08:15:03.832 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.fx.ide.java6 4 0 2016-08-30 08:15:50.881
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.java6 [890]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version>=1.3)(!(version>=1.8)))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.jface 2 0 2016-08-30 08:16:09.764
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-08-30 08:16:09.764
+!MESSAGE A conflict occurred for CTRL+R:
+Binding(CTRL+R,
+	ParameterizedCommand(Command(org.jboss.tools.jmx.ui.navigate.refresh,Refresh,
+		Refreshes the tree,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@76480730,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+R,
+	ParameterizedCommand(Command(com.springsource.sts.roo.ui.shell.show,Open Roo Command Prompt,
+		Roo Command Prompt,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@405a296e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.osgi 2 0 2016-08-30 08:16:23.409
+!MESSAGE While loading class "org.eclipse.m2e.jdt.internal.MavenClasspathContainerInitializer", thread "Thread[Worker-2,5,main]" timed out waiting (5000ms) for thread "Thread[Worker-0,5,main]" to finish starting bundle "org.eclipse.m2e.jdt_1.7.0.20160603-1933 [1392]". To avoid deadlock, thread "Thread[Worker-2,5,main]" is proceeding but "org.eclipse.m2e.jdt.internal.MavenClasspathContainerInitializer" may not be fully initialized.
+!STACK 0
+org.osgi.framework.BundleException: Unable to acquire the state change lock for the module: osgi.identity; osgi.identity="org.eclipse.m2e.jdt"; type="osgi.bundle"; version:Version="1.7.0.20160603-1933"; singleton:="true" [id=1392] STARTED [STARTED]
+	at org.eclipse.osgi.container.Module.lockStateChange(Module.java:329)
+	at org.eclipse.osgi.container.Module.start(Module.java:389)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:454)
+	at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:107)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:531)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:324)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:320)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:395)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:345)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:337)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:160)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:568)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:174)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:905)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:55)
+	at org.eclipse.jdt.core.JavaCore.computeClasspathContainerInitializer(JavaCore.java:3294)
+	at org.eclipse.jdt.core.JavaCore.getClasspathContainerInitializer(JavaCore.java:3270)
+	at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2883)
+	at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:1937)
+	at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:3247)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2693)
+	at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2857)
+	at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1962)
+	at org.eclipse.jdt.internal.core.search.JavaSearchScope.add(JavaSearchScope.java:119)
+	at org.eclipse.jdt.internal.core.search.JavaSearchScope.add(JavaSearchScope.java:97)
+	at org.eclipse.jdt.internal.core.search.BasicSearchEngine.createJavaSearchScope(BasicSearchEngine.java:154)
+	at org.eclipse.jdt.core.search.SearchEngine.createJavaSearchScope(SearchEngine.java:325)
+	at org.springframework.ide.eclipse.beans.core.model.locate.AutoConfigurationJavaConfigLocator.locateJavaConfigs(AutoConfigurationJavaConfigLocator.java:37)
+	at org.springframework.ide.eclipse.beans.core.internal.model.BeansProject$2.run(BeansProject.java:1144)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.springframework.ide.eclipse.beans.core.internal.model.BeansProject.populateAutoDetectedConfigsAndConfigSetsInternally(BeansProject.java:1118)
+	at org.springframework.ide.eclipse.beans.core.internal.model.BeansProject$1.run(BeansProject.java:1080)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-08-30 08:17:11.386
+!MESSAGE Could not bind a reference of component org.eclipse.fx.ide.css.cssext.ui.internal.DefaultCssExtProvider. The reference is: Reference[name = ICSSExtModelProvider, interface = org.eclipse.fx.ide.css.cssext.ICSSExtModelProvider, policy = dynamic, cardinality = 0..n, target = null, bind = bindCssExtensionModelProvider, unbind = unbindCssExtensionModelProvider]
+
+!ENTRY com.jaspersoft.studio 1 0 2016-08-30 08:17:12.512
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.3.0.final
+
+!ENTRY org.eclipse.jface 2 0 2016-08-30 08:26:47.960
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-08-30 08:26:47.960
+!MESSAGE A conflict occurred for CTRL+SHIFT+G:
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,References in Workspace,
+		Search for references to the selected element in the workspace,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@25df373d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.jboss.tools.seam.ui.find.references,Find Seam References,
+		Find Seam References,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7a08da83,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+Binding(CTRL+SHIFT+G,
+	ParameterizedCommand(Command(org.springframework.ide.eclipse.beans.ui.editor.commands.searchBeanReferences,Spring Beans References Search,
+		,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@36806af3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:27:53.256
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:29:44.732
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:33:45.995
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:46:27.220
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:47:48.731
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:52:28.624
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:53:54.914
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:54:56.427
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:55:59.249
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 08:57:59.220
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:03:07.388
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:12:25.710
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:14:49.649
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:17:08.342
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:18:10.789
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:22:22.873
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:27:59.157
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro
+
+!ENTRY oracle.eclipse.tools.glassfish 1 1 2016-08-30 09:50:20.103
+!MESSAGE GlassFish: Deploy direcotry /home/franck/Programs/severs/glassfish4/glassfish/domains/domain1/eclipseApps/sicAgro

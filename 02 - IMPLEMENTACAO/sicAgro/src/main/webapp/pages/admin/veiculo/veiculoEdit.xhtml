@@ -19,8 +19,8 @@
 	<ui:define name="breadcrumb-active">Novo Veículo</ui:define>
 	<ui:define name="content">
 
-		<h:form id="formRegisterFuncionario">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+		<h:form id="formRegisterVeiculo">
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<p:fieldset>
 				<div class="ui-fluid">
@@ -28,10 +28,10 @@
 						columnClasses="ui-grid-col-1">
 						
 						<p:outputLabel for="identification" value="Identificação " />
-						<p:inputText  id="identification" value="#{veiculoEditBean.veiculo.identification}" placeholder="Exemplo: Pipa do MDA 1"/>
+						<p:inputText  id="identification" required="true" value="#{veiculoEditBean.veiculo.identification}" placeholder="Exemplo: Pipa do MDA 1"/>
 						
 						<p:outputLabel for="type" value="Tipo" />
-						<p:selectOneMenu id="type"
+						<p:selectOneMenu id="type" required="true"
 							value="#{veiculoEditBean.veiculo.type}">
 							<f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true" />
 							<f:selectItems value="#{veiculoEditBean.typesMachine}"
@@ -44,7 +44,7 @@
 						
 						<p:outputLabel for="uf" value="UF" />
 						
-						<p:selectOneMenu id="uf" value="#{veiculoEditBean.veiculo.uf}">
+						<p:selectOneMenu id="uf" required="true" value="#{veiculoEditBean.veiculo.uf}">
 
 							<f:selectItem itemLabel="Selecione um estado"
 								noSelectionOption="true" />
@@ -58,7 +58,7 @@
 						<p:outputLabel for="city" value="Município" />
 						
 						<p:selectOneMenu id="city" value="#{veiculoEditBean.veiculo.city}" filter="true"
-								filterMatchMode="startsWith"
+								filterMatchMode="startsWith" required="true"
 								disabled="#{veiculoEditBean.veiculo.uf eq null}">
 									<f:selectItem itemLabel="Selecione uma cidade" noSelectionOption="true" />
 									<f:selectItems value="#{enderecoBean.cities}"
@@ -80,7 +80,7 @@
 
 					<p:commandButton value="Salvar" id="bt_Save" icon="fa fa-floppy-o"
 						style="float: left;" styleClass="btnn btnn-primary"
-						action="#{veiculoEditBean.save}" />
+						action="#{veiculoEditBean.save}" process="formRegisterVeiculo"/>
 
 
 					<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban"

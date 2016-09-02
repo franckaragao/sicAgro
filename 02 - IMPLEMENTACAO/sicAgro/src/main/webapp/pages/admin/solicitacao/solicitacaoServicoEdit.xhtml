@@ -20,7 +20,7 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterSolicitation">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<div class="ui-fluid">
 				<p:fieldset>
@@ -36,9 +36,9 @@
 							<h:panelGrid columns="2" cellpadding="30px">
 								<p:outputPanel id="panel">
 								<p:outputLabel for="dtaRealization" value="Data da Realização" />
-								<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateRealization}" required="true" requiredMessage="Data Realização deve ser informado"/>
+								<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateRealization}" required="true"/>
 								<p:outputLabel for="timesWork" value="Horas trabalhadas" />
-								<p:spinner id="timesWork" value="#{solicitacaoServicoEditBean.solicitacaoServico.timeWorkeds}" required="true" requiredMessage="Horas trabalhadas deve ser informado"/>
+								<p:spinner id="timesWork" value="#{solicitacaoServicoEditBean.solicitacaoServico.timeWorkeds}" required="true"/>
 								</p:outputPanel>
 							</h:panelGrid>
 							
@@ -56,7 +56,6 @@
 							value="#{solicitacaoServicoEditBean.solicitacaoServico.veiculo}"
 							completeMethod="#{solicitacaoServicoEditBean.listVeiculos}"
 							required="true"
-							requiredMessage="Uma máquina deve ser selecionada" 
 							var="machine"
 							itemLabel="#{machine.identification}" 
 							itemValue="#{machine}"
@@ -78,7 +77,6 @@
 							value="#{solicitacaoServicoEditBean.solicitacaoServico.funcionario}"
 							completeMethod="#{solicitacaoServicoEditBean.listFuncionarios}"
 							required="true"
-							requiredMessage="Um funcionário deve ser selecionado" 
 							var="func"
 							itemLabel="#{func.name}" 
 							itemValue="#{func}"
@@ -92,10 +90,10 @@
 						</p:autoComplete>
 
 						<p:outputLabel for="dtaSolicitation" value="Data da solicitação" />
-						<p:calendar id="dtaSolicitation" locale="pt_BR" title="Data Solicitação" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateSolicitation}" required="true" requiredMessage="Data da solicitação deve ser informada" />
+						<p:calendar id="dtaSolicitation" locale="pt_BR" title="Data Solicitação" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateSolicitation}" required="true" />
 
 						<p:outputLabel for="dtaForExecution" value="Data Agendamento" />
-						<p:calendar id="dtaForExecution" locale="pt_BR" title="Data Marcada" pattern="dd/MM/yyyy HH:mm" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateForRealization}" required="true" requiredMessage="Data Marcada deve ser informada" placeholder="Data que o serviço será realizado"/>
+						<p:calendar id="dtaForExecution" locale="pt_BR" title="Data Marcada" pattern="dd/MM/yyyy HH:mm" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateForRealization}" required="true" placeholder="Data que o serviço será realizado"/>
 
 						<p:outputLabel for="advanced" value="Produtor" />
 						<p:selectOneMenu 
@@ -105,8 +103,7 @@
 							var="t"
 							filter="true"
 							filterMatchMode="startsWith"
-							required="true"
-							requiredMessage="Um Produtor deve ser selecionado">
+							required="true">
 							<f:selectItem noSelectionOption="true" itemLabel="" />
 							<f:selectItems value="#{solicitacaoServicoEditBean.produtors}" var="produtor" itemLabel="#{produtor.name}" itemValue="#{produtor}" />
 
@@ -120,7 +117,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel for="resumo_solicitacao" value="Resumo do serviço" />
-						<p:inputText id="resumo_solicitacao" required="true" requiredMessage="Resumo do serviço deve ser informado" value="#{solicitacaoServicoEditBean.solicitacaoServico.resumoServico}" />
+						<p:inputText id="resumo_solicitacao" required="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.resumoServico}" />
 						
 						<p:outputLabel value="Solicitação concluída?" />
 						<p:inputSwitch id="completed" value="#{solicitacaoServicoEditBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não">

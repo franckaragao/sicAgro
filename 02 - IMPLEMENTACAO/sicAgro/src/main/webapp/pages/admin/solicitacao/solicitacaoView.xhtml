@@ -20,8 +20,6 @@
 	<ui:define name="content">
 		<h:form id="detailForm">
 
-			<p:messages id="messages" autoUpdate="true" closable="true"/>
-
 			<h:panelGrid columns="5">
 
 				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
@@ -52,14 +50,17 @@
 					resizable="false" 
 					closable="false" 
 					responsive="true">
+					
+					<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true"/>
+					
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
 						<p:outputPanel id="panel">
 							<p:messages closable="true" />
 							<p:outputLabel for="dtaRealization" value="Data da Realização" />
-							<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" required="true" requiredMessage="Data Realização deve ser informado" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoViewBean.solicitacaoServico.dateRealization}" />
+							<p:calendar id="dtaRealization" locale="pt_BR" title="Data Realização" required="true" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{solicitacaoServicoViewBean.solicitacaoServico.dateRealization}" />
 							
 							<p:outputLabel for="timesWork" value="Horas trabalhadas" />
-							<p:spinner id="timesWork" value="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds}" required="true" requiredMessage="Horas trabalhadas deve ser informado" />
+							<p:spinner id="timesWork" value="#{solicitacaoServicoViewBean.solicitacaoServico.timeWorkeds}" required="true"/>
 						</p:outputPanel>
 					</p:panelGrid>
 					<br />

@@ -21,7 +21,7 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterProdutor">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<p:fieldset>
 				<div class="ui-fluid">
@@ -31,15 +31,14 @@
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 								<p:outputLabel for="cod" value="Código" />
-								<p:inputMask mask="99999" id="cod"
+								<p:inputMask mask="99999" id="cod" required="true"
 									value="#{produtorEditBean.produtor.cod}" />
 
 								<p:outputLabel for="name" value="Nome" />
-								<p:inputText id="name" value="#{produtorEditBean.produtor.name}" />
+								<p:inputText id="name" required="true" value="#{produtorEditBean.produtor.name}" />
 
 								<p:outputLabel for="apelido" value="Apelido" />
-								<p:inputText id="apelido"
-									value="#{produtorEditBean.produtor.apelido}" />
+								<p:inputText id="apelido" value="#{produtorEditBean.produtor.apelido}" />
 
 								<p:outputLabel for="rg" value="RG" />
 								<p:inputText id="rg" value="#{produtorEditBean.produtor.rg}" />
@@ -52,7 +51,7 @@
 								<p:inputText id="nDap" value="#{produtorEditBean.produtor.nDap}" />
 
 								<p:outputLabel for="civilState" value="Estado Cívil" />
-								<p:selectOneRadio id="civilState"
+								<p:selectOneRadio id="civilState" required="true"
 									value="#{produtorEditBean.produtor.civilState}"
 									layout="responsive" columns="3">
 									<f:selectItems value="#{produtorEditBean.civelStates}"
@@ -75,7 +74,7 @@
 								</ui:include>
 
 								<p:outputLabel for="sex" value="Sexo" />
-								<p:selectOneRadio id="sex"
+								<p:selectOneRadio id="sex" required="true"
 									value="#{produtorEditBean.produtor.sexo}">
 									<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
 									<f:selectItem itemLabel="Feminino" itemValue="Feminio" />
@@ -89,7 +88,7 @@
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 								<p:outputLabel for="end" value="Endereço" />
-								<p:autoComplete id="end"
+								<p:autoComplete id="end" required="true"
 									value="#{produtorEditBean.produtor.endereco.address}"
 									completeMethod="#{enderecoBean.completeCities}" var="ad"
 									itemLabel="#{ad}" itemValue="#{ad}">
@@ -104,7 +103,7 @@
 									maxlength="4" size="5" />
 
 								<p:outputLabel for="zone" value="Zona" />
-								<p:selectOneMenu id="zone"
+								<p:selectOneMenu id="zone" required="true"
 									value="#{produtorEditBean.produtor.endereco.zone}">
 									<f:selectItem itemLabel="Selecione uma zona"
 										noSelectionOption="true" />
@@ -117,14 +116,12 @@
 									value="#{produtorEditBean.produtor.endereco.complement}" />
 
 								<p:outputLabel for="cep" value="CEP" />
-								<p:inputMask mask="99999-999" id="cep"
+								<p:inputMask mask="99999-999" id="cep" required="true"
 									value="#{produtorEditBean.produtor.endereco.cep}" size="3" />
 
 								<p:outputLabel for="state" value="Estado" />
-								<p:selectOneMenu id="state"
-									value="#{produtorEditBean.produtor.endereco.state}"
-									required="true"
-									requiredMessage="Um estado deve ser selecionado">
+								<p:selectOneMenu id="state" required="true"
+									value="#{produtorEditBean.produtor.endereco.state}">
 
 									<f:selectItem itemLabel="Selecione um estado"
 										noSelectionOption="true" />
@@ -140,7 +137,6 @@
 								<p:selectOneMenu id="city"
 									value="#{produtorEditBean.produtor.endereco.city}"
 									filter="true" filterMatchMode="startsWith" required="true"
-									requiredMessage="Uma cidade deve ser selecionada"
 									disabled="#{produtorEditBean.produtor.endereco.state eq null}">
 									<f:selectItem itemLabel="Selecione uma cidade"
 										noSelectionOption="true" />

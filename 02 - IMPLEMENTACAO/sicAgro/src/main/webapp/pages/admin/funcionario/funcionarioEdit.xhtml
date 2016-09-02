@@ -20,7 +20,7 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterFuncionario">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<p:fieldset>
 				<div class="ui-fluid">
@@ -30,22 +30,22 @@
 								columnClasses="ui-grid-col-1">
 								
 								<p:outputLabel for="name" value="Nome" />
-								<p:inputText  id="name" value="#{funcionarioEditBean.funcionario.name}"/>
+								<p:inputText  id="name" value="#{funcionarioEditBean.funcionario.name}" required="true"/>
 								
 								<p:outputLabel for="cpf" value="CPF" />
-								<p:inputMask mask="999.999.999-99" id="cpf" value="#{funcionarioEditBean.funcionario.cpf}">
-									<p:ajax event="change" update="username_default" />
+								<p:inputMask mask="999.999.999-99" id="cpf" value="#{funcionarioEditBean.funcionario.cpf}" required="true">
+									<p:ajax event="change" update="username_default_label username_default" />
 								</p:inputMask>
 								
 								<p:outputLabel for="rg" value="RG" />
 								<p:inputText  id="rg" value="#{funcionarioEditBean.funcionario.rg}"/>
 								
 								<p:outputLabel for="phone" value="Telefone" />
-								<p:inputMask mask="(99) 99999-9999" id="phone" value="#{funcionarioEditBean.funcionario.phone}" /> 
+								<p:inputMask mask="(99) 99999-9999" id="phone" required="true" value="#{funcionarioEditBean.funcionario.phone}" /> 
 								
 						        
 								<p:outputLabel for="sex" value="Sexo" />
-								<p:selectOneRadio id="sex" value="#{funcionarioEditBean.funcionario.sexo}">
+								<p:selectOneRadio id="sex" value="#{funcionarioEditBean.funcionario.sexo}" required="true">
 						            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
 						            <f:selectItem itemLabel="Feminino" itemValue="Feminio" />
 						        </p:selectOneRadio>
@@ -59,7 +59,7 @@
 
 								<p:outputLabel for="end" value="Endereço" />
 								<p:autoComplete id="end" value="#{funcionarioEditBean.funcionario.endereco.address}" completeMethod="#{enderecoBean.completeCities}"
-								 	var="ad" itemLabel="#{ad}" itemValue="#{ad}">
+								 	var="ad" itemLabel="#{ad}" itemValue="#{ad}" required="true">
 								 	<p:ajax event="itemSelect" listener="#{funcionarioEditBean.updateCamposEnderecos(ad)}" update="number zone complement cep state city"/>
 								</p:autoComplete>
 								
@@ -67,7 +67,7 @@
 								<p:inputText  id="number" value="#{funcionarioEditBean.funcionario.endereco.number}" maxlength="4"/>
 								
 								<p:outputLabel for="zone" value="Zona" />
-								<p:selectOneMenu id="zone" value="#{funcionarioEditBean.funcionario.endereco.zone}">
+								<p:selectOneMenu id="zone" required="true" value="#{funcionarioEditBean.funcionario.endereco.zone}">
 									<f:selectItem itemLabel="Selecione uma zona" noSelectionOption="true" />
 									<f:selectItem itemLabel="Zona Urbana" itemValue="Zona Urbana"/>
 									<f:selectItem itemLabel="Zona Rural" itemValue="Zona Rural"/>
@@ -77,11 +77,11 @@
 								<p:inputTextarea  id="complement" value="#{funcionarioEditBean.funcionario.endereco.complement}"/>
 								
 								<p:outputLabel for="cep" value="CEP" />
-								<p:inputMask mask="99999-999" id="cep" value="#{funcionarioEditBean.funcionario.endereco.cep}" size="3" />
+								<p:inputMask mask="99999-999" required="true" id="cep" value="#{funcionarioEditBean.funcionario.endereco.cep}" size="3" />
 								
 								<p:outputLabel for="state" value="Estado" />
 								
-								<p:selectOneMenu id="state" value="#{funcionarioEditBean.funcionario.endereco.state}">
+								<p:selectOneMenu id="state" required="true" value="#{funcionarioEditBean.funcionario.endereco.state}">
 
 									<f:selectItem itemLabel="Selecione um estado"
 										noSelectionOption="true" />
@@ -96,7 +96,7 @@
 								<p:outputLabel for="city" value="Município" />
 								
 								<p:selectOneMenu id="city" value="#{funcionarioEditBean.funcionario.endereco.city}" filter="true"
-									 filterMatchMode="startsWith"
+									 filterMatchMode="startsWith" required="true"
 									disabled="#{funcionarioEditBean.funcionario.endereco.state eq null}">
 									<f:selectItem itemLabel="Selecione uma cidade" noSelectionOption="true" />
 									<f:selectItems value="#{enderecoBean.cities}"
@@ -111,8 +111,8 @@
 							<p:panelGrid columns="2" layout="grid"
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 								
-								<p:outputLabel value="Nome de usuário:"/>
-								<p:outputLabel id="username_default" value="#{funcionarioEditBean.funcionario.cpf}" />
+								<p:outputLabel id="username_default_label" value="#{funcionarioEditBean.funcionario.cpf == null ? ' ' : 'Nome usuário'}" />
+								<p:outputLabel id="username_default" value="#{funcionarioEditBean.funcionario.cpf}"/>
 						
 								<p:outputLabel for="mail" value="E-mail"/>
 								<p:inputText id="mail" value="#{funcionarioEditBean.funcionario.acount.mail}"/>

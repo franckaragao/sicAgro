@@ -19,23 +19,23 @@
 	<ui:define name="content">
 		<div class="ui-fluid">
 			<h:form id="formRegisterProduto">
-				<p:messages id="messages" autoUpdate="true" closable="true" />
+				<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 				<p:fieldset>
 					<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
 						columnClasses="ui-grid-col-1">
 
 						<p:outputLabel for="cod" value="Código" rendered="#{produtoEditBean.produto.id == null}"/>
-						<p:inputText id="cod" value="#{produtoEditBean.produto.cod}" rendered="#{produtoEditBean.produto.id == null}">
+						<p:inputText id="cod" value="#{produtoEditBean.produto.cod}" required="true" rendered="#{produtoEditBean.produto.id == null}">
 							<p:ajax event="keyup" update="messages" />
 						</p:inputText>
 
 						<p:outputLabel for="name" value="Nome Produto" />
-						<p:inputText id="name" value="#{produtoEditBean.produto.name}">
+						<p:inputText id="name" required="true" value="#{produtoEditBean.produto.name}">
 						</p:inputText>
 
 						<p:outputLabel for="type" value="Tipo" />
-						<p:selectOneMenu id="type"
+						<p:selectOneMenu id="type" required="true"
 							value="#{produtoEditBean.produto.produtoType}">
 							<f:selectItem itemLabel="Selecione um tipo"
 								noSelectionOption="true" />

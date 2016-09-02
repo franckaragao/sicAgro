@@ -20,7 +20,7 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterPedido">
-			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
 			<p:fieldset>
 				<div class="ui-fluid">
@@ -28,17 +28,17 @@
 						styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1 ui-grid-col-2">
 						
 						<p:outputLabel for="pedido_descricao" value="Descrição" />
-						<p:inputTextarea id="pedido_descricao" rows="4" cols="40" required="true" requiredMessage="Descrição deve ser informado"
+						<p:inputTextarea id="pedido_descricao" rows="4" cols="40" required="true"
 							value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.descricao}" />
 
 						<p:outputLabel for="tipo_maquina" value="Tipo Máquina" />
-						<p:selectOneMenu id="tipo_maquina" value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.tipoMaquina}" required="true" requiredMessage="Máquina necessária deve ser informado" >
+						<p:selectOneMenu id="tipo_maquina" value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.tipoMaquina}" required="true">
 							<f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true" />
 							<f:selectItems value="#{pedidoSolicitacaoEditBean.maquinas}" var="type" itemLabel="#{type.type}" itemValue="#{type}" />
 						</p:selectOneMenu>
 
 						<p:outputLabel for="timesWork" value="Horas necessárias" />
-						<p:spinner id="timesWork" required="true" value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.horasNecessarias}" requiredMessage="Horas trabalhadas deve ser informado" />
+						<p:spinner id="timesWork" required="true" value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.horasNecessarias}"/>
 					</p:panelGrid>
 				</div>
 
@@ -54,11 +54,11 @@
 
 					<p:button value="CANCELAR" id="bt_cancel" icon="fa fa-ban"
 						style="float:left;" styleClass="btnn btnn-primary"
-						outcome="/pages/admin/veiculo/veiculos" />
+						outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
 
 					<p:button value="MINHAS SOLICITAÇÕES" id="bt_find_solicitacoes"
 						style="float:left;" styleClass="btnn btnn-primary"
-						icon="fa fa-search" outcome="/pages/admin/veiculo/veiculos" />
+						icon="fa fa-search" outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
 				</h:panelGrid>
 		</h:form>
 

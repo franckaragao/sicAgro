@@ -21,12 +21,11 @@
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
 						layout="grid" columnClasses="ui-grid-col-1">
 
-						<p:outputLabel value="Máquina: " />
+						<p:outputLabel for="auto_machine" value="Máquina: " />
 
 						<p:autoComplete dropdown="true" id="auto_machine"
 							value="#{reportsBean.filter.veiculo}"
-							completeMethod="#{reportsBean.getVeiculos()}" required="true"
-							requiredMessage="Uma máquina deve ser selecionada" var="machine"
+							completeMethod="#{reportsBean.getVeiculos()}" required="true" var="machine"
 							itemLabel="#{machine.identification}" itemValue="#{machine}"
 							converter="#{veiculoConverter}" forceSelection="true"
 							placeholder="Identificação da máquina">
@@ -45,14 +44,12 @@
 						<p:outputLabel for="dtaInit" value="Data Início" />
 						<p:calendar id="dtaInit" locale="pt_BR" title="Data Início"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportsBean.filter.dateInit}" required="true"
-							requiredMessage="Data Início deve ser informada" />
+							value="#{reportsBean.filter.dateInit}" required="true"/>
 
 						<p:outputLabel for="dtaEnd" value="Data Fim" />
 						<p:calendar id="dtaEnd" locale="pt_BR" title="Data Fim"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportsBean.filter.dateEnd}" required="true"
-							requiredMessage="Data Fim deve ser informada" />
+							value="#{reportsBean.filter.dateEnd}" required="true"/>
 
 					</p:panelGrid>
 				</div>

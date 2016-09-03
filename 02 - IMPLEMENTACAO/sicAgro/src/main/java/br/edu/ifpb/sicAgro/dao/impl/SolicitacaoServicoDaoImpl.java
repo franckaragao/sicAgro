@@ -32,8 +32,7 @@ import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
  *
  */
 public class SolicitacaoServicoDaoImpl extends
-		GenericDaoImpl<SolicitacaoServico, Long> implements
-		SolicitacaoServicoDAO {
+		GenericDaoImpl<SolicitacaoServico, Long> implements SolicitacaoServicoDAO {
 
 	private static final long serialVersionUID = 1L;
 

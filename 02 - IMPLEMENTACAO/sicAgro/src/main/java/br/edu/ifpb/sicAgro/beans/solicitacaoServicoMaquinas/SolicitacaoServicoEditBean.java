@@ -105,7 +105,7 @@ public class SolicitacaoServicoEditBean implements Serializable {
 	}
 
 	public List<Funcionario> listFuncionarios(String name) {
-		return funcionarioService.findByName(name);
+		return funcionarioService.findDriversByName(name);
 	}
 	
 	public void listProdutores(){

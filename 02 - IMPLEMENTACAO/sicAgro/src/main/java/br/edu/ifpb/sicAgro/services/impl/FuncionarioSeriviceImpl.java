@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.FuncionarioDAO;
+import br.edu.ifpb.sicAgro.enumerations.UserRole;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.services.FuncionarioService;
 
@@ -31,6 +33,18 @@ public class FuncionarioSeriviceImpl extends GenericServiceImpl<Funcionario, Lon
 		FuncionarioDAO funcionarioDAO = (FuncionarioDAO) this.dao;
 		List<Funcionario> list = funcionarioDAO.findByName(name);
 		return list;
+	}
+
+	@Override
+	public List<Funcionario> findDriversByName(String name) {
+		FuncionarioDAO funcionarioDAO = (FuncionarioDAO) this.dao;
+		List<Funcionario> result = null;
+		try {
+			result = funcionarioDAO.findDriversByName(name, UserRole.DRIVER);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

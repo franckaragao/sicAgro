@@ -20,7 +20,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "funcionarios")
 @DiscriminatorValue("Funcionario")
-@NamedQueries({ @NamedQuery(name = "Funcionario.findByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name)") })
+@NamedQueries({ 
+	@NamedQuery(name = "Funcionario.findByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name)"),
+	@NamedQuery(name = "Funcionario.findDriverByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name) AND f.acount.userRole = :role") 
+
+})
 public class Funcionario extends Pessoa {
 
 	private static final long serialVersionUID = 1L;

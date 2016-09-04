@@ -30,7 +30,9 @@ import br.edu.ifpb.sicAgro.enumerations.TypeMachine;
  */
 @Entity
 @Table(name = "veiculos")
-@NamedQueries({ @NamedQuery(name = "Veiculo.findByIdentification", query = "SELECT v FROM Veiculo v WHERE LOWER(v.identification) LIKE LOWER(:identification)") })
+@NamedQueries({ 
+	@NamedQuery(name = "Veiculo.findByIdentification", query = "SELECT v FROM Veiculo v WHERE LOWER(v.identification) LIKE LOWER(:identification)")
+})
 public class Veiculo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

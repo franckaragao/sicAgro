@@ -2,6 +2,7 @@ package br.edu.ifpb.sicAgro.dao;
 
 import java.util.List;
 
+import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Produtor;
 
 /**
@@ -12,6 +13,8 @@ import br.edu.ifpb.sicAgro.model.Produtor;
  *
  */
 public interface ProdutorDAO extends DAO<Produtor, Long>{
+	
+	List<Produtor> filter(ProdutorFilter filter);
 	
 	List<Produtor> findByName(String name);
 	

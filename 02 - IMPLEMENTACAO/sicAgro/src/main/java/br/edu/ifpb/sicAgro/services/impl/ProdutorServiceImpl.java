@@ -1,9 +1,12 @@
 package br.edu.ifpb.sicAgro.services.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.ProdutorDAO;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
+import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.ContaService;
@@ -19,7 +22,6 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	private ContaService contaService;
 	
 	public ProdutorServiceImpl() {
-		
 	}
 
 	@Inject
@@ -39,11 +41,11 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 		}
 		dao.add(entity);
 	}
-
+	
 	@Override
-	@Transactional
-	public Produtor update(Produtor entity) {
-		return dao.update(entity);
+	public List<Produtor> filter(ProdutorFilter filter) {
+		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
+		return produtorDAO.filter(filter);
 	}
 	
 	private boolean isCPFExists(String cpf){
@@ -62,4 +64,5 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
 		return produtorDAO.findByCPF(cpf);
 	}
+
 }

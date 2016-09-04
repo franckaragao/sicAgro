@@ -3,13 +3,14 @@ package br.edu.ifpb.sicAgro.beans.solicitacaoServicoMaquinas;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
+import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
+import br.edu.ifpb.sicAgro.filter.VeiculoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.model.Produtor;
@@ -46,8 +47,9 @@ public class SolicitacaoServicoEditBean implements Serializable {
 
 	private SolicitacaoServico solicitacaoServico;
 	private PedidoSolicitacao pedidoSolicitacao;
-
-	private List<Produtor> produtors;
+	
+	private VeiculoFilter veiculoFilter = VeiculoFilter.getInstance();
+	private ProdutorFilter produtorFilter = ProdutorFilter.getInstance();
 
 	public void preRenderView() {
 		if (solicitacaoServico == null) {
@@ -59,11 +61,6 @@ public class SolicitacaoServicoEditBean implements Serializable {
 				solicitacaoServico.setDateSolicitation(pedidoSolicitacao.getDataPedido());
 			}
 		}
-	}
-
-	@PostConstruct
-	public void init() {
-		this.listProdutores();
 	}
 
 	public void save() throws SicAgroException {
@@ -108,8 +105,9 @@ public class SolicitacaoServicoEditBean implements Serializable {
 		return funcionarioService.findDriversByName(name);
 	}
 	
-	public void listProdutores(){
-		this.produtors = produtorService.findAll();
+	public List<Produtor> listProdutores(String query){
+		produtorFilter.setName(query);
+		return produtorService.filter(produtorFilter);
 	}
 	
 	public void cancelConclusao(){
@@ -124,14 +122,6 @@ public class SolicitacaoServicoEditBean implements Serializable {
 
 	public void setSolicitacaoServico(SolicitacaoServico solicitacaoServico) {
 		this.solicitacaoServico = solicitacaoServico;
-	}
-
-	public List<Produtor> getProdutors() {
-		return produtors;
-	}
-
-	public void setProdutors(List<Produtor> produtors) {
-		this.produtors = produtors;
 	}
 
 	public PedidoSolicitacao getPedidoSolicitacao() {

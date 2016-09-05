@@ -33,7 +33,7 @@ public class SolicitacaoServicoViewBean implements Serializable {
 	private SolicitacaoServicoService service;
 	
 	@Inject
-	private PedidoSolicitacaoService PedidoSolicitacaoService;
+	private PedidoSolicitacaoService pedidoSolicitacaoService;
 	
 	@Inject
 	private VeiculoService veiculoService;
@@ -51,8 +51,8 @@ public class SolicitacaoServicoViewBean implements Serializable {
 			this.veiculoService.setHorimetroVeiculo(solicitacaoServico.getVeiculo(), solicitacaoServico.getTimeWorkeds());
 		}
 		
-		if(solicitacaoServico.getCompleted()){
-			PedidoSolicitacaoService.completarPedidoSolicitacao(solicitacaoServico.getPedidoSolicitacao());
+		if(solicitacaoServico.getCompleted() && solicitacaoServico.getPedidoSolicitacao() != null){
+			pedidoSolicitacaoService.completarPedidoSolicitacao(solicitacaoServico.getPedidoSolicitacao());
 		}
 		
 		service.update(solicitacaoServico);

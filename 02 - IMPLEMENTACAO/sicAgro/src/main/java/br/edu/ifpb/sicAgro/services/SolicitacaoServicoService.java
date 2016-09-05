@@ -19,13 +19,6 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 	
 	/**
 	 * 
-	 * @param solicitacao
-	 * @return
-	 */
-	SolicitationState getCurrentStatus(SolicitacaoServico solicitacao);
-	
-	/**
-	 * 
 	 * @param nDays
 	 * @param state
 	 * @return

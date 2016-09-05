@@ -21,7 +21,7 @@
 				<p:inputTextarea id="message_rejeicao" rows="6" cols="60" autoResize="true" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao}" placeholder="Justifique aqui o motivo da rejeição" required="true" requiredMessage="Campo motivo de rejeição deve ser informado"/>
 			</p:panelGrid>
 			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
-				<p:commandButton value="ENVIAR" action="#{pedidoSolicitacaoViewBean.updatePedidoSolicitacao}" oncomplete="handleDialogRequest(xhr, status, args)" process="detailPedidoForm message_rejeicao" id="btn_ok" styleClass="btnn-primary" />
+				<p:commandButton value="ENVIAR" action="#{pedidoSolicitacaoViewBean.rejeitar}" oncomplete="handleDialogRequest(xhr, status, args)" process="detailPedidoForm message_rejeicao" id="btn_ok" styleClass="btnn-primary" />
 			</p:panelGrid>
 		</p:dialog>
 	</div>

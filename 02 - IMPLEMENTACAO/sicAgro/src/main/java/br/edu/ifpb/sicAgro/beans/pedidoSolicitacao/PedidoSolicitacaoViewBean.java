@@ -42,15 +42,7 @@ public class PedidoSolicitacaoViewBean implements Serializable {
 	public void rejeitar() throws SicAgroException {
 		pedidoSolicitacao.setStatus(PedidoStatus.NOT_ACCEPTED);
 		pedidoSolicitacaoService.update(pedidoSolicitacao);
-
-	}
-
-	/**
-	 * Método responsável por atualizar pedido de solicitação com mensagem de
-	 * rejeição, este método é chamado sempre que o usuário clica em rejeitar.
-	 */
-	public void updatePedidoSolicitacao() {
-		pedidoSolicitacaoService.update(pedidoSolicitacao);
+		JSFUtils.rederTo("pedidosSolicitacao.xhtml");
 	}
 
 	public PedidoSolicitacao getPedidoSolicitacao() {

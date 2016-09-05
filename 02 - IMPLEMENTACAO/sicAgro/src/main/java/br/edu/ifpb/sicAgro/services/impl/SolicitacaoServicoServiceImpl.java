@@ -30,7 +30,7 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	@Override
 	@Transactional
 	public void add(SolicitacaoServico entity) {
-		entity.setState(getCurrentStatus(entity));
+		entity.getCurrentStatus(entity);
 		dao.add(entity);
 
 	}
@@ -41,26 +41,8 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	@Override
 	@Transactional
 	public SolicitacaoServico update(SolicitacaoServico entity) {
-		entity.setState(getCurrentStatus(entity));
+		entity.getCurrentStatus(entity);
 		return dao.update(entity);
-	}
-
-	/**
-	 * 
-	 */
-	public SolicitationState getCurrentStatus(SolicitacaoServico solicitacao) {
-		if (solicitacao == null) {
-			return SolicitationState.PROGRESS;
-		}
-		if (solicitacao.getCompleted()) {
-			return SolicitationState.COMPLETED;
-
-		} else if (solicitacao.getDateForRealization().after(new Date())) {
-			return SolicitationState.PROGRESS;
-
-		} else {
-			return SolicitationState.FAIL;
-		}
 	}
 
 	/**

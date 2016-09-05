@@ -313,5 +313,23 @@ public class SolicitacaoServico implements Serializable {
 				+ completed + ", resumoServico=" + resumoServico + ", state="
 				+ state + ", pedidoSolicitacao=" + pedidoSolicitacao + "]";
 	}
+	
+	public void getCurrentStatus(SolicitacaoServico solicitacao) {
+		SolicitationState currentStatus = SolicitationState.PROGRESS;
+		if (solicitacao == null) {
+			currentStatus = SolicitationState.PROGRESS;
+		}
+		if (solicitacao.getCompleted()) {
+			currentStatus = SolicitationState.COMPLETED;
+
+		} else if (solicitacao.getDateForRealization().after(new Date())) {
+			currentStatus = SolicitationState.PROGRESS;
+
+		} else {
+			currentStatus = SolicitationState.FAIL;
+		}
+		
+		solicitacao.setState(currentStatus);
+	}
 
 }

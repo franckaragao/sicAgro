@@ -80,7 +80,7 @@ public class SolicitacaoServicoBean implements Serializable {
 
 	public void updateStates() {
 		for (SolicitacaoServico solicitacaoServico : solicitacoes) {
-			solicitacaoServico.setState(service.getCurrentStatus(solicitacaoServico));
+			service.update(solicitacaoServico);
 		}
 	}
 

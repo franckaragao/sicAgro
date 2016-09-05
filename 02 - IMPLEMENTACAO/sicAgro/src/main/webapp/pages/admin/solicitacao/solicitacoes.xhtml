@@ -39,7 +39,7 @@
 
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" value="#{solicitacaoServicoBean.filter.resumoSolicitacao}" style="width:300px;" placeholder="Filtro de pesquisa de solicitação de serviço">
+						<p:inputText id="globalFilter" value="#{solicitacaoServicoBean.filter.resumoSolicitacao}" style="width:300px;" placeholder="Filtro de pesquisa por resumo de serviço">
 							<p:ajax event="keyup" update="@this tableSolicitations" process="@this tableSolicitations" listener="#{solicitacaoServicoBean.filter()}"/>
 						</p:inputText>
 							

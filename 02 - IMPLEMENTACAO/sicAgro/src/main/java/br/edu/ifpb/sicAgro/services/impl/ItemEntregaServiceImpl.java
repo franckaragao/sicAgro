@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import br.edu.ifpb.sicAgro.dao.ItemEntregaDAO;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.ItemEntrega;
+import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ItemEntregaService;
 
 /**
@@ -41,5 +42,11 @@ public class ItemEntregaServiceImpl extends GenericServiceImpl<ItemEntrega, Long
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public List<ItemEntrega> findByProduto(Produto produto) {
+		ItemEntregaDAO itemDao = (ItemEntregaDAO) this.dao;
+		return itemDao.findByProduto(produto);
 	}
 }

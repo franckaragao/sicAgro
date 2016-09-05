@@ -2,6 +2,7 @@ package br.edu.ifpb.sicAgro.filter;
 
 import java.util.Date;
 
+import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.model.Produtor;
 
 public class EntregaFilter {
@@ -10,6 +11,7 @@ public class EntregaFilter {
 	private Date dateInit;
 	private Date DateEnd;
 	private Produtor produtor;
+	private Produto produto;
 
 	public static EntregaFilter getInstance() {
 		return new EntregaFilter();
@@ -46,4 +48,13 @@ public class EntregaFilter {
 	public void setProdutor(Produtor produtor) {
 		this.produtor = produtor;
 	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
 }

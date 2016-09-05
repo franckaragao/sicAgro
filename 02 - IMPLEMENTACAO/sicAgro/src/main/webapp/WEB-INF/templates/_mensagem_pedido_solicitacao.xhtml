@@ -17,8 +17,11 @@
 			closable="false" 
 			responsive="true">
 			
-			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
-				<p:inputTextarea id="message_rejeicao" rows="6" cols="60" autoResize="true" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao}" placeholder="Justifique aqui o motivo da rejeição" required="true" requiredMessage="Campo motivo de rejeição deve ser informado"/>
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
+			
+			<p:panelGrid  columns="1" styleClass="ui-panelgrid-blank" layout="grid">
+				<p:outputLabel for="message_rejeicao" value="Justificativa de Rejeição" />
+				<p:inputTextarea id="message_rejeicao" rows="6" cols="60" autoResize="true" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao}" placeholder="Justifique aqui o motivo da rejeição" required="true"/>
 			</p:panelGrid>
 			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
 				<p:commandButton value="ENVIAR" action="#{pedidoSolicitacaoViewBean.rejeitar}" oncomplete="handleDialogRequest(xhr, status, args)" process="detailPedidoForm message_rejeicao" id="btn_ok" styleClass="btnn-primary" />

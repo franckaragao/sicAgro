@@ -35,8 +35,9 @@
  
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" onkeyup="PF('findEntrega').filter()" style="width:300px;" placeholder="Buscar registro de entrega" />
-
+						<p:inputText id="globalFilter" value="#{entregaBean.filter.id}" style="width:300px;" placeholder="Pesquisa de entrega por código">
+							<p:ajax event="keyup" update="@this tableEntregas" process="@this tableEntregas" listener="#{entregaBean.filter()}"/>
+						</p:inputText>
 						<p:button id="buttonNewEntrega" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/entrega/entregaEdit">
 							<p:tooltip for="buttonNewEntrega" value="No registro de entrega" />
 						</p:button>

@@ -7,6 +7,8 @@ import br.edu.ifpb.sicAgro.model.Produtor;
 
 public interface ProdutorService extends Service<Produtor, Long> {
 	
+	List<Produtor> findByName(String name);
+	
 	Long getTotalProdutores();
 	
 	Produtor findByCPF(String cpf);

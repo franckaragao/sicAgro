@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class ProdutorFilter {
 
+	private static ProdutorFilter filter;
+
 	private String name;
 	private String cpf;
 	private String rg;
@@ -11,7 +13,6 @@ public class ProdutorFilter {
 	private Integer cod;
 	private String apelido;
 	private String nDap;
-	private static ProdutorFilter filter;
 
 	public static ProdutorFilter getInstance() {
 		filter = new ProdutorFilter();

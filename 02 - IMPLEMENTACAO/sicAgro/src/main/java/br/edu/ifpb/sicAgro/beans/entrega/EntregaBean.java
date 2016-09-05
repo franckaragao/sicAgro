@@ -2,7 +2,6 @@ package br.edu.ifpb.sicAgro.beans.entrega;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,9 +9,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.filter.EntregaFilter;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.EntregaService;
+import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 
 @Named
@@ -23,14 +24,15 @@ public class EntregaBean implements Serializable {
 
 	@Inject
 	private EntregaService entregaService;
-
+	
+	@Inject
+	private ProdutorService produtorService;
+	
 	private List<Entrega> entregas = new ArrayList<Entrega>();
 
 	private Entrega selectedEntrega;
-	
-	private Date dataEntrega;
-	private Produtor produtor;
-	private Long id;
+
+	private EntregaFilter filter = EntregaFilter.getInstance();
 
 	@PostConstruct
 	public void init() {
@@ -45,12 +47,15 @@ public class EntregaBean implements Serializable {
 	public void listEntregas() {
 		this.entregas = entregaService.findAll();
 	}
-	
-	public void filter(){
-		this.entregas = entregaService.filter(dataEntrega, produtor, id);
-		System.out.println(entregas+"------------------------------------------------------------->");
-	}
 
+	public void filter() {
+		this.entregas = entregaService.filter(filter);
+	}
+	
+	public List<Produtor> listProdutores(String query){
+		return produtorService.findByName(query);
+	}
+	
 	public List<Entrega> getEntregas() {
 		return entregas;
 	}
@@ -67,27 +72,12 @@ public class EntregaBean implements Serializable {
 		this.selectedEntrega = selectedEntrega;
 	}
 
-	public Date getDataEntrega() {
-		return dataEntrega;
+	public EntregaFilter getFilter() {
+		return filter;
 	}
 
-	public void setDataEntrega(Date dataEntrega) {
-		this.dataEntrega = dataEntrega;
+	public void setFilter(EntregaFilter filter) {
+		this.filter = filter;
 	}
 
-	public Produtor getProdutor() {
-		return produtor;
-	}
-
-	public void setProdutor(Produtor produtor) {
-		this.produtor = produtor;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 }

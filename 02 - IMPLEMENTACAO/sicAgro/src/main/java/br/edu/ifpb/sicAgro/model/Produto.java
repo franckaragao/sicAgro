@@ -56,7 +56,7 @@ public class Produto implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_produto", nullable = false)
 	private ProdutoType produtoType;
-
+	
 	public Long getId() {
 		return id;
 	}

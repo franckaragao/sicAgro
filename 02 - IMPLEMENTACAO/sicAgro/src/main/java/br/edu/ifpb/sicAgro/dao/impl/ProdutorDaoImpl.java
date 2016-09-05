@@ -28,17 +28,12 @@ public class ProdutorDaoImpl extends GenericDaoImpl<Produtor, Long> implements P
 	    List<Predicate> predicates = new ArrayList<Predicate>();
 
 	    query.select(produtorRoot);
-	    if(filter.getCod() != null){
+	    
+	    if(filter.getCod() != null && filter.getCod() > 0){
 		    predicates.add(criteria.equal(produtorRoot.get("cod"), filter.getCod()));
 	    }
 	    if(filter.getName() != null){
-	    	predicates.add(criteria.like(criteria.lower(produtorRoot.get("name")), "%"+filter.getName().toLowerCase()+"%"));
-	    }
-	    if(filter.getApelido() != null){
-	    	predicates.add(criteria.like(produtorRoot.get("apelido"), "%"+filter.getApelido().toLowerCase()+"%"));
-	    }
-	    if(filter.getnDap() != null){
-	    	predicates.add(criteria.like(produtorRoot.get("nDap"), filter.getnDap().toLowerCase()));
+	    	predicates.add(criteria.like(criteria.lower(produtorRoot.<String>get("name")),"%"+filter.getName()+"%"));
 	    }
 	    if(filter.getCpf() != null){
 	    	predicates.add(criteria.like(produtorRoot.get("cpf"), filter.getCpf()));
@@ -46,6 +41,7 @@ public class ProdutorDaoImpl extends GenericDaoImpl<Produtor, Long> implements P
 	    if(predicates.size() > 0){
 	    	query.where(criteria.and(predicates.toArray(new Predicate[]{})));
 	    }
+	    
 	    return entityManager.createQuery(query).getResultList();
 		
 	}

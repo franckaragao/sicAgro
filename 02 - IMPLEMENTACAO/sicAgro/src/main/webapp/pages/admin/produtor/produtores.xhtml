@@ -35,7 +35,9 @@
  
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" onkeyup="PF('findProdutor').filter()" style="width:300px;" placeholder="Buscar produtor" />
+						<p:inputText id="globalFilter" value="#{produtorBean.filter.name}" style="width:300px;" placeholder="Busca de produtor por nome">
+							<p:ajax event="keyup" update="@this tableProdutores" process="@this tableProdutores" listener="#{produtorBean.filter()}"/>
+						</p:inputText>
 
 						<p:button id="buttonNewProduto" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/produtor/produtorEdit">
 							<p:tooltip for="buttonNewProduto" value="#{msg.tooltipNewProduto}" />

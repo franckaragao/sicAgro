@@ -62,7 +62,7 @@ public class SolicitacaoServicoDaoImpl extends
 	    	predicates.add(criteria.equal(solicitRoot.get("veiculo"), filter.getVeiculo()));
 
 	    if(filter.getResumoSolicitacao() != null)
-	    	predicates.add(criteria.like(solicitRoot.get("resumoServico"), "%"+filter.getResumoSolicitacao()+"%"));
+	    	predicates.add(criteria.like(criteria.lower(solicitRoot.<String>get("resumoServico")), "%"+filter.getResumoSolicitacao()+"%"));
 	    
 	    if(filter.getFuncionario() != null)
 	    	predicates.add(criteria.equal(solicitRoot.get("funcionario"), filter.getFuncionario()));

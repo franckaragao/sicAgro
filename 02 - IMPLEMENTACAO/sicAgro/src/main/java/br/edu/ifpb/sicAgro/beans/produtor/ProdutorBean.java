@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -26,9 +27,8 @@ public class ProdutorBean implements Serializable {
 
 	private List<Produtor> produtores;
 
-	/**
-	 * 
-	 */
+	private ProdutorFilter filter = ProdutorFilter.getInstance();
+
 	public void preRenderView() {
 		if (selectedProdutor == null) {
 			selectedProdutor = new Produtor();
@@ -39,19 +39,13 @@ public class ProdutorBean implements Serializable {
 	public void init() {
 		this.listOfProdutores();
 	}
-	
-	/**
-	 * 
-	 */
+
 	public void remove() {
 		produtorService.remove(selectedProdutor);
 		MessageUtils.messageSucess("Produtor removido com sucesso.");
 		JSFUtils.rederTo("produtores.xhtml");
 	}
 
-	/**
-	 * 
-	 */
 	public void renderTo() {
 		JSFUtils.rederTo("produtorView.xhtml");
 		JSFUtils.setParam("produtor", selectedProdutor);
@@ -59,6 +53,15 @@ public class ProdutorBean implements Serializable {
 
 	public void listOfProdutores() {
 		this.produtores = produtorService.findAll();
+	}
+
+	public void filter() {
+		try {
+			Integer code = Integer.parseInt(filter.getName());
+			filter.setCod(code);
+		} catch (NumberFormatException e) {
+		}
+		produtores = produtorService.filter(filter);
 	}
 
 	public Produtor getSelectedProdutor() {
@@ -75,6 +78,14 @@ public class ProdutorBean implements Serializable {
 
 	public void setProdutores(List<Produtor> produtores) {
 		this.produtores = produtores;
+	}
+
+	public ProdutorFilter getFilter() {
+		return filter;
+	}
+
+	public void setFilter(ProdutorFilter filter) {
+		this.filter = filter;
 	}
 
 }

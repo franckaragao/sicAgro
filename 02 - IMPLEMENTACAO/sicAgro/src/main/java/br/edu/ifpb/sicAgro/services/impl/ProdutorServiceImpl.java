@@ -65,4 +65,10 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 		return produtorDAO.findByCPF(cpf);
 	}
 
+	@Override
+	public List<Produtor> findByName(String name) {
+		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
+		return produtorDAO.findByName(name);
+	}
+
 }

@@ -11,6 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.edu.ifpb.sicAgro.dao.EntregaDAO;
+import br.edu.ifpb.sicAgro.filter.EntregaFilter;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.model.Produtor;
 
@@ -33,7 +34,10 @@ public class EntregaDaoImpl extends GenericDaoImpl<Entrega, Long> implements Ent
 		return (Long) query.getSingleResult();
 	}
 	
-	public List<Entrega> filter(Date dateEntrega, Produtor produtor, Long id){
+	/**
+	 * 
+	 */
+	public List<Entrega> filter(EntregaFilter filter){
 		
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Entrega> query = criteriaBuilder.createQuery(Entrega.class);
@@ -42,20 +46,19 @@ public class EntregaDaoImpl extends GenericDaoImpl<Entrega, Long> implements Ent
 		
 		query.select(entregaRoot);
 		
-		if(dateEntrega != null)
-			predicates.add(criteriaBuilder.equal(entregaRoot.get("dateEntrega"), dateEntrega));
 		
-		if(produtor != null)
-			predicates.add(criteriaBuilder.equal(entregaRoot.get("produtor"), produtor));
+		if(filter.getId() != null)
+			predicates.add(criteriaBuilder.equal(entregaRoot.<Long>get("id"), filter.getId()));
 		
-		if(id != null)
-			predicates.add(criteriaBuilder.equal(entregaRoot.get("id"), id));
+		if(filter.getProdutor() != null)
+			predicates.add(criteriaBuilder.equal(entregaRoot.<Produtor>get("produtor"), filter.getProdutor()));
+		
+	    if(filter.getDateInit() != null && filter.getDateEnd() != null)
+	    	predicates.add(criteriaBuilder.between(entregaRoot.<Date>get("dateEntrega"), filter.getDateInit(), filter.getDateEnd()));
 		
 	    if(predicates.size() > 0)
 	    	query.where(criteriaBuilder.and(predicates.toArray(new Predicate[]{})));
 		
 		return entityManager.createQuery(query).getResultList();
-		
 	}
-
 }

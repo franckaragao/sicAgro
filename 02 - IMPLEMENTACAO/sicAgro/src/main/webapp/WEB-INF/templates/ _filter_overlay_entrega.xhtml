@@ -10,14 +10,42 @@
 	<p:overlayPanel id="#{id}" for="#{for}" value="#{value}"
 		showEvent="mouseover" dismissable="false" style="width:300px">
 		<div class="ui-fluid">
-			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
-				layout="grid">
-				<h:outputText value="Por Data data da entrega" />
-					<p:calendar id="dta" locale="pt_BR" pattern="dd/MM/yyyy"
-						showButtonPanel="true" value="#{entregaBean.dataEntrega}">
-						<p:ajax event="dateSelect" update="tableEntregas" process="@this tableEntregas" listener="#{entregaBean.filter()}"/>
+			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank" layout="grid">
+				<h:outputText for="byProdutor" value="Por Produtor" />
+				<p:autoComplete dropdown="true" id="byProdutor"
+					value="#{entregaBean.filter.produtor}"
+					completeMethod="#{entregaBean.listProdutores}"
+					var="produtor" itemLabel="#{produtor.name}" itemValue="#{produtor}"
+					converter="#{produtorConverter}" forceSelection="true"
+					placeholder="Nome do produtor benefíciado">
+
+					<p:column headerText="COD">
+						<h:outputText value="#{produtor.cod}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{produtor.name}" />
+					</p:column>
+				</p:autoComplete>
+
+				<p:panel header="Por Período">
+					<h:outputText value="De" />
+					<p:calendar id="dtaInit" locale="pt_BR" pattern="dd/MM/yyyy"
+						showButtonPanel="true" value="#{entregaBean.filter.dateInit}">
 					</p:calendar>
-				<p:commandButton icon="fa fa-eraser" value="LIMPAR FILTRO" process="@this" update="tableEntregas" styleClass="btnn btnn-primary"/>
+					<h:outputText value="Até" />
+					<p:calendar id="dtaEnd" locale="pt_BR" pattern="dd/MM/yyyy"
+						showButtonPanel="true" value="#{entregaBean.filter.dateEnd}">
+					</p:calendar>
+				</p:panel>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
+					layout="grid">
+					<p:commandButton icon="fa fa-check" value="FILTRAR"
+						process="@this tableEntregas" action="#{entregaBean.filter()}"
+						update="@this tableEntregas" styleClass="btnn-default">
+					</p:commandButton>
+					<p:commandButton icon="fa fa-eraser" value="LIMPAR" process="@this"
+						update="tableEntregas" styleClass="btnn-default" />
+				</p:panelGrid>
 			</p:panelGrid>
 		</div>
 	</p:overlayPanel>

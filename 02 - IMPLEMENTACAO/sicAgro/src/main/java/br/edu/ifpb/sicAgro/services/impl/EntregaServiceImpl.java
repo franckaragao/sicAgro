@@ -1,13 +1,12 @@
 package br.edu.ifpb.sicAgro.services.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.EntregaDAO;
+import br.edu.ifpb.sicAgro.filter.EntregaFilter;
 import br.edu.ifpb.sicAgro.model.Entrega;
-import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.EntregaService;
 
 public class EntregaServiceImpl extends GenericServiceImpl<Entrega, Long> implements EntregaService{
@@ -29,9 +28,9 @@ public class EntregaServiceImpl extends GenericServiceImpl<Entrega, Long> implem
 	}
 
 	@Override
-	public List<Entrega> filter(Date dateEntrega, Produtor produtor, Long id) {
+	public List<Entrega> filter(EntregaFilter filter) {
 		EntregaDAO entregaDAO = (EntregaDAO) this.dao;
-		return entregaDAO.filter(dateEntrega, produtor, id);
+		return entregaDAO.filter(filter);
 	}
 
 }

@@ -49,6 +49,10 @@
 							</p:commandButton>
 						</p:dialog>
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1 ui-grid-col-2" layout="grid">
+
+						<p:outputLabel for="resumo_solicitacao" value="Resumo do serviço" />
+						<p:inputText id="resumo_solicitacao" required="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.resumoServico}" />
+						
 						<p:outputLabel for="auto_machine" value="Máquina" />
 						<p:autoComplete 
 							dropdown="true" 
@@ -61,7 +65,7 @@
 							itemValue="#{machine}"
 							converter="#{veiculoConverter}" 
 							forceSelection="true"
-							placeholder="Identificação da máquina">
+							placeholder="Identificação da máquina que será utilizada">
 
 							<p:column headerText="Identificação">
 								<h:outputText value="#{machine.identification}" />
@@ -86,7 +90,7 @@
 							itemValue="#{func}"
 							converter="#{funcionarioConverter}" 
 							forceSelection="true"
-							placeholder="Nome do funcionário responsável">
+							placeholder="Nome do funcionário responsável pela realização do serviço">
 
 							<p:column>
 								<h:outputText value="#{func.name}" />
@@ -100,7 +104,6 @@
 						<p:calendar id="dtaForExecution" locale="pt_BR" title="Data Marcada" pattern="dd/MM/yyyy HH:mm" showButtonPanel="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.dateForRealization}" required="true" placeholder="Data que o serviço será realizado"/>
 
 						<p:outputLabel for="advanced" value="Produtor" />
-						
 						<p:autoComplete 
 							dropdown="true" 
 							id="advanced"
@@ -122,9 +125,6 @@
 							</p:column>
 						</p:autoComplete>
 
-						<p:outputLabel for="resumo_solicitacao" value="Resumo do serviço" />
-						<p:inputText id="resumo_solicitacao" required="true" value="#{solicitacaoServicoEditBean.solicitacaoServico.resumoServico}" />
-						
 						<p:outputLabel value="Solicitação concluída?" />
 						<p:inputSwitch id="completed" value="#{solicitacaoServicoEditBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não">
 							<p:ajax oncomplete="PF('dlgC').show();" update="@this" />

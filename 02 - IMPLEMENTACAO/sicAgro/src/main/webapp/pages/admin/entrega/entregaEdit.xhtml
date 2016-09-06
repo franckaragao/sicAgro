@@ -78,35 +78,24 @@
 					<p:separator style="border:none; background-color:none;" />
 
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
-						columnClasses="ui-grid-col-1 ui-grid-col-2 " layout="grid">
+						columnClasses="ui-grid-col-1 ui-grid-col-2" layout="grid">
 
 						<p:outputLabel for="advanced" value="Produtor beneficiado" />
-						<p:selectOneMenu 
-							id="advanced" 
+						<p:autoComplete  dropdown="true" id="advanced" required="true"
 							value="#{entregaEditBean.entrega.produtor}"
-							converter="#{produtorConverter}" 
-							var="t" 
-							filter="true"
-							filterMatchMode="startsWith" 
-							required="true">
-
-							<f:selectItem noSelectionOption="true" itemLabel="" />
-							<f:selectItems value="#{entregaEditBean.produtores}" var="produtor" itemLabel="#{produtor.name}"
-								itemValue="#{produtor}" />
-
-							<p:column filterBy="#{t.cod}">
-								<h:outputText value="#{t.cod}" />
+							completeMethod="#{produtorBean.listProdutoresByName}"
+							 var="produtor" itemLabel="#{produtor.name}"
+							itemValue="#{produtor}" converter="#{produtorConverter}"
+							 placeholder="Nome do produtor benefíciado">
+		
+							<p:column headerText="COD">
+								<h:outputText value="#{produtor.cod}" />
 							</p:column>
-
-							<p:column filterBy="#{t.name}">
-								<h:outputText value="#{t.name}" />
-							</p:column>
-
-							<p:column filterBy="#{t.cpf}">
-								<h:outputText value="#{t.cpf}" />
+							<p:column headerText="Nome">
+								<h:outputText value="#{produtor.name}" />
 							</p:column>
 							<p:ajax event="itemSelect" update="tableView:produtorSelected" />
-						</p:selectOneMenu>
+						</p:autoComplete>
 
 					</p:panelGrid>
 

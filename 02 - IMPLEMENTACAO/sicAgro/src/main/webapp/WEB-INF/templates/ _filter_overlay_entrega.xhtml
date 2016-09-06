@@ -13,12 +13,12 @@
 			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
 				layout="grid">
 				<h:outputText for="byProdutor" value="Por Produtor" />
-				<p:autoComplete dropdown="true" id="advanced"
+				<p:autoComplete  dropdown="true" id="advanced"
 					value="#{entregaBean.filter.produtor}"
-					completeMethod="#{solicitacaoServicoEditBean.listProdutores}"
+					completeMethod="#{produtorBean.listProdutoresByName}"
 					 var="produtor" itemLabel="#{produtor.name}"
 					itemValue="#{produtor}" converter="#{produtorConverter}"
-					forceSelection="true" placeholder="Nome do produtor benefíciado">
+					 placeholder="Nome do produtor benefíciado">
 
 					<p:column headerText="COD">
 						<h:outputText value="#{produtor.cod}" />
@@ -28,14 +28,14 @@
 					</p:column>
 				</p:autoComplete>
 
-				<!-- <h:outputText for="byProduto" value="Por Produto" />
+				<h:outputText for="byProduto" value="Por Produto" />
 				<p:selectOneMenu id="byProduto" converter="#{produtoConverter}"
-					style="width:180px" value="#{entregaBean.filter.produto}">
+					 value="#{entregaBean.filter.produto}">
 
 					<f:selectItem noSelectionOption="true" itemLabel="" />
 					<f:selectItems value="#{entregaBean.listProdutos()}" var="produto"
 						itemLabel="#{produto.name}" itemValue="#{produto}" />
-				</p:selectOneMenu> -->
+				</p:selectOneMenu>
 
 				<p:panel header="Por Período">
 					<h:outputText value="De" />

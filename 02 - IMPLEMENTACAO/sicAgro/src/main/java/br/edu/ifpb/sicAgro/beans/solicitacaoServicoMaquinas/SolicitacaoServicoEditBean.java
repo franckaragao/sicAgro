@@ -9,15 +9,12 @@ import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
-import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
-import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 import br.edu.ifpb.sicAgro.model.Veiculo;
 import br.edu.ifpb.sicAgro.services.FuncionarioService;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
-import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -39,16 +36,11 @@ public class SolicitacaoServicoEditBean implements Serializable {
 	private FuncionarioService funcionarioService;
 	
 	@Inject
-	private ProdutorService produtorService;
-	
-	@Inject
 	private PedidoSolicitacaoService pedidoSolicitacaoService;
 
 	private SolicitacaoServico solicitacaoServico;
 	private PedidoSolicitacao pedidoSolicitacao;
 	
-	private ProdutorFilter produtorFilter = ProdutorFilter.getInstance();
-
 	public void preRenderView() {
 		if (solicitacaoServico == null) {
 			solicitacaoServico = new SolicitacaoServico();
@@ -101,11 +93,6 @@ public class SolicitacaoServicoEditBean implements Serializable {
 
 	public List<Funcionario> listFuncionarios(String name) {
 		return funcionarioService.findDriversByName(name);
-	}
-	
-	public List<Produtor> listProdutores(String query){
-		produtorFilter.setName(query);
-		return produtorService.filter(produtorFilter);
 	}
 	
 	public void cancelConclusao(){

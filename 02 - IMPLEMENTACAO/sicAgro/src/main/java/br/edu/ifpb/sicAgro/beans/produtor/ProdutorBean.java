@@ -63,6 +63,11 @@ public class ProdutorBean implements Serializable {
 		}
 		produtores = produtorService.filter(filter);
 	}
+	
+	public List<Produtor> listProdutoresByName(String query){
+		filter.setName(query);
+		return produtorService.filter(filter);
+	}
 
 	public Produtor getSelectedProdutor() {
 		return selectedProdutor;

@@ -59,6 +59,9 @@ public class ItemEntrega implements Serializable {
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "item_carga_FK")
 	private ItemCarga itemCarga;
+	
+	@ManyToOne
+	private Entrega entrega;
 
 	public Long getId() {
 		return id;
@@ -94,6 +97,14 @@ public class ItemEntrega implements Serializable {
 
 	public ItemCarga getItemCarga() {
 		return itemCarga;
+	}
+	
+	public Entrega getEntrega() {
+		return entrega;
+	}
+
+	public void setEntrega(Entrega entrega) {
+		this.entrega = entrega;
 	}
 
 	public void setItemCarga(ItemCarga itemCarga) {

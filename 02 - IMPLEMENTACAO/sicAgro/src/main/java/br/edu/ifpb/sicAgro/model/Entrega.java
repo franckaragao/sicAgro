@@ -53,7 +53,7 @@ public class Entrega implements Serializable {
 
 	@NotEmpty
 	@NotNull
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy= "entrega")
 	private List<ItemEntrega> itemEntregas;
 
 	@NotNull

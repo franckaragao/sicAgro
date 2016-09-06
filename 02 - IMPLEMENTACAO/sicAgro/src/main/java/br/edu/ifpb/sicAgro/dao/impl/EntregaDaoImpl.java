@@ -7,9 +7,9 @@ import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Subquery;
 
 import br.edu.ifpb.sicAgro.dao.EntregaDAO;
 import br.edu.ifpb.sicAgro.filter.EntregaFilter;
@@ -56,14 +56,8 @@ public class EntregaDaoImpl extends GenericDaoImpl<Entrega, Long> implements Ent
 			predicates.add(criteriaBuilder.equal(entregaRoot.<Produtor>get("produtor"), filter.getProdutor()));
 		
 		if(filter.getProduto() != null){
-			Subquery<ItemEntrega> subItemEntrega = query.subquery(ItemEntrega.class);
-			Root<ItemEntrega> itemEntregaRoot = subItemEntrega.from(ItemEntrega.class);
-			subItemEntrega.select(itemEntregaRoot);
-			
-			Predicate subPredicate = criteriaBuilder.equal(itemEntregaRoot.<Produto>get("produto"), filter.getProduto());
-			subItemEntrega.where(subPredicate);
-			
-			predicates.add(criteriaBuilder.exists(subItemEntrega));
+			Join<Entrega, ItemEntrega> joinItens = entregaRoot.join("itemEntregas");
+			predicates.add(criteriaBuilder.equal(joinItens.<Produto>get("produto"), filter.getProduto()));
 		}
 		
 	    if(filter.getDateInit() != null && filter.getDateEnd() != null)

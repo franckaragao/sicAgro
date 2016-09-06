@@ -133,7 +133,7 @@ public class EntregaEditBean implements Serializable {
 		
 		ItemEntrega item = this.itemEntrega;
 		this.itemEntrega = new ItemEntrega();
-		
+		item.setEntrega(entrega);
 		return item;
 	}
 	

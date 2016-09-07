@@ -102,8 +102,8 @@ public class BarChartBean implements Serializable {
 				Long quantidade = (Long) objects[1];
 				solicitacoes.set(name, quantidade);
 			}
+			model.addSeries(solicitacoes);
 		}
-		model.addSeries(solicitacoes);
 
 		return model;
 	}

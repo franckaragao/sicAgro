@@ -1,6 +1,8 @@
 package br.edu.ifpb.sicAgro.dao;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
@@ -36,5 +38,13 @@ public interface PedidoSolicitacaoDAO extends DAO<PedidoSolicitacao, Long>{
 	 * @return
 	 */
 	List<PedidoSolicitacao> findPedidosByProdutor(Produtor produtor);
+	
+	/**
+	 * 
+	 * @param nDays
+	 * @param state
+	 * @return
+	 */
+	Map<Date, Integer> getPedidosPorPeriodo(Integer nDays, PedidoStatus status);
 
 }

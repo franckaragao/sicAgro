@@ -1,5 +1,6 @@
 package br.edu.ifpb.sicAgro.util.userSession;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +26,9 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
  *
  */
 @ApplicationScoped
-public class UserSession {
+public class UserSession implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private ContaService contaService;

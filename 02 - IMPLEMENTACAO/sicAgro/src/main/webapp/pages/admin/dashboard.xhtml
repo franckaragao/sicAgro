@@ -74,13 +74,18 @@
 		</p:panelGrid>
 
 		<p:panelGrid columns="2" layout="grid"
-				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
-		</p:panelGrid>
+				styleClass="ui-panelgrid-blank">
 		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
 			<p:chart type="line" extender="ext"
-				model="#{lineChartBean.modelChartLine}" responsive="true"
+				model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
 				style="height:300px;" />
 		</p:fieldset>
+				<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+			<p:chart type="line" extender="ext"
+				model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
+				style="height:300px;" />
+		</p:fieldset>
+		</p:panelGrid>
 		<div class="ui-fluid">
 			<p:panelGrid columns="3" layout="grid"
 				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
@@ -101,11 +106,6 @@
 				</p:fieldset>
 			</p:panelGrid>
 		</div>
-		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-			<p:chart type="line" extender="ext"
-				model="#{lineChartBean.modelChartLine}" responsive="true"
-				style="height:300px;" />
-		</p:fieldset>
 
 		<!-- <p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
 			columnClasses="10">

@@ -1,6 +1,8 @@
 package br.edu.ifpb.sicAgro.services;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
@@ -22,4 +24,5 @@ public interface PedidoSolicitacaoService extends Service<PedidoSolicitacao, Lon
 	 
 	 List<PedidoSolicitacao> findPedidosByProdutor(Produtor produtor);
 
+	 Map<Date, Integer> getPedidosPorPeriodo(Integer nDays, PedidoStatus status);
 }

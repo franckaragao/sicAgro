@@ -16,7 +16,9 @@ import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
+import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 
 @Named
@@ -25,36 +27,73 @@ public class LineChartBean implements Serializable{
 
 	private static final long serialVersionUID = 7086466135691243720L;
 	
-	
 	private static DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM");
 
 	@Inject
 	private SolicitacaoServicoService solicitacaoServicoService;
 	
-	private LineChartModel modelChartLine;
-
+	@Inject
+	private PedidoSolicitacaoService pedidoSolicitacaoService;
+	
+	private LineChartModel modelChartLineSolicitacao;
+	
+	private LineChartModel modelChartLinePedidoSolicitacao;
 	
 	public void preRenderView() {
-		this.modelChartLine = new LineChartModel();
+		this.initChartLineSolicitacao();
+		this.initChartLinePedidos();
+	}
+	
+	/**
+	 * 
+	 */
+	private void initChartLineSolicitacao(){
+		this.modelChartLineSolicitacao = new LineChartModel();
 
-		modelChartLine.setTitle("Solicitações dos últimos 15 dias");
-		modelChartLine.setLegendPosition("nw");
-		modelChartLine.setAnimate(true);
-		modelChartLine.setZoom(true);
+		modelChartLineSolicitacao.setTitle("Solicitações dos últimos 10 dias");
+		modelChartLineSolicitacao.setLegendPosition("nw");
+		modelChartLineSolicitacao.setAnimate(true);
+		modelChartLineSolicitacao.setZoom(true);
 
-		modelChartLine.getAxes().put(AxisType.X, new CategoryAxis("Data do Registro"));
-		Axis yAxis = modelChartLine.getAxis(AxisType.Y);
+		modelChartLineSolicitacao.getAxes().put(AxisType.X, new CategoryAxis("Data do Registro"));
+		Axis yAxis = modelChartLineSolicitacao.getAxis(AxisType.Y);
         yAxis.setLabel("Quantidade");
         yAxis.setMin(0);
         
-		this.initLinearModel("Solicitações concluídas",SolicitationState.COMPLETED);
-		this.initLinearModel("Solicitações não concluídas",SolicitationState.FAIL);
-		this.initLinearModel("Solicitações em adamento",SolicitationState.PROGRESS);
+		this.generateChartSolicitacao("Solicitações concluídas",SolicitationState.COMPLETED);
+		this.generateChartSolicitacao("Solicitações não concluídas",SolicitationState.FAIL);
+		this.generateChartSolicitacao("Solicitações em adamento",SolicitationState.PROGRESS);
 	}
 	
-	private void initLinearModel(String label, SolicitationState state) {
+	/**
+	 * 
+	 */
+	private void initChartLinePedidos(){
+		this.modelChartLinePedidoSolicitacao = new LineChartModel();
 
-		Map<Date, Integer> solicidacoes = solicitacaoServicoService.getSolicitacoesPorPeriodo(15, state);
+		modelChartLinePedidoSolicitacao.setTitle("Pedidos de solicitações dos últimos 10 dias");
+		modelChartLinePedidoSolicitacao.setLegendPosition("nw");
+		modelChartLinePedidoSolicitacao.setAnimate(true);
+		modelChartLinePedidoSolicitacao.setZoom(true);
+
+		modelChartLinePedidoSolicitacao.getAxes().put(AxisType.X, new CategoryAxis("Data do pedido"));
+		Axis yAxis = modelChartLinePedidoSolicitacao.getAxis(AxisType.Y);
+        yAxis.setLabel("Quantidade");
+        yAxis.setMin(0);
+        
+		this.generateChartPedidos("Pedidos concluídos", PedidoStatus.COMPLETED);
+		this.generateChartPedidos("Pedidos recusados", PedidoStatus.NOT_ACCEPTED);
+		this.generateChartPedidos("Pedidos aceitos",PedidoStatus.ACCEPTED);
+	}
+	
+	/**
+	 * 
+	 * @param label
+	 * @param state
+	 */
+	private void generateChartSolicitacao(String label, SolicitationState state) {
+
+		Map<Date, Integer> solicidacoes = solicitacaoServicoService.getSolicitacoesPorPeriodo(10, state);
 
 		LineChartSeries series = new LineChartSeries();
 		series.setLabel(label);
@@ -63,15 +102,46 @@ public class LineChartBean implements Serializable{
 			series.set(DATE_FORMAT.format(data), solicidacoes.get(data));
 		}
 
-		modelChartLine.addSeries(series);
+		modelChartLineSolicitacao.addSeries(series);
+	}
+	
+	/**
+	 * 
+	 * @param label
+	 * @param status
+	 */
+	private void generateChartPedidos(String label, PedidoStatus status) {
+
+		Map<Date, Integer> pedidos = pedidoSolicitacaoService.getPedidosPorPeriodo(10, status);
+
+		LineChartSeries series = new LineChartSeries();
+		series.setLabel(label);
+
+		for (Date data : pedidos.keySet()) {
+			System.out.println(data +" "+ pedidos.get(data));
+			series.set(DATE_FORMAT.format(data), pedidos.get(data));
+		}
+
+		modelChartLinePedidoSolicitacao.addSeries(series);
 	}
 
-	public LineChartModel getModelChartLine() {
-		return modelChartLine;
+	public LineChartModel getModelChartLineSolicitacao() {
+		return modelChartLineSolicitacao;
 	}
 
-	public void setModelChartLine(LineChartModel modelChartLine) {
-		this.modelChartLine = modelChartLine;
+	public void setModelChartLineSolicitacao(
+			LineChartModel modelChartLineSolicitacao) {
+		this.modelChartLineSolicitacao = modelChartLineSolicitacao;
 	}
+
+	public LineChartModel getModelChartLinePedidoSolicitacao() {
+		return modelChartLinePedidoSolicitacao;
+	}
+
+	public void setModelChartLinePedidoSolicitacao(
+			LineChartModel modelChartLinePedidoSolicitacao) {
+		this.modelChartLinePedidoSolicitacao = modelChartLinePedidoSolicitacao;
+	}
+	
 	
 }

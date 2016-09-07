@@ -42,6 +42,7 @@ public class ReportsBean implements Serializable {
 	private List<SolicitacaoServico> list;
 
 	private LoaderReport<SolicitacaoServico> loaderReport;
+	
 	private List<SolicitationState> status = new ArrayList<SolicitationState>();
 
 	private SolicitacaoFilter filter = SolicitacaoFilter.getInstance();
@@ -49,8 +50,8 @@ public class ReportsBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.getVeiculos();
-		status.add(SolicitationState.FAIL);
 		status.add(SolicitationState.COMPLETED);
+		status.add(SolicitationState.FAIL);
 		status.add(SolicitationState.PROGRESS);
 	}
 
@@ -58,13 +59,15 @@ public class ReportsBean implements Serializable {
 		return veiculoService.findAll();
 	}
 
-	public void getRelatorio() {
+	public void generateReport() {
+		System.out.println("ESTA CHAMANDO BEAN 1 ?????????????");
 		this.list = solicitacaoServicoService.filter(filter);
 		if (list.size() > 0) {
 			for (SolicitacaoServico solicitacaoServico : list) {
 				if(solicitacaoServico.getTimeWorkeds() == null)
 					solicitacaoServico.setTimeWorkeds(0);
 			}
+			System.out.println("ESTA CHAMANDO BEAN?????????????");
 			this.loaderReport = new LoaderReport<SolicitacaoServico>(
 					"/reports/solicitacoes.jasper", list, "solicitacoes.pdf");
 			loaderReport.execute(filter.getDateInit(), filter.getDateEnd());

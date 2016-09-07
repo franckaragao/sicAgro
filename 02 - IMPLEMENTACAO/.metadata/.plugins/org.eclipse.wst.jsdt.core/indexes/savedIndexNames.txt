@@ -1,8 +1,0 @@
-INDEX VERSION 1.3+/home/franck/Projects/sicAgro (Workspace)/sicAgro/02 - IMPLEMENTACAO/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-891835313.index
-223810463.index
-2237511878.index
-3317031049.index
-3349787498.index
-430004590.index
-417184307.index

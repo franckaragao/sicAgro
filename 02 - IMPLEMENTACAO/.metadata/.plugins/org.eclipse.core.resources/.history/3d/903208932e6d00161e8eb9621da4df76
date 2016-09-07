@@ -1,5 +1,0 @@
-package br.edu.ifpb.sicAgro.exceptions;
-
-public class PersistenceSicAgroException {
-
-}

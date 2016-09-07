@@ -7,17 +7,16 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
-	<ui:define name="title">Emissão de Relatório de Solicitações de serviços</ui:define>
-	<ui:define name="content-header">Emissão de Relatório de Solicitações de serviços <small>Emissão
-			de relatório de soicitações de serviços por veículos</small>
+	<ui:define name="title">Emissão de Relatório</ui:define>
+	<ui:define name="content-header">Emissão de Relatório<small>Emissão
+			de relatório de soicitações de serviços por máquinas</small>
 	</ui:define>
 	<ui:define name="breadcrumb-active">Emissão relatório</ui:define>
 	<ui:define name="content">
 		<h:body>
-			<h:form>
+			<h:form id="formReportSolicitation">
+				<p:messages autoUpdate="true" showDetail="true" closable="true" />
 				<div class="ui-fluid">
-
-					<p:messages />
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
 						layout="grid" columnClasses="ui-grid-col-1">
 
@@ -25,38 +24,41 @@
 
 						<p:autoComplete dropdown="true" id="auto_machine"
 							value="#{reportsBean.filter.veiculo}"
-							completeMethod="#{reportsBean.getVeiculos()}" required="true" var="machine"
-							itemLabel="#{machine.identification}" itemValue="#{machine}"
-							converter="#{veiculoConverter}" forceSelection="true"
-							placeholder="Identificação da máquina">
+							completeMethod="#{reportsBean.getVeiculos()}" required="true"
+							var="machine" itemLabel="#{machine.identification}"
+							itemValue="#{machine}" converter="#{veiculoConverter}"
+							forceSelection="true" placeholder="Identificação da máquina">
 
 							<p:column>
 								<h:outputText value="#{machine.identification}" />
 							</p:column>
+							<p:column>
+								<h:outputText value="#{machine.type.type}" />
+							</p:column>
 
 						</p:autoComplete>
-						
-						<p:outputLabel value="Filtar por " />
-						        <p:selectOneButton value="#{reportsBean.filter.status}">
-					            <f:selectItems value="#{reportsBean.status}" var="status" itemLabel="#{status.description}" itemValue="#{status}" />
-					        </p:selectOneButton>
+
+						<p:outputLabel value="Filtrar por " />
+						<p:selectOneButton value="#{reportsBean.filter.status}">
+							<f:selectItems value="#{reportsBean.status}" var="status"
+								itemLabel="#{status.description}" itemValue="#{status}" />
+						</p:selectOneButton>
 
 						<p:outputLabel for="dtaInit" value="Data Início" />
 						<p:calendar id="dtaInit" locale="pt_BR" title="Data Início"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportsBean.filter.dateInit}" required="true"/>
+							value="#{reportsBean.filter.dateInit}" required="true" />
 
 						<p:outputLabel for="dtaEnd" value="Data Fim" />
 						<p:calendar id="dtaEnd" locale="pt_BR" title="Data Fim"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportsBean.filter.dateEnd}" required="true"/>
+							value="#{reportsBean.filter.dateEnd}" required="true" />
 
 					</p:panelGrid>
 				</div>
 				<p:separator style="border-color: #098554" />
 				<p:commandButton value="Emitir" styleClass="btnn btnn-primary"
-					action="#{reportsBean.getRelatorio()}" ajax="false"
-					onclick="this.form.target='_new'" />
+					action="#{reportsBean.generateReport()}" ajax="false"/>
 			</h:form>
 		</h:body>
 	</ui:define>

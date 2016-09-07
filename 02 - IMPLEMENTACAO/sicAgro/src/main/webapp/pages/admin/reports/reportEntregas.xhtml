@@ -9,7 +9,7 @@
 
 	<ui:define name="title">Emissão de Relatório</ui:define>
 	<ui:define name="content-header">Emissão de Relatório<small>Emissão
-			de relatório de soicitações de serviços por máquinas</small>
+			de relatório de entregas</small>
 	</ui:define>
 	<ui:define name="breadcrumb-active">Emissão relatório</ui:define>
 	<ui:define name="content">
@@ -20,45 +20,30 @@
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
 						layout="grid" columnClasses="ui-grid-col-1">
 
-						<p:outputLabel for="auto_machine" value="Máquina: " />
+						<h:outputText for="byProduto" value="Por Produto" />
+						<p:selectOneMenu id="byProduto" converter="#{produtoConverter}"
+							value="#{reportEntregaBean.filter.produto}">
 
-						<p:autoComplete dropdown="true" id="auto_machine"
-							value="#{reportSolicitacaoBean.filter.veiculo}"
-							completeMethod="#{reportSolicitacaoBean.getVeiculos()}" required="true"
-							var="machine" itemLabel="#{machine.identification}"
-							itemValue="#{machine}" converter="#{veiculoConverter}"
-							forceSelection="true" placeholder="Identificação da máquina">
-
-							<p:column>
-								<h:outputText value="#{machine.identification}" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{machine.type.type}" />
-							</p:column>
-
-						</p:autoComplete>
-
-						<p:outputLabel value="Filtrar por " />
-						<p:selectOneButton value="#{reportSolicitacaoBean.filter.status}">
-							<f:selectItems value="#{reportSolicitacaoBean.status}" var="status"
-								itemLabel="#{status.description}" itemValue="#{status}" />
-						</p:selectOneButton>
+							<f:selectItem noSelectionOption="true" itemLabel="" />
+							<f:selectItems value="#{produtoBean.produtos}"
+								var="produto" itemLabel="#{produto.name}" itemValue="#{produto}" />
+						</p:selectOneMenu>
 
 						<p:outputLabel for="dtaInit" value="Data Início" />
 						<p:calendar id="dtaInit" locale="pt_BR" title="Data Início"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportSolicitacaoBean.filter.dateInit}" required="true" />
+							value="#{reportEntregaBean.filter.dateInit}" required="true" />
 
 						<p:outputLabel for="dtaEnd" value="Data Fim" />
 						<p:calendar id="dtaEnd" locale="pt_BR" title="Data Fim"
 							pattern="dd/MM/yyyy" showButtonPanel="true"
-							value="#{reportSolicitacaoBean.filter.dateEnd}" required="true" />
+							value="#{reportEntregaBean.filter.dateEnd}" required="true" />
 
 					</p:panelGrid>
 				</div>
 				<p:separator style="border-color: #098554" />
 				<p:commandButton value="Emitir" styleClass="btnn btnn-primary"
-					action="#{reportSolicitacaoBean.generateReport()}" ajax="false"/>
+					action="#{reportEntregaBean.generateReport()}" ajax="false" />
 			</h:form>
 		</h:body>
 	</ui:define>

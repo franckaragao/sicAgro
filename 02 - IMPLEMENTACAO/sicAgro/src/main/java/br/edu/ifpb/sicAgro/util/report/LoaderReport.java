@@ -75,7 +75,7 @@ public class LoaderReport<T> {
 				response.getOutputStream().close();
 				context.responseComplete();
 			}else{
-				new SicAgroExceptionHandler("Nenhuma solicitção foi encontrada.");
+				new SicAgroExceptionHandler("Nenhum dado encontrado.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

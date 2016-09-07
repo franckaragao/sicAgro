@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-09-07T12:05:53 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="entregas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2068a63-b280-45c5-898d-12729fdc55ff">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="listItens" uuid="1d97cae4-6b4a-49bf-a4fc-add1df572e09">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="produto" class="br.edu.ifpb.sicAgro.model.Produto">
+			<fieldDescription><![CDATA[produto]]></fieldDescription>
+		</field>
+		<field name="measurementType" class="br.edu.ifpb.sicAgro.enumerations.MeasurementType">
+			<fieldDescription><![CDATA[measurementType]]></fieldDescription>
+		</field>
+		<field name="quantity" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[quantity]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="dateEntrega" class="java.util.Date">
+		<fieldDescription><![CDATA[dateEntrega]]></fieldDescription>
+	</field>
+	<field name="produtor" class="br.edu.ifpb.sicAgro.model.Produtor">
+		<fieldDescription><![CDATA[produtor]]></fieldDescription>
+	</field>
+	<field name="itemEntregas" class="java.util.List">
+		<fieldDescription><![CDATA[itemEntregas]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="30" uuid="69bfbc64-ed43-45b4-8d17-2ef711b92715"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="0" width="111" height="30" uuid="be17b0b6-0740-4384-bb47-8d11e5d06c32"/>
+				<text><![CDATA[dateEntrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="0" width="121" height="30" uuid="b28dd981-50e3-4930-9ae3-94ad05ac2105"/>
+				<text><![CDATA[produtor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="0" width="200" height="30" uuid="9c8aa0fc-7900-4d1f-8654-211195a96325"/>
+				<text><![CDATA[itemEntregas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="1" width="140" height="30" uuid="e51285d2-6b5f-49e1-b3f4-eb7e4234f478"/>
+				<text><![CDATA[produtor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="24" width="79" height="30" uuid="69035707-0e00-4699-95d6-44833fb08565"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="24" width="111" height="30" uuid="36b740a1-8034-4e9a-854b-f20d21b77555"/>
+				<textFieldExpression><![CDATA[$F{dateEntrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="24" width="121" height="30" uuid="519ce192-9069-4bff-ac4c-37d45130fbed"/>
+				<textFieldExpression><![CDATA[$F{produtor}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="25" width="140" height="30" uuid="31ab6269-9e67-44b9-aefb-ddae6ba89f83"/>
+				<textFieldExpression><![CDATA[$F{produtor}.getName()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="480" y="24" width="330" height="30" uuid="3016bcd1-d3fd-4fa5-9e07-b14e0bebc28a"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="listItens" uuid="1bc3ac11-3d32-48dc-bcee-7457b30210ab">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{itemEntregas}) ]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="330">
+						<textField>
+							<reportElement x="15" y="0" width="33" height="30" uuid="0d51889f-f7cf-4c35-9680-7b33422a6670"/>
+							<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="73" y="0" width="97" height="30" uuid="5715b97c-6f04-47a5-92cd-14aaab690167"/>
+							<textFieldExpression><![CDATA[$F{measurementType}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="196" y="0" width="95" height="30" uuid="7c4a2b52-61bf-4e56-9f89-b1138d5c84ab"/>
+							<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

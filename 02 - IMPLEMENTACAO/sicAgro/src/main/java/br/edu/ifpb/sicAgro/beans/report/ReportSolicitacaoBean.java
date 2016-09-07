@@ -29,7 +29,7 @@ import br.edu.ifpb.sicAgro.util.report.LoaderReport;
  */
 @Named
 @RequestScoped
-public class ReportsBean implements Serializable {
+public class ReportSolicitacaoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

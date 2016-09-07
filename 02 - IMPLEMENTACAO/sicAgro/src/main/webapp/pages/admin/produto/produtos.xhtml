@@ -42,6 +42,13 @@
 						</p:button>
 					</div>
 				</f:facet>
+						<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage value="./resources/dist/images/excel.png"/>
+							<p:dataExporter type="xls" target="tb_exemplar"
+								fileName="exemplaresExcel" />
+						</h:commandLink>
+					</f:facet>
 				
  				<p:ajax event="rowSelect" listener="#{produtoBean.renderTo}">
 					<f:setPropertyActionListener value="#{produto}" target="#{produtoViewBean.produto}" />
@@ -64,6 +71,5 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
-			<ui:include src="/WEB-INF/templates/_loaderAjax.xhtml"/> 
 	</ui:define>
 </ui:composition>

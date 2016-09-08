@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-07-27T17:54:54 -->
+<!-- 2016-09-07T22:01:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="SansSerif" fontSize="50" isBold="true" pdfFontName="SansSerif"/>
@@ -93,7 +93,7 @@
 	</group>
 	<title>
 		<band height="241" splitType="Stretch">
-			<rectangle radius="2">
+			<rectangle radius="0">
 				<reportElement x="-1" y="165" width="557" height="57" backcolor="rgba(255, 255, 255, 0.0)" uuid="172ea4f7-71d5-400e-afb0-6f6758e0b7b3"/>
 				<graphicElement>
 					<pen lineWidth="0.1"/>
@@ -158,7 +158,7 @@
 			</textField>
 			<textField>
 				<reportElement x="65" y="171" width="110" height="16" uuid="808711a5-7551-44ae-89cd-8656b14c9abb"/>
-				<textFieldExpression><![CDATA[$F{veiculo}.getIdentification()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{veiculo}.getIdentification() +" - "+ $F{veiculo}.getType().getType()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="257" y="172" width="110" height="16" uuid="99894f3d-8f15-4915-bf32-960c334bd7a5"/>
@@ -188,10 +188,10 @@
 	</title>
 	<columnHeader>
 		<band height="21">
-			<rectangle radius="2">
-				<reportElement x="0" y="-5" width="556" height="21" forecolor="#000000" backcolor="#D1C9C9" uuid="653fc477-acea-4a7a-9470-b5f31b815e2b"/>
+			<rectangle radius="0">
+				<reportElement x="0" y="-3" width="556" height="15" forecolor="#000000" backcolor="#D1C9C9" uuid="653fc477-acea-4a7a-9470-b5f31b815e2b"/>
 				<graphicElement>
-					<pen lineWidth="0.5"/>
+					<pen lineWidth="0.0"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
@@ -232,13 +232,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
-			<rectangle radius="2">
-				<reportElement x="0" y="-5" width="555" height="20" backcolor="rgba(255, 255, 255, 0.0)" uuid="8c58bea6-03f4-41e9-b679-ffe84a7f2d2e"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
+		<band height="30">
 			<textField>
 				<reportElement x="5" y="0" width="100" height="18" uuid="4578b21c-268d-4d6e-904d-fe9bb9ca78e5"/>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dateSolicitation})]]></textFieldExpression>
@@ -259,6 +253,15 @@
 				<reportElement x="444" y="0" width="111" height="18" uuid="644eb64e-1cc7-45ef-8bb8-eb0f347dae86"/>
 				<textFieldExpression><![CDATA[$F{funcionario}.getName()]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="13" width="555" height="1" uuid="82658552-9e98-4b8c-984e-fa928228d965">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.3"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

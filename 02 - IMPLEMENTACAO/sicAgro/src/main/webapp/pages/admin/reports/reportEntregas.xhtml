@@ -20,7 +20,7 @@
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
 						layout="grid" columnClasses="ui-grid-col-1">
 
-						<h:outputText for="byProduto" value="Por Produto" />
+						<p:outputLabel for="byProduto" value="Por Produto" />
 						<p:selectOneMenu id="byProduto" converter="#{produtoConverter}"
 							value="#{reportEntregaBean.filter.produto}">
 

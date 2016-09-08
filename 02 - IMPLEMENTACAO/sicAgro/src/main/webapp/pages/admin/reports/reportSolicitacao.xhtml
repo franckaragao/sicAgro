@@ -20,23 +20,14 @@
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
 						layout="grid" columnClasses="ui-grid-col-1">
 
-						<p:outputLabel for="auto_machine" value="Máquina: " />
+						<p:outputLabel for="byMaquina" value="Máquina: " />
+						<p:selectOneMenu id="byMaquina" converter="#{veiculoConverter}"
+							value="#{reportSolicitacaoBean.filter.veiculo}" required="true">
 
-						<p:autoComplete dropdown="true" id="auto_machine"
-							value="#{reportSolicitacaoBean.filter.veiculo}"
-							completeMethod="#{reportSolicitacaoBean.getVeiculos()}" required="true"
-							var="machine" itemLabel="#{machine.identification}"
-							itemValue="#{machine}" converter="#{veiculoConverter}"
-							forceSelection="true" placeholder="Identificação da máquina">
-
-							<p:column>
-								<h:outputText value="#{machine.identification}" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{machine.type.type}" />
-							</p:column>
-
-						</p:autoComplete>
+							<f:selectItem noSelectionOption="true" itemLabel="" />
+							<f:selectItems value="#{veiculoBean.veiculos}"
+							var="maquina" itemLabel="#{maquina.identification}" itemValue="#{maquina}" />
+						</p:selectOneMenu>
 
 						<p:outputLabel value="Filtrar por " />
 						<p:selectOneButton value="#{reportSolicitacaoBean.filter.status}">

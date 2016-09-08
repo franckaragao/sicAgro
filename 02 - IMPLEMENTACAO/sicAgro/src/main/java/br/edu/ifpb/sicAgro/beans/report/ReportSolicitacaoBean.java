@@ -12,9 +12,7 @@ import javax.inject.Named;
 import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
-import br.edu.ifpb.sicAgro.model.Veiculo;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
-import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 import br.edu.ifpb.sicAgro.util.report.LoaderReport;
 
@@ -36,9 +34,6 @@ public class ReportSolicitacaoBean implements Serializable {
 	@Inject
 	private SolicitacaoServicoService solicitacaoServicoService;
 
-	@Inject
-	private VeiculoService veiculoService;
-
 	private List<SolicitacaoServico> list;
 
 	private LoaderReport<SolicitacaoServico> loaderReport;
@@ -49,30 +44,25 @@ public class ReportSolicitacaoBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		this.getVeiculos();
 		status.add(SolicitationState.COMPLETED);
 		status.add(SolicitationState.FAIL);
 		status.add(SolicitationState.PROGRESS);
 	}
 
-	public List<Veiculo> getVeiculos() {
-		return veiculoService.findAll();
-	}
-
+	/**
+	 * Gera relatório considerando o filtro.
+	 */
 	public void generateReport() {
-		System.out.println("ESTA CHAMANDO BEAN 1 ?????????????");
 		this.list = solicitacaoServicoService.filter(filter);
 		if (list.size() > 0) {
 			for (SolicitacaoServico solicitacaoServico : list) {
 				if(solicitacaoServico.getTimeWorkeds() == null)
 					solicitacaoServico.setTimeWorkeds(0);
 			}
-			System.out.println("ESTA CHAMANDO BEAN?????????????");
-			this.loaderReport = new LoaderReport<SolicitacaoServico>(
-					"/reports/solicitacoes.jasper", list, "solicitacoes.pdf");
+			this.loaderReport = new LoaderReport<SolicitacaoServico>("/reports/solicitacoes.jasper", list, "solicitacoes.pdf");
 			loaderReport.execute(filter.getDateInit(), filter.getDateEnd());
 		} else {
-			MessageUtils.messageError("Nenhuma solicitção completada foi encontrada neste período");
+			MessageUtils.messageError("Nenhuma solicitção foi encontrada neste período");
 		}
 	}
 
@@ -91,7 +81,4 @@ public class ReportSolicitacaoBean implements Serializable {
 	public void setFilter(SolicitacaoFilter filter) {
 		this.filter = filter;
 	}
-	
-	
-
 }

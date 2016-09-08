@@ -37,12 +37,17 @@ public class ReportEntregaBean implements Serializable {
 	
 	private EntregaFilter filter = EntregaFilter.getInstance();
 
+	/**
+	 * <p>
+	 * Método responsável por gerar o relatório de 
+	 * acordo com o filtro passado.
+	 * </p>
+	 */
 	public void generateReport() {
 		this.list = entregaService.filter(filter);
 		if (list.size() > 0) {
 
-			this.loaderReport = new LoaderReport<Entrega>(
-					"/reports/entregas.jasper", list, "entregas.pdf");
+			this.loaderReport = new LoaderReport<Entrega>("/reports/entregas.jasper", list, "entregas.pdf");
 			loaderReport.execute(filter.getDateInit(), filter.getDateEnd());
 		} else {
 			MessageUtils.messageError("Nenhuma entrega encontrada.");

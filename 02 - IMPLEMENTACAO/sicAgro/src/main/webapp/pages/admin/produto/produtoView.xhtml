@@ -47,10 +47,12 @@
 			</h:panelGrid>
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
-				<p:outputLabel value="#{produtoViewBean.produto.name} / #{produtoViewBean.produto.cod}" styleClass="text-detail" />
+				<h2 class="page-header">
+					<p:outputLabel value="#{produtoViewBean.produto.name} / #{produtoViewBean.produto.cod}" styleClass="text-detail" />
+				</h2>
 
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações Gerais</div>
+					 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="#{msg.codDetail}:"  />
 							<h:outputText value="#{produtoViewBean.produto.cod}"  />

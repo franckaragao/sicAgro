@@ -38,14 +38,16 @@
 			</h:panelGrid>
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
-				<div class="text-detail">
-					Entrega do dia <p:outputLabel value="#{entregaViewBean.entrega.dateEntrega}">
-						<f:convertDateTime pattern="dd/MM/yyyy" /> <small style="font-size: 18px !important;"> #{entregaViewBean.entrega.produtor.name} / #{entregaViewBean.entrega.produtor.cod} </small>
-					</p:outputLabel>
-				</div>
+			
+			
+					<h2 class="page-header text-detail">
+						Entrega do dia <p:outputLabel value="#{entregaViewBean.entrega.dateEntrega}">
+							<f:convertDateTime pattern="dd/MM/yyyy" /> <small style="font-size: 18px !important;"> #{entregaViewBean.entrega.produtor.name} / #{entregaViewBean.entrega.produtor.cod} </small>
+						</p:outputLabel>
+					</h2>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações Gerais</div>
+					 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Data de entrega " />
 							<h:outputText value="#{entregaViewBean.entrega.dateEntrega}" >
@@ -58,7 +60,7 @@
 				</div>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Produtor Beneficiado</div>
+					 <div class="panel-heading"><strong>Produtor Beneficiado</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Nome: " />
 							<h:outputText value="#{entregaViewBean.entrega.produtor.name}"  />
@@ -81,7 +83,7 @@
 				</div>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Produto(s) entregue(s)</div>
+					 <div class="panel-heading"><strong>Produto(s) entregue(s)</strong></div>
 						<p:dataTable id="tableItensEntrega" 
 							value="#{entregaViewBean.entrega.itemEntregas}" 
 							var="item" 
@@ -89,19 +91,19 @@
 							emptyMessage="Nehum produto entregue"
 							styleClass="ui-datatable">
 							
-							<p:column headerText="Produto" width="10%">
+							<p:column headerText="Produto" width="10%" style="background: #ffffff !important;">
 								<h:outputText id="produto" value="#{item.produto.name}" />
 							</p:column>
 			
-							<p:column headerText="Descrição do produto" width="12%">
+							<p:column headerText="Descrição do produto" width="12%" style="background: #ffffff !important;">
 								<h:outputText id="descrption" value="#{item.produto.description}" />
 							</p:column>
 							
-							<p:column headerText="Tipo do produto" width="12%">
+							<p:column headerText="Tipo do produto" width="12%" style="background: #ffffff !important;">
 								<h:outputText id="type" value="#{item.measurementType.measurement}" />
 							</p:column>
 							
-							<p:column headerText="Quantidade" width="7%">
+							<p:column headerText="Quantidade" width="7%" style="background: #ffffff !important;">
 								<h:outputText id="quant" value="#{item.quantity}" />
 							</p:column>
 						</p:dataTable>

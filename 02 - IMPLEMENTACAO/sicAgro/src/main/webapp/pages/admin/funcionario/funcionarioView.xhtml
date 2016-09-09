@@ -46,10 +46,12 @@
 			</h:panelGrid>
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
-				<p:outputLabel value="#{funcionarioViewBean.funcionario.name} / #{funcionarioViewBean.funcionario.acount.userName}" styleClass="text-detail" />
+				<h2 class="page-header">
+					<p:outputLabel value="#{funcionarioViewBean.funcionario.name} / #{funcionarioViewBean.funcionario.acount.userName}" styleClass="text-detail" />
+				</h2>
 				
 				<div class="panel panel-success">
-				 <div class="panel-heading">Informações Gerais</div>		
+				 <div class="panel-heading"><strong>Informações Gerais</strong></div>		
 				 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"  columnClasses="ui-grid-col-2">
 						
 						<h:outputText value="Nome:"  />
@@ -75,7 +77,7 @@
 				</div>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações de acesso</div>		
+					 <div class="panel-heading"><strong>Informações de acesso</strong></div>		
 					 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Nome de usuário:"  />
 							<h:outputText value="#{funcionarioViewBean.funcionario.acount.userName}"  />
@@ -94,7 +96,7 @@
 					</div>
 
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações de Endereço</div>		
+					 <div class="panel-heading"><strong>Informações de Endereço</strong></div>		
 					 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Endereço:"  />
 							<h:outputText value="#{funcionarioViewBean.funcionario.endereco.address}"  />

@@ -47,13 +47,16 @@
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
 				<div class="text-detail">
-					Carga do dia  <p:outputLabel value="#{cargaViewBean.carga.receivingDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</p:outputLabel>
+					<h2 class="page-header">
+					<p:outputLabel value="Carga do dia " style="margin-right:5px;"/> 
+						<p:outputLabel value="#{cargaViewBean.carga.receivingDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:outputLabel>
+					</h2>
 				</div>
 				
 				<div class="panel panel-success">
-				 <div class="panel-heading">Informações Gerais</div>
+				 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 					<p:panelGrid columns="2" width="400" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 					<h:outputText value="#{msg.responsabily}:"  />
 					<h:outputText value="#{cargaViewBean.carga.responsibleCarga}"  />
@@ -64,7 +67,7 @@
 				</div>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Origem da Carga</div>
+					 <div class="panel-heading"><strong>Origem da Carga</strong></div>
 						<p:panelGrid columns="2" width="400" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 						<h:outputText value="#{msg.agency}:"  />
 						<h:outputText value="#{cargaViewBean.carga.originLoad.agency}"  />
@@ -77,7 +80,7 @@
 				</div>
 				
 				<div class="panel panel-success">
-				 <div class="panel-heading">Produto(s) da Carga</div>
+				 <div class="panel-heading"><strong>Produto(s) da Carga</strong></div>
 					<p:dataTable id="tableItensCarga" 
 						var="item" 
 						value="#{cargaViewBean.carga.itensCarga}" 
@@ -85,27 +88,27 @@
 						emptyMessage="#{msg.emptyMessageCarga}"
 						styleClass="ui-datatable">
 						
-						<p:column headerText="Produto" width="10%">
+						<p:column headerText="Produto" width="10%" style="background: #ffffff !important;">
 							<h:outputText id="produto" value="#{item.produto.name}" />
 						</p:column>
 		
-						<p:column headerText="Descrição do produto" width="12%">
+						<p:column headerText="Descrição do produto" width="12%" style="background: #ffffff !important;">
 							<h:outputText id="descrption" value="#{item.produto.description}" />
 						</p:column>
 						
-						<p:column headerText="Tipo do produto" width="12%">
+						<p:column headerText="Tipo do produto" width="12%" style="background: #ffffff !important;">
 							<h:outputText id="type" value="#{item.produto.produtoType.type}" />
 						</p:column>
 						
-						<p:column headerText="Medida" width="8%">
+						<p:column headerText="Medida" width="8%" style="background: #ffffff !important;">
 							<h:outputText id="measurement" value="#{item.measurementType}" />
 						</p:column>
 						
-						<p:column headerText="Quantidade" width="7%">
+						<p:column headerText="Quantidade" width="7%" style="background: #ffffff !important;">
 							<h:outputText id="quant" value="#{item.quantity}" />
 						</p:column>
 						
-						<p:column headerText="Quantidade Disp." width="7%">
+						<p:column headerText="Quantidade Disp." width="7%" style="background: #ffffff !important;">
 							<h:outputText id="quantDisp" value="#{item.quantidadeDisp}" />
 						</p:column>
 				

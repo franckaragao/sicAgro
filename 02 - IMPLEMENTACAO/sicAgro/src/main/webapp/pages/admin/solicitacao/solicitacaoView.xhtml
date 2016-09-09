@@ -72,13 +72,13 @@
 			</div>
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
-				<div class="text-detail">
+				<h2 class="page-header text-detail">
 					Solicitação do dia <p:outputLabel value="#{solicitacaoServicoViewBean.solicitacaoServico.dateSolicitation}">
 						<f:convertDateTime pattern="dd/MM/yyyy" /> <small style="font-size: 18px !important;"> #{solicitacaoServicoViewBean.solicitacaoServico.produtor.name} / #{solicitacaoServicoViewBean.solicitacaoServico.produtor.cod} </small>
 					</p:outputLabel>
-				</div>
+				</h2>
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações Gerais</div>
+					 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Data de Solicitação: "/>
 							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.dateSolicitation}">
@@ -107,7 +107,7 @@
 						</p:panelGrid>
 				</div>
 				<div class="panel panel-success">
-					 <div class="panel-heading">Produtor Beneficiado</div>
+					 <div class="panel-heading"><strong>Produtor Beneficiado</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Nome: "/>
 							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.produtor.name}"/>
@@ -144,7 +144,7 @@
 						</p:panelGrid>
 				</div>
 				<div class="panel panel-success">
-					 <div class="panel-heading">Máquina utilizada</div>
+					 <div class="panel-heading"><strong>Máquina utilizada</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Identificação: " />
 							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.veiculo.identification}"  />
@@ -157,7 +157,7 @@
 						</p:panelGrid>
 				</div>
 				<div class="panel panel-success">
-					 <div class="panel-heading">Funcionário Responsável</div>
+					 <div class="panel-heading"><strong>Funcionário Responsável</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Nome: " />
 							<h:outputText value="#{solicitacaoServicoViewBean.solicitacaoServico.funcionario.name}"  />

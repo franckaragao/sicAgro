@@ -48,10 +48,12 @@
 
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
-				<p:outputLabel value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id} / #{pedidoSolicitacaoViewBean.pedidoSolicitacao.produtor.name}" styleClass="text-detail" />
+				<h2 class="page-header">
+					<p:outputLabel value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id} / #{pedidoSolicitacaoViewBean.pedidoSolicitacao.produtor.name}" styleClass="text-detail" />
+				</h2>
 				
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações Gerais</div>
+					 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Código do pedido:"  />
 							<h:outputText value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id}"  />
@@ -82,7 +84,7 @@
 						</p:panelGrid>
 				</div>
 				<div class="panel panel-success">
-					 <div class="panel-heading">Informações do Produtor</div>
+					 <div class="panel-heading"><strong>Informações do Produtor</strong></div>
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 						<h:outputText value="Código do Produtor:"  />
 						<h:outputText value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.produtor.cod}"  />

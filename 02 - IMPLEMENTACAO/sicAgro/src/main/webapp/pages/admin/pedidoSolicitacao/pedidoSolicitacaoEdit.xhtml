@@ -22,7 +22,7 @@
 		<h:form id="formRegisterPedido">
 			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
-			<p:fieldset>
+			<p:fieldset styleClass="box box-success">
 				<div class="ui-fluid">
 					<p:panelGrid columns="2" layout="grid"
 						styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1 ui-grid-col-2">
@@ -41,25 +41,26 @@
 						<p:spinner id="timesWork" required="true" value="#{pedidoSolicitacaoEditBean.pedidoSolicitacao.horasNecessarias}"/>
 					</p:panelGrid>
 				</div>
-
+				<div class="box-footer">
+					<h:panelGrid columns="3">
+	
+						<p:commandButton value="EFETUAR" id="bt_Save" icon="fa fa-floppy-o"
+							style="float: left;" styleClass="btnn btnn-primary" process="formRegisterPedido"
+							action="#{pedidoSolicitacaoEditBean.save}">
+						</p:commandButton>
+	
+	
+						<p:button value="CANCELAR" id="bt_cancel" icon="fa fa-ban"
+							style="float:left;" styleClass="btnn btnn-primary"
+							outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
+	
+						<p:button value="MINHAS SOLICITAÇÕES" id="bt_find_solicitacoes"
+							style="float:left;" styleClass="btnn btnn-primary"
+							icon="fa fa-search" outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
+					</h:panelGrid>
+				</div>
 			</p:fieldset>
 			<p:separator style="border-color: #098554" />
-				<h:panelGrid columns="3">
-
-					<p:commandButton value="EFETUAR" id="bt_Save" icon="fa fa-floppy-o"
-						style="float: left;" styleClass="btnn btnn-primary" process="formRegisterPedido"
-						action="#{pedidoSolicitacaoEditBean.save}">
-					</p:commandButton>
-
-
-					<p:button value="CANCELAR" id="bt_cancel" icon="fa fa-ban"
-						style="float:left;" styleClass="btnn btnn-primary"
-						outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
-
-					<p:button value="MINHAS SOLICITAÇÕES" id="bt_find_solicitacoes"
-						style="float:left;" styleClass="btnn btnn-primary"
-						icon="fa fa-search" outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
-				</h:panelGrid>
 		</h:form>
 
 	</ui:define>

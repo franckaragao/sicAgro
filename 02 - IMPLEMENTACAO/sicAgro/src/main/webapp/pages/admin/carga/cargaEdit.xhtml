@@ -23,7 +23,7 @@
 		<h:form id="formRegisterCarga">
 			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
-			<p:fieldset>
+			<p:fieldset styleClass="box box-success">
 				<div class="ui-fluid">
 					<p:tabView id="tabView">
 						<p:tab id="tab_data" title="Dados da carga">
@@ -160,25 +160,29 @@
 						</p:tab>
 					</p:tabView>
 				</div>
+				
+				<div class="box-footer">
+				
+					<h:panelGrid columns="3">
+		
+						<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+							style="float: left;" styleClass="btnn btnn-primary"
+							process="@this messages tabView:tab_origin tabView:tab_data"
+							action="#{cargaEditBean.save}" />
+		
+		
+						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
+							style="float:left;" styleClass="btnn btnn-primary"
+							outcome="/pages/admin/carga/cargas" />
+		
+						<p:button value="Buscar Carga" id="findProdutos" style="float:left;"
+							styleClass="btnn btnn-primary" icon="fa fa-search"
+							outcome="/pages/admin/carga/cargas" />
+					</h:panelGrid>
+				</div>
+				
 			</p:fieldset>
 
-			<p:separator style="border-color: #098554" />
-			<h:panelGrid columns="3">
-
-				<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
-					style="float: left;" styleClass="btnn btnn-primary"
-					process="@this messages tabView:tab_origin tabView:tab_data"
-					action="#{cargaEditBean.save}" />
-
-
-				<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-					style="float:left;" styleClass="btnn btnn-primary"
-					outcome="/pages/admin/carga/cargas" />
-
-				<p:button value="Buscar Carga" id="findProdutos" style="float:left;"
-					styleClass="btnn btnn-primary" icon="fa fa-search"
-					outcome="/pages/admin/carga/cargas" />
-			</h:panelGrid>
 		</h:form>
 
 	</ui:define>

@@ -22,7 +22,7 @@
 		<h:form id="formRegisterFuncionario">
 			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
-			<p:fieldset>
+			<p:fieldset styleClass="box box-success">
 				<div class="ui-fluid">
 					<p:tabView>
 						<p:tab title="Dados Pessoais">
@@ -131,24 +131,24 @@
 						</p:tab>
 					</p:tabView>
 				</div>
-
+				<div class="box-footer">
+					<h:panelGrid columns="3">
+		
+						<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+							style="float: left;" styleClass="btnn btnn-primary"
+							action="#{funcionarioEditBean.save}" process="formRegisterFuncionario"/>
+		
+		
+						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
+							style="float:left;" styleClass="btnn btnn-primary"
+							outcome="/pages/admin/funcionario/funcionarios" />
+		
+						<p:button value="Buscar Funcionário" id="findFuncionarios"
+							style="float:left;" styleClass="btnn btnn-primary"
+							icon="fa fa-search" outcome="/pages/admin/funcionario/funcionarios" />
+					</h:panelGrid>
+				</div>
 			</p:fieldset>
-			<p:separator style="border-color: #098554" />
-			<h:panelGrid columns="3">
-
-				<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
-					style="float: left;" styleClass="btnn btnn-primary"
-					action="#{funcionarioEditBean.save}" process="formRegisterFuncionario"/>
-
-
-				<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-					style="float:left;" styleClass="btnn btnn-primary"
-					outcome="/pages/admin/funcionario/funcionarios" />
-
-				<p:button value="Buscar Funcionário" id="findFuncionarios"
-					style="float:left;" styleClass="btnn btnn-primary"
-					icon="fa fa-search" outcome="/pages/admin/funcionario/funcionarios" />
-			</h:panelGrid>
 		</h:form>
 
 	</ui:define>

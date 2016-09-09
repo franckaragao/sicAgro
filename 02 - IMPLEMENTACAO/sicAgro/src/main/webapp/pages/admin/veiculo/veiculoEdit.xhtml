@@ -22,7 +22,7 @@
 		<h:form id="formRegisterVeiculo">
 			<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
-			<p:fieldset>
+			<p:fieldset styleClass="box box-success">
 				<div class="ui-fluid">
 					<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
 						columnClasses="ui-grid-col-1">
@@ -74,23 +74,23 @@
 
 					</p:panelGrid>
 				</div>
-
-				<p:separator style="border-color: #098554" />
-				<h:panelGrid columns="3">
-
-					<p:commandButton value="Salvar" id="bt_Save" icon="fa fa-floppy-o"
-						style="float: left;" styleClass="btnn btnn-primary"
-						action="#{veiculoEditBean.save}" process="formRegisterVeiculo"/>
-
-
-					<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban"
-						style="float:left;" styleClass="btnn btnn-primary"
-						outcome="/pages/admin/veiculo/veiculos" />
-
-					<p:button value="Buscar Veículo" id="bt_findFuncionario"
-						style="float:left;" styleClass="btnn btnn-primary"
-						icon="fa fa-search" outcome="/pages/admin/veiculo/veiculos" />
-				</h:panelGrid>
+				<div class="box-footer">
+					<h:panelGrid columns="3">
+	
+						<p:commandButton value="Salvar" id="bt_Save" icon="fa fa-floppy-o"
+							style="float: left;" styleClass="btnn btnn-primary"
+							action="#{veiculoEditBean.save}" process="formRegisterVeiculo"/>
+	
+	
+						<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban"
+							style="float:left;" styleClass="btnn btnn-primary"
+							outcome="/pages/admin/veiculo/veiculos" />
+	
+						<p:button value="Buscar Veículo" id="bt_findFuncionario"
+							style="float:left;" styleClass="btnn btnn-primary"
+							icon="fa fa-search" outcome="/pages/admin/veiculo/veiculos" />
+					</h:panelGrid>
+				</div>
 			</p:fieldset>
 		</h:form>
 

@@ -178,6 +178,17 @@ a:focus {
   display: block;
   margin-top: 5px;
 }
+
+/* Page Sub Header */
+.page-sub-header {
+  margin: 10px 0 20px 0;
+  font-size: 14px;
+}
+.page-sub-header > small {
+  color: #666;
+  display: block;
+  margin-top: 5px;
+}
 /*
  * Component: Main Header
  * ----------------------
@@ -1222,7 +1233,7 @@ a:focus {
 .box {
   border-radius: 3px;
   background: #ffffff;
-  border-top: 5px solid #d2d6de;
+  border-top: 4px solid #d2d6de;
   margin-bottom: 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -1499,8 +1510,9 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  border-top: 1px solid #f4f4f4;
-  padding: 10px;
+  margin-top: 20px;
+  border-top: 2px solid #f4f4f4 !important;
+  padding: 7px;
   background-color: #ffffff;
 }
 .chart-legend {

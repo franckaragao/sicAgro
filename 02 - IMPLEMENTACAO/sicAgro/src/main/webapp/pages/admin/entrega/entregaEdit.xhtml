@@ -7,8 +7,10 @@
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
 	<f:metadata>
-		<o:viewParam name="entrega" value="#{entregaEditBean.entrega}" converter="#{entregaConverter}" />
-		<f:event listener="#{entregaEditBean.preRenderView()}" type="preRenderView" />
+		<o:viewParam name="entrega" value="#{entregaEditBean.entrega}"
+			converter="#{entregaConverter}" />
+		<f:event listener="#{entregaEditBean.preRenderView()}"
+			type="preRenderView" />
 	</f:metadata>
 
 	<ui:define name="title">Registro de entrega</ui:define>
@@ -19,18 +21,21 @@
 	<ui:define name="content">
 
 		<h:form id="formRegisterEntrega">
-			<div class="ui-fluid">
-				<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
-				<p:fieldset>
+			<p:messages id="messages" autoUpdate="true" showDetail="true"
+				closable="true" />
+			<p:fieldset styleClass="box box-success">
+				<div class="ui-fluid">
 
 					<p:outputPanel id="detail_item">
 						<p:panelGrid columns="4" layout="grid"
 							styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-3">
 
 							<p:fieldset id="fieldProdutor" styleClass="box box-success">
-								<div class="col-lg-2 col-xs-2" style="display: inline !important;">
+								<div class="col-lg-2 col-xs-2"
+									style="display: inline !important;">
 									<p>Produto</p>
-									<h3 style="font-weight: bold; margin-top: 0px; white-space: nowrap;">#{entregaEditBean.itemCarga.produto.name}</h3>
+									<h3
+										style="font-weight: bold; margin-top: 0px; white-space: nowrap;">#{entregaEditBean.itemCarga.produto.name}</h3>
 								</div>
 								<div
 									style="display: inline; color: #098554; float: right !important;">
@@ -52,7 +57,8 @@
 							<p:fieldset id="fieldSolicitacao" styleClass="box box-success">
 								<div class="col-lg-2 col-xs-2">
 									<p>Recebido</p>
-									<h3 style="font-weight: bold; margin-top: 0px;">#{entregaEditBean.itemCarga.quantity} </h3>
+									<h3 style="font-weight: bold; margin-top: 0px;">#{entregaEditBean.itemCarga.quantity}
+									</h3>
 								</div>
 								<div
 									style="display: inline; color: #098554; float: right !important;">
@@ -81,13 +87,13 @@
 						columnClasses="ui-grid-col-1 ui-grid-col-2" layout="grid">
 
 						<p:outputLabel for="advanced" value="Produtor beneficiado" />
-						<p:autoComplete  dropdown="true" id="advanced" required="true"
+						<p:autoComplete dropdown="true" id="advanced" required="true"
 							value="#{entregaEditBean.entrega.produtor}"
 							completeMethod="#{produtorBean.listProdutoresByName}"
-							 var="produtor" itemLabel="#{produtor.name}"
+							var="produtor" itemLabel="#{produtor.name}"
 							itemValue="#{produtor}" converter="#{produtorConverter}"
-							 placeholder="Nome do produtor benefíciado">
-		
+							placeholder="Nome do produtor benefíciado">
+
 							<p:column headerText="COD">
 								<h:outputText value="#{produtor.cod}" />
 							</p:column>
@@ -105,13 +111,10 @@
 						styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 						<p:outputLabel for="itemEntrega" value="Produto" />
-						<p:selectOneMenu 
-							id="itemEntrega"
-							converter="#{itemCargaConverter}" 
-							style="width:180px"
-							value="#{entregaEditBean.itemCarga}" 
-							required="true">
-							
+						<p:selectOneMenu id="itemEntrega"
+							converter="#{itemCargaConverter}" style="width:180px"
+							value="#{entregaEditBean.itemCarga}" required="true">
+
 							<f:selectItem noSelectionOption="true" itemLabel="" />
 							<f:selectItems value="#{entregaEditBean.itemCargas}" var="item"
 								itemLabel="#{item.produto.name}" itemValue="#{item}" />
@@ -123,9 +126,8 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel for="type" value="#{msg.medida}" />
-						<p:selectOneMenu id="type" 
-							style="width:180px"
-							value="#{entregaEditBean.itemEntrega.measurementType}" 
+						<p:selectOneMenu id="type" style="width:180px"
+							value="#{entregaEditBean.itemEntrega.measurementType}"
 							required="true">
 							<f:selectItem itemLabel="" noSelectionOption="true" />
 							<f:selectItems value="#{entregaEditBean.measurements}"
@@ -137,7 +139,7 @@
 						<p:spinner id="quant"
 							value="#{entregaEditBean.itemEntrega.quantity}" stepFactor="0.25"
 							required="true">
-							<p:ajax  event="change" update="detail_item"/>
+							<p:ajax event="change" update="detail_item" />
 						</p:spinner>
 
 						<p:commandButton id="btn_add" value="Adicionar"
@@ -147,9 +149,10 @@
 								addTo="#{entregaEditBean.entrega.itemEntregas}" unique="false" />
 						</p:commandButton>
 					</p:panelGrid>
-					
-					<p:separator style="border:none; background-color:none;" />
+				</div>
 
+				<p:separator style="border:none; background-color:none;" />
+				<div class="ui-fluid">
 					<p:tabView id="tableView">
 						<p:tab title="Item de entrega adicionados">
 							<p:outputPanel id="itens">
@@ -231,26 +234,29 @@
 							</p:panelGrid>
 						</p:tab>
 					</p:tabView>
-				</p:fieldset>
-			</div>
+				</div>
 
-			<p:separator style="border-color: #098554" />
-			<h:panelGrid columns="3">
+				<div class="box-footer">
 
-				<p:commandButton value="Registrar" id="btRegister"
-					icon="fa fa-floppy-o" style="float: left;"
-					styleClass="btnn btnn-primary"
-					process="@this messages :#{p:component('obsEntrega')} advanced"
-					action="#{entregaEditBean.save}" />
+					<h:panelGrid columns="3">
 
-				<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-					style="float:left;" styleClass="btnn btnn-primary"
-					outcome="/pages/admin/entrega/entregas" />
+						<p:commandButton value="Registrar" id="btRegister"
+							icon="fa fa-floppy-o" style="float: left;"
+							styleClass="btnn btnn-primary"
+							process="@this messages :#{p:component('obsEntrega')} advanced"
+							action="#{entregaEditBean.save}" />
 
-				<p:button value="Entregas Efetuadas" id="findEntregas"
-					style="float:left;" styleClass="btnn btnn-primary"
-					icon="fa fa-search" outcome="/pages/admin/entrega/entregas" />
-			</h:panelGrid>
+						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
+							style="float:left;" styleClass="btnn btnn-primary"
+							outcome="/pages/admin/entrega/entregas" />
+
+						<p:button value="Entregas Efetuadas" id="findEntregas"
+							style="float:left;" styleClass="btnn btnn-primary"
+							icon="fa fa-search" outcome="/pages/admin/entrega/entregas" />
+					</h:panelGrid>
+				</div>
+			</p:fieldset>
+
 
 		</h:form>
 

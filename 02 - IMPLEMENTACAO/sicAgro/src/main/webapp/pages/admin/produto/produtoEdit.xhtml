@@ -21,7 +21,7 @@
 			<h:form id="formRegisterProduto">
 				<p:messages id="messages" autoUpdate="true" showDetail="true" closable="true" />
 
-				<p:fieldset>
+				<p:fieldset styleClass="box box-success">
 					<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
 						columnClasses="ui-grid-col-1">
 
@@ -49,15 +49,17 @@
 							value="#{produtoEditBean.produto.description}" />
 
 					</p:panelGrid>
+					<div class="box-footer">
+						<h:panelGrid columns="5" layout="grid">
+							<p:commandButton value="Salvar" id="btSave" process="formRegisterProduto" icon="fa fa-floppy-o" styleClass="btnn btnn-primary" action="#{produtoEditBean.save}" />
+							<p:spacer width="3px" />
+							<p:button value="Cancelar" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/produto/produtos" />
+							<p:spacer width="3px"/>
+							<p:button value="Buscar Produto" id="findProdutos"  styleClass="btnn btnn-primary" icon="fa fa-search" outcome="/pages/admin/produto/produtos" />
+						</h:panelGrid>
+					
+	              	</div>
 				</p:fieldset>
-				<p:separator style="border-color: #098554" />
-				<h:panelGrid columns="5" layout="grid">
-					<p:commandButton value="Salvar" id="btSave" process="formRegisterProduto" icon="fa fa-floppy-o" styleClass="btnn btnn-primary" action="#{produtoEditBean.save}" />
-					<p:spacer width="3px" />
-					<p:button value="Cancelar" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/produto/produtos" />
-					<p:spacer width="3px"/>
-					<p:button value="Buscar Produto" id="findProdutos"  styleClass="btnn btnn-primary" icon="fa fa-search" outcome="/pages/admin/produto/produtos" />
-				</h:panelGrid>
 			</h:form>
 		</div>
 	</ui:define>

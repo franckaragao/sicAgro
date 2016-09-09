@@ -89,12 +89,6 @@
 					</h:outputText>
 				</p:column>
 				
-				<p:column headerText="Data Realização" width="3%" sortBy="#{solicitacao.dateRealization}" filterBy="#{solicitacao.dateRealization}" filterStyle="display:none;">
-					<h:outputText id="dateRealization" value="#{solicitacao.dateRealization}" rendered="#{solicitacao.dateRealization != null}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				
 				<p:column headerText="Status" width="2%" style="text-align: center;">
 					<h:outputText id="completed"  styleClass="#{solicitacaoServicoBean.updateLabelStatus(solicitacao.state)}" value="#{solicitacao.state.description}" />
 				</p:column>

@@ -22,6 +22,8 @@
 		href="#{request.contextPath}/resources/dist/css/style-alt-components-prime.css" />
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/dist/css/skins/skin-green.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/dist//pace/pace.min.css" />
 
 </h:head>
 <h:body class="hold-transition skin-green sidebar-mini">
@@ -139,6 +141,14 @@
 
 	<script type="text/javascript"
 		src="#{request.contextPath}/resources/dist/js/calendar_primefaces_pt.js"></script>
+		
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/dist/pace/pace.min.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ajaxStart(function() { Pace.restart(); }); 
+</script>
+	
 </h:body>
 
 </html>

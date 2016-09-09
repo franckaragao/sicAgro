@@ -75,7 +75,7 @@ public class SolicitacaoServico implements Serializable {
 	private Veiculo veiculo;
 
 	@NotNull
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "produtor_FK")
 	private Produtor produtor;
 

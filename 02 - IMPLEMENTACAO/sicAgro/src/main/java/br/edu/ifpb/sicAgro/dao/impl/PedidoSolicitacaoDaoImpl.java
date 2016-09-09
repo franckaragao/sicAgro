@@ -68,7 +68,6 @@ public class PedidoSolicitacaoDaoImpl extends GenericDaoImpl<PedidoSolicitacao, 
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 	
@@ -82,7 +81,6 @@ public class PedidoSolicitacaoDaoImpl extends GenericDaoImpl<PedidoSolicitacao, 
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		}
-		System.out.println(result + "--------------------------------___>");
 		return result;
 	}
 	
@@ -101,6 +99,10 @@ public class PedidoSolicitacaoDaoImpl extends GenericDaoImpl<PedidoSolicitacao, 
 				result.put(date, count);
 
 			} else if (status.equals(PedidoStatus.ACCEPTED)) {
+				Integer count = getTotalPedidosByDateAndEstatus(date, status).intValue();
+				result.put(date, count);
+				
+			} else if (status.equals(PedidoStatus.PROGRESS)) {
 				Integer count = getTotalPedidosByDateAndEstatus(date, status).intValue();
 				result.put(date, count);
 

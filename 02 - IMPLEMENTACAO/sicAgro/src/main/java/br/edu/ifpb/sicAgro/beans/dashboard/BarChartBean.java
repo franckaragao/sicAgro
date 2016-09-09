@@ -68,6 +68,10 @@ public class BarChartBean implements Serializable {
 
 		return model;
 	}
+	
+	public boolean isRenderedBarModelEntrega(){
+		return itemEntregaService.getTotalPorProduto().size() > 0;
+	}
 
 	private BarChartModel initBarModelCarga() {
 		BarChartModel model = new BarChartModel();
@@ -87,6 +91,10 @@ public class BarChartBean implements Serializable {
 
 		return model;
 	}
+	
+	public boolean isRenderedBarModelCarga(){
+		return itemCargaService.getTotalPorProduto().size() > 0;
+	}
 
 	private BarChartModel initBarModelSolicitacoes() {
 		BarChartModel model = new BarChartModel();
@@ -104,8 +112,11 @@ public class BarChartBean implements Serializable {
 			}
 			model.addSeries(solicitacoes);
 		}
-
 		return model;
+	}
+	
+	public boolean isRenderedModelSolicitacoes(){
+		return solicitacaoService.getTotalSolicitacoesByMaquina().size() > 0;
 	}
 
 	private void createBarModelEntregas() {

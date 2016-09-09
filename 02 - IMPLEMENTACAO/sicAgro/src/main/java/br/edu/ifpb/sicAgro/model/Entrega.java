@@ -25,7 +25,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Classe representa a entidade de negócio Entrega, 
- * uma entrega representa a distribuição de um produto a um produtor
+ * uma entrega representa a distribuição de um produto a um produtor.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -44,9 +44,14 @@ public class Entrega implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "data_entrega", nullable = false)
-	private Date dateEntrega = new Date();
+	private Date dateEntrega;
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_registro", nullable = false)
+	private Date dateRegister = new Date();
 
 	@Column(name = "observacao")
 	private String observacao;
@@ -101,12 +106,22 @@ public class Entrega implements Serializable {
 		this.produtor = produtor;
 	}
 
+	public Date getDateRegister() {
+		return dateRegister;
+	}
+
+	public void setDateRegister(Date dateRegister) {
+		this.dateRegister = dateRegister;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
 				+ ((dateEntrega == null) ? 0 : dateEntrega.hashCode());
+		result = prime * result
+				+ ((dateRegister == null) ? 0 : dateRegister.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((itemEntregas == null) ? 0 : itemEntregas.hashCode());
@@ -130,6 +145,11 @@ public class Entrega implements Serializable {
 			if (other.dateEntrega != null)
 				return false;
 		} else if (!dateEntrega.equals(other.dateEntrega))
+			return false;
+		if (dateRegister == null) {
+			if (other.dateRegister != null)
+				return false;
+		} else if (!dateRegister.equals(other.dateRegister))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -157,8 +177,8 @@ public class Entrega implements Serializable {
 	@Override
 	public String toString() {
 		return "Entrega [id=" + id + ", dateEntrega=" + dateEntrega
-				+ ", observacao=" + observacao + ", itemEntregas="
-				+ itemEntregas + ", produtor=" + produtor + "]";
+				+ ", dateRegister=" + dateRegister + ", observacao="
+				+ observacao + ", itemEntregas=" + itemEntregas + ", produtor="
+				+ produtor + "]";
 	}
-
 }

@@ -84,6 +84,7 @@ public class LineChartBean implements Serializable{
 		this.generateChartPedidos("Pedidos concluídos", PedidoStatus.COMPLETED);
 		this.generateChartPedidos("Pedidos recusados", PedidoStatus.NOT_ACCEPTED);
 		this.generateChartPedidos("Pedidos aceitos",PedidoStatus.ACCEPTED);
+		this.generateChartPedidos("Pedidos não avaliados",PedidoStatus.PROGRESS);
 	}
 	
 	/**

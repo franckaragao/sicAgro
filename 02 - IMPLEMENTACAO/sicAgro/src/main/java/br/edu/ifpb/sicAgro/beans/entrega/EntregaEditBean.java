@@ -22,6 +22,7 @@ import br.edu.ifpb.sicAgro.services.EntregaService;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.convertUnits.ConversionUtils;
+import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
 @Named
@@ -77,6 +78,7 @@ public class EntregaEditBean implements Serializable {
 			entregaService.add(entrega);
 			MessageUtils.messageSucess("Entrega realizada com sucesso.");
 		}
+		JSFUtils.rederTo("entregas.xhtml");
 	}
 
 	public void listItensCargas() {

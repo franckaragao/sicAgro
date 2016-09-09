@@ -30,7 +30,7 @@
 						<p:panelGrid columns="4" layout="grid"
 							styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-3">
 
-							<p:fieldset id="fieldProdutor" styleClass="box box-success">
+							<p:fieldset id="fieldProdutor">
 								<div class="col-lg-2 col-xs-2"
 									style="display: inline !important;">
 									<p>Produto</p>
@@ -42,7 +42,7 @@
 									<i class="fa fa-ellipsis-v fa-4x" aria-hidden="true"></i>
 								</div>
 							</p:fieldset>
-							<p:fieldset id="fieldSelecionado" styleClass="box box-success">
+							<p:fieldset id="fieldSelecionado">
 								<div class="col-lg-2 col-xs-2">
 									<p>Un.Medida</p>
 									<h3 style="font-weight: bold; margin-top: 0px;">#{entregaEditBean.itemCarga.measurementType.measurement}</h3>
@@ -54,7 +54,7 @@
 								<p:tooltip for="fieldEntrega"
 									value="Número de entregas realizadas até hoje" />
 							</p:fieldset>
-							<p:fieldset id="fieldSolicitacao" styleClass="box box-success">
+							<p:fieldset id="fieldSolicitacao">
 								<div class="col-lg-2 col-xs-2">
 									<p>Recebido</p>
 									<h3 style="font-weight: bold; margin-top: 0px;">#{entregaEditBean.itemCarga.quantity}
@@ -67,7 +67,7 @@
 								<p:tooltip for="fieldSolicitacao"
 									value="Número de solicitações realizadas até hoje" />
 							</p:fieldset>
-							<p:fieldset id="fieldEntrega" styleClass="box box-success">
+							<p:fieldset id="fieldEntrega">
 								<div class="col-lg-2 col-xs-2">
 									<p>Disponível</p>
 									<h3
@@ -84,9 +84,9 @@
 					<p:separator style="border:none; background-color:none;" />
 
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
-						columnClasses="ui-grid-col-1 ui-grid-col-2" layout="grid">
+						columnClasses="ui-grid-col-1" layout="grid">
 
-						<p:outputLabel for="advanced" value="Produtor beneficiado" />
+						<p:outputLabel for="advanced" value="Produtor" />
 						<p:autoComplete dropdown="true" id="advanced" required="true"
 							value="#{entregaEditBean.entrega.produtor}"
 							completeMethod="#{produtorBean.listProdutoresByName}"
@@ -102,6 +102,11 @@
 							</p:column>
 							<p:ajax event="itemSelect" update="tableView:produtorSelected" />
 						</p:autoComplete>
+						
+						<p:outputLabel for="dtaEntrega" value="Data Entrega" />
+						<p:calendar id="dtaEntrega" locale="pt_BR" title="Data Entrega" pattern="dd/MM/yyyy" showButtonPanel="true" value="#{entregaEditBean.entrega.dateEntrega}" required="true" />
+						<p:outputLabel value="Observação" />
+						<p:inputTextarea id="obsEntrega" value="#{entregaEditBean.entrega.observacao}"/>
 
 					</p:panelGrid>
 
@@ -151,7 +156,6 @@
 					</p:panelGrid>
 				</div>
 
-				<p:separator style="border:none; background-color:none;" />
 				<div class="ui-fluid">
 					<p:tabView id="tableView">
 						<p:tab title="Item de entrega adicionados">
@@ -160,25 +164,25 @@
 									var="item" id="itemTable"
 									emptyMessage="Nenhum produto selecionado">
 
-									<p:column headerText="Produto">
+									<p:column headerText="Produto" style="background: #ffffff !important;">
 										<h:outputText value="#{item.produto.name}" />
 									</p:column>
 
-									<p:column headerText="Medida">
+									<p:column headerText="Medida" style="background: #ffffff !important;">
 										<f:facet name="header">
 											<h:outputText value="Medida" />
 										</f:facet>
 										<h:outputText value="#{item.measurementType.measurement}" />
 									</p:column>
 
-									<p:column headerText="Quantidade entregue">
+									<p:column headerText="Quantidade entregue" style="background: #ffffff !important;">
 										<f:facet name="header">
 											<h:outputText value="Quantidade entregue" />
 										</f:facet>
 										<h:outputText value="#{item.quantity}" />
 									</p:column>
 
-									<p:column width="6%" style="font-size: 14px;">
+									<p:column width="6%" style="font-size: 14px;background: #ffffff !important;">
 										<p:commandButton icon="fa fa-trash" styleClass="btnn-primary"
 											update=":#{p:component('detail_item')} itemTable"
 											process=":#{p:component('detail_item')} itemTable">
@@ -225,13 +229,6 @@
 
 							</p:outputPanel>
 
-						</p:tab>
-						<p:tab id="tabObs" title="Observação">
-							<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
-								<p:outputLabel value="Observação da entrega" />
-								<p:inputTextarea rows="4" cols="60" id="obsEntrega"
-									value="#{entregaEditBean.entrega.observacao}" />
-							</p:panelGrid>
 						</p:tab>
 					</p:tabView>
 				</div>

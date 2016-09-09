@@ -89,20 +89,18 @@
 		<div class="ui-fluid">
 			<p:panelGrid columns="3" layout="grid"
 				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
-				<p:fieldset styleClass="box box-danger">
+				<p:fieldset styleClass="box box-danger" rendered="#{barChartBean.renderedBarModelEntrega}">
 					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantEntregas}" style="height:300px"
-						responsive="true" />
+						model="#{barChartBean.barModelQuantEntregas}" style="height:300px" responsive="true"/>
 				</p:fieldset>
-				<p:fieldset styleClass="box box-info">
+				<p:fieldset styleClass="box box-info" rendered="#{barChartBean.renderedBarModelCarga}">
 					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantCargas}" style="height:300px"
-						responsive="true" />
+						model="#{barChartBean.barModelQuantCargas}" style="height:300px" responsive="true"/>
 				</p:fieldset>
-				<p:fieldset styleClass="box box-warning">
+				<p:fieldset styleClass="box box-warning" rendered="#{barChartBean.renderedModelSolicitacoes}">
 					<p:chart type="bar" extender="ext"
 						model="#{barChartBean.barChartModelTotalSolicitacoes}"
-						style="height:300px" responsive="true" />
+						style="height:300px" responsive="true"/>
 				</p:fieldset>
 			</p:panelGrid>
 		</div>

@@ -11,6 +11,7 @@ import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
@@ -91,11 +92,11 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	 * 
 	 */
 	@Override
-	public Long getCountSolicitationsByFuncionario(Funcionario funcionario,
+	public Long getCountSolicitationsByFuncionarioAndStatus(Funcionario funcionario,
 			SolicitationState status) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
 
-		return solicitacaoServicoDAO.getCountSolicitationsByFuncionario(
+		return solicitacaoServicoDAO.getCountSolicitationsByFuncionarioAndStatus(
 				funcionario, status);
 	}
 
@@ -108,6 +109,30 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 		List<Object[]> result = null;
 		try {
 			result = solicitacaoServicoDAO.getTotalSolicitacoesByMaquina();
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Long getCountSolicitacoesByFuncionario(Funcionario funcionario) {
+		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
+		Long result = 0l;
+		try {
+			result = solicitacaoServicoDAO.getCountSolicitacoesByFuncionario(funcionario);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Long getCountSolicitacoesByProdutor(Produtor produtor) {
+		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
+		Long result = 0l;
+		try {
+			result = solicitacaoServicoDAO.getCountSolicitacoesByProdutor(produtor);
 		} catch (SicAgroException e) {
 			e.printStackTrace();
 		}

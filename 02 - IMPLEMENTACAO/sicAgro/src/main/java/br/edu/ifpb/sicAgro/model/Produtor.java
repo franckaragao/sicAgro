@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "produtores")
 @DiscriminatorValue("Produtor")
 @NamedQueries({
-		@NamedQuery(name = "Produtor.findByName", query = "SELECT p FROM Produtor p WHERE LOWER(p.name) LIKE LOWER(:name)"),
+		@NamedQuery(name = "Produtor.findByName", query = "SELECT p FROM Produtor p WHERE LOWER(p.name) LIKE :name"),
 		@NamedQuery(name = "Produtor.findByCPF", query = "SELECT p FROM Produtor p WHERE p.cpf = :cpf"),
 		@NamedQuery(name = "Produtor.getTotalProdutores", query = "SELECT COUNT(p) FROM Produtor p") })
 public class Produtor extends Pessoa {

@@ -32,8 +32,9 @@ public interface Service<T,K> {
 	/**
 	 * 
 	 * @param entity
+	 * @throws SicAgroException 
 	 */
-	public void remove(T entity);
+	public void remove(T entity) throws SicAgroException;
 	
 	/**
 	 * 

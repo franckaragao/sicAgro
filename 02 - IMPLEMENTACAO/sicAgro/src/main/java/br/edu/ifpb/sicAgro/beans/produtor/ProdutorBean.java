@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
@@ -40,7 +41,7 @@ public class ProdutorBean implements Serializable {
 		this.listOfProdutores();
 	}
 
-	public void remove() {
+	public void remove() throws SicAgroException {
 		produtorService.remove(selectedProdutor);
 		MessageUtils.messageSucess("Produtor removido com sucesso.");
 		JSFUtils.rederTo("produtores.xhtml");

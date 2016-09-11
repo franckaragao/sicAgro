@@ -4,6 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition>
@@ -105,6 +106,23 @@
 			</p:panelGrid>
 		</div>
 
+		
+	<p:fieldset styleClass="box box-info" style="text-align:center;">
+			<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
+			<p:timeline id="timeline" value="#{timeLineBean.model}" height="350px"
+			        selectable="#{timeLineBean.selectable}" 
+			        zoomable="#{timeLineBean.zoomable}" 
+			        moveable="#{timeLineBean.moveable}" 
+			        stackEvents="#{timeLineBean.stackEvents}" 
+			        axisOnTop="#{timeLineBean.axisOnTop}"              
+			        eventStyle="#{timeLineBean.eventStyle}" 
+			        showCurrentTime="#{timeLineBean.showCurrentTime}" 
+			        locale="pt_BR"
+			        showNavigation="#{timeLineBean.showNavigation}"> 
+			 
+			    <p:ajax event="select" listener="#{timeLineBean.onSelect}"/>  
+			</p:timeline>
+	</p:fieldset>
 		 <p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
 			columnClasses="10">
 			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
@@ -126,35 +144,14 @@
 						</div>
 					</p:outputPanel>
 				</p:panelGrid>
-					<p:outputPanel id="panelInforItemDashBoard">
-						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
-								<h:outputText value="Produto:" rendered="#{dashBoardBean.itemCarga.id != null}"/>
-								<h:outputText value="#{dashBoardBean.itemCarga.produto.name}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
-								<h:outputText value="Unidade de Medida:" rendered="#{dashBoardBean.itemCarga.id != null}" />
-								<h:outputText value="#{dashBoardBean.itemCarga.measurementType.measurement}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
-								<h:outputText value="Quantidade reb.:" rendered="#{dashBoardBean.itemCarga.id != null}" />
-								<h:outputText value="#{dashBoardBean.itemCarga.quantity}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
-								<h:outputText value="Quantidade disp:" rendered="#{dashBoardBean.itemCarga.id != null}" />
-								<h:outputText value="#{dashBoardBean.itemCarga.quantidadeDisp}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
+					<p:outputPanel id="panelInforItemDashBoard" style="text-align:center;">
+						<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+								<h:outputText style="text-align:center;" value="#{dashBoardBean.itemCarga.produto.name}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
 						</p:panelGrid>
 					</p:outputPanel>
 			</p:fieldset>
 		</p:panelGrid>
 	</h:body>
-
-	<h:outputScript>
-		function ext() {
-		   this.cfg.seriesDefaults = { 
-		       useSeriesColor: true, 
-		       min: 0, 
-		       max: 200, 
-		       tickInterval: 20, 
-		       tickOptions: { 
-		           formatString: '%d' 
-		       } 
-		   };
-		}
-	</h:outputScript>
 </ui:composition>
 </html>
 

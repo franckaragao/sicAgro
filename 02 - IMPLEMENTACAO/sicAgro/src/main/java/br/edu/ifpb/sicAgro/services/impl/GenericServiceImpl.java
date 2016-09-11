@@ -38,7 +38,7 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 
 	@Override
 	@Transactional
-	public void remove(T entity) {
+	public void remove(T entity) throws SicAgroException {
 		dao.remove(entity);
 	}
 

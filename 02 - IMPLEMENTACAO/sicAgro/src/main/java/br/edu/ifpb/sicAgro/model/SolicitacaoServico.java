@@ -38,9 +38,11 @@ import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 		@NamedQuery(name = "solicitacaoServico.findByFuncionario", query = "SELECT s FROM SolicitacaoServico s WHERE s.funcionario = :funcionario"),
 		@NamedQuery(name = "solicitacaoServico.findSolicitationByDateCompleted", query = "SELECT s FROM SolicitacaoServico s WHERE s.dateSolicitation = :dateSolicitation and s.completed = :completed"),
 		@NamedQuery(name = "solicitacaoServico.getTotalSolicitations", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s"),
+		@NamedQuery(name = "solicitacao.getCountByProdutor", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.produtor = :produtor"),
 		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByDateNotCompleted", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.dateSolicitation = :dateSolicitation and s.completed = :completed and s.dateForRealization < :dateForRealization"),
 		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByDateInCurrent", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.dateSolicitation = :dateSolicitation and s.completed = :completed and s.dateForRealization > :dateForRealization"),
-		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByFuncionario", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.funcionario = :funcionario AND s.state = :state"),
+		@NamedQuery(name = "solicitacaoServico.getCountByFuncionario", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.funcionario = :funcionario"),
+		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByFuncionarioAndStatus", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.funcionario = :funcionario AND s.state = :state"),
 		@NamedQuery(name = "solicitacaoServico.getTotalPorMaquina", query = "SELECT s.veiculo.identification, COUNT(s.veiculo) FROM SolicitacaoServico s GROUP BY s.veiculo.identification, s.veiculo") })
 public class SolicitacaoServico implements Serializable {
 

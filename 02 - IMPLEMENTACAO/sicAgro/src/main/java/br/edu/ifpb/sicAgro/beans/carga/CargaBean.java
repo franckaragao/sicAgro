@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Carga;
 import br.edu.ifpb.sicAgro.services.CargaService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -32,7 +33,7 @@ public class CargaBean implements Serializable {
 		this.listOfCargas();
 	}
 	
-	public void remove(){
+	public void remove() throws SicAgroException{
 		cargaService.remove(selectedCarga);
 		MessageUtils.messageSucess("Carga removida com sucesso.");
 		JSFUtils.rederTo("cargas.xhtml");

@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Veiculo;
 import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -31,7 +32,7 @@ public class VeiculoBean implements Serializable {
 		this.listVeiculos();
 	}
 
-	public void remove() {
+	public void remove() throws SicAgroException {
 		veiculoService.remove(selectedVeiculo);
 		MessageUtils.messageSucess("Veículo removido com sucesso.");
 		JSFUtils.rederTo("veiculos.xhtml");

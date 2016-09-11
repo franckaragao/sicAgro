@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.edu.ifpb.sicAgro.dao.EntregaDAO;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.filter.EntregaFilter;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.model.ItemEntrega;
@@ -67,5 +69,21 @@ public class EntregaDaoImpl extends GenericDaoImpl<Entrega, Long> implements Ent
 	    	query.where(criteriaBuilder.and(predicates.toArray(new Predicate[]{})));
 		
 		return entityManager.createQuery(query).getResultList();
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public Long getCountEntregasByProdutor(Produtor produtor) throws SicAgroException {
+		Long result = 0l;
+		try {
+			Query query = entityManager.createNamedQuery("entrega.getCountByProdutor");
+			query.setParameter("produtor", produtor);
+			result = (Long) query.getSingleResult();
+		} catch (PersistenceException e) {
+			throw new SicAgroException("Ocorreu um erro ao tentar consultar a quantidade de entregas por produtor."+e.getMessage());
+		}
+		return result;
 	}
 }

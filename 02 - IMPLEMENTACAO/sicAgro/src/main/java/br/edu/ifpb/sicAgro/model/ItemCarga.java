@@ -28,7 +28,9 @@ import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 @Entity
 @Table(name = "itens_carga")
 @NamedQueries({
-	@NamedQuery(name = "itemCarga.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemCarga i GROUP BY i.produto.name, i.produto")
+	@NamedQuery(name = "itemCarga.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemCarga i GROUP BY i.produto.name, i.produto"),
+	@NamedQuery(name = "itemcarga.getQuantidadeByProduto", query = "SELECT COUNT(i.id) FROM ItemCarga i WHERE i.produto = :produto"),
+	@NamedQuery(name = "itemCarga.getProdutosAndDates", query = "SELECT i.produto, i.carga.receivingDate FROM ItemCarga i GROUP BY i.produto, i.carga.receivingDate")
 })
 public class ItemCarga implements Serializable {
 
@@ -51,6 +53,9 @@ public class ItemCarga implements Serializable {
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "produto_FK")
 	private Produto produto;
+	
+	@ManyToOne
+	private Carga carga;
 
 	public Long getId() {
 		return id;

@@ -22,6 +22,7 @@ import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 
 /**
@@ -179,8 +180,8 @@ public class SolicitacaoServicoDaoImpl extends
 	}
 
 	@Override
-	public Long getCountSolicitationsByFuncionario(Funcionario funcionario, SolicitationState status) {
-		Query query = entityManager.createNamedQuery("solicitacaoServico.getCountSolicitationByFuncionario");
+	public Long getCountSolicitationsByFuncionarioAndStatus(Funcionario funcionario, SolicitationState status) {
+		Query query = entityManager.createNamedQuery("solicitacaoServico.getCountSolicitationByFuncionarioAndStatus");
 		query.setParameter("funcionario", funcionario);
 		query.setParameter("state", status);
 		return (Long) query.getSingleResult();
@@ -200,4 +201,32 @@ public class SolicitacaoServicoDaoImpl extends
 		return result;
 	}
 
+	@Override
+	public Long getCountSolicitacoesByFuncionario(Funcionario funcionario) throws SicAgroException {
+		Long result = 0l;
+		try {
+			Query query = entityManager.createNamedQuery("solicitacaoServico.getCountByFuncionario");
+			query.setParameter("funcionario", funcionario);
+			result = (Long) query.getSingleResult();
+		} catch (PersistenceException e) {
+			throw new SicAgroException("Erro ao tentar consultar a quantidade de solic. por funcionario."+e.getMessage());
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public Long getCountSolicitacoesByProdutor(Produtor produtor) throws SicAgroException {
+		Long result = 0l;
+		try {
+			Query query = entityManager.createNamedQuery("solicitacao.getCountByProdutor");
+			query.setParameter("produtor", produtor);
+			result = (Long) query.getSingleResult();
+		} catch (PersistenceException e) {
+			throw new SicAgroException("Erro ao tentar consultar a quantidade de produtores." + e.getMessage());
+		}
+		return result;
+	}
 }

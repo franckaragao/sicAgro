@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.enumerations.UserRole;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.PedidoSolicitacao;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
@@ -49,9 +50,10 @@ public class PedidoSolicitacaoBean implements Serializable {
 	}
 
 	/**
+	 * @throws SicAgroException 
 	 * 
 	 */
-	public void remove() {
+	public void remove() throws SicAgroException {
 		pedidoSolicitacaoService.remove(selectedPedidoSolicitacao);
 		MessageUtils.messageSucess("Pedido removido com sucesso.");
 		JSFUtils.rederTo("pedidosSolicitacao.xhtml");

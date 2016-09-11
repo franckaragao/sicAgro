@@ -222,3 +222,29 @@
 	background: #fff;
 	color: #c2c9c6;
 }
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #098554;
+}
+
+.ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default{
+	background: #098554;
+	border: #098554;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+	background: #098554;
+	border: #098554;
+	color: #fff;
+}
+
+.ui-selectbooleanbutton.ui-button.ui-state-active, .ui-selectonebutton .ui-button.ui-state-active, .ui-selectmanybutton .ui-button.ui-state-active{
+	background: #098554;
+	border: #098554;
+	color: #fff;
+}
+.ui-datepicker-current-day a{
+	background: #098554 !important;
+	border: #098554 !important;
+	color: #fff !important;
+}

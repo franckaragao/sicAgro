@@ -99,7 +99,7 @@ public class SolicitacaoServicoBean implements Serializable {
 	}
 	
 	public Long getCountSolicitationsByFuncionario(){
-		Long n = service.getCountSolicitationsByFuncionario(conta.getFuncionario(), SolicitationState.PROGRESS);
+		Long n = service.getCountSolicitationsByFuncionarioAndStatus(conta.getFuncionario(), SolicitationState.PROGRESS);
 		return n;
 	}
 	

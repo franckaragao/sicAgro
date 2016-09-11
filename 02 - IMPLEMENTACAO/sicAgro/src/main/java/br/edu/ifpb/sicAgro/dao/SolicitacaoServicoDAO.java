@@ -8,6 +8,7 @@ import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 
 /**
@@ -49,15 +50,11 @@ public interface SolicitacaoServicoDAO extends DAO<SolicitacaoServico, Long>{
 	List<SolicitacaoServico> getSolicitacoesByFuncionario(Funcionario funcionario);
 	
 	/**
-	 * Método busca todas as solicitações de um veículo especifico em um
-	 * intervalo de datas passados por parametro.
+	 * Método busca todas as solicitações por filtro.
 	 * 
-	 * Método implementado utilizando a API Criteria do JPA
+	 * Método implementado utilizando a API Criteria do JPA.
 	 * 
-	 * @param veiculo
-	 * @param dateInit
-	 * @param dateEnd
-	 * @param state
+	 * @param filter
 	 * @return
 	 */
 	List<SolicitacaoServico> filter(SolicitacaoFilter filter);
@@ -68,7 +65,22 @@ public interface SolicitacaoServicoDAO extends DAO<SolicitacaoServico, Long>{
 	 * @param status
 	 * @return
 	 */
-	Long getCountSolicitationsByFuncionario(Funcionario funcionario, SolicitationState status);
+	Long getCountSolicitationsByFuncionarioAndStatus(Funcionario funcionario, SolicitationState status);
 	
+	/**
+	 * 
+	 * @return
+	 * @throws SicAgroException
+	 */
 	List<Object[]> getTotalSolicitacoesByMaquina() throws SicAgroException;
+	
+	/**
+	 * 
+	 * @param funcionario
+	 * @return
+	 * @throws SicAgroException
+	 */
+	Long getCountSolicitacoesByFuncionario(Funcionario funcionario) throws SicAgroException;
+	
+	Long getCountSolicitacoesByProdutor(Produtor produtor) throws SicAgroException;
 }

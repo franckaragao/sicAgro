@@ -7,6 +7,7 @@ import java.util.Map;
 import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 
 /**
@@ -40,13 +41,9 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 
 	
 	/**
-	 * Método busca todas as solicitações de um veículo especifico em um
-	 * intervalo de datas passados por parametro.
+	 * Método busca todas as solicitações por filtro
 	 * 
-	 * @param veiculo
-	 * @param dateInit
-	 * @param dateEnd
-	 * @param state
+	 * @param filter
 	 * @return
 	 */
 	List<SolicitacaoServico> filter(SolicitacaoFilter filter);
@@ -57,12 +54,26 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 	 * @param status
 	 * @return
 	 */
-	Long getCountSolicitationsByFuncionario(Funcionario funcionario, SolicitationState status);
+	Long getCountSolicitationsByFuncionarioAndStatus(Funcionario funcionario, SolicitationState status);
 	
 	/**
 	 * 
 	 * @return
 	 */
 	List<Object[]> getTotalSolicitacoesByMaquina();
+	
+	/**
+	 * 
+	 * @param funcionario
+	 * @return
+	 */
+	Long getCountSolicitacoesByFuncionario(Funcionario funcionario);
+	
+	/**
+	 * 
+	 * @param produtor
+	 * @return
+	 */
+	Long getCountSolicitacoesByProdutor(Produtor produtor);
 	
 }

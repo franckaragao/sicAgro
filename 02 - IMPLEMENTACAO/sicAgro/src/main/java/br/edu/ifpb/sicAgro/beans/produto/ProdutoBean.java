@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ProdutoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -50,9 +51,10 @@ public class ProdutoBean implements Serializable {
 	}
 
 	/**
+	 * @throws SicAgroException 
 	 * 
 	 */
-	public void remove() {
+	public void remove() throws SicAgroException {
 		produtoService.remove(selectedProduto);
 		MessageUtils.messageSucess("Produto removido com sucesso.");
 		JSFUtils.rederTo("produtos.xhtml");

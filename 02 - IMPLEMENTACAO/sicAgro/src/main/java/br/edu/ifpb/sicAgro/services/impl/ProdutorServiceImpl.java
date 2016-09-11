@@ -5,12 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.ProdutorDAO;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 import br.edu.ifpb.sicAgro.filter.ProdutorFilter;
 import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.ContaService;
+import br.edu.ifpb.sicAgro.services.EntregaService;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
+import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
 public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> implements ProdutorService{
@@ -20,6 +23,12 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	
 	@Inject
 	private ContaService contaService;
+	
+	@Inject
+	private SolicitacaoServicoService solicitacaoServicoService;
+	
+	@Inject
+	private EntregaService entregaService; 
 	
 	public ProdutorServiceImpl() {
 	}
@@ -40,6 +49,18 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 			throw new SicAgroExceptionHandler("Já existe um usuário cadastrado com este CPF: "+ entity.getCpf());
 		}
 		dao.add(entity);
+	}
+	
+	@Override
+	@Transactional
+	public void remove(Produtor entity) throws SicAgroException {
+		Long count = solicitacaoServicoService.getCountSolicitacoesByProdutor(entity);
+		count = entregaService.getCountEntregasByProdutor(entity);
+		if(count > 0){
+			throw new SicAgroExceptionHandler(
+					"Produtor não não pode ser removido, existe solicitações de serviços ou entregas registradas para o mesmo.");
+		}
+		dao.remove(entity);
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.services.FuncionarioService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
@@ -35,7 +36,7 @@ public class FuncionarioBean implements Serializable {
 		this.funcionarios = funcionarioService.findAll();
 	}
 
-	public void remove() {
+	public void remove() throws SicAgroException {
 		funcionarioService.remove(selectedFuncionario);
 		MessageUtils.messageSucess("Funcionário removido com sucesso.");
 		JSFUtils.rederTo("funcionarios.xhtml");

@@ -33,7 +33,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "entregas")
 @NamedQueries({
-	@NamedQuery(name = "entrega.getTotalEntregas", query = "SELECT COUNT(e) FROM Entrega e")
+	@NamedQuery(name = "entrega.getTotalEntregas", query = "SELECT COUNT(e) FROM Entrega e"),
+	@NamedQuery(name = "entrega.getCountByProdutor", query = "SELECT COUNT(e.id) FROM Entrega e WHERE e.produtor = :produtor")
 })
 public class Entrega implements Serializable {
 

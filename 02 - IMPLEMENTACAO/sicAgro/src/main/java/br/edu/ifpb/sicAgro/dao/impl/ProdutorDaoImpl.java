@@ -53,7 +53,7 @@ public class ProdutorDaoImpl extends GenericDaoImpl<Produtor, Long> implements P
 	public List<Produtor> findByName(String name) {
 		
 		TypedQuery<Produtor> query = entityManager.createNamedQuery("Produtor.findByName", Produtor.class);
-		query.setParameter("name", name.toLowerCase());
+		query.setParameter("name", "%" + name.toLowerCase() + "%");
 		return query.getResultList();
 	}
 

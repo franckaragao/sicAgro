@@ -24,7 +24,7 @@ public class ProdutorViewBean implements Serializable {
 	private Produtor produtor;
 
 	public void preRenderView() {
-		produtor = (Produtor) JSFUtils.getParam("produtor");
+		produtor = (Produtor) JSFUtils.getParam("produtorToDetail");
 	}
 
 	public Produtor getProdutor() {

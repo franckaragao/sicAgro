@@ -35,7 +35,7 @@ public class ReportEntregaBean implements Serializable {
 
 	private LoaderReport<Entrega> loaderReport;
 	
-	private EntregaFilter filter = EntregaFilter.getInstance();
+	private EntregaFilter filter = new EntregaFilter();
 
 	/**
 	 * <p>

@@ -89,7 +89,7 @@
 						<p:outputLabel for="advanced" value="Produtor" />
 						<p:autoComplete dropdown="true" id="advanced" required="true"
 							value="#{entregaEditBean.entrega.produtor}"
-							completeMethod="#{produtorBean.listProdutoresByName}"
+							completeMethod="#{entregaEditBean.listProdutores}"
 							var="produtor" itemLabel="#{produtor.name}"
 							itemValue="#{produtor}" converter="#{produtorConverter}"
 							placeholder="Nome do produtor benefíciado">

@@ -13,10 +13,6 @@ public class EntregaFilter {
 	private Produtor produtor;
 	private Produto produto;
 
-	public static EntregaFilter getInstance() {
-		return new EntregaFilter();
-	}
-
 	public Long getId() {
 		return id;
 	}

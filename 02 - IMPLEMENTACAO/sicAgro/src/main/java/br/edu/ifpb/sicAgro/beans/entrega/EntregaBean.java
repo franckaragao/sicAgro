@@ -12,8 +12,10 @@ import javax.inject.Named;
 import br.edu.ifpb.sicAgro.filter.EntregaFilter;
 import br.edu.ifpb.sicAgro.model.Entrega;
 import br.edu.ifpb.sicAgro.model.Produto;
+import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.services.EntregaService;
 import br.edu.ifpb.sicAgro.services.ProdutoService;
+import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 
 @Named
@@ -28,15 +30,19 @@ public class EntregaBean implements Serializable {
 	@Inject	
 	private ProdutoService produtoService;
 	
+	@Inject
+	private ProdutorService produtorService;
+	
 	private List<Entrega> entregas = new ArrayList<Entrega>();
 
 	private Entrega selectedEntrega;
 
-	private EntregaFilter filter = EntregaFilter.getInstance();
+	private EntregaFilter filter;
 
 	@PostConstruct
 	public void init() {
 		this.listEntregas();
+		filter = new EntregaFilter();
 	}
 
 	public void renderTo() {
@@ -50,6 +56,10 @@ public class EntregaBean implements Serializable {
 
 	public void filter() {
 		this.entregas = entregaService.filter(filter);
+	}
+	
+	public List<Produtor> listProdutores(String query){
+		return produtorService.findByName(query);
 	}
 	
 	public List<Produto> listProdutos() {

@@ -48,8 +48,6 @@ public class EntregaEditBean implements Serializable {
 	
 	private List<ItemCarga> itemCargas = new ArrayList<ItemCarga>();
 	
-	private List<Produtor> produtores = new ArrayList<Produtor>();
-
 	private List<MeasurementType> measurements = new ArrayList<>();
 
 	public void preRenderView() {
@@ -63,7 +61,6 @@ public class EntregaEditBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.listItensCargas();
-		this.listProdutores();
 		measurements = Arrays.asList(MeasurementType.values());
 	}
 
@@ -85,8 +82,8 @@ public class EntregaEditBean implements Serializable {
 		itemCargas = itemCargaService.findAll();
 	}
 
-	public void listProdutores() {
-		produtores = produtorService.findAll();
+	public List<Produtor> listProdutores(String query){
+		return produtorService.findByName(query);
 	}
 	
 	public void updateItemEntrega(){
@@ -179,14 +176,6 @@ public class EntregaEditBean implements Serializable {
 
 	public void setItemCarga(ItemCarga itemCarga) {
 		this.itemCarga = itemCarga;
-	}
-
-	public List<Produtor> getProdutores() {
-		return produtores;
-	}
-
-	public void setProdutores(List<Produtor> produtores) {
-		this.produtores = produtores;
 	}
 
 	public ItemEntrega getItemEntrega() {

@@ -12,13 +12,13 @@
 		<div class="ui-fluid">
 			<p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
 				layout="grid">
-				<h:outputText for="byProdutor" value="Por Produtor" />
-				<p:autoComplete  dropdown="true" id="advanced"
-					value="#{entregaBean.filter.produtor}"
-					completeMethod="#{produtorBean.listProdutoresByName}"
-					 var="produtor" itemLabel="#{produtor.name}"
-					itemValue="#{produtor}" converter="#{produtorConverter}"
-					 placeholder="Nome do produtor benefíciado">
+				<h:outputText for="ovp_Produtor" value="Por Produtor" />
+					<p:autoComplete dropdown="true" id="ovp_Produtor"
+						value="#{entregaBean.filter.produtor}"
+						completeMethod="#{entregaBean.listProdutores}"
+						var="produtor" itemLabel="#{produtor.name}"
+						itemValue="#{produtor}" converter="#{produtorConverter}"
+						placeholder="Nome do produtor benefíciado">
 
 					<p:column headerText="COD">
 						<h:outputText value="#{produtor.cod}" />

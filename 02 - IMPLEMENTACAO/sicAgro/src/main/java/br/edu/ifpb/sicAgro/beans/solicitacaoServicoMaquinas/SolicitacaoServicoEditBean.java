@@ -101,7 +101,6 @@ public class SolicitacaoServicoEditBean implements Serializable {
 	}
 	
 	public List<Produtor> listProdutores(String query){
-		System.out.println(produtorService.findByName(query));
 		return produtorService.findByName(query);
 	}
 	

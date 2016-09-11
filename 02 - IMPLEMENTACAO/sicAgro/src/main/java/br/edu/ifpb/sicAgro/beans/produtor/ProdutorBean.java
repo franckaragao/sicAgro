@@ -49,7 +49,7 @@ public class ProdutorBean implements Serializable {
 
 	public void renderTo() {
 		JSFUtils.rederTo("produtorView.xhtml");
-		JSFUtils.setParam("produtor", selectedProdutor);
+		JSFUtils.setParam("produtorToDetail", selectedProdutor);
 	}
 
 	public void listOfProdutores() {
@@ -65,11 +65,6 @@ public class ProdutorBean implements Serializable {
 		produtores = produtorService.filter(filter);
 	}
 	
-	public List<Produtor> listProdutoresByName(String query){
-		filter.setName(query);
-		return produtorService.filter(filter);
-	}
-
 	public Produtor getSelectedProdutor() {
 		return selectedProdutor;
 	}

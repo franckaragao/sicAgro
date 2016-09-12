@@ -14,7 +14,6 @@ import org.primefaces.model.chart.ChartSeries;
 
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 import br.edu.ifpb.sicAgro.services.ItemEntregaService;
-import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 
 /**
  * Bean responsável por criar e atribuir valores a gráficos de barras do
@@ -35,9 +34,6 @@ public class BarChartBean implements Serializable {
 	@Inject
 	private ItemCargaService itemCargaService;
 
-	@Inject
-	private SolicitacaoServicoService solicitacaoService;
-
 	private BarChartModel barModelQuantEntregas;
 
 	private BarChartModel barModelQuantCargas;
@@ -46,7 +42,6 @@ public class BarChartBean implements Serializable {
 
 	public void preRenderView() {
 		createBarModelEntregas();
-		createBarModelSolicitacoes();
 		createBarModelCargas();
 	}
 
@@ -96,29 +91,6 @@ public class BarChartBean implements Serializable {
 		return itemCargaService.getTotalPorProduto().size() > 0;
 	}
 
-	private BarChartModel initBarModelSolicitacoes() {
-		BarChartModel model = new BarChartModel();
-		ChartSeries solicitacoes = new ChartSeries();
-		solicitacoes.setLabel("Solicitações");
-
-		List<Object[]> listSolicitacoes = solicitacaoService
-				.getTotalSolicitacoesByMaquina();
-
-		if (listSolicitacoes != null) {
-			for (Object[] objects : listSolicitacoes) {
-				String name = (String) objects[0];
-				Long quantidade = (Long) objects[1];
-				solicitacoes.set(name, quantidade);
-			}
-			model.addSeries(solicitacoes);
-		}
-		return model;
-	}
-	
-	public boolean isRenderedModelSolicitacoes(){
-		return solicitacaoService.getTotalSolicitacoesByMaquina().size() > 0;
-	}
-
 	private void createBarModelEntregas() {
 		barModelQuantEntregas = initBarModelEntrega();
 
@@ -153,26 +125,6 @@ public class BarChartBean implements Serializable {
 		xAxis.setTickAngle(-50);
 
 		Axis yAxis = barModelQuantCargas.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade");
-		yAxis.setMin(0);
-
-	}
-
-	private void createBarModelSolicitacoes() {
-		barChartModelTotalSolicitacoes = initBarModelSolicitacoes();
-
-		barChartModelTotalSolicitacoes
-				.setTitle("Quantidade de Solicitações Feitas por Máquina");
-		barChartModelTotalSolicitacoes.setLegendPosition("nw");
-		barChartModelTotalSolicitacoes.setAnimate(true);
-		barChartModelTotalSolicitacoes.setZoom(true);
-		barChartModelTotalSolicitacoes.setSeriesColors("f39c12");
-
-		Axis xAxis = barChartModelTotalSolicitacoes.getAxis(AxisType.X);
-		xAxis.setLabel("Máquina");
-		xAxis.setTickAngle(-50);
-
-		Axis yAxis = barChartModelTotalSolicitacoes.getAxis(AxisType.Y);
 		yAxis.setLabel("Quantidade");
 		yAxis.setMin(0);
 

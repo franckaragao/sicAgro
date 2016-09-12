@@ -6,7 +6,7 @@ import com.ibm.icu.text.SimpleDateFormat;
 
 /**
  * 
- * @author franck
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
 public class DateUtils {

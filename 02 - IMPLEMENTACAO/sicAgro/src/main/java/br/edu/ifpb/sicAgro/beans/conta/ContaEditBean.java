@@ -16,6 +16,12 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 import br.edu.ifpb.sicAgro.util.userSession.UserLogged;
 
+/**
+ * Bean responsável por genrenciar informações de uma conta.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @RequestScoped
 public class ContaEditBean implements Serializable {
@@ -48,6 +54,11 @@ public class ContaEditBean implements Serializable {
 		oldPassword = conta.getPassword();
 	}
 
+	/**
+	 * Atualiza senha de e email de uma conta. 
+	 * 
+	 * @throws SicAgroExceptionHandler
+	 */
 	public void updateAcountLogged() throws SicAgroExceptionHandler {
 		contaService.criptografarSenha(oldAcount);
 		if (!oldPassword.equals(oldAcount.getPassword())) {

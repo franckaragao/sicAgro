@@ -87,25 +87,7 @@
 				style="height:300px;" />
 		</p:panelGrid>
 		</p:fieldset>
-		<div class="ui-fluid">
-			<p:panelGrid columns="3" layout="grid"
-				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
-				<p:fieldset styleClass="box box-danger" rendered="#{barChartBean.renderedBarModelEntrega}">
-					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantEntregas}" style="height:300px" responsive="true"/>
-				</p:fieldset>
-				<p:fieldset styleClass="box box-info" rendered="#{barChartBean.renderedBarModelCarga}">
-					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantCargas}" style="height:300px" responsive="true"/>
-				</p:fieldset>
-				<p:fieldset styleClass="box box-warning" rendered="#{barChartBean.renderedModelSolicitacoes}">
-					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barChartModelTotalSolicitacoes}"
-						style="height:300px" responsive="true"/>
-				</p:fieldset>
-			</p:panelGrid>
-		</div>
-		
+
 		<p:fieldset styleClass="box box-info">
 			<p:outputLabel value="Quantidade de itens de cargas" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
 			<div class="ui-fluid">
@@ -120,12 +102,31 @@
 					<p:ajax event="itemSelect" listener="#{pieChartBean.generatePieModel}" update="@this gchat_itens"/>
 				</p:selectOneMenu>
 			</div>
-			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" />
-	</p:fieldset>
+			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" height="250" />
+	</p:fieldset>		
 
+		<div class="ui-fluid">
+			<p:panelGrid columns="3" layout="grid"
+				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
+				<p:fieldset styleClass="box box-info" rendered="#{pieChartBean.renderedPieSolicitacaoes}">
+					<p:chart type="pie" extender="ext"
+						model="#{pieChartBean.pieChartModel}" style="height:300px"  responsive="true"/>
+				</p:fieldset>
+				<p:fieldset styleClass="box box-danger" rendered="#{barChartBean.renderedBarModelEntrega}">
+					<p:chart type="bar" extender="ext"
+						model="#{barChartBean.barModelQuantEntregas}" style="height:300px" responsive="true"/>
+				</p:fieldset>
+				<p:fieldset styleClass="box box-warning" rendered="#{barChartBean.renderedBarModelCarga}">
+					<p:chart type="bar" extender="ext"
+						model="#{barChartBean.barModelQuantCargas}"
+						style="height:300px" responsive="true"/>
+				</p:fieldset>
+			</p:panelGrid>
+		</div>
+		
 	<p:fieldset styleClass="box box-success" style="text-align:center;">
 			<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
-			<p:timeline id="timeline" value="#{timeLineBean.model}" height="350px"
+			<p:timeline id="timeline" value="#{timeLineBean.model}" height="300px"
 			        selectable="#{timeLineBean.selectable}" 
 			        zoomable="#{timeLineBean.zoomable}" 
 			        moveable="#{timeLineBean.moveable}" 

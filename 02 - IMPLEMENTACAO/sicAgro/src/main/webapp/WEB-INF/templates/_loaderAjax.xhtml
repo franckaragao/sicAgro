@@ -6,8 +6,9 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+    <p:ajaxStatus onstart="Pace.start();"  onsuccess="Pace.stop();" />
 
+		<!-- Usando pace js para load progress, deixei o dialog aqui para eventuais problemas, ele ser add novamente -->
         <p:dialog header="Basic Dialog" style="background-color: write; text-align:center; box-shadow: none; border: none;" widgetVar="statusDialog" draggable="false" closable="false" resizable="false" showHeader="false">
         	<p:graphicImage  library="images" name="loader.gif" style="background: none;" /><br></br>
             <h:outputText value="#{msg.Loading}" style="color:black;"/>     

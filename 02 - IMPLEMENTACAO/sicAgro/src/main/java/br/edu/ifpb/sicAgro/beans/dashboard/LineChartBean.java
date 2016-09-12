@@ -119,7 +119,6 @@ public class LineChartBean implements Serializable{
 		series.setLabel(label);
 
 		for (Date data : pedidos.keySet()) {
-			System.out.println(data +" "+ pedidos.get(data));
 			series.set(DATE_FORMAT.format(data), pedidos.get(data));
 		}
 

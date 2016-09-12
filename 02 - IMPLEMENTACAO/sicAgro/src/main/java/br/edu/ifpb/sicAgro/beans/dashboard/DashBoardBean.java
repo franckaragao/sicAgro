@@ -29,7 +29,7 @@ public class DashBoardBean implements Serializable {
 	
 	@Inject
 	private CargaService cargaService;
-
+	
 	private Long numberProdutores;
 	private Long numberSolicitations;
 	private Long numberEntregas;
@@ -42,7 +42,7 @@ public class DashBoardBean implements Serializable {
 		this.numberEntregas = entregaService.getTotalEntregas();
 		this.numberCargas = cargaService.getTotalCargas();
 	}
-
+	
 	public Long getNumberProdutores() {
 		return numberProdutores;
 	}

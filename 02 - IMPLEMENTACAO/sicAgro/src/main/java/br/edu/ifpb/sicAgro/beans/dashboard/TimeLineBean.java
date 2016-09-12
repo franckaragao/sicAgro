@@ -16,6 +16,7 @@ import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 
+import br.edu.ifpb.sicAgro.enumerations.Agencys;
 import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 
@@ -37,30 +38,26 @@ public class TimeLineBean implements Serializable{
     private String eventStyle = "box";  
     private boolean axisOnTop;  
     private boolean showCurrentTime = true;  
-    private boolean showNavigation = false;  
+    private boolean showNavigation = true;  
    
     @PostConstruct 
-    protected void initialize() {  
+    public void initialize() {  
         model = new TimelineModel();  
         
         this.generateTimeLine();
    
-/*        Calendar cal = Calendar.getInstance();      
-        cal.set(2014, Calendar.JUNE, 12, 0, 0, 0);  
-        model.add(new TimelineEvent("PrimeUI 1.1", cal.getTime()));  */
-           
     }  
     
     private void generateTimeLine(){
 		List<Object[]> listProdutos = itemCargaService.getProdutosAndDates();
 		Calendar calendar = Calendar.getInstance();
-
 		if (listProdutos != null) {
 			for (Object[] objects : listProdutos) {
 				Produto produto = (Produto) objects[0];
 				Date date = (Date) objects[1];
+				Agencys agency = (Agencys) objects[2];
 				calendar.setTime(date);
-				model.add(new TimelineEvent(produto.getName(), calendar.getTime()));    
+				model.add(new TimelineEvent(produto.getName() +" : "+ agency.toString(), calendar.getTime()));    
 			}
 		}
     }

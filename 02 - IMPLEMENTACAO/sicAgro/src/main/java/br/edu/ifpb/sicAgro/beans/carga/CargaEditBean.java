@@ -91,6 +91,7 @@ public class CargaEditBean implements Serializable {
 	public void resetItemCarga() {
 		this.itemCarga = selectedItemCarga;
 		this.itemCarga.setQuantidadeDisp(selectedItemCarga.getQuantity());
+		this.itemCarga.setCarga(carga);
 		this.selectedItemCarga = new ItemCarga();
 	}
 	

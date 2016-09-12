@@ -28,10 +28,9 @@ import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 @Entity
 @Table(name = "itens_carga")
 @NamedQueries({
-	@NamedQuery(name = "itemCarga.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemCarga i GROUP BY i.produto.name, i.produto"),
-	@NamedQuery(name = "itemcarga.getQuantidadeByProduto", query = "SELECT COUNT(i.id) FROM ItemCarga i WHERE i.produto = :produto"),
-	@NamedQuery(name = "itemCarga.getProdutosAndDates", query = "SELECT i.produto, i.carga.receivingDate FROM ItemCarga i GROUP BY i.produto, i.carga.receivingDate")
-})
+		@NamedQuery(name = "itemCarga.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemCarga i GROUP BY i.produto.name, i.produto"),
+		@NamedQuery(name = "itemcarga.getQuantidadeByProduto", query = "SELECT COUNT(i.id) FROM ItemCarga i WHERE i.produto = :produto"),
+		@NamedQuery(name = "itemCarga.getProdutosAndDates", query = "SELECT i.produto, i.carga.receivingDate, i.carga.originLoad.agency FROM ItemCarga i") })
 public class ItemCarga implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,7 +52,7 @@ public class ItemCarga implements Serializable {
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "produto_FK")
 	private Produto produto;
-	
+
 	@ManyToOne
 	private Carga carga;
 
@@ -97,14 +96,25 @@ public class ItemCarga implements Serializable {
 		this.quantidadeDisp = quantidadeDisp;
 	}
 
+	public Carga getCarga() {
+		return carga;
+	}
+
+	public void setCarga(Carga carga) {
+		this.carga = carga;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((carga == null) ? 0 : carga.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((measurementType == null) ? 0 : measurementType.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
+		result = prime * result
+				+ ((quantidadeDisp == null) ? 0 : quantidadeDisp.hashCode());
 		result = prime * result
 				+ ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
@@ -119,6 +129,11 @@ public class ItemCarga implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemCarga other = (ItemCarga) obj;
+		if (carga == null) {
+			if (other.carga != null)
+				return false;
+		} else if (!carga.equals(other.carga))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -130,6 +145,11 @@ public class ItemCarga implements Serializable {
 			if (other.produto != null)
 				return false;
 		} else if (!produto.equals(other.produto))
+			return false;
+		if (quantidadeDisp == null) {
+			if (other.quantidadeDisp != null)
+				return false;
+		} else if (!quantidadeDisp.equals(other.quantidadeDisp))
 			return false;
 		if (quantity == null) {
 			if (other.quantity != null)

@@ -248,3 +248,14 @@
 	border: #098554 !important;
 	color: #fff !important;
 }
+
+.timeline-content .timeline-event-selected{
+	background: #098554 !important;
+	border: #098554 !important;
+	color: #fff !important;
+}
+
+div.timeline-currenttime {
+    background-color: #098554;
+    width: 2px;
+}

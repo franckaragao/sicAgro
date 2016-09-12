@@ -10,7 +10,7 @@
 <ui:composition>
 	<f:metadata>
 		<f:event listener="#{dashBoardBean.preRenderView}" type="preRenderView" />
-		<f:event listener="#{barChartBean.preRenderView()}" type="preRenderView" />
+		<f:event listener="#{barChartBean.preRenderView}" type="preRenderView" />
 		<f:event listener="#{lineChartBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
@@ -25,6 +25,7 @@
 		agrícolas.
 	</div>
 	<h:body>
+	<p:growl autoUpdate="true" showDetail="true"/>
 		<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank"
 			columnClasses="ui-grid-col-3">
 
@@ -106,8 +107,7 @@
 			</p:panelGrid>
 		</div>
 
-		
-	<p:fieldset styleClass="box box-info" style="text-align:center;">
+	<p:fieldset styleClass="box box-success" style="text-align:center;">
 			<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
 			<p:timeline id="timeline" value="#{timeLineBean.model}" height="350px"
 			        selectable="#{timeLineBean.selectable}" 
@@ -117,40 +117,16 @@
 			        axisOnTop="#{timeLineBean.axisOnTop}"              
 			        eventStyle="#{timeLineBean.eventStyle}" 
 			        showCurrentTime="#{timeLineBean.showCurrentTime}" 
-			        locale="pt_BR"
-			        showNavigation="#{timeLineBean.showNavigation}"> 
+                    locale="pt_BR"
+                    responsive="true"
+		        	showNavigation="#{timeLineBean.showNavigation}"> 
 			 
-			    <p:ajax event="select" listener="#{timeLineBean.onSelect}"/>  
+			    <p:ajax event="select" listener="#{timeLineBean.onSelect}" />
 			</p:timeline>
-	</p:fieldset>
-		 <p:panelGrid columns="1" styleClass="ui-panelgrid-blank"
-			columnClasses="10">
-			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-				<p:selectOneMenu id="som_dashBoard" value="#{dashBoardBean.itemCarga}"
-					converter="#{itemCargaConverter}" style="width:235px">
-					<f:selectItem noSelectionOption="true" itemLabel=""/>
-					<f:selectItems value="#{entregaEditBean.itemCargas}" var="item"
-						itemLabel="#{item.produto.name}" itemValue="#{item}" />
-					<p:ajax event="itemSelect" update="panel_carga panelInforItemDashBoard" />
-
-				</p:selectOneMenu>
-				<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
-					<p:outputPanel id="panel_carga">
-						<div class="knob-container ui-corner-all">
-							<p:knob id="knob_dashboard_carga" disabled="true"
-								foregroundColor="#00c0ef" max="#{dashBoardBean.itemCarga.quantity}" value="#{dashBoardBean.itemCarga.quantidadeDisp}">
-								<p:tooltip for="knob_dashboard_carga" value="Entregas" />
-							</p:knob>
-						</div>
-					</p:outputPanel>
-				</p:panelGrid>
-					<p:outputPanel id="panelInforItemDashBoard" style="text-align:center;">
-						<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
-								<h:outputText style="text-align:center;" value="#{dashBoardBean.itemCarga.produto.name}" rendered="#{dashBoardBean.itemCarga.id != null}"/>
-						</p:panelGrid>
-					</p:outputPanel>
 			</p:fieldset>
-		</p:panelGrid>
+			<p:fieldset>
+				<pe:gChart value="#{pieChartBean.chartModel}"  />
+			</p:fieldset>
 	</h:body>
 </ui:composition>
 </html>

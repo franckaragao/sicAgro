@@ -44,7 +44,7 @@ public class ItemcargaDaoImpl extends GenericDaoImpl<ItemCarga, Long> implements
 	public List<Object[]> getProdutosAndDates() throws SicAgroException {
 		List<Object[]> result = null;
 		try {
-			Query query = entityManager.createNamedQuery("itemCarga.getProdutosAndDates");
+			Query query = entityManager.createNamedQuery("itemCarga.getProdutosAndDatesItens");
 			result = query.getResultList();
 		} catch (PersistenceException e) {
 			throw new SicAgroException("Erro a tentar recuperar o os produtos e as datas das cargas "+ e.getMessage());

@@ -28,10 +28,10 @@ public class ContaEditBean implements Serializable {
 
 	@Inject
 	private ContaService contaService;
-	
+
 	@Inject
 	private FuncionarioService funcionarioService;
-	
+
 	@Inject
 	private ProdutorService produtorService;
 
@@ -40,6 +40,8 @@ public class ContaEditBean implements Serializable {
 	private Conta oldAcount = new Conta();
 
 	private String newPassword;
+
+	private String repeatPassword;
 
 	@PostConstruct
 	public void init() {
@@ -51,13 +53,16 @@ public class ContaEditBean implements Serializable {
 		if (!oldPassword.equals(oldAcount.getPassword())) {
 			throw new SicAgroExceptionHandler("Senha atual não confere!");
 		}
+		if (!repeatPassword.equals(newPassword)) {
+			throw new SicAgroExceptionHandler("Senhas não coincidem!");
+		}
 		conta.setPassword(newPassword);
 		contaService.criptografarSenha(conta);
 		updateByTypeUser();
 		MessageUtils.messageSucess("Dados de acesso alterados com sucesso.");
 
 	}
-	
+
 	/**
 	 * <pre>
 	 * Método necessário para resolver problema de persistir
@@ -106,4 +111,11 @@ public class ContaEditBean implements Serializable {
 		this.conta = conta;
 	}
 
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
 }

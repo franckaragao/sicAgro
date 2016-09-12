@@ -3,7 +3,6 @@ package br.edu.ifpb.sicAgro.beans.dashboard;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,34 +14,48 @@ import org.primefaces.extensions.component.gchart.model.GChartType;
 import br.edu.ifpb.sicAgro.model.ItemCarga;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 
+import com.ibm.icu.text.SimpleDateFormat;
+
 @Named
 @ViewScoped
 public class PieChartBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private GChartType chartType = GChartType.COLUMN;
+	private GChartType chartType = GChartType.BAR;
 	private GChartModel chartModel = null;
 
 	@Inject
 	private ItemCargaService itemCargaService;
 	private ItemCarga itemCarga;
 	
-	@PostConstruct
 	public void preRenderView(){
 		if(itemCargaService.findAll().size() > 0){
-			itemCarga = itemCargaService.findAll().get(0);
-		
-			chartModel = new GChartModelBuilder().setChartType(getChartType())  
-	                .addColumns("Topping", "Slices").addRow("Mushrooms", 6)  
-	                .addRow("Onions", 3).build();  
+			if(itemCarga == null)
+				itemCarga = itemCargaService.findAll().get(0);
+			generatePieModel();
 		}else{
-			chartModel = new GChartModelBuilder().setChartType(getChartType())  
-	                .addColumns("Topping", "Slices").addRow("Mushrooms", 1)  
-	                .addRow("Onions", 6).build();  
+			generatePieModelEmpty();
 		}
-	}
 
+	}
+	
+	public void generatePieModel(){
+		chartModel = new GChartModelBuilder().setChartType(getChartType())  
+                .addColumns("Topping", "Quantidade").addRow("Recebido", itemCarga.getQuantity())  
+                .addRow("Disponível", itemCarga.getQuantidadeDisp()).build();  
+	}
+	
+	private void generatePieModelEmpty(){
+		chartModel = new GChartModelBuilder().setChartType(getChartType())  
+                .addColumns("Topping", "Slices").addRow("Vazio", 0)  
+                .addRow("Vazio", 0).build();
+	}
+	
+	public String getDateItemcarga(){
+		return new SimpleDateFormat("dd/MM/yyy").format(itemCarga.getDateRegister());
+	}
+	
 	public List<ItemCarga> listItensCargas(){
 		return itemCargaService.findAll();
 	}

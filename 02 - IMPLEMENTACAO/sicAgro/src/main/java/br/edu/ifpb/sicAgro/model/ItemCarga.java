@@ -2,6 +2,7 @@ package br.edu.ifpb.sicAgro.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 
@@ -29,8 +33,9 @@ import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 @Table(name = "itens_carga")
 @NamedQueries({
 		@NamedQuery(name = "itemCarga.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemCarga i GROUP BY i.produto.name, i.produto"),
-		@NamedQuery(name = "itemcarga.getQuantidadeByProduto", query = "SELECT COUNT(i.id) FROM ItemCarga i WHERE i.produto = :produto"),
-		@NamedQuery(name = "itemCarga.getProdutosAndDates", query = "SELECT i.produto, i.carga.receivingDate, i.carga.originLoad.agency FROM ItemCarga i") })
+		@NamedQuery(name = "itemcarga.getQuantidadeByProduto", query = "SELECT COUNT(i.id) FROM ItemCarga i WHERE i.produto = :produto"), 
+		@NamedQuery(name = "itemCarga.getProdutosAndDatesItens", query = "SELECT i.produto, i.dateRegister FROM ItemCarga i")
+})
 public class ItemCarga implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -49,12 +54,22 @@ public class ItemCarga implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private MeasurementType measurementType;
 
+	@NotNull
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "produto_FK")
 	private Produto produto;
+	
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateRegister = new Date();
+	
+	public Date getDateRegister() {
+		return dateRegister;
+	}
 
-	@ManyToOne
-	private Carga carga;
+	public void setDateRegister(Date dateRegister) {
+		this.dateRegister = dateRegister;
+	}
 
 	public Long getId() {
 		return id;
@@ -96,19 +111,11 @@ public class ItemCarga implements Serializable {
 		this.quantidadeDisp = quantidadeDisp;
 	}
 
-	public Carga getCarga() {
-		return carga;
-	}
-
-	public void setCarga(Carga carga) {
-		this.carga = carga;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((carga == null) ? 0 : carga.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((measurementType == null) ? 0 : measurementType.hashCode());
@@ -129,11 +136,6 @@ public class ItemCarga implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemCarga other = (ItemCarga) obj;
-		if (carga == null) {
-			if (other.carga != null)
-				return false;
-		} else if (!carga.equals(other.carga))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

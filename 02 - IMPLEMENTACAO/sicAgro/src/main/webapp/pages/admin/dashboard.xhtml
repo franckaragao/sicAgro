@@ -12,6 +12,7 @@
 		<f:event listener="#{dashBoardBean.preRenderView}" type="preRenderView" />
 		<f:event listener="#{barChartBean.preRenderView}" type="preRenderView" />
 		<f:event listener="#{lineChartBean.preRenderView}" type="preRenderView" />
+		<f:event listener="#{pieChartBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
 	<ui:define name="title">DashBoard</ui:define>
@@ -75,19 +76,17 @@
 			</p:fieldset>
 		</p:panelGrid>
 
+		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
 		<p:panelGrid columns="2" layout="grid"
 				styleClass="ui-panelgrid-blank">
-		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
 			<p:chart type="line" extender="ext"
 				model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
 				style="height:300px;" />
-		</p:fieldset>
-				<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
 			<p:chart type="line" extender="ext"
 				model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
 				style="height:300px;" />
-		</p:fieldset>
 		</p:panelGrid>
+		</p:fieldset>
 		<div class="ui-fluid">
 			<p:panelGrid columns="3" layout="grid"
 				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
@@ -106,6 +105,23 @@
 				</p:fieldset>
 			</p:panelGrid>
 		</div>
+		
+		<p:fieldset styleClass="box box-info">
+			<p:outputLabel value="Quantidade de itens de cargas" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+			<div class="ui-fluid">
+					<p:selectOneMenu id="item" converter="#{itemCargaConverter}"
+					 value="#{pieChartBean.itemCarga}">
+			
+					<f:selectItem noSelectionOption="true" itemLabel="" />
+					<f:selectItems value="#{pieChartBean.listItensCargas()}" var="item" 
+						itemLabel="Recebimento de #{item.produto.name} dia #{pieChartBean.dateItemcarga}" itemValue="#{item}">
+						</f:selectItems>
+					
+					<p:ajax event="itemSelect" listener="#{pieChartBean.generatePieModel}" update="@this gchat_itens"/>
+				</p:selectOneMenu>
+			</div>
+			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" />
+	</p:fieldset>
 
 	<p:fieldset styleClass="box box-success" style="text-align:center;">
 			<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
@@ -121,11 +137,7 @@
                     responsive="true"
 		        	showNavigation="#{timeLineBean.showNavigation}"> 
 			 
-			    <p:ajax event="select" listener="#{timeLineBean.onSelect}" />
 			</p:timeline>
-			</p:fieldset>
-			<p:fieldset>
-				<pe:gChart value="#{pieChartBean.chartModel}"  />
 			</p:fieldset>
 	</h:body>
 </ui:composition>

@@ -59,7 +59,7 @@ public class Carga implements Serializable {
 	@Embedded
 	private OrigemCarga originLoad;
 
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="carga")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ItemCarga> itensCarga;
 
 	public Long getId() {

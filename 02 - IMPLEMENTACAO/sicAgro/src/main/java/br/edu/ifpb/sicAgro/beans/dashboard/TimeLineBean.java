@@ -6,17 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.timeline.TimelineSelectEvent;
 import org.primefaces.model.timeline.TimelineEvent;
 import org.primefaces.model.timeline.TimelineModel;
 
-import br.edu.ifpb.sicAgro.enumerations.Agencys;
 import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 
@@ -55,19 +51,11 @@ public class TimeLineBean implements Serializable{
 			for (Object[] objects : listProdutos) {
 				Produto produto = (Produto) objects[0];
 				Date date = (Date) objects[1];
-				Agencys agency = (Agencys) objects[2];
 				calendar.setTime(date);
-				model.add(new TimelineEvent(produto.getName() +" : "+ agency.toString(), calendar.getTime()));    
+				model.add(new TimelineEvent(produto.getName(), calendar.getTime()));    
 			}
 		}
     }
-   
-    public void onSelect(TimelineSelectEvent e) {  
-        TimelineEvent timelineEvent = e.getTimelineEvent();  
-   
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected event:", timelineEvent.getData().toString());  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }  
    
     public TimelineModel getModel() {  
         return model;  

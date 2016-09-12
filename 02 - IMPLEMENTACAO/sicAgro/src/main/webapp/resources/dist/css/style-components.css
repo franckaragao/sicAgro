@@ -259,3 +259,148 @@ div.timeline-currenttime {
     background-color: #098554;
     width: 2px;
 }
+
+
+/* ------------------ table  ----------------------     */
+/*.ui-sortable-column-icon.ui-icon-carat-2-n-s{   
+    background-image: none !important;
+}*/
+.ui-paginator .ui-paginator-page, 
+.ui-paginator .ui-paginator-next, 
+.ui-paginator .ui-paginator-last, 
+.ui-paginator .ui-paginator-prev, 
+.ui-paginator .ui-paginator-first {
+    border-radius: 0px !important;
+    border: none !important;
+    padding: 2px 8px !important;
+    line-height: 1.5 !important;
+    box-shadow: none !important;  
+    margin-right: 2px !important;
+    background : #f6f6f6 !important;
+    color:  #8f8f8f;
+}
+
+.ui-paginator .ui-paginator-page.ui-state-active{
+
+    background: #8f8f8f !important;
+    color:  #ffffff;
+
+} 
+
+
+.ui-datatable-header .ui-outputpanel{    
+    padding-bottom: 4px !important; 
+    padding-left: 5px !important; 
+}
+
+.ui-datatable-header .ui-outputpanel .btnn{  
+    float:left;
+}
+
+.ui-datatable{
+}
+
+.ui-datatable .ui-widget-content{
+    border: 0px none !important;
+}
+
+
+/*.ui-datatable thead th,*/
+
+.ui-datatable th, .ui-datatable tfoot td {
+    background: #e2e2e0 !important;   
+    background-color: #e7e7e7 !important  
+}
+
+.ui-datatable-header, .ui-paginator{
+    border-left-width: 0px !important;
+    border-right-width: 0px !important;
+    background: none !important;   
+    background-color: none !important;  
+    border-color: #ddd !important;
+}
+
+.ui-datatable-header{
+    border-top-width: 0px !important;
+}
+
+
+.ui-datatable tbody td,
+.ui-datatable tfoot td,
+.ui-datatable thead th{
+
+    border-left-width: 0px !important;
+
+    border-right-width: 0px !important;
+
+    text-align: left !important;
+
+    border-top-color: #ddd !important;
+
+    border-bottom-color: #ddd !important;
+
+    padding: 5px 6px !important;
+
+    border-width: 0px !important;
+}
+
+
+.ui-datatable thead th:first-of-type{   
+    border-left-width: 0px !important;
+}
+
+.ui-datatable thead th:last-of-type{   
+    border-right-width: 0px !important;
+}
+
+
+.datalist > .ui-datatable tbody td:first-of-type{
+
+    border-right-width: 1px !important;
+}
+
+.ui-datatable .ui-column-filter{   
+    display: none !important;
+}
+
+.ui-datatable .ui-datatable-header{   
+    text-align: right !important;
+}
+
+.row-style-grey {
+    color: grey;
+}
+
+.row-style-blue {
+    color: blue;
+}
+
+.no-color{
+    background-color: white;
+}
+
+.ui-corner-top{
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;  
+}
+
+.ui-corner-bottom{
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.tableFoot{
+
+    border-top: 2px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+    background: #eee;
+    font-weight: bold;
+
+    vertical-align: middle;
+}
+
+.ui-row-editing{   
+    background:#f6f6f6 !important; 
+    color: #313131 !important ; 
+    text-shadow :none !important; 
+}

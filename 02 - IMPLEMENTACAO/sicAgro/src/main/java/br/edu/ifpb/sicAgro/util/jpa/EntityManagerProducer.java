@@ -8,15 +8,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@ApplicationScoped
+/**
+ * Classe utilitária para criar e fechar entityManager usando CDI.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 public class EntityManagerProducer {
 
-    private final EntityManagerFactory entityManagerFactory;
-
-    public EntityManagerProducer() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("SicAgroPU");
-    }
-
+	/**
+	 * 
+	 * @return
+	 */
+	@Produces
+	@ApplicationScoped
+	public EntityManagerFactory createEMF() {
+		EntityManagerFactory emf = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("SicAgroPU");
+		} catch (Throwable t) {
+			throw t;
+		}
+		return emf;
+	}
 
     /**
      * 
@@ -24,7 +38,7 @@ public class EntityManagerProducer {
      */
     @Produces
     @RequestScoped
-    public EntityManager create() {
+    public EntityManager createEM(EntityManagerFactory entityManagerFactory) {
         return entityManagerFactory.createEntityManager();
     }
 
@@ -32,7 +46,15 @@ public class EntityManagerProducer {
      * 
      * @param entityManager
      */
-    public void close(@Disposes EntityManager entityManager) {
+    public void closeEM(@Disposes EntityManager entityManager) {
         entityManager.close();
     }
+    
+    /**
+     * 
+     * @param emf
+     */
+	public void closeEMF(@Disposes EntityManagerFactory emf) {
+		emf.close();
+	}
 }

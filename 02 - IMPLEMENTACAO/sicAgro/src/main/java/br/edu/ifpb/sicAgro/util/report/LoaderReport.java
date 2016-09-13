@@ -38,6 +38,13 @@ public class LoaderReport<T> {
 
 	private boolean relatorioGerado;
 
+	/**
+	 * Construtor default.
+	 * 
+	 * @param pathReport caminho do arquivo .jasper a ser preenchido.
+	 * @param list lista de objetos a serem adicionado no relatório.
+	 * @param namefileOut no arquivo de saída.
+	 */
 	public LoaderReport(String pathReport, List<T> list, String namefileOut) {
 		this.list = list;
 		this.namefileOut = namefileOut;
@@ -49,6 +56,12 @@ public class LoaderReport<T> {
 		this.response = (HttpServletResponse) this.context.getExternalContext().getResponse();
 	}
 
+	/**
+	 * Gera um relatório em PDF.
+	 * 
+	 * @param dtaInit
+	 * @param dtaEnd
+	 */
 	public void execute(Date dtaInit, Date dtaEnd) {
 		try {
 			String path = context.getExternalContext().getRealPath("/WEB-INF/reports/logo_pref.png");

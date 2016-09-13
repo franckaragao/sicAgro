@@ -58,14 +58,14 @@
 	</error-page>
 	<error-page>
 		<error-code>403</error-code>
-		<location>/AccessDenied.xhtml</location>
+		<location>/403.xhtml</location>
 	</error-page>
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>sicAgroJdbcRealm</realm-name>
 		<form-login-config>
 			<form-login-page>/pages/login.xhtml</form-login-page>
-			<form-error-page>/pages/login.xhtml</form-error-page>
+			<form-error-page>/pages/loginError.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 

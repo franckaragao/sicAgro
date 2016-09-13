@@ -8,7 +8,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition>
-	<c:if test="${contaBean.typerUserLogged != '4'}">
+	<c:if test="${contaBean.typerUserLogged != '4' and contaBean.typerUserLogged != '2'}">
 		<li class="dropdown messages-menu"><a href="#"
 			class="dropdown-toggle" data-toggle="dropdown"><i
 				class="fa fa-bell"></i> <c:if test="${notificationBean.totalPedidos > '0'}">

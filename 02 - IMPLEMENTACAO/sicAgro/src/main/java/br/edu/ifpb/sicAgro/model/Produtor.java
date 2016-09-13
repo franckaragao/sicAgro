@@ -18,12 +18,13 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 		@NamedQuery(name = "Produtor.findByName", query = "SELECT p FROM Produtor p WHERE LOWER(p.name) LIKE :name"),
 		@NamedQuery(name = "Produtor.findByCPF", query = "SELECT p FROM Produtor p WHERE p.cpf = :cpf"),
+		@NamedQuery(name = "Produtor.findByCod", query = "SELECT p FROM Produtor p WHERE p.cod = :cod"),
 		@NamedQuery(name = "Produtor.getTotalProdutores", query = "SELECT COUNT(p) FROM Produtor p") })
 public class Produtor extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "cod_produtor", nullable = false)
+	@Column(name = "cod_produtor", nullable = false, unique = true)
 	private Integer cod;
 
 	@Column(name = "apelido")

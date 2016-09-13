@@ -2,6 +2,12 @@ package br.edu.ifpb.sicAgro.filter;
 
 import java.util.Date;
 
+/**
+ * Filtro de busca para produtor
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 public class ProdutorFilter {
 
 	private static ProdutorFilter filter;

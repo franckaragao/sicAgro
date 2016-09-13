@@ -24,6 +24,12 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
+/**
+ * Bean responsável por gerenciar a criação e edição de um produtor.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @ViewScoped
 public class ProdutorEditBean implements Serializable {
@@ -43,7 +49,6 @@ public class ProdutorEditBean implements Serializable {
 	private List<CivelState> civelStates = new ArrayList<>();
 
 	private Produtor produtor;
-
 
 	public void preRenderView() {
 		if (produtor == null) {
@@ -76,6 +81,12 @@ public class ProdutorEditBean implements Serializable {
 		JSFUtils.rederTo("produtores.xhtml");
 	}
 	
+	/**
+	 * Cria conta default para produtor.
+	 * 
+	 * @return conta padrão
+	 * @throws SicAgroExceptionHandler
+	 */
 	private Conta createDefaultAcount() throws SicAgroExceptionHandler{
 		Conta conta = new Conta();
 		conta.setUserName(produtor.getCpf());
@@ -91,6 +102,10 @@ public class ProdutorEditBean implements Serializable {
 		return produtor.getId() != null;
 	}
 	
+	/**
+	 * Carrega lista de cidades de acordo com o estado escolhido.
+	 * 
+	 */
 	public void loadCities(){
 		if(produtor.getEndereco().getState() != null)
 			enderecoService.getCities(produtor.getEndereco().getState(), produtor.getEndereco().getState().getCodigo());
@@ -127,5 +142,4 @@ public class ProdutorEditBean implements Serializable {
 	public List<CivelState> getCivelStates() {
 		return civelStates;
 	}
-
 }

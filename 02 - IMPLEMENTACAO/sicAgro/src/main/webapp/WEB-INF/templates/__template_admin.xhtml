@@ -10,8 +10,7 @@
 <h:head>
 	<title><ui:insert name="title">#{msg.appName}</ui:insert></title>
 
-	<link rel="icon" type="image/x-icon"
-		href="http://localhost:8080/sicAgro/resources/images/leaf.png" />
+	<link rel="icon" type="image/x-icon" href="http://localhost:8080/sicAgro/resources/images/leaf.png" />
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css"
@@ -36,7 +35,7 @@
 	<h:form>
 		<div class="wrapper">
 
-			<header class="main-header">
+			<header class="main-header">						
 
 				<nav class="navbar navbar-static-top" role="navigation">
 					<a class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -49,7 +48,7 @@
 							<li class="dropdown user user-menu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">
 								<i class="fa fa-user" aria-hidden="true"></i>
-								<span class="hidden-xs">#{contaBean.userName}
+								<span class="hidden-xs">#{contaBean.conta.userName}
 								</span> <i class="fa fa-caret-down" aria-hidden="true"></i>
 							</a>
 								<ul class="dropdown-menu">
@@ -103,9 +102,10 @@
 							<ui:include src="/WEB-INF/templates/_menu_produtor.xhtml" />
 						</c:if>
 
-						<li><a href="#{request.contextPath}/pages/help.xhtml"><i
-								class="fa fa-question-circle" aria-hidden="true"></i> <span>Ajuda</span></a></li>
-
+						<li><p:link outcome="/pages/help.xhtml">
+								<i class="fa fa-question-circle" aria-hidden="true"></i> <span>Ajuda</span>
+							</p:link>
+						</li>
 					</ul>
 				</section>
 			</aside>

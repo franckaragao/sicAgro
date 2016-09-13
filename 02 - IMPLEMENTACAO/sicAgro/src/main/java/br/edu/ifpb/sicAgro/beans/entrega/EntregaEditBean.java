@@ -80,7 +80,6 @@ public class EntregaEditBean implements Serializable {
 
 	public void listItensCargas() {
 		itemCargas = itemCargaService.findAll();
-		System.out.println(itemCargas);
 	}
 
 	public List<Produtor> listProdutores(String query){
@@ -88,7 +87,6 @@ public class EntregaEditBean implements Serializable {
 	}
 	
 	public void updateItemEntrega(){
-		System.out.println(itemCarga);
 		this.itemEntrega.setMeasurementType(itemCarga.getMeasurementType());
 		this.itemEntrega.setProduto(itemCarga.getProduto());
 		

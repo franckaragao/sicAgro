@@ -16,6 +16,13 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
+/**
+ * Classe de serviço responsável por implemtar operações especificas
+ * de um produtor.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> implements ProdutorService{
 
 	
@@ -33,11 +40,21 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 	public ProdutorServiceImpl() {
 	}
 
+	/**
+	 * Construtor responsávelpor ejetar o dao de produtor no dao generico do service
+	 * generico.
+	 * 
+	 * @param produtorDAO
+	 */
 	@Inject
 	public ProdutorServiceImpl(ProdutorDAO produtorDAO) {
 		this.dao = produtorDAO;
 	}
 	
+	/**
+	 * salva um produtor considerando restrições de atributos.
+	 * 
+	 */
 	@Override
 	@Transactional
 	public void add(Produtor entity) throws SicAgroExceptionHandler {
@@ -48,9 +65,18 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 		if(conta != null){
 			throw new SicAgroExceptionHandler("Já existe um usuário cadastrado com este CPF: "+ entity.getCpf());
 		}
+		Produtor produtor = finByCod(entity.getCod());
+		if(produtor != null){
+			throw new SicAgroExceptionHandler("Já existe um produtor cadastrado com este código: "+ entity.getCod());
+		}
 		dao.add(entity);
 	}
 	
+	/**
+	 * Remove um produtor considerando as suas restrições 
+	 * de remoção.
+	 * 
+	 */
 	@Override
 	@Transactional
 	public void remove(Produtor entity) throws SicAgroException {
@@ -63,33 +89,90 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor, Long> impl
 		dao.remove(entity);
 	}
 	
+	/**
+	 * Filtro com diversos atributos.
+	 * 
+	 */
 	@Override
 	public List<Produtor> filter(ProdutorFilter filter) {
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
 		return produtorDAO.filter(filter);
 	}
 	
+	/**
+	 * Verifica se CPF existe.
+	 * 
+	 * @param cpf
+	 * @return
+	 */
 	private boolean isCPFExists(String cpf){
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
-		return produtorDAO.isCPFExists(cpf);
+		boolean result = false;
+		try {
+			result = produtorDAO.isCPFExists(cpf);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
+	/**
+	 * Consulta a quantidade de produtores.
+	 */
 	@Override
 	public Long getTotalProdutores() {
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
-		return produtorDAO.getTotalProdutores();
+		Long result = 0l;
+		try {
+			result = produtorDAO.getTotalProdutores();
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
+	/**
+	 * Consulta produtor pelo CPF.
+	 */
 	@Override
 	public Produtor findByCPF(String cpf) {
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
-		return produtorDAO.findByCPF(cpf);
+		Produtor result = null;
+		try {
+			result = produtorDAO.findByCPF(cpf);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
+	/**
+	 * Consulta produtor pelo nome.
+	 */
 	@Override
 	public List<Produtor> findByName(String name) {
 		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
-		return produtorDAO.findByName(name);
+		List<Produtor> results = null;
+		try {
+			results = produtorDAO.findByName(name);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return results;
 	}
 
+	/**
+	 * Consulta um produtor pelo código.
+	 */
+	@Override
+	public Produtor finByCod(Integer cod) {
+		ProdutorDAO produtorDAO = (ProdutorDAO) this.dao;
+		Produtor result = null;
+		try {
+			result = produtorDAO.findByCod(cod);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

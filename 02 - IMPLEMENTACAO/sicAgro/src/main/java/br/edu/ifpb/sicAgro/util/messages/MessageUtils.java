@@ -11,7 +11,7 @@ import br.edu.ifpb.sicAgro.enumerations.MessagesType;
 
 /**
  * 
- * @author franck
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
 public class MessageUtils implements Serializable{

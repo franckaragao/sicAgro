@@ -8,8 +8,10 @@
 
 <ui:composition>
 	<li class="header">MÓDULO DO MOTORISTA</li>
-		<li><a href="#{request.contextPath}/pages/admin/solicitacao/solicitacoes.xhtml"><i class="fa fa-cogs" aria-hidden="true"></i> <span>Solicitações</span>
-				<span class="badge pull-right" >#{solicitacaoServicoBean.countSolicitationsByFuncionario}</span></a>
+		<li><p:link outcome="/pages/admin/solicitacao/solicitacoes.xhtml">
+				<i class="fa fa-cogs" aria-hidden="true"></i> <span>Solicitações</span>
+				<span class="badge pull-right" >#{solicitacaoServicoBean.countSolicitationsByFuncionario}</span>
+			</p:link>
 		</li>
 </ui:composition>
 </html>

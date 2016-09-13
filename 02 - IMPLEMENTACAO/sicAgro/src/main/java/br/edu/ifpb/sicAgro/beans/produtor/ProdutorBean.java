@@ -15,6 +15,12 @@ import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
+/**
+ * Bean responsável por gerenciar listagem de produtores.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @RequestScoped
 public class ProdutorBean implements Serializable {
@@ -38,30 +44,30 @@ public class ProdutorBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		this.listOfProdutores();
+		this.filter();
 	}
 
+	/*
+	 * 
+	 */
 	public void remove() throws SicAgroException {
 		produtorService.remove(selectedProdutor);
 		MessageUtils.messageSucess("Produtor removido com sucesso.");
 		JSFUtils.rederTo("produtores.xhtml");
 	}
 
+	/**
+	 * 
+	 */
 	public void renderTo() {
 		JSFUtils.rederTo("produtorView.xhtml");
 		JSFUtils.setParam("produtorToDetail", selectedProdutor);
 	}
 
-	public void listOfProdutores() {
-		this.produtores = produtorService.findAll();
-	}
-
+	/**
+	 * 
+	 */
 	public void filter() {
-		try {
-			Integer code = Integer.parseInt(filter.getName());
-			filter.setCod(code);
-		} catch (NumberFormatException e) {
-		}
 		produtores = produtorService.filter(filter);
 	}
 	

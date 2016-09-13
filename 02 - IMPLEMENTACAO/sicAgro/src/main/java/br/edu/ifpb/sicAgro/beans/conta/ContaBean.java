@@ -11,7 +11,6 @@ import br.edu.ifpb.sicAgro.model.Conta;
 import br.edu.ifpb.sicAgro.model.Pessoa;
 import br.edu.ifpb.sicAgro.util.userSession.UserLastAccess;
 import br.edu.ifpb.sicAgro.util.userSession.UserLogged;
-import br.edu.ifpb.sicAgro.util.userSession.UserNameSession;
 
 /**
  * Bean responsável por gerenciar informações da conta do usuário logado
@@ -33,24 +32,28 @@ public class ContaBean implements Serializable {
 	@UserLastAccess
 	private String lastAccess;
 
-	@Inject
-	@UserNameSession
-	private String userName;
-	
 	public String getLastAccess() {
 		return lastAccess;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
+	/**
+	 * Retorna qual tipo de pessoa está online
+	 * (Produtor/Funcionário).
+	 * 
+	 * @return
+	 */
 	public Pessoa getUsuario() {
 		if(conta.getUserRole().equals(UserRole.PRODUTOR))
 			return conta.getProdutor();
 		return conta.getFuncionario();
 	}
 	
+	/**
+	 * Método verifica e retorna qual tipo (função) de usuário
+	 * está online.
+	 * 
+	 * @return
+	 */
 	public Integer getTyperUserLogged(){
 		
 		switch (conta.getUserRole()) {

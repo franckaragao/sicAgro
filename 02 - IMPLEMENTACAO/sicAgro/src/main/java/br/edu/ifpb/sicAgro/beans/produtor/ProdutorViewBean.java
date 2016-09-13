@@ -34,5 +34,4 @@ public class ProdutorViewBean implements Serializable {
 	public void setProdutor(Produtor produtor) {
 		this.produtor = produtor;
 	}
-
 }

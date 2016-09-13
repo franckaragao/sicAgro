@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.VeiculoDAO;
-import br.edu.ifpb.sicAgro.filter.VeiculoFilter;
 import br.edu.ifpb.sicAgro.model.Veiculo;
 import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
@@ -33,11 +32,5 @@ public class VeiculoServiceImpl extends GenericServiceImpl<Veiculo, Long> implem
 	public void setHorimetroVeiculo(Veiculo veiculo, Integer timesWorked) {
 		veiculo.setHorimetro(veiculo.getHorimetro() + timesWorked);
 		this.update(veiculo);
-	}
-
-	@Override
-	public List<Veiculo> filter(VeiculoFilter filter) {
-		VeiculoDAO veiculoDAO = (VeiculoDAO) this.dao;
-		return veiculoDAO.filter(filter);
 	}
 }

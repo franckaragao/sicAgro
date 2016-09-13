@@ -65,8 +65,8 @@ public class JSFExceptionHandler extends ExceptionHandlerWrapper {
 					MessageUtils.messageError(sicAgroException.getMessage());
 					
 				} else {
-//					handled = true;
-// 					redirect("/500.xhtml");
+					handled = true;
+ 					redirect("/500.xhtml");
 				}
 			} finally {
 				if (handled) {

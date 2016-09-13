@@ -63,8 +63,12 @@ public class UserSession implements Serializable{
 		}
 	}
 
-	@Produces
-	@UserNameSession
+	/**
+	 * Recupera do contexto do JSF o nome de usuário que
+	 * está inline.
+	 * 
+	 * @return
+	 */
 	public String recoverUserNameSession() {
 		Principal principal = FacesContext.getCurrentInstance()
 				.getExternalContext().getUserPrincipal();
@@ -72,6 +76,10 @@ public class UserSession implements Serializable{
 		return principal != null ? principal.getName() : "";
 	}
 
+	/**
+	 * Método utilizado para produxir o último acesso do usuário. 
+	 * 
+	 */
 	@Produces
 	@UserLastAccess
 	public String getLastAccess() {
@@ -88,6 +96,10 @@ public class UserSession implements Serializable{
 		return lastAccess;
 	}
 
+	/**
+	 * Método responsável por atualizar último 
+	 * acesso de um usuário no Banco de dados.
+	 */
 	private void updateLastAccess() {
 		conta.setLastAcess(new Date());
 		if (conta.getUserRole().equals(UserRole.PRODUTOR)) {

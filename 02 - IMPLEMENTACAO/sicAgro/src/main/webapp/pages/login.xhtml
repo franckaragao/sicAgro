@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/dist/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/dist/css/style-components.css" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/pace/pace.min.css" />
 	<link rel="icon" type="image/x-icon" href="http://localhost:8080/sicAgro/resources/images/leaf.png" />
 
 	<title><ui:insert name="title">SicAgro - Login</ui:insert></title>
@@ -86,6 +87,8 @@
 		</div>
 	</h:form>
 	<ui:include src="/WEB-INF/templates/_loaderAjax.xhtml" />
-
+	
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/pace/pace.min.js"></script>
 </h:body>
 </html>

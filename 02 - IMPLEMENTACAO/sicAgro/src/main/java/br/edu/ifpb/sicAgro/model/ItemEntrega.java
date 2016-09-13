@@ -32,7 +32,8 @@ import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 @Table(name = "itens_entrega")
 @NamedQueries({
 		@NamedQuery(name = "itemEntrega.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemEntrega i GROUP BY i.produto.name, i.produto"),
-		@NamedQuery(name = "itemEntrega.findByProduto", query = "SELECT i FROM ItemEntrega i WHERE i.produto = :produto")
+		@NamedQuery(name = "itemEntrega.findByProduto", query = "SELECT i FROM ItemEntrega i WHERE i.produto = :produto"),
+		@NamedQuery(name = "itemEntrega.findByTipoProduto", query = "SELECT COUNT(i.id) FROM ItemEntrega i WHERE i.produto.produtoType = :type")
 })
 public class ItemEntrega implements Serializable {
 

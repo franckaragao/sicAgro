@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.edu.ifpb.sicAgro.dao.ItemEntregaDAO;
+import br.edu.ifpb.sicAgro.enumerations.ProdutoType;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.model.ItemEntrega;
 import br.edu.ifpb.sicAgro.model.Produto;
@@ -48,5 +49,17 @@ public class ItemEntregaServiceImpl extends GenericServiceImpl<ItemEntrega, Long
 	public List<ItemEntrega> findByProduto(Produto produto) {
 		ItemEntregaDAO itemDao = (ItemEntregaDAO) this.dao;
 		return itemDao.findByProduto(produto);
+	}
+
+	@Override
+	public Long findCountByTipoProduto(ProdutoType type) {
+		ItemEntregaDAO itemDao = (ItemEntregaDAO) this.dao;
+		Long result = 0l;;
+		try {
+			result = itemDao.findCountByTipoProduto(type);
+		} catch (SicAgroException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

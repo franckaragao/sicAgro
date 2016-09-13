@@ -13,8 +13,8 @@
 		<f:event listener="#{funcionarioViewBean.preRenderView()}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">#{msg.produtoDetail}</ui:define>
-	<ui:define name="content-header">#{msg.produtoDetail} <small>#{msg.sub_header_produtoDetail}</small></ui:define>
+	<ui:define name="title">Detalhes funcionário</ui:define>
+	<ui:define name="content-header">Detalhes funcionário<small>Gerenciar informações do funcionário</small></ui:define>
 	<ui:define name="breadcrumb-active">#{msg.produtoDetail}</ui:define>
 	
 
@@ -50,7 +50,7 @@
 					<p:outputLabel value="#{funcionarioViewBean.funcionario.name} / #{funcionarioViewBean.funcionario.acount.userName}" styleClass="text-detail" />
 				</h2>
 				
-				<div class="panel panel-success">
+				<div class="panel panel-default">
 				 <div class="panel-heading"><strong>Informações Gerais</strong></div>		
 				 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank"  columnClasses="ui-grid-col-2">
 						
@@ -76,7 +76,7 @@
 					</p:panelGrid>
 				</div>
 				
-				<div class="panel panel-success">
+				<div class="panel panel-default">
 					 <div class="panel-heading"><strong>Informações de acesso</strong></div>		
 					 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Nome de usuário:"  />
@@ -95,7 +95,7 @@
 						</p:panelGrid>
 					</div>
 
-				<div class="panel panel-success">
+				<div class="panel panel-default">
 					 <div class="panel-heading"><strong>Informações de Endereço</strong></div>		
 					 	<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
 							<h:outputText value="Endereço:"  />

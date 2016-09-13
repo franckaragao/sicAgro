@@ -75,20 +75,20 @@
 					value="Número de cargas recebidas até hoje" />
 			</p:fieldset>
 		</p:panelGrid>
-
-		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-		<p:panelGrid columns="2" layout="grid"
-				styleClass="ui-panelgrid-blank">
-			<p:chart type="line" extender="ext"
-				model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
-				style="height:300px;" />
-			<p:chart type="line" extender="ext"
-				model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
-				style="height:300px;" />
+		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+				<p:chart type="line" extender="ext"
+					model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
+					style="height:300px;" />
+			</p:fieldset>
+			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+				<p:chart type="line" extender="ext"
+					model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
+					style="height:300px;" />
+			</p:fieldset>
 		</p:panelGrid>
-		</p:fieldset>
-
-		<p:fieldset styleClass="box box-info">
+		<p:panelGrid columns="2"  layout="grid" styleClass="ui-panelgrid-blank">
+		<p:fieldset styleClass="box box-info" style="text-align:center;">
 			<p:outputLabel value="Quantidade de itens de cargas" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
 			<div class="ui-fluid">
 					<p:selectOneMenu id="item" converter="#{itemCargaConverter}"
@@ -103,43 +103,51 @@
 				</p:selectOneMenu>
 			</div>
 			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" height="250" />
-	</p:fieldset>		
+		</p:fieldset>
+		<p:fieldset styleClass="box box-info" style="text-align:center;">
+			<p:outputLabel value="Percentual de solicitações por máquina" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+			<pe:gChart id="gchat_pie_solicitacao" value="#{pieChartBean.pieModel}" height="300"  />
+		</p:fieldset>
+	</p:panelGrid>	
 
 		<div class="ui-fluid">
-			<p:panelGrid columns="3" layout="grid"
-				styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4">
-				<p:fieldset styleClass="box box-info" rendered="#{pieChartBean.renderedPieSolicitacaoes}">
-					<p:chart type="pie" extender="ext"
-						model="#{pieChartBean.pieChartModel}" style="height:300px"  responsive="true"/>
-				</p:fieldset>
-				<p:fieldset styleClass="box box-danger" rendered="#{barChartBean.renderedBarModelEntrega}">
-					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantEntregas}" style="height:300px" responsive="true"/>
-				</p:fieldset>
-				<p:fieldset styleClass="box box-warning" rendered="#{barChartBean.renderedBarModelCarga}">
-					<p:chart type="bar" extender="ext"
-						model="#{barChartBean.barModelQuantCargas}"
-						style="height:300px" responsive="true"/>
+			<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+				
+				<p:fieldset styleClass="box box-danger" style="text-align:center;" rendered="#{barChartBean.renderedBarModelEntrega}">
+					<p:outputLabel value="Total de entregas registradas por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+					<pe:gChart id="gchat_quant_entrega" value="#{barChartBean.barModelQuantEntregas}" height="300" />
+				</p:fieldset> 
+				
+				<p:fieldset styleClass="box box-warning" style="text-align:center;" rendered="#{barChartBean.renderedBarModelCarga}">
+					<p:outputLabel value="Total de cargas recebidas por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+					<pe:gChart id="gchat_quant_carga" value="#{barChartBean.barModelQuantCargas}" height="300" />
 				</p:fieldset>
 			</p:panelGrid>
 		</div>
-		
-	<p:fieldset styleClass="box box-success" style="text-align:center;">
-			<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
-			<p:timeline id="timeline" value="#{timeLineBean.model}" height="300px"
-			        selectable="#{timeLineBean.selectable}" 
-			        zoomable="#{timeLineBean.zoomable}" 
-			        moveable="#{timeLineBean.moveable}" 
-			        stackEvents="#{timeLineBean.stackEvents}" 
-			        axisOnTop="#{timeLineBean.axisOnTop}"              
-			        eventStyle="#{timeLineBean.eventStyle}" 
-			        showCurrentTime="#{timeLineBean.showCurrentTime}" 
-                    locale="pt_BR"
-                    responsive="true"
-		        	showNavigation="#{timeLineBean.showNavigation}"> 
-			 
-			</p:timeline>
+
+		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+			<p:fieldset styleClass="box box-success" style="text-align:center;">
+				<p:outputLabel value="Número de entregas por Tipo de Benefício" style="color:#666"/>
+				<pe:gChart id="gchat_itens_type" value="#{pieChartBean.columnModel}" height="288" />
 			</p:fieldset>
+				
+			<p:fieldset styleClass="box box-success" style="text-align:center;">
+					<p:outputLabel value="Linha do tempo de recebimentos" style="color:#666"/>
+					<p:timeline id="timeline" value="#{timeLineBean.model}" height="300px"
+					        selectable="#{timeLineBean.selectable}" 
+					        zoomable="#{timeLineBean.zoomable}" 
+					        moveable="#{timeLineBean.moveable}" 
+					        stackEvents="#{timeLineBean.stackEvents}" 
+					        axisOnTop="#{timeLineBean.axisOnTop}"              
+					        eventStyle="#{timeLineBean.eventStyle}" 
+					        showCurrentTime="#{timeLineBean.showCurrentTime}" 
+		                    locale="pt_BR"
+		                    responsive="true"
+				        	showNavigation="#{timeLineBean.showNavigation}"> 
+					 
+					</p:timeline>
+			</p:fieldset>
+		</p:panelGrid>
 	</h:body>
 </ui:composition>
 </html>

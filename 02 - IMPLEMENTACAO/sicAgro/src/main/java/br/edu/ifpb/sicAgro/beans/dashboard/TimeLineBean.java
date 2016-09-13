@@ -16,6 +16,11 @@ import org.primefaces.model.timeline.TimelineModel;
 import br.edu.ifpb.sicAgro.model.Produto;
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 
+/**
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @ViewScoped
 public class TimeLineBean implements Serializable{
@@ -33,7 +38,7 @@ public class TimeLineBean implements Serializable{
     private boolean stackEvents = true;  
     private String eventStyle = "box";  
     private boolean axisOnTop;  
-    private boolean showCurrentTime = true;  
+    private boolean showCurrentTime = false;  
     private boolean showNavigation = true;  
    
     @PostConstruct 
@@ -44,6 +49,9 @@ public class TimeLineBean implements Serializable{
    
     }  
     
+    /**
+     * 
+     */
     private void generateTimeLine(){
 		List<Object[]> listProdutos = itemCargaService.getProdutosAndDates();
 		Calendar calendar = Calendar.getInstance();

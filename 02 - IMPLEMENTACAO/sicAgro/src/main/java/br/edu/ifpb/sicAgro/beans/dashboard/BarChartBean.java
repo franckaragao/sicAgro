@@ -7,10 +7,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.extensions.component.gchart.model.GChartModel;
+import org.primefaces.extensions.component.gchart.model.GChartModelBuilder;
+import org.primefaces.extensions.component.gchart.model.GChartType;
 
 import br.edu.ifpb.sicAgro.services.ItemCargaService;
 import br.edu.ifpb.sicAgro.services.ItemEntregaService;
@@ -34,21 +33,19 @@ public class BarChartBean implements Serializable {
 	@Inject
 	private ItemCargaService itemCargaService;
 
-	private BarChartModel barModelQuantEntregas;
+	private GChartModel barModelQuantEntregas;
 
-	private BarChartModel barModelQuantCargas;
-
-	private BarChartModel barChartModelTotalSolicitacoes;
+	private GChartModel barModelQuantCargas;
 
 	public void preRenderView() {
-		createBarModelEntregas();
-		createBarModelCargas();
+		initBarModelEntrega();
+		initBarModelCarga();
 	}
 
-	private BarChartModel initBarModelEntrega() {
-		BarChartModel model = new BarChartModel();
-		ChartSeries produtos = new ChartSeries();
-		produtos.setLabel("Produto");
+	private void initBarModelEntrega() {
+		GChartModelBuilder gChartColumn = new GChartModelBuilder();
+		gChartColumn.addColumns("Topping", "Produto");
+		gChartColumn.setChartType(GChartType.COLUMN);
 
 		List<Object[]> listProdutos = itemEntregaService.getTotalPorProduto();
 
@@ -56,102 +53,50 @@ public class BarChartBean implements Serializable {
 			for (Object[] objects : listProdutos) {
 				String name = (String) objects[0];
 				Long quantidade = (Long) objects[1];
-				produtos.set(name, quantidade);
+				gChartColumn.addRow(name, quantidade);
 			}
 		}
-		model.addSeries(produtos);
-
-		return model;
+		barModelQuantEntregas = gChartColumn.build();
 	}
 	
 	public boolean isRenderedBarModelEntrega(){
 		return itemEntregaService.getTotalPorProduto().size() > 0;
 	}
 
-	private BarChartModel initBarModelCarga() {
-		BarChartModel model = new BarChartModel();
-		ChartSeries produtos = new ChartSeries();
-		produtos.setLabel("Produto");
-
+	private void initBarModelCarga() {
+		GChartModelBuilder gChartColumn = new GChartModelBuilder();
+		gChartColumn.addColumns("Topping", "Produto");
+		gChartColumn.setChartType(GChartType.COLUMN);
+		
 		List<Object[]> listProdutos = itemCargaService.getTotalPorProduto();
 
 		if (listProdutos != null) {
 			for (Object[] objects : listProdutos) {
 				String name = (String) objects[0];
 				Long quantidade = (Long) objects[1];
-				produtos.set(name, quantidade);
+				gChartColumn.addRow(name,quantidade);
 			}
 		}
-		model.addSeries(produtos);
-
-		return model;
+		barModelQuantCargas = gChartColumn.build();
 	}
 	
 	public boolean isRenderedBarModelCarga(){
 		return itemCargaService.getTotalPorProduto().size() > 0;
 	}
 
-	private void createBarModelEntregas() {
-		barModelQuantEntregas = initBarModelEntrega();
-
-		barModelQuantEntregas
-				.setTitle("Quantidade de Entregas Feitas por produto");
-		barModelQuantEntregas.setLegendPosition("nw");
-		barModelQuantEntregas.setAnimate(true);
-		barModelQuantEntregas.setZoom(true);
-		barModelQuantEntregas.setSeriesColors("dd4b39");
-
-		Axis xAxis = barModelQuantEntregas.getAxis(AxisType.X);
-		xAxis.setLabel("Produto");
-		xAxis.setTickAngle(-50);
-
-		Axis yAxis = barModelQuantEntregas.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade");
-		yAxis.setMin(0);
-
-	}
-
-	private void createBarModelCargas() {
-		barModelQuantCargas = initBarModelCarga();
-
-		barModelQuantCargas.setTitle("Quantidade de Recebimentos por produto");
-		barModelQuantCargas.setLegendPosition("nw");
-		barModelQuantCargas.setAnimate(true);
-		barModelQuantCargas.setZoom(true);
-		barModelQuantCargas.setSeriesColors("00c0ef");
-
-		Axis xAxis = barModelQuantCargas.getAxis(AxisType.X);
-		xAxis.setLabel("Produto");
-		xAxis.setTickAngle(-50);
-
-		Axis yAxis = barModelQuantCargas.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade");
-		yAxis.setMin(0);
-
-	}
-
-	public BarChartModel getBarModelQuantEntregas() {
+	public GChartModel getBarModelQuantEntregas() {
 		return barModelQuantEntregas;
 	}
 
-	public void setBarModelQuantEntregas(BarChartModel barModelQuantEntregas) {
+	public void setBarModelQuantEntregas(GChartModel barModelQuantEntregas) {
 		this.barModelQuantEntregas = barModelQuantEntregas;
 	}
 
-	public BarChartModel getBarChartModelTotalSolicitacoes() {
-		return barChartModelTotalSolicitacoes;
-	}
-
-	public void setBarChartModelTotalSolicitacoes(
-			BarChartModel barChartModelTotalSolicitacoes) {
-		this.barChartModelTotalSolicitacoes = barChartModelTotalSolicitacoes;
-	}
-
-	public BarChartModel getBarModelQuantCargas() {
+	public GChartModel getBarModelQuantCargas() {
 		return barModelQuantCargas;
 	}
 
-	public void setBarModelQuantCargas(BarChartModel barModelQuantCargas) {
+	public void setBarModelQuantCargas(GChartModel barModelQuantCargas) {
 		this.barModelQuantCargas = barModelQuantCargas;
 	}
 

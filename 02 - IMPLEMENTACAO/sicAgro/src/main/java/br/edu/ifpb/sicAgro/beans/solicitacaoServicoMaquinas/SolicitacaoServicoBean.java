@@ -22,6 +22,13 @@ import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.userSession.UserLogged;
 
+/**
+ * manager bean responsável por gerenciar listagem e filtro 
+ * de uma solicitação.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @RequestScoped
 public class SolicitacaoServicoBean implements Serializable {
@@ -48,6 +55,9 @@ public class SolicitacaoServicoBean implements Serializable {
 
 	private SolicitacaoFilter filter = SolicitacaoFilter.getInstance();
 
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 		this.listSolicitacoes();
@@ -57,11 +67,24 @@ public class SolicitacaoServicoBean implements Serializable {
 		statusList.add(SolicitationState.PROGRESS);
 	}
 
+	/**
+	 * <pre>
+	 * Utilizado como solução pra conseguir passar um paramtro apartir do 
+	 * manager bean, devido a forma que a linha da datatable é selecionada,
+	 * desta forma sem usar um componente que tenha um outcome, tem-se a necessidade
+	 * de fazer o manager bean redireiconar para outra página, diante isso o parametro
+	 * deve ser passado do manager bean.
+	 * </pre>
+	 */
 	public void renderTo() {
 		JSFUtils.rederTo("solicitacaoView.xhtml");
 		JSFUtils.setParam("solicitacao", selectedSolicitacao);
 	}
 
+	/**
+	 * Metódo  necessário devido que, mais de um papel acessa a lista de 
+	 * solicitações, com acessos de dados diferentes.
+	 */
 	public void listSolicitacoes() {
 		if (isUserLoggedIsDriver()) {
 			this.solicitacoes = service.getSolicitacoesByFuncionario(conta.getFuncionario());
@@ -70,6 +93,9 @@ public class SolicitacaoServicoBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Filtro de busca.
+	 */
 	public void filter() {
 		if (isUserLoggedIsDriver()) {
 			solicitacoes = service.filter(filter);
@@ -78,31 +104,63 @@ public class SolicitacaoServicoBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Atualiza os estatus das solicitações antes de exibir para 
+	 * o usuário, já que uma solicitações pode mudar de status diante da data.
+	 * 
+	 */
 	public void updateStates() {
 		for (SolicitacaoServico solicitacaoServico : solicitacoes) {
 			service.update(solicitacaoServico);
 		}
 	}
 
+	/**
+	 * Verifica se o usuário online é um motorista.
+	 * 
+	 * @return
+	 */
 	public boolean isUserLoggedIsDriver() {
 		if (conta.getUserRole().equals(UserRole.DRIVER))
 			return true;
 		return false;
 	}
 
+	/**
+	 * recupera os veiculos, utilizado no filtro de solicitação.
+	 * 
+	 * @return
+	 */
 	public List<Veiculo> getVeiculos() {
 		return veiculoService.findAll();
 	}
 
+	/**
+	 * recupera os fucionários, é utilizado no filtro de solicitações.
+	 * 
+	 * @return
+	 */
 	public List<Funcionario> getFuncionarios() {
 		return funcionarioService.findAll();
 	}
 	
+	/**
+	 * Retorna a quantidade de solicitações abertas para um funcionário.
+	 * 
+	 * @return
+	 */
 	public Long getCountSolicitationsByFuncionario(){
 		Long n = service.getCountSolicitationsByFuncionarioAndStatus(conta.getFuncionario(), SolicitationState.PROGRESS);
 		return n;
 	}
 	
+	/**
+	 * Verifica qual label deve ser utilizada na lista de solicitações.
+	 * è exibido de acordo com o status da solicitação.
+	 *  
+	 * @param state
+	 * @return
+	 */
 	public String updateLabelStatus(SolicitationState state) {
 		if (state.equals(SolicitationState.COMPLETED)) {
 			return SolicitationState.LB_COMPLETED.getDescription();

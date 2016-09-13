@@ -11,7 +11,7 @@ import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 
 /**
- * 
+ * Interface que define operações específicas de uma solicitação de serviço.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -19,6 +19,8 @@ import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 public interface SolicitacaoServicoService extends Service<SolicitacaoServico, Long>{
 	
 	/**
+	 * Obtém quantidade e data de solicitações em um intervalo de 
+	 * tempo.
 	 * 
 	 * @param nDays
 	 * @param state
@@ -27,7 +29,8 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 	Map<Date, Integer> getSolicitacoesPorPeriodo(Integer nDays, SolicitationState state);
 	
 	/**
-	 * 
+	 * Consulta a quantidade total de solicitações.
+	 *  
 	 * @return
 	 */
 	Long getTotalSolicitations();
@@ -49,6 +52,7 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 	List<SolicitacaoServico> filter(SolicitacaoFilter filter);
 	
 	/**
+	 * Obtém as solicitações de um determinado funcionario e por um status.
 	 * 
 	 * @param funcionario
 	 * @param status
@@ -75,5 +79,4 @@ public interface SolicitacaoServicoService extends Service<SolicitacaoServico, L
 	 * @return
 	 */
 	Long getCountSolicitacoesByProdutor(Produtor produtor);
-	
 }

@@ -16,6 +16,12 @@ import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 import br.edu.ifpb.sicAgro.services.SolicitacaoServicoService;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
 
+/**
+ * Implementa todas as operações definidas na interface @SolicitacaoServicoService.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<SolicitacaoServico, Long> implements SolicitacaoServicoService {
 
 	private static final long serialVersionUID = 1L;
@@ -28,6 +34,9 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 		this.dao = dao;
 	}
 
+	/**
+	 * Salva uma solicitação, considerando seu status.
+	 */
 	@Override
 	@Transactional
 	public void add(SolicitacaoServico entity) {
@@ -37,7 +46,7 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 	}
 
 	/**
-	 * 
+	 * Atualiza uma solicitação, considerando seus status.
 	 */
 	@Override
 	@Transactional
@@ -115,6 +124,9 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Long getCountSolicitacoesByFuncionario(Funcionario funcionario) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;
@@ -126,7 +138,7 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 		}
 		return result;
 	}
-
+	
 	@Override
 	public Long getCountSolicitacoesByProdutor(Produtor produtor) {
 		SolicitacaoServicoDAO solicitacaoServicoDAO = (SolicitacaoServicoDAO) this.dao;

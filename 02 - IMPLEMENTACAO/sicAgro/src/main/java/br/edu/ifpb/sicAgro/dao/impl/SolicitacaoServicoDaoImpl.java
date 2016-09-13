@@ -32,22 +32,16 @@ import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
-public class SolicitacaoServicoDaoImpl extends
-		GenericDaoImpl<SolicitacaoServico, Long> implements SolicitacaoServicoDAO {
+public class SolicitacaoServicoDaoImpl extends GenericDaoImpl<SolicitacaoServico, Long> implements SolicitacaoServicoDAO {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Método busca todas as solicitações de um veículo especifico em um
-	 * intervalo de datas passados por parametro.
+	 * Método busca todas as solicitações por um filtro personalizado.
 	 * 
 	 * Método implementado utilizando a API Criteria do JPA, devido a haver 
 	 * uns filtros na consulta.
 	 * 
-	 * @param veiculo - veiculo a ser filtrado
-	 * @param dateInit - data de inicio que farar parte da date de inicio do "between".
-	 * @param dateEnd - data fim quefarar farar parte da data fim do "between".
-	 * @param state - estado da solicitação, caso o usuário deseje filtrar por estado
 	 * @return lista de solicitações encontradas no BD
 	 */
 	public List<SolicitacaoServico> filter(SolicitacaoFilter filter) {
@@ -80,6 +74,9 @@ public class SolicitacaoServicoDaoImpl extends
 	    return entityManager.createQuery(query).getResultList();
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public List<SolicitacaoServico> getSolicitacoesByFuncionario(Funcionario funcionario) {
 		TypedQuery<SolicitacaoServico> query = entityManager.createNamedQuery("solicitacaoServico.findByFuncionario", SolicitacaoServico.class);
@@ -89,12 +86,18 @@ public class SolicitacaoServicoDaoImpl extends
 		
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Long getTotalSolicitations() {
 		Query query = entityManager.createNamedQuery("solicitacaoServico.getTotalSolicitations");
 		return (Long) query.getSingleResult();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public List<SolicitacaoServico> getSolicitationByDate(Date date) {
 
@@ -105,6 +108,9 @@ public class SolicitacaoServicoDaoImpl extends
 		return query.getResultList();
 	}
 
+	/**
+	 * 
+	 */
 	public List<SolicitacaoServico> getSolicitationByDateCompleted(Date date, Boolean completed) {
 
 		TypedQuery<SolicitacaoServico> query = entityManager.createNamedQuery(
@@ -116,6 +122,13 @@ public class SolicitacaoServicoDaoImpl extends
 		return query.getResultList();
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @param completed
+	 * @param dateForRealization
+	 * @return
+	 */
 	private Integer getCountSolicitationByDateNotCompleted(Date date, Boolean completed, Date dateForRealization) {
 
 		Query query = entityManager.createNamedQuery("solicitacaoServico.getCountSolicitationByDateNotCompleted");
@@ -126,6 +139,13 @@ public class SolicitacaoServicoDaoImpl extends
 		return ((Long) query.getSingleResult()).intValue();
 	}
 
+	/**
+	 * 
+	 * @param date
+	 * @param completed
+	 * @param dateForRealization
+	 * @return
+	 */
 	private Integer getCountSolicitationByDateInCurrent(Date date, Boolean completed, Date dateForRealization) {
 
 		Query query = entityManager
@@ -137,6 +157,9 @@ public class SolicitacaoServicoDaoImpl extends
 		return ((Long) query.getSingleResult()).intValue();
 	}
 
+	/**
+	 * 
+	 */
 	public Map<Date, Integer> getSolicitacoesPorPeriodo(Integer nDays, SolicitationState state) {
 
 		Calendar dataInicial = Calendar.getInstance();
@@ -166,6 +189,12 @@ public class SolicitacaoServicoDaoImpl extends
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param nDays
+	 * @param dateInitial
+	 * @return
+	 */
 	private Map<Date, Integer> createMapEmpty(Integer nDays,
 			Calendar dateInitial) {
 		dateInitial = (Calendar) dateInitial.clone();
@@ -179,6 +208,9 @@ public class SolicitacaoServicoDaoImpl extends
 		return mapInitial;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Long getCountSolicitationsByFuncionarioAndStatus(Funcionario funcionario, SolicitationState status) {
 		Query query = entityManager.createNamedQuery("solicitacaoServico.getCountSolicitationByFuncionarioAndStatus");
@@ -187,6 +219,9 @@ public class SolicitacaoServicoDaoImpl extends
 		return (Long) query.getSingleResult();
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> getTotalSolicitacoesByMaquina() throws SicAgroException{
@@ -201,6 +236,9 @@ public class SolicitacaoServicoDaoImpl extends
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Long getCountSolicitacoesByFuncionario(Funcionario funcionario) throws SicAgroException {
 		Long result = 0l;

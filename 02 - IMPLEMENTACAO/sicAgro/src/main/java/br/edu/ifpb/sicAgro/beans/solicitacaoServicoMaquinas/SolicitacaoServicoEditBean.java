@@ -58,6 +58,11 @@ public class SolicitacaoServicoEditBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Salva uma solicitação
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void save() throws SicAgroException {
 		if(solicitacaoServico.getTimeWorkeds() != null){
 			this.veiculoService.setHorimetroVeiculo(solicitacaoServico.getVeiculo(), solicitacaoServico.getTimeWorkeds());

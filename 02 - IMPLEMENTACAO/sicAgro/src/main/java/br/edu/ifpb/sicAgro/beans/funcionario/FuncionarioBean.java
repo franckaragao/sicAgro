@@ -43,7 +43,13 @@ public class FuncionarioBean implements Serializable {
 	}
 
 	/**
-	 * 
+	 * <pre>
+	 * Utilizado como solução pra conseguir passar um paramtro apartir do 
+	 * manager bean, devido a forma que a linha da datatable é selecionada,
+	 * desta forma sem usar um componente que tenha um outcome, tem-se a necessidade
+	 * de fazer o manager bean redireiconar para outra página, diante isso o parametro
+	 * deve ser passado do manager bean.
+	 * </pre>
 	 */
 	public void renderTo() {
 		JSFUtils.rederTo("funcionarioView.xhtml");

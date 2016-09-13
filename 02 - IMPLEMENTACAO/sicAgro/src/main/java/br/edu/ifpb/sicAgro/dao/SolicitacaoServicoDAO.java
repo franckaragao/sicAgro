@@ -12,8 +12,9 @@ import br.edu.ifpb.sicAgro.model.Produtor;
 import br.edu.ifpb.sicAgro.model.SolicitacaoServico;
 
 /**
+ * Define operações específicas do dao de solicitação de serviço.
  * 
- * @author franck
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
 public interface SolicitacaoServicoDAO extends DAO<SolicitacaoServico, Long>{
@@ -82,5 +83,11 @@ public interface SolicitacaoServicoDAO extends DAO<SolicitacaoServico, Long>{
 	 */
 	Long getCountSolicitacoesByFuncionario(Funcionario funcionario) throws SicAgroException;
 	
+	/**
+	 * 
+	 * @param produtor
+	 * @return
+	 * @throws SicAgroException
+	 */
 	Long getCountSolicitacoesByProdutor(Produtor produtor) throws SicAgroException;
 }

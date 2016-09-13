@@ -31,7 +31,7 @@
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
 								<p:outputLabel for="cod" value="Código" />
-								<p:inputMask mask="99999" id="cod" required="true"
+								<p:inputMask mask="99999" maxlength="5" slotChar=" " id="cod" required="true"
 									value="#{produtorEditBean.produtor.cod}" />
 
 								<p:outputLabel for="name" value="Nome" />

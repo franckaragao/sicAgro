@@ -25,6 +25,13 @@ import br.edu.ifpb.sicAgro.util.convertUnits.ConversionUtils;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
+/**
+ * Manage bean responsável por gerenciar informações das páginas de edição e alteração
+ * de uma entrega.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @ViewScoped
 public class EntregaEditBean implements Serializable {
@@ -64,6 +71,11 @@ public class EntregaEditBean implements Serializable {
 		measurements = Arrays.asList(MeasurementType.values());
 	}
 
+	/**
+	 * Salva/aletar uma entrga.
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void save() throws SicAgroException {
 		if(entrega.getItemEntregas().size() < 1)
 			throw new SicAgroExceptionHandler("Um item de entrega deve ser adicionado");
@@ -86,12 +98,24 @@ public class EntregaEditBean implements Serializable {
 		return produtorService.findByName(query);
 	}
 	
+	/**
+	 * Atualiza o item de entrega, com base no que passado no item de carga.
+	 * 
+	 */
 	public void updateItemEntrega(){
 		this.itemEntrega.setMeasurementType(itemCarga.getMeasurementType());
 		this.itemEntrega.setProduto(itemCarga.getProduto());
 		
 	}
 	
+	/**
+	 * deleta o item adicionado na lista de itens de entrega.
+	 * 
+	 * Faz uso do compoente p:Collector do primefaces, para transitar um objeto entre coleções.
+	 * 
+	 * @param itemEntrega
+	 * @throws SicAgroException
+	 */
 	public void reDeleteItemEntrega(ItemEntrega itemEntrega) throws SicAgroException{
 		
 		ItemCarga itemCarga = itemEntrega.getItemCarga();
@@ -113,7 +137,19 @@ public class EntregaEditBean implements Serializable {
 		this.itemCarga = itemCarga;
 	}
 	
+	/**
+	 * valida e add um item de entrega na entrega.
+	 * 
+	 * Faz uso do compoente p:Collector do primefaces, para transitar um objeto entre coleções.
+	 * 
+	 * @return
+	 * @throws SicAgroException
+	 */
 	public ItemEntrega reSetItemEntrega() throws SicAgroException {
+		
+		if(itemCarga.getQuantidadeDisp().doubleValue() <= 0){
+			throw new SicAgroExceptionHandler("Não há mais itens disponíveis referente à "+itemCarga.getProduto().getName());
+		}
 		
 		if(isEqualsMeasurement(itemCarga, itemEntrega)){
 			BigDecimal value = new BigDecimal(ConversionUtils.convert(itemEntrega.getMeasurementType(),itemCarga.getMeasurementType() , itemEntrega.getQuantity()));
@@ -140,6 +176,14 @@ public class EntregaEditBean implements Serializable {
 		return !itemCarga.getMeasurementType().equals(itemEntrega.getMeasurementType());
 	}
 	
+	/**
+	 * Atualiza a quantidade disponível no item de carga.
+	 * 
+	 * @param value
+	 * @param itemCarga
+	 * @return
+	 * @throws SicAgroExceptionHandler
+	 */
 	public BigDecimal updateQuantityItemCarga(BigDecimal value, ItemCarga itemCarga) throws SicAgroExceptionHandler {
 		
 		BigDecimal valueCal = itemCarga.getQuantidadeDisp().subtract(value);

@@ -18,6 +18,13 @@ import br.edu.ifpb.sicAgro.services.ProdutoService;
 import br.edu.ifpb.sicAgro.services.ProdutorService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 
+/**
+ * Manager Bean responsável por generenciar listagem 
+ * e pesquisa de entregas.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @RequestScoped
 public class EntregaBean implements Serializable {
@@ -37,12 +44,11 @@ public class EntregaBean implements Serializable {
 
 	private Entrega selectedEntrega;
 
-	private EntregaFilter filter;
+	private EntregaFilter filter = new EntregaFilter();
 
 	@PostConstruct
 	public void init() {
 		this.listEntregas();
-		filter = new EntregaFilter();
 	}
 
 	public void renderTo() {

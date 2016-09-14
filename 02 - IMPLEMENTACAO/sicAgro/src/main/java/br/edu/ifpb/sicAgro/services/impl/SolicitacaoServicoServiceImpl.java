@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import br.edu.ifpb.sicAgro.dao.SolicitacaoServicoDAO;
 import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
+import br.edu.ifpb.sicAgro.exceptions.SicAgroExceptionHandler;
 import br.edu.ifpb.sicAgro.filter.SolicitacaoFilter;
 import br.edu.ifpb.sicAgro.model.Funcionario;
 import br.edu.ifpb.sicAgro.model.Produtor;
@@ -36,11 +37,13 @@ public class SolicitacaoServicoServiceImpl extends GenericServiceImpl<Solicitaca
 
 	/**
 	 * Salva uma solicitação, considerando seu status.
+	 * @throws SicAgroExceptionHandler 
 	 */
 	@Override
 	@Transactional
-	public void add(SolicitacaoServico entity) {
+	public void add(SolicitacaoServico entity) throws SicAgroExceptionHandler {
 		entity.getCurrentStatus(entity);
+
 		dao.add(entity);
 
 	}

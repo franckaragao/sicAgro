@@ -7,16 +7,15 @@
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
 	<f:metadata>
-		<o:viewParam name="funcionario" value="#{funcionarioEditBean.funcionario}"
-			converter="#{funcionarioConverter}" />
+		<o:viewParam name="funcionario" value="#{funcionarioEditBean.funcionario}" converter="#{funcionarioConverter}" />
 		<f:event listener="#{funcionarioEditBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Cadastro funcionário</ui:define>
-	<ui:define name="content-header">Novo funcionário
-		<small>Cadastrar novo Funcionário</small>
+	<ui:define name="title">#{funcionarioEditBean.edited ? 'Editar Funcionário' : 'Novo Funcionário'}</ui:define>
+	<ui:define name="content-header">#{funcionarioEditBean.edited ? 'Editar Funcionário' : 'Novo Funcionário'}
+		<small>#{funcionarioEditBean.edited ? 'Funcionário/'.concat(funcionarioEditBean.funcionario.acount.userName) : 'cadastrar novo funcionário'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Novo Funcionário</ui:define>
+	<ui:define name="breadcrumb-active">#{funcionarioEditBean.edited ? 'Editar Funcionário' : 'Novo Funcionário'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterFuncionario">
@@ -134,18 +133,13 @@
 				<div class="box-footer">
 					<h:panelGrid columns="3">
 		
-						<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+						<p:commandButton value="#{funcionarioEditBean.edited ? 'Editar' : 'Salvar'}" id="btSave" icon="fa fa-floppy-o"
 							style="float: left;" styleClass="btnn btnn-primary"
 							action="#{funcionarioEditBean.save}" process="formRegisterFuncionario"/>
 		
-		
 						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-							style="float:left;" styleClass="btnn btnn-primary"
+							style="float:left;" styleClass="btnn btnn-danger"
 							outcome="/pages/admin/funcionario/funcionarios" />
-		
-						<p:button value="Buscar Funcionário" id="findFuncionarios"
-							style="float:left;" styleClass="btnn btnn-primary"
-							icon="fa fa-search" outcome="/pages/admin/funcionario/funcionarios" />
 					</h:panelGrid>
 				</div>
 			</p:fieldset>

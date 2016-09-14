@@ -91,13 +91,12 @@ public class PieChartBean implements Serializable {
 		c.addColumns("Topping", "Categorias");
 		c.setChartType(GChartType.COLUMN);
 		for (ProdutoType produtoType : l) {
-			c.addRow(produtoType.getType(),
-					itemEntregaService.findCountByTipoProduto(produtoType));
+			c.addRow(produtoType.getType(), itemEntregaService.findCountByTipoProduto(produtoType));
 		}
 		columnModel = c.build();
 	}
 
-	public String getDateItemcarga() {
+	public String getDateItemcarga(ItemCarga itemCarga) {
 		return new SimpleDateFormat("dd/MM/yyy").format(itemCarga.getDateRegister());
 	}
 

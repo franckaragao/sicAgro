@@ -22,26 +22,23 @@
 
 		<h:form id="detailForm">
 
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
 			<h:panelGrid columns="5">
 
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/produtor/produtorEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+				<p:button value="Editar" id="btEdit" outcome="/pages/admin/produtor/produtorEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="produtor" value="#{produtorViewBean.produtor.id}"/>	
 				</p:button>
 
-				<p:commandButton value="REMOVER" id="btRemove" action="#{produtorBean.remove}" process="@this detailForm" icon="fa fa-trash" styleClass="btnn btnn-primary">
+				<p:commandButton value="Remover" id="btRemove" action="#{produtorBean.remove}" process="@this detailForm" icon="fa fa-trash" styleClass="btnn btnn-primary">
 					<f:setPropertyActionListener value="#{produtorViewBean.produtor}" target="#{produtorBean.selectedProdutor}" />
-					 <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
-					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
+					 <p:confirm header="Remoção de produtor" message="Deseja remove este produtor?"/>
 					<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
     			</p:commandButton>
 
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
-
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/produtor/produtores" />
 
 			</h:panelGrid>
 

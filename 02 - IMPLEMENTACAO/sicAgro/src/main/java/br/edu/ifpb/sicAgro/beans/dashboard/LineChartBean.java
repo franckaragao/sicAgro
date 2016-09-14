@@ -50,7 +50,7 @@ public class LineChartBean implements Serializable{
 	private void initChartLineSolicitacao(){
 		this.modelChartLineSolicitacao = new LineChartModel();
 
-		modelChartLineSolicitacao.setTitle("Solicitações dos últimos 10 dias");
+		modelChartLineSolicitacao.setTitle("Solicitações dos últimos 15 dias");
 		modelChartLineSolicitacao.setLegendPosition("nw");
 		modelChartLineSolicitacao.setAnimate(true);
 		modelChartLineSolicitacao.setZoom(true);
@@ -71,7 +71,7 @@ public class LineChartBean implements Serializable{
 	private void initChartLinePedidos(){
 		this.modelChartLinePedidoSolicitacao = new LineChartModel();
 
-		modelChartLinePedidoSolicitacao.setTitle("Pedidos de solicitações dos últimos 10 dias");
+		modelChartLinePedidoSolicitacao.setTitle("Pedidos de solicitações dos últimos 15 dias");
 		modelChartLinePedidoSolicitacao.setLegendPosition("nw");
 		modelChartLinePedidoSolicitacao.setAnimate(true);
 		modelChartLinePedidoSolicitacao.setZoom(true);
@@ -94,7 +94,7 @@ public class LineChartBean implements Serializable{
 	 */
 	private void generateChartSolicitacao(String label, SolicitationState state) {
 
-		Map<Date, Integer> solicidacoes = solicitacaoServicoService.getSolicitacoesPorPeriodo(10, state);
+		Map<Date, Integer> solicidacoes = solicitacaoServicoService.getSolicitacoesPorPeriodo(15, state);
 
 		LineChartSeries series = new LineChartSeries();
 		series.setLabel(label);
@@ -113,7 +113,7 @@ public class LineChartBean implements Serializable{
 	 */
 	private void generateChartPedidos(String label, PedidoStatus status) {
 
-		Map<Date, Integer> pedidos = pedidoSolicitacaoService.getPedidosPorPeriodo(10, status);
+		Map<Date, Integer> pedidos = pedidoSolicitacaoService.getPedidosPorPeriodo(15, status);
 
 		LineChartSeries series = new LineChartSeries();
 		series.setLabel(label);

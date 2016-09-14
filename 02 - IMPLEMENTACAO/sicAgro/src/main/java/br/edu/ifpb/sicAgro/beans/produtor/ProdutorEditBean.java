@@ -78,7 +78,8 @@ public class ProdutorEditBean implements Serializable {
 			produtorService.add(produtor);
 			MessageUtils.messageSucess("Produtor salvo com sucesso.");
 		}
-		JSFUtils.rederTo("produtores.xhtml");
+		JSFUtils.rederTo("produtorView.xhtml");
+		JSFUtils.setParam("produtorToDetail", produtor);
 	}
 	
 	/**
@@ -98,7 +99,7 @@ public class ProdutorEditBean implements Serializable {
 		return conta;
 	}
 
-	private boolean isProdutorEdited() {
+	public boolean isProdutorEdited() {
 		return produtor.getId() != null;
 	}
 	

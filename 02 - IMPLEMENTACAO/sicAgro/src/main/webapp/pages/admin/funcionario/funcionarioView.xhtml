@@ -13,9 +13,9 @@
 		<f:event listener="#{funcionarioViewBean.preRenderView()}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Detalhes funcionário</ui:define>
-	<ui:define name="content-header">Detalhes funcionário<small>Gerenciar informações do funcionário</small></ui:define>
-	<ui:define name="breadcrumb-active">#{msg.produtoDetail}</ui:define>
+	<ui:define name="title">Detalhes Funcionário</ui:define>
+	<ui:define name="content-header">Detalhes Funcionário<small>Visualizar informações do funcionário</small></ui:define>
+	<ui:define name="breadcrumb-active">Detalhes Funcionário</ui:define>
 	
 
 	<ui:define name="content">
@@ -23,25 +23,18 @@
 		<h:form id="detailForm">
 			<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
 
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="2">
 
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/funcionario/funcionarioEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+				<p:button value="editar" id="btEdit" outcome="/pages/admin/funcionario/funcionarioEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="funcionario" value="#{funcionarioViewBean.funcionario.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.remove}" id="btRemove" action="#{funcionarioBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
+				<p:commandButton value="Remover" id="btRemove" action="#{funcionarioBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
 					<f:setPropertyActionListener value="#{funcionarioViewBean.funcionario}" target="#{funcionarioBean.selectedFuncionario}" />
-                     <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
-					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
+					 <p:confirm header="Remoção de funcionário" message="Deseja remover este fucionário?"/>
     			</p:commandButton>
-
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
-					<p:printer target="infor_detail" />
-				</p:commandButton> 
-
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/funcionario/funcionarios" />
 
 			</h:panelGrid>
 

@@ -13,11 +13,11 @@
 			type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Nova carga</ui:define>
-	<ui:define name="content-header">Nova Carga 
-		<small>Cadastrar novo recebimento de carga</small>
+	<ui:define name="title">#{cargaEditBean.cargaEdited ? 'Editar Carga' : 'Nova Carga'}</ui:define>
+	<ui:define name="content-header">#{cargaEditBean.cargaEdited ? 'Editar Carga' : 'Nova Carga'}
+		<small>#{cargaEditBean.cargaEdited ? 'Carga/'.concat(cargaEditBean.carga.id) : 'Registrar recebimento de carga'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Nova Carga</ui:define>
+	<ui:define name="breadcrumb-active">#{cargaEditBean.cargaEdited ? 'Editar Carga' : 'Nova Carga'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterCarga">
@@ -39,7 +39,7 @@
 									<ui:param name="name" value="Data Recebimento" />
 								</ui:include>
 
-								<p:outputLabel for="obs" value="#{msg.obs}" />
+								<p:outputLabel for="obs" value="Observação" />
 								<p:inputTextarea id="obs" rows="4" cols="20"
 									value="#{cargaEditBean.carga.obs}" />
 
@@ -53,7 +53,7 @@
 							<p:panelGrid columns="2" layout="grid"
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
-								<p:outputLabel for="agency" value="#{msg.agency}" />
+								<p:outputLabel for="agency" value="Orgão" />
 								<p:selectOneMenu id="agency" required="true"
 									value="#{cargaEditBean.carga.originLoad.agency}">
 									<f:selectItem itemLabel="Selecione um orgão"
@@ -62,7 +62,7 @@
 										itemLabel="#{agency}" itemValue="#{agency}" />
 								</p:selectOneMenu>
 
-								<p:outputLabel for="state" value="#{msg.state}" />
+								<p:outputLabel for="state" value="UF" />
 
 								<p:selectOneMenu id="state" required="true"
 									value="#{cargaEditBean.carga.originLoad.state}" rendered="true">
@@ -75,7 +75,7 @@
 										listener="#{cargaEditBean.loadCities}" />
 								</p:selectOneMenu>
 
-								<p:outputLabel for="city" value="#{msg.city}" />
+								<p:outputLabel for="city" value="Cidade" />
 								<p:selectOneMenu id="city" value="#{cargaEditBean.carga.originLoad.city}" filter="true"
 									filterMatchMode="startsWith" required="true"
 									disabled="#{cargaEditBean.carga.originLoad.state eq null}">
@@ -101,7 +101,7 @@
 										itemLabel="#{item.name}" itemValue="#{item}" />
 								</p:selectOneMenu>
 
-								<p:outputLabel for="type" value="#{msg.medida}" />
+								<p:outputLabel for="type" value="Un.Medida" />
 								<p:selectOneMenu id="type" style="width:180px" required="true"
 									value="#{cargaEditBean.selectedItemCarga.measurementType}">
 									<f:selectItem itemLabel="" noSelectionOption="true" />
@@ -110,14 +110,14 @@
 										itemValue="#{measurement}" />
 								</p:selectOneMenu>
 
-								<p:outputLabel for="quant" value="#{msg.quant}" />
+								<p:outputLabel for="quant" value="Quantidade" />
 								<p:spinner id="quant"
 									value="#{cargaEditBean.selectedItemCarga.quantity}"
 									stepFactor="0.25" required="true"/>
 
 								<p:commandButton id="btn_add" value="Adicionar"
 									action="#{cargaEditBean.resetItemCarga}"
-									styleClass="btnn-primary" update="itens @parent"
+									styleClass="btnn-primary" update="itens itemEntrega @parent"
 									process="@parent">
 									<p:collector value="#{cargaEditBean.selectedItemCarga}"
 										addTo="#{cargaEditBean.carga.itensCarga}" unique="false" />
@@ -163,20 +163,16 @@
 				
 				<div class="box-footer">
 				
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="2">
 		
-						<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+						<p:commandButton value="#{cargaEditBean.cargaEdited ? 'Editar' : 'Salvar'}" id="btSave" icon="fa fa-floppy-o"
 							style="float: left;" styleClass="btnn btnn-primary"
 							process="@this messages tabView:tab_origin tabView:tab_data"
 							action="#{cargaEditBean.save}" />
 		
 		
 						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-							style="float:left;" styleClass="btnn btnn-primary"
-							outcome="/pages/admin/carga/cargas" />
-		
-						<p:button value="Buscar Carga" id="findProdutos" style="float:left;"
-							styleClass="btnn btnn-primary" icon="fa fa-search"
+							style="float:left;" styleClass="btnn btnn-danger"
 							outcome="/pages/admin/carga/cargas" />
 					</h:panelGrid>
 				</div>

@@ -12,11 +12,11 @@
 		<f:event listener="#{solicitacaoServicoEditBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Solicitação de Serviço</ui:define>
-	<ui:define name="content-header">Solicitação de Serviço
-		<small>Efetuar solicitação de serviços de máquinas</small>
+	<ui:define name="title">#{solicitacaoServicoEditBean.solicitacaoEdited ? 'Editar Solicitação' : 'Nova Solicitação'}</ui:define>
+	<ui:define name="content-header">#{solicitacaoServicoEditBean.solicitacaoEdited ? 'Editar Solicitação' : 'Nova Solicitação'}
+		<small>#{solicitacaoServicoEditBean.solicitacaoEdited ? 'Solicitação/'.concat(solicitacaoServicoEditBean.solicitacaoServico.id) : 'Registrar solicitação de serviço de máquinas'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Solicitação serviço</ui:define>
+	<ui:define name="breadcrumb-active">#{solicitacaoServicoEditBean.solicitacaoEdited ? 'Editar Solicitação' : 'Nova Solicitação'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterSolicitation">
@@ -44,7 +44,7 @@
 								
 								<p:commandButton value="CONCLUIR" id="btn_ok" styleClass="btnn-primary" process="completed dtaRealization timesWork" style="margin-top:5px;" oncomplete="handleDialogRequest(xhr, status, args)"/>
 	
-								<p:commandButton value="NÃO CONCLUIR" id="btn_clear"  styleClass="btnn-primary" style="margin-top:5px;" actionListener="#{solicitacaoServicoEditBean.cancelConclusao}" oncomplete="PF('dlgC').hide()" update="completed panel" process="@this completed">
+								<p:commandButton value="NÃO CONCLUIR" id="btn_clear"  styleClass="btnn-danger" style="margin-top:5px;" actionListener="#{solicitacaoServicoEditBean.cancelConclusao}" oncomplete="PF('dlgC').hide()" update="completed panel" process="@this completed">
 									<p:resetInput target="panel"/>
 								</p:commandButton>
 							</div>
@@ -135,12 +135,10 @@
 						</p:panelGrid>
 					</div>
 					<div class="box-footer">
-						<h:panelGrid columns="3">
-							<p:commandButton value="Concluir" id="bt_Save" icon="fa fa-floppy-o" style="float: left;" styleClass="btnn btnn-primary" action="#{solicitacaoServicoEditBean.save}" process="@this auto_machine auto_func dtaSolicitation dtaForExecution advanced resumo_solicitacao completed" />
+						<h:panelGrid columns="2">
+							<p:commandButton value="#{solicitacaoServicoEditBean.solicitacaoEdited ? 'Editar' : 'Registrar'}" id="bt_Save" icon="fa fa-floppy-o" style="float: left;" styleClass="btnn btnn-primary" action="#{solicitacaoServicoEditBean.save}" process="@this auto_machine auto_func dtaSolicitation dtaForExecution advanced resumo_solicitacao completed" />
 			
-							<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban" style="float:left;" styleClass="btnn btnn-primary" outcome="/pages/admin/solicitacao/solicitacoes" />
-			
-							<p:button value="Solicitações" id="bt_findSolic" style="float:left;" styleClass="btnn btnn-primary" icon="fa fa-search" outcome="/pages/admin/solicitacao/solicitacoes" />
+							<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban" style="float:left;" styleClass="btnn btnn-danger" outcome="/pages/admin/solicitacao/solicitacoes" />
 						</h:panelGrid>
 					</div>
 				</p:fieldset>

@@ -15,13 +15,13 @@
 	<ui:define name="content">
 
 		<h:form id="dataForm">
-			<p:messages id="messages" autoUpdate="true" showDetail="true"/>
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
 			<p:dataTable id="tableEntregas" 
 				var="entrega" 
 				value="#{entregaBean.entregas}" 
 				paginatorPosition="bottom" 
-				rows="10"
+				rows="15"
 				paginator="true" 
 				paginatorAlwaysVisible="false"
 				widgetVar="findEntrega" 
@@ -38,8 +38,8 @@
 						<p:inputText id="globalFilter" value="#{entregaBean.filter.id}"  converterMessage="Código deve ser um número" style="width:300px;" placeholder="Pesquisa de entrega por código">
 							<p:ajax event="keyup" update="@this tableEntregas" process="@this tableEntregas" listener="#{entregaBean.filter()}"/>
 						</p:inputText>
-						<p:button id="buttonNewEntrega" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/entrega/entregaEdit">
-							<p:tooltip for="buttonNewEntrega" value="No registro de entrega" />
+						<p:button id="buttonNewEntrega" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/entrega/entregaEdit">
+							<p:tooltip for="buttonNewEntrega" value="Novo registro de entrega" />
 						</p:button>
 						
 						<p:commandLink id="btnn_filter" style="font-size: 22px !important; margin-left:10px;">

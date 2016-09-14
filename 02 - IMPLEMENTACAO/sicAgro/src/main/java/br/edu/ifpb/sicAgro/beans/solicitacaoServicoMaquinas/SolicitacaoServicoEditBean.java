@@ -97,7 +97,8 @@ public class SolicitacaoServicoEditBean implements Serializable {
 			}
 			MessageUtils.messageSucess("Solicitação efetuada com com sucesso.");
 		}
-		JSFUtils.rederTo("solicitacoes.xhtml");
+		JSFUtils.rederTo("solicitacaoView.xhtml");
+		JSFUtils.setParam("solicitacao", solicitacaoServico);	
 	}
 	
 	/**

@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><ui:insert name="title">#{msg.appName}</ui:insert></title>
+	<title><ui:insert name="title">SicAgro</ui:insert></title>
 
 	<link rel="icon" type="image/x-icon" href="http://localhost:8080/sicAgro/resources/images/leaf.png" />
 	<link rel="stylesheet"
@@ -65,7 +65,7 @@
 
 									<li class="user-footer">
 										<div class="pull-left">
-											<p:commandLink value="Usuário" onclick="PF('ProfileDialog').show()" styleClass="btnn btnn-primary" />
+											<p:commandLink value="Usuário" update="@this" process="@this" onclick="PF('ProfileDialog').show()" styleClass="btnn btnn-primary" />
 										</div> 
 											<div class="pull-right">
 												<p:commandButton value="Sair" action="#{logoutBean.efetuarLogout}" immediate="true" styleClass="btnn btnn-primary" />
@@ -119,8 +119,8 @@
 					</h1>
 					<ol class="breadcrumb">
 						<li><a href="#{request.contextPath}/pages/admin/index.xhtml"><i
-								class="fa fa-dashboard"></i> DashBoard</a></li>
-						<li class="active"><ui:insert name="breadcrumb-active">dashBoard</ui:insert></li>
+								class="fa fa-dashboard"></i> #{contaBean.typerUserLogged == '4'? 'Início':'DashBoard'}</a></li>
+						<li class="active"><ui:insert name="breadcrumb-active">#{contaBean.typerUserLogged == '4'? 'Início':'DashBoard'}</ui:insert></li>
 					</ol>
 				</section>
 				<section class="content">

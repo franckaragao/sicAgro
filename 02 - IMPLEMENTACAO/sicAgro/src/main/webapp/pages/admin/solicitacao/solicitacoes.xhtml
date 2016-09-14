@@ -23,7 +23,7 @@
 				var="solicitacao"
 				value="#{solicitacaoServicoBean.solicitacoes}" 
 				paginatorPosition="bottom"
-				rows="10"
+				rows="15"
 				paginator="true" 
 				paginatorAlwaysVisible="false"
 				widgetVar="findSolicitations" 
@@ -43,7 +43,7 @@
 							<p:ajax event="keyup" update="@this tableSolicitations" process="@this tableSolicitations" listener="#{solicitacaoServicoBean.filter()}"/>
 						</p:inputText>
 							
-						<p:button id="buttonNewSolicitation" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
+						<p:button id="buttonNewSolicitation" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
 							<p:tooltip for="buttonNewSolicitation" value="Efetuar nova solicitação" />
 						</p:button>
 						<p:commandLink id="btnn_filter" style="font-size: 22px !important; margin-left:10px;">

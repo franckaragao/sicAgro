@@ -131,6 +131,8 @@ public class ProdutorDaoImpl extends GenericDaoImpl<Produtor, Long> implements P
 			TypedQuery<Produtor> query = entityManager.createNamedQuery("Produtor.findByCod", Produtor.class);
 			query.setParameter("cod", cod);
 			result = query.getSingleResult();
+		} catch (NoResultException e){
+			return null;
 		} catch (PersistenceException e) {
 			throw new SicAgroException("Erro ao tentar cosultar o produtor pelo cod "+ e.getMessage());
 		}

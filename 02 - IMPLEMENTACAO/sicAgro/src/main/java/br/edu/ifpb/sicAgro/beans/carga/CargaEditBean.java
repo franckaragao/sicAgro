@@ -76,7 +76,7 @@ public class CargaEditBean implements Serializable {
 	}
 
 	public void save() throws SicAgroException {
-		if (carga.getId() != null) {
+		if (isCargaEdited()) {
 			cargaService.update(carga);
 			MessageUtils.messageSucess("Carga atualizada com sucesso.");
 
@@ -85,7 +85,8 @@ public class CargaEditBean implements Serializable {
 			MessageUtils.messageSucess("Carga adicionada com sucesso.");
 		}
 		
-		JSFUtils.rederTo("cargas.xhtml");
+		JSFUtils.rederTo("cargaView.xhtml");
+		JSFUtils.setParam("carga", carga);
 	}
 
 	public void resetItemCarga() {
@@ -94,13 +95,28 @@ public class CargaEditBean implements Serializable {
 		this.selectedItemCarga = new ItemCarga();
 	}
 	
+	/**
+	 * Carrega listagem de cargas cadastradas.
+	 */
 	public void listOfProdutos() {
 		this.produtos = produtoService.findAll();
 	}
 	
+	/**
+	 * Carrega lista de cidades de acordos com estado passado.
+	 * 
+	 */
 	public void loadCities(){
 		if(carga.getOriginLoad().getState() != null)
 			enderecoService.getCities(carga.getOriginLoad().getState(), carga.getOriginLoad().getState().getCodigo());
+	}
+	
+	/**
+	 * verifica se carga possui ID.
+	 * @return
+	 */
+	public boolean isCargaEdited(){
+		return carga.getId() != null; 
 	}
 
 	public Carga getCarga() {

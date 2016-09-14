@@ -23,7 +23,7 @@
 
 			<ui:include src="/WEB-INF/templates/_mensagem_pedido_solicitacao.xhtml"/>
 			
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="3">
 			
 				<c:if test="${contaBean.typerUserLogged != '4'}">
 					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" disabled="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}">
@@ -38,18 +38,15 @@
 					</p:commandButton>
 				</c:if>
  
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
 			
-				<p:button value="VOLTAR" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" />
-
 			</h:panelGrid>
-
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
 				<h2 class="page-header">
-					<p:outputLabel value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id} / #{pedidoSolicitacaoViewBean.pedidoSolicitacao.produtor.name}" styleClass="text-detail" />
+					<p:outputLabel value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.produtor.name}/#{pedidoSolicitacaoViewBean.pedidoSolicitacao.id}" styleClass="text-detail" />
 				</h2>
 				
 				<div class="panel panel-default">
@@ -73,13 +70,18 @@
 							<h:outputText value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.horasNecessarias}"  />
 							
 							<h:outputText value="Status:"  />
-							<h:outputText id="status" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.status.description}" />
+							<h:outputText id="status" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.status.description}" styleClass="#{pedidoSolicitacaoBean.updateLabelStatus(pedidoSolicitacaoViewBean.pedidoSolicitacao.status)}" />
 
 							<h:outputText value="Motivo Rejeição:" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao != null}" />
 							<h:outputText id="mot_rejeicao" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao}" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.motivoRejeicao != null}" />
 							
 							<h:outputText value="Código da solicitação:"  rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}"/>
 							<h:outputText id="cod_solicitacao" styleClass="badge" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico.id}" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}"/>
+							
+							<h:outputText value="Data agendamento:"  rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}"/>
+							<h:outputText id="ag_solicitacao" value="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico.dateForRealization}" rendered="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}">
+								<f:convertDateTime pattern="dd/MM/yyyy 'às' HH:mm" />
+							</h:outputText>
 
 						</p:panelGrid>
 				</div>

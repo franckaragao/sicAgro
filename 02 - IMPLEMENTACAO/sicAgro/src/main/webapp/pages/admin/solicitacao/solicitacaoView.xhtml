@@ -19,19 +19,17 @@
 
 	<ui:define name="content">
 		<h:form id="detailForm">
+			<p:messages closable="true" autoUpdate="true" showDetail="true"/>
+			<h:panelGrid columns="3">
 
-			<h:panelGrid columns="5">
-
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
+				<p:button value="Editar" id="btEdit" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
 					<f:param name="solicitacao" value="#{solicitacaoServicoViewBean.solicitacaoServico.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton> 
 
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/solicitacao/solicitacoes" />
-				
 						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" style="margin-top: 8px">
 							<p:outputLabel value="Concluir Solicitação" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}"/>
 							<p:inputSwitch id="completed" value="#{solicitacaoServicoViewBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}">
@@ -65,7 +63,7 @@
 					</p:panelGrid>
 					<br />
 					<p:commandButton value="CONCLUIR" id="btn_ok" actionListener="#{solicitacaoServicoViewBean.completarSolicitacao()}" styleClass="btnn-primary" style="margin-top:5px;" oncomplete="handleDialogRequest(xhr, status, args)" process="detailForm" update="completed label_dte_realization value_dte_realization"/>
-					<p:commandButton value="NÃO CONCLUIR" id="btn_clear" styleClass="btnn-primary" style="margin-top:5px;" actionListener="#{solicitacaoServicoViewBean.cancelConclusao()}" oncomplete="PF('dlgConclusion').hide()" update="completed label_dte_realization value_dte_realization" process="@this completed">
+					<p:commandButton value="NÃO CONCLUIR" id="btn_clear" styleClass="btnn-danger" style="margin-top:5px;" actionListener="#{solicitacaoServicoViewBean.cancelConclusao()}" oncomplete="PF('dlgConclusion').hide()" update="completed label_dte_realization value_dte_realization" process="@this completed">
 						<p:resetInput target="panel"/>
 					</p:commandButton>
 				</p:dialog>

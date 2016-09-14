@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -246,6 +247,8 @@ public class SolicitacaoServicoDaoImpl extends GenericDaoImpl<SolicitacaoServico
 			Query query = entityManager.createNamedQuery("solicitacaoServico.getCountByFuncionario");
 			query.setParameter("funcionario", funcionario);
 			result = (Long) query.getSingleResult();
+		} catch (NoResultException e){
+			return 0l;
 		} catch (PersistenceException e) {
 			throw new SicAgroException("Erro ao tentar consultar a quantidade de solic. por funcionario."+e.getMessage());
 		}
@@ -262,6 +265,8 @@ public class SolicitacaoServicoDaoImpl extends GenericDaoImpl<SolicitacaoServico
 			Query query = entityManager.createNamedQuery("solicitacao.getCountByProdutor");
 			query.setParameter("produtor", produtor);
 			result = (Long) query.getSingleResult();
+		} catch (NoResultException e){
+			return 0l;
 		} catch (PersistenceException e) {
 			throw new SicAgroException("Erro ao tentar consultar a quantidade de produtores." + e.getMessage());
 		}

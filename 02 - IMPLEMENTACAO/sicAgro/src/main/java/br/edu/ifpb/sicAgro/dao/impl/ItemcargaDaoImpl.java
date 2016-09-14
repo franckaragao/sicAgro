@@ -2,6 +2,7 @@ package br.edu.ifpb.sicAgro.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
@@ -59,6 +60,8 @@ public class ItemcargaDaoImpl extends GenericDaoImpl<ItemCarga, Long> implements
 			Query query = entityManager.createNamedQuery("itemcarga.getQuantidadeByProduto");
 			query.setParameter("produto", produto);
 			result = (Long) query.getSingleResult();
+		}catch (NoResultException e1){
+			return 0l;
 		} catch (PersistenceException e) {
 			throw new SicAgroException("Erro ao tentar obter a quantidade de itens de cargas por produto"+e.getMessage());
 		}

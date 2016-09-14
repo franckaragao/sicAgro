@@ -39,8 +39,8 @@
 							<p:ajax event="keyup" update="@this tableProdutores" process="@this tableProdutores" listener="#{produtorBean.filter()}"/>
 						</p:inputText>
 
-						<p:button id="buttonNewProduto" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/produtor/produtorEdit">
-							<p:tooltip for="buttonNewProduto" value="#{msg.tooltipNewProduto}" />
+						<p:button id="buttonNewProduto" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/produtor/produtorEdit">
+							<p:tooltip for="buttonNewProduto" value="Cadastrar novo produtor" />
 						</p:button>
 					</div>
 				</f:facet>

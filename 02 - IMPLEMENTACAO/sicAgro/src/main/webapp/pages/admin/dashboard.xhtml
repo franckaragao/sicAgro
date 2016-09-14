@@ -73,20 +73,18 @@
 					value="Número de cargas recebidas até hoje" />
 			</p:fieldset>
 		</p:panelGrid>
-		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-				<p:chart type="line" extender="ext"
-					model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
-					style="height:300px;" />
-			</p:fieldset>
-			<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
-				<p:chart type="line" extender="ext"
-					model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
-					style="height:300px;" />
-			</p:fieldset>
-		</p:panelGrid>
+		<p:fieldset styleClass="box box-warning" style="margin-button: 5px;">
+			<p:chart type="line" extender="ext"
+				model="#{lineChartBean.modelChartLineSolicitacao}" responsive="true"
+				style="height:350px;" />
+		</p:fieldset>
+		<p:fieldset styleClass="box box-danger" style="margin-button: 5px;">
+			<p:chart type="line" extender="ext"
+				model="#{lineChartBean.modelChartLinePedidoSolicitacao}" responsive="true"
+				style="height:350px;" />
+		</p:fieldset>
 		<p:panelGrid columns="2"  layout="grid" styleClass="ui-panelgrid-blank">
-		<p:fieldset styleClass="box box-info" style="text-align:center;">
+		<p:fieldset styleClass="box box-success" style="text-align:center;">
 			<p:outputLabel value="Quantidade de itens de cargas" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
 			<div class="ui-fluid">
 					<p:selectOneMenu id="item" converter="#{itemCargaConverter}"
@@ -94,13 +92,13 @@
 			
 					<f:selectItem noSelectionOption="true" itemLabel="" />
 					<f:selectItems value="#{pieChartBean.listItensCargas()}" var="item" 
-						itemLabel="Recebimento de #{item.produto.name} dia #{pieChartBean.dateItemcarga}" itemValue="#{item}">
+						itemLabel="Recebimento de #{item.produto.name} dia #{pieChartBean.getDateItemcarga(item)}" itemValue="#{item}">
 						</f:selectItems>
 					
 					<p:ajax event="itemSelect" listener="#{pieChartBean.generatePieModel}" update="@this gchat_itens"/>
 				</p:selectOneMenu>
 			</div>
-			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" height="250" />
+			<pe:gChart id="gchat_itens" value="#{pieChartBean.chartModel}" height="269" />
 		</p:fieldset>
 		<p:fieldset styleClass="box box-info" style="text-align:center;">
 			<p:outputLabel value="Percentual de solicitações por máquina" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
@@ -112,20 +110,20 @@
 			<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
 				
 				<p:fieldset styleClass="box box-danger" style="text-align:center;" rendered="#{barChartBean.renderedBarModelEntrega}">
-					<p:outputLabel value="Total de entregas registradas por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+					<p:outputLabel value="Total de itens entregues por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
 					<pe:gChart id="gchat_quant_entrega" value="#{barChartBean.barModelQuantEntregas}" height="300" />
 				</p:fieldset> 
 				
 				<p:fieldset styleClass="box box-warning" style="text-align:center;" rendered="#{barChartBean.renderedBarModelCarga}">
-					<p:outputLabel value="Total de cargas recebidas por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
+					<p:outputLabel value="Total de itens recebidos por produto" style="color:#666; text-align:center !important; margin-bottom:10px;"/>
 					<pe:gChart id="gchat_quant_carga" value="#{barChartBean.barModelQuantCargas}" height="300" />
 				</p:fieldset>
 			</p:panelGrid>
 		</div>
 
 		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-			<p:fieldset styleClass="box box-success" style="text-align:center;">
-				<p:outputLabel value="Número de entregas por Tipo de Benefício" style="color:#666"/>
+			<p:fieldset styleClass="box box-info" style="text-align:center;">
+				<p:outputLabel value="Número de entregas por tipo de produto" style="color:#666"/>
 				<pe:gChart id="gchat_itens_type" value="#{pieChartBean.columnModel}" height="288" />
 			</p:fieldset>
 				

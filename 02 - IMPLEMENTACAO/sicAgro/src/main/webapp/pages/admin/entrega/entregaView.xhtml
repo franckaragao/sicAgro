@@ -21,19 +21,17 @@
 
 		<h:form id="detailForm">
 
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="2">
 
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/entrega/entregaEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+				<p:button value="Editar" id="btEdit" outcome="/pages/admin/entrega/entregaEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="entrega" value="#{entregaViewBean.entrega.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
-
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/entrega/entregas" />
 
 			</h:panelGrid>
 

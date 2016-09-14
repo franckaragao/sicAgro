@@ -74,7 +74,8 @@ public class VeiculoEditBean implements Serializable {
 			veiculoService.add(veiculo);
 			MessageUtils.messageSucess("Veículo cadastrado com sucesso.");
 		}
-		JSFUtils.rederTo("veiculos.xhtml");
+		JSFUtils.rederTo("veiculoView.xhtml");
+		JSFUtils.setParam("veiculo", veiculo);
 	}
 
 	/**

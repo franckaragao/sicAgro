@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.edu.ifpb.sicAgro.dao.DAO;
-import br.edu.ifpb.sicAgro.exceptions.ServiceSicAgroException;
 import br.edu.ifpb.sicAgro.exceptions.SicAgroException;
 import br.edu.ifpb.sicAgro.services.Service;
 import br.edu.ifpb.sicAgro.util.jpa.Transactional;
@@ -24,18 +23,29 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 
 	protected DAO<T, K> dao;
 
+	/**
+	 * Método generico para salvar um entidade.
+	 * 
+	 */
 	@Override
 	@Transactional
 	public void add(T entity) throws SicAgroException {
 		dao.add(entity);
 	}
 
+	/**
+	 * Atualiza um entidade qualquer.
+	 * 
+	 */
 	@Override
 	@Transactional
 	public T update(T entity){
 		return dao.update(entity);
 	}
 
+	/**
+	 * Remove uma entidade.
+	 */
 	@Override
 	@Transactional
 	public void remove(T entity) throws SicAgroException {
@@ -43,7 +53,6 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 	}
 
 	/**
-	 * @throws ServiceSicAgroException
 	 * 
 	 */
 	@Override
@@ -52,7 +61,6 @@ public class GenericServiceImpl<T, K> implements Service<T, K>, Serializable {
 	}
 
 	/**
-	 * @throws ServiceSicAgroException
 	 * 
 	 */
 	@Override

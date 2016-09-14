@@ -8,9 +8,9 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
-	<ui:define name="title">#{msg.cargas}</ui:define>
-	<ui:define name="content-header">#{msg.cargas} <small>#{msg.subHeaderCarga}</small></ui:define>
-	<ui:define name="breadcrumb-active">#{msg.cargas}</ui:define>
+	<ui:define name="title">Cargas</ui:define>
+	<ui:define name="content-header">Cargas<small>Pesquisa de cargas</small></ui:define>
+	<ui:define name="breadcrumb-active">Cargas</ui:define>
 	
 	<ui:define name="content">
 
@@ -21,12 +21,12 @@
 				var="carga" 
 				value="#{cargaBean.cargas}" 
 				paginatorPosition="bottom" 
-				rows="10"
+				rows="15"
 				paginator="true" 
 				paginatorAlwaysVisible="false"
 				widgetVar="findCarga" 
 				reflow="true" 
-				emptyMessage="#{msg.emptyMessageCarga}"
+				emptyMessage="Nenhuma carga registrada"
 				rowKey="#{carga.id}" 
 				styleClass="ui-datatable"
                 selectionMode="single"
@@ -35,10 +35,10 @@
  
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" onkeyup="PF('findCarga').filter()" style="width:300px;" placeholder="#{msg.placeholderFindProduto}" />
+						<p:inputText id="globalFilter" onkeyup="PF('findCarga').filter()" style="width:300px;" placeholder="Filtro de busca" />
 
-						<p:button id="buttonNewCarga" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/carga/cargaEdit">
-							<p:tooltip for="buttonNewCarga" value="#{msg.tooltipNewProduto}" />
+						<p:button id="buttonNewCarga" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/carga/cargaEdit">
+							<p:tooltip for="buttonNewCarga" value="Registrar nova carga" />
 						</p:button>
 					</div>
 				</f:facet>

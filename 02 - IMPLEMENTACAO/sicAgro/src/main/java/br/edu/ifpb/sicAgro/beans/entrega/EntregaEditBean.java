@@ -77,8 +77,13 @@ public class EntregaEditBean implements Serializable {
 	 * @throws SicAgroException
 	 */
 	public void save() throws SicAgroException {
-		if(entrega.getItemEntregas().size() < 1)
+		if(entrega.getItemEntregas().size() < 1){
 			throw new SicAgroExceptionHandler("Um item de entrega deve ser adicionado");
+		}else{
+			for (ItemEntrega itemEntrega : entrega.getItemEntregas()) {
+				itemCargaService.update(itemEntrega.getItemCarga());
+			}
+		}
 		
 		if (isEdited()) {
 			entregaService.update(entrega);
@@ -87,7 +92,8 @@ public class EntregaEditBean implements Serializable {
 			entregaService.add(entrega);
 			MessageUtils.messageSucess("Entrega realizada com sucesso.");
 		}
-		JSFUtils.rederTo("entregas.xhtml");
+		JSFUtils.rederTo("entregaView.xhtml");
+		JSFUtils.setParam("entrega", entrega);
 	}
 
 	public void listItensCargas() {
@@ -132,9 +138,8 @@ public class EntregaEditBean implements Serializable {
 	
 		itemCarga.setQuantidadeDisp(valueItemCarga);
 		
-		this.itemCargaService.update(itemCarga);
-		
 		this.itemCarga = itemCarga;
+		this.listItensCargas();
 	}
 	
 	/**
@@ -159,13 +164,15 @@ public class EntregaEditBean implements Serializable {
 			this.itemCarga.setQuantidadeDisp(this.updateQuantityItemCarga(itemEntrega.getQuantity(), itemCarga));
 		}
 		
-		this.itemEntrega.setItemCarga(itemCarga);
-		
-		if(itemCarga.getId() != null){
-			this.itemCargaService.update(itemCarga);
-			this.listItensCargas();
+		if(entrega.getItemEntregas().size() > 0){
+			for (ItemEntrega item : entrega.getItemEntregas()) {
+				if(item.getProduto().equals(itemEntrega.getProduto())){
+					throw new SicAgroExceptionHandler(""+itemEntrega.getProduto().getName() + " Já foi adicionado aos itens de entrega.");
+				}
+			}
 		}
-		
+
+		this.itemEntrega.setItemCarga(itemCarga);
 		ItemEntrega item = this.itemEntrega;
 		this.itemEntrega = new ItemEntrega();
 		item.setEntrega(entrega);

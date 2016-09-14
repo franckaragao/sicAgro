@@ -10,6 +10,12 @@ import javax.validation.OverridesAttribute;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
+/**
+ * Implementa retrição para validação de RG.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
@@ -22,5 +28,4 @@ public @interface RG {
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-
 }

@@ -43,7 +43,8 @@ import br.edu.ifpb.sicAgro.enumerations.SolicitationState;
 		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByDateInCurrent", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.dateSolicitation = :dateSolicitation and s.completed = :completed and s.dateForRealization > :dateForRealization"),
 		@NamedQuery(name = "solicitacaoServico.getCountByFuncionario", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.funcionario = :funcionario"),
 		@NamedQuery(name = "solicitacaoServico.getCountSolicitationByFuncionarioAndStatus", query = "SELECT COUNT(s.id) FROM SolicitacaoServico s WHERE s.funcionario = :funcionario AND s.state = :state"),
-		@NamedQuery(name = "solicitacaoServico.getTotalPorMaquina", query = "SELECT s.veiculo.identification, COUNT(s.veiculo) FROM SolicitacaoServico s GROUP BY s.veiculo.identification, s.veiculo") })
+		@NamedQuery(name = "solicitacaoServico.getTotalPorMaquina", query = "SELECT s.veiculo.identification, COUNT(s.veiculo) FROM SolicitacaoServico s GROUP BY s.veiculo.identification, s.veiculo"),
+	})
 public class SolicitacaoServico implements Serializable {
 
 	private static final long serialVersionUID = 1L;

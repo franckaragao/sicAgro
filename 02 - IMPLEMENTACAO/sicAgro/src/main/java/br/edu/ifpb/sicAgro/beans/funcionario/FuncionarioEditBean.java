@@ -68,8 +68,8 @@ public class FuncionarioEditBean implements Serializable {
 			funcionarioService.add(funcionario);
 			MessageUtils.messageSucess("Funcionário cadastrado com sucesso.");
 		}
-
-		JSFUtils.rederTo("funcionarios.xhtml");
+		JSFUtils.rederTo("funcionarioView.xhtml");
+		JSFUtils.setParam("funcionario", funcionario);
 
 	}
 	

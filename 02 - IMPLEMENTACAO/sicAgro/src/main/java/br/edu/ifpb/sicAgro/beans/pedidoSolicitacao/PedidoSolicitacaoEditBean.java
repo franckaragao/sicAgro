@@ -70,7 +70,8 @@ public class PedidoSolicitacaoEditBean implements Serializable {
 			pedidoSolicitacaoService.add(pedidoSolicitacao);
 			MessageUtils.messageSucess("Pedido de solicitação efetuado com sucesso.");
 		}
-		JSFUtils.rederTo("pedidosSolicitacao.xhtml");
+		JSFUtils.rederTo("pedidoSolicitacaoView.xhtml");
+		JSFUtils.setParam("pedidoSolicitacao", pedidoSolicitacao);	
 	}
 
 	public boolean isPedidoEdited() {

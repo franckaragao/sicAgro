@@ -8,25 +8,25 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
-	<ui:define name="title">#{msg.produtos}</ui:define>
-	<ui:define name="content-header">#{msg.produtos} <small>#{msg.sub_header_produtos}</small></ui:define>
-	<ui:define name="breadcrumb-active">#{msg.produtos}</ui:define>
+	<ui:define name="title">Produtos</ui:define>
+	<ui:define name="content-header">Produtos <small>Pesquisa de produtos</small></ui:define>
+	<ui:define name="breadcrumb-active">Produtos</ui:define>
 	
 	<ui:define name="content">
 
 		<h:form id="dataForm">
-			<p:messages id="messages" autoUpdate="true" showDetail="true"/>
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true"/>
 
 			<p:dataTable id="tableProdutos" 
 				var="produto" 
 				value="#{produtoBean.produtos}" 
 				paginatorPosition="bottom" 
-				rows="10"
+				rows="15"
 				paginator="true" 
 				paginatorAlwaysVisible="false"
 				widgetVar="findProduto" 
 				reflow="true" 
-				emptyMessage="#{msg.emptyMessageProduto}"
+				emptyMessage="Nenhum produto cadastrado"
 				rowKey="#{produto.id}" 
 				styleClass="ui-datatable"
                 selectionMode="single"
@@ -35,10 +35,10 @@
  
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" onkeyup="PF('findProduto').filter()" style="width:300px;" placeholder="#{msg.placeholderFindProduto}" />
+						<p:inputText id="globalFilter" onkeyup="PF('findProduto').filter()" style="width:300px;" placeholder="Filtro de produto" />
 
-						<p:button id="buttonNewProduto" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/produto/produtoEdit">
-							<p:tooltip for="buttonNewProduto" value="#{msg.tooltipNewProduto}" />
+						<p:button id="buttonNewProduto" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/produto/produtoEdit">
+							<p:tooltip for="buttonNewProduto" value="Cadastrar novo produto" />
 						</p:button>
 					</div>
 				</f:facet>
@@ -54,19 +54,19 @@
 					<f:setPropertyActionListener value="#{produto}" target="#{produtoViewBean.produto}" />
 				</p:ajax>			
 
-				<p:column headerText="#{msg.cod}" width="6%" filterBy="#{produto.cod}" filterStyle="display:none;">
+				<p:column headerText="Cód." width="6%" filterBy="#{produto.cod}" filterStyle="display:none;">
 					<h:outputText id="cod" value="#{produto.cod}" />
 				</p:column>
 
-				<p:column headerText="#{msg.name}" width="10%" filterBy="#{produto.name}" filterStyle="display:none;">
+				<p:column headerText="Nome" width="10%" filterBy="#{produto.name}" filterStyle="display:none;">
 					<h:outputText id="nome" value="#{produto.name}" />
 				</p:column>
 
-				<p:column headerText="#{msg.type}" width="5%">
+				<p:column headerText="Tipo" width="5%">
 					<h:outputText id="type" value="#{produto.produtoType.type}" />
 				</p:column>
 
-				<p:column headerText="#{msg.description}" width="12%">
+				<p:column headerText="Descrição" width="12%">
 					<h:outputText id="description" value="#{produto.description}" />
 				</p:column>
 			</p:dataTable>

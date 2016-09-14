@@ -13,11 +13,11 @@
 			type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Registro de entrega</ui:define>
-	<ui:define name="content-header">Registro de entrega
-		<small>Registrar informaçãoes de entrega de produto a produtor</small>
+	<ui:define name="title">#{entregaEditBean.edited ? 'Editar entrega' : 'Nova entrega'}</ui:define>
+	<ui:define name="content-header">#{entregaEditBean.edited ? 'Editar entrega' : 'Nova entrega'}
+		<small>#{entregaEditBean.edited ? 'Entrega/'.concat(entregaEditBean.entrega.id) : 'Registrar entrega de produto'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Registro Entrega</ui:define>
+	<ui:define name="breadcrumb-active">#{entregaEditBean.edited ? 'Editar entrega de produto' : 'Registrar entrega de produto'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterEntrega">
@@ -51,8 +51,6 @@
 									style="display: inline; color: #098554; float: right !important;">
 									<i class="fa fa-compress fa-4x" aria-hidden="true"></i>
 								</div>
-								<p:tooltip for="fieldEntrega"
-									value="Número de entregas realizadas até hoje" />
 							</p:fieldset>
 							<p:fieldset id="fieldSolicitacao">
 								<div class="col-lg-2 col-xs-2">
@@ -64,8 +62,6 @@
 									style="display: inline; color: #098554; float: right !important;">
 									<i class="fa fa-level-down fa-4x" aria-hidden="true"></i>
 								</div>
-								<p:tooltip for="fieldSolicitacao"
-									value="Número de solicitações realizadas até hoje" />
 							</p:fieldset>
 							<p:fieldset id="fieldEntrega">
 								<div class="col-lg-2 col-xs-2">
@@ -115,14 +111,14 @@
 					<p:panelGrid columns="7" layout="grid"
 						styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
-						<p:outputLabel for="itemEntrega" value="Produto" />
+						<p:outputLabel for="itemEntrega" value="Item" />
 						<p:selectOneMenu id="itemEntrega"
 							converter="#{itemCargaConverter}" style="width:180px"
 							value="#{entregaEditBean.itemCarga}" required="true">
 
 							<f:selectItem noSelectionOption="true" itemLabel="" />
 							<f:selectItems value="#{entregaEditBean.itemCargas}" var="item"
-								itemLabel="#{item.produto.name}" itemValue="#{item}" />
+								itemLabel="#{item.produto.name}. Cód: #{item.id}" itemValue="#{item}" />
 
 							<p:ajax event="itemSelect"
 								listener="#{entregaEditBean.updateItemEntrega}"
@@ -130,7 +126,7 @@
 
 						</p:selectOneMenu>
 
-						<p:outputLabel for="type" value="#{msg.medida}" />
+						<p:outputLabel for="type" value="Un.Medida" />
 						<p:selectOneMenu id="type" style="width:180px"
 							value="#{entregaEditBean.itemEntrega.measurementType}"
 							required="true">
@@ -140,8 +136,8 @@
 								itemValue="#{measurement}" />
 						</p:selectOneMenu>
 
-						<p:outputLabel for="quant" value="#{msg.quant}" />
-						<p:spinner id="quant"
+						<p:outputLabel for="quant" value="Quantidade" />
+						<p:spinner id="quant" converterMessage="'Quantidade' deve ser um número"
 							value="#{entregaEditBean.itemEntrega.quantity}" stepFactor="0.25"
 							required="true">
 							<p:ajax event="change" update="detail_item" />
@@ -149,7 +145,7 @@
 
 						<p:commandButton id="btn_add" value="Adicionar"
 							styleClass="btnn-primary" process="formRegisterEntrega"
-							update="tableView:itens detail_item @parent">
+							update="tableView:itens detail_item quant type @parent">
 							<p:collector value="#{entregaEditBean.reSetItemEntrega()}"
 								addTo="#{entregaEditBean.entrega.itemEntregas}" unique="false" />
 						</p:commandButton>
@@ -235,21 +231,18 @@
 
 				<div class="box-footer">
 
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="2">
 
-						<p:commandButton value="Registrar" id="btRegister"
+						<p:commandButton value="#{entregaEditBean.edited ? 'Editar' : 'Registrar'}" 
+							id="btRegister"
 							icon="fa fa-floppy-o" style="float: left;"
 							styleClass="btnn btnn-primary"
 							process="@this messages :#{p:component('obsEntrega')} advanced"
 							action="#{entregaEditBean.save}" />
 
 						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-							style="float:left;" styleClass="btnn btnn-primary"
+							style="float:left;" styleClass="btnn btnn-danger"
 							outcome="/pages/admin/entrega/entregas" />
-
-						<p:button value="Entregas Efetuadas" id="findEntregas"
-							style="float:left;" styleClass="btnn btnn-primary"
-							icon="fa fa-search" outcome="/pages/admin/entrega/entregas" />
 					</h:panelGrid>
 				</div>
 			</p:fieldset>

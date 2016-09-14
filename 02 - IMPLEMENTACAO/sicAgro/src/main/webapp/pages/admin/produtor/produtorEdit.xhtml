@@ -13,11 +13,11 @@
 			type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Novo Produtor</ui:define>
-	<ui:define name="content-header">Novo Produtor
-		<small>Cadastrar novo Produtor</small>
+	<ui:define name="title">#{produtorEditBean.produtorEdited ? 'Editar produtor' : 'Novo Produtor'}</ui:define>
+	<ui:define name="content-header">#{produtorEditBean.produtorEdited ? 'Editar produtor' : 'Novo Produtor'}
+		<small>#{produtorEditBean.produtorEdited ? 'Produtor/'.concat(produtorEditBean.produtor.cod) : 'Cadastrar novo Produtor'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Novo Produtor</ui:define>
+	<ui:define name="breadcrumb-active">#{produtorEditBean.produtorEdited ? 'Editar produtor' : 'Cadastrar novo Produtor'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterProdutor">
@@ -30,9 +30,9 @@
 							<p:panelGrid columns="2" layout="grid"
 								styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-1">
 
-								<p:outputLabel for="cod" value="Código" />
+								<p:outputLabel for="cod" value="Código" rendered="#{!produtorEditBean.produtorEdited}" />
 								<p:inputMask mask="99999" maxlength="5" slotChar=" " id="cod" required="true"
-									value="#{produtorEditBean.produtor.cod}" />
+									value="#{produtorEditBean.produtor.cod}" rendered="#{!produtorEditBean.produtorEdited}"/>
 
 								<p:outputLabel for="name" value="Nome" />
 								<p:inputText id="name" required="true" value="#{produtorEditBean.produtor.name}" />
@@ -162,19 +162,16 @@
 					</p:tabView>
 				</div>
 				<div class="box-footer">
-					<h:panelGrid columns="3">
-						<p:commandButton value="Salvar" id="btSave" icon="fa fa-floppy-o"
+					<h:panelGrid columns="2">
+						<p:commandButton value="#{produtorEditBean.produtorEdited ? 'Atualizar' : 'Salvar'}" 
+							id="btSave" icon="fa fa-floppy-o"
 							style="float: left;" styleClass="btnn btnn-primary"
 							action="#{produtorEditBean.save}" process="formRegisterProdutor" />
 		
 		
 						<p:button value="Cancelar" id="cancel" icon="fa fa-ban"
-							style="float:left;" styleClass="btnn btnn-primary"
+							style="float:left;" styleClass="btnn btnn-danger"
 							outcome="/pages/admin/produtor/produtores" />
-		
-						<p:button value="Buscar Produtor" id="findProdutores"
-							style="float:left;" styleClass="btnn btnn-primary"
-							icon="fa fa-search" outcome="/pages/admin/produtor/produtores" />
 					</h:panelGrid>
 				</div>
 			</p:fieldset>

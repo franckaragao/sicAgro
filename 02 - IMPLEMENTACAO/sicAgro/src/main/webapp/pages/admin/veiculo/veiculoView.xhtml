@@ -14,9 +14,9 @@
 			
 	</f:metadata>
 
-	<ui:define name="title">Detalhe do Veículo</ui:define>
-	<ui:define name="content-header">Detalhes do Veículo <small>Visualização de detalhes do veículo</small></ui:define>
-	<ui:define name="breadcrumb-active">Detalhe veículo</ui:define>
+	<ui:define name="title">Detalhe da Máquina</ui:define>
+	<ui:define name="content-header">Detalhes da Máquina <small>Visualização de detalhes da máquina</small></ui:define>
+	<ui:define name="breadcrumb-active">Detalhe Máquina</ui:define>
 	
 
 	<ui:define name="content">
@@ -24,25 +24,22 @@
 		<h:form id="detailForm">
 			<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
 
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="3">
 
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/veiculo/veiculoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+				<p:button value="Editar" id="btEdit" outcome="/pages/admin/veiculo/veiculoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="veiculo" value="#{veiculoViewBean.veiculo.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.remove}" id="btRemove" action="#{veiculoBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
+				<p:commandButton value="Remover" id="btRemove" action="#{veiculoBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
 					<f:setPropertyActionListener value="#{veiculoViewBean.veiculo}" target="#{veiculoBean.selectedVeiculo}" />
-                     <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
-					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
+					 <p:confirm header="Remoção de máquina" message="Deseja remover esta máquina?"/>
     			</p:commandButton>
 
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
-
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/veiculo/veiculos" />
 
 			</h:panelGrid>
 

@@ -7,16 +7,15 @@
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
 	<f:metadata>
-		<o:viewParam name="veiculo" value="#{veiculoEditBean.veiculo}"
-			converter="#{veiculoConverter}" />
+		<o:viewParam name="veiculo" value="#{veiculoEditBean.veiculo}" converter="#{veiculoConverter}" />
 		<f:event listener="#{veiculoEditBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">Cadastro de Veículo</ui:define>
-	<ui:define name="content-header">Novo Veículo
-		<small>Cadastrar novo Veículo</small>
+	<ui:define name="title">#{veiculoEditBean.veiculoEdited ? 'Editar Máquina' : 'Nova Máquina'}</ui:define>
+	<ui:define name="content-header">#{veiculoEditBean.veiculoEdited ? 'Editar Máquina' : 'Nova Máquina'}
+		<small>#{veiculoEditBean.veiculoEdited ? 'Máquina/'.concat(veiculoEditBean.veiculo.id) : 'Cadastrar nova máquina'}</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Novo Veículo</ui:define>
+	<ui:define name="breadcrumb-active">#{veiculoEditBean.veiculoEdited ? 'Editar Máquina' : 'Nova Máquina'}</ui:define>
 	<ui:define name="content">
 
 		<h:form id="formRegisterVeiculo">
@@ -69,26 +68,22 @@
 						<p:inputText  id="yearAqui" value="#{veiculoEditBean.veiculo.aquisYear}"/>
 						
 						<p:outputLabel for="horimetro" value="Horimetro" />
-						<p:spinner id="horimetro" value="#{veiculoEditBean.veiculo.horimetro}"/>
+						<p:spinner id="horimetro" value="#{veiculoEditBean.veiculo.horimetro}" required="true"/>
 						
 
 					</p:panelGrid>
 				</div>
 				<div class="box-footer">
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="2">
 	
-						<p:commandButton value="Salvar" id="bt_Save" icon="fa fa-floppy-o"
+						<p:commandButton value="#{veiculoEditBean.veiculoEdited ? 'Editar' : 'Salvar'}" id="bt_Save" icon="fa fa-floppy-o"
 							style="float: left;" styleClass="btnn btnn-primary"
 							action="#{veiculoEditBean.save}" process="formRegisterVeiculo"/>
 	
 	
 						<p:button value="Cancelar" id="bt_cancel" icon="fa fa-ban"
-							style="float:left;" styleClass="btnn btnn-primary"
+							style="float:left;" styleClass="btnn btnn-danger"
 							outcome="/pages/admin/veiculo/veiculos" />
-	
-						<p:button value="Buscar Veículo" id="bt_findFuncionario"
-							style="float:left;" styleClass="btnn btnn-primary"
-							icon="fa fa-search" outcome="/pages/admin/veiculo/veiculos" />
 					</h:panelGrid>
 				</div>
 			</p:fieldset>

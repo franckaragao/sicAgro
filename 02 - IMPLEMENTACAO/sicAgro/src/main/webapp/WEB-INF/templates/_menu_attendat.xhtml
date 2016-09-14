@@ -8,18 +8,19 @@
 
 <ui:composition>
 	<li class="header">MÓDULO RECEPSIONISTA</li>
+	<li class="active"><a href="#{request.contextPath}/pages/admin/index.xhtml"><i class="fa fa-tachometer"></i><span>DashBoard</span></a></li>
 	<li class="treeview"><a href="#"><i class="fa fa-users"></i><span>Produtores</span> <i class="fa fa-angle-left pull-right"></i></a>
 		<ul class="treeview-menu">
 			<li><a
-				href="#{request.contextPath}/pages/admin/produtor/produtorEdit.xhtml">Cadastrar Novo</a></li>
+				href="#{request.contextPath}/pages/admin/produtor/produtorEdit.xhtml">Cadastrar Produtor</a></li>
 			<li><a
-				href="#{request.contextPath}/pages/admin/produtor/produtores.xhtml">Pesquisar Produtor</a></li>
+				href="#{request.contextPath}/pages/admin/produtor/produtores.xhtml">Pesquisar Produtores</a></li>
 		</ul></li>
 	
 	<li class="treeview"><a href="#"><i class="fa fa-cubes"></i><span>Distribuições</span> <i class="fa fa-angle-left pull-right"></i></a>
 		<ul class="treeview-menu">
 			<li><a
-				href="#{request.contextPath}/pages/admin/entrega/entregaEdit.xhtml"><i class="fa fa-plus" aria-hidden="true"></i>Registrar entrega</a></li>
+				href="#{request.contextPath}/pages/admin/entrega/entregaEdit.xhtml">Registrar entrega</a></li>
 			<li><a
 				href="#{request.contextPath}/pages/admin/entrega/entregas.xhtml">Pesquisar Entregas</a></li>
 		</ul></li>
@@ -31,7 +32,7 @@
 			<li><a
 				href="#{request.contextPath}/pages/admin/solicitacao/solicitacoes.xhtml">Pesquisar Solicitações</a></li>
 			<li><a
-				href="#{request.contextPath}/pages/admin/veiculo/veiculos.xhtml">Veículos</a></li>
+				href="#{request.contextPath}/pages/admin/veiculo/veiculos.xhtml">Máquinas</a></li>
 		</ul></li>
 	
 	<li class="treeview"><a href="#"><i class="fa fa-truck"></i><span>Recebimento de Cargas</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -39,7 +40,7 @@
 			<li><a
 				href="#{request.contextPath}/pages/admin/carga/cargaEdit.xhtml">Registrar Carga</a></li>
 			<li><a
-				href="#{request.contextPath}/pages/admin/carga/cargas.xhtml">Pesquisar Carga</a></li>
+				href="#{request.contextPath}/pages/admin/carga/cargas.xhtml">Pesquisar Cargas</a></li>
 			<li><a
 				href="#{request.contextPath}/pages/admin/produto/produtos.xhtml">Produtos de Carga</a></li>
 		</ul></li>

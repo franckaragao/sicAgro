@@ -21,8 +21,9 @@ import javax.validation.constraints.NotNull;
 import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 
 /**
- * Classe representa entidade de negócio Item de enntrega, um @ItemEntrega 
- * corresponde a uma parte de uma carga que é entregue ao beneficiário @Produtor.
+ * Classe representa entidade de negócio Item de enntrega, um @ItemEntrega
+ * corresponde a uma parte de uma carga que é entregue ao beneficiário
+ * @Produtor.
  * 
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
@@ -33,8 +34,7 @@ import br.edu.ifpb.sicAgro.enumerations.MeasurementType;
 @NamedQueries({
 		@NamedQuery(name = "itemEntrega.getTotalPorProduto", query = "SELECT i.produto.name, COUNT(i.produto) FROM ItemEntrega i GROUP BY i.produto.name, i.produto"),
 		@NamedQuery(name = "itemEntrega.findByProduto", query = "SELECT i FROM ItemEntrega i WHERE i.produto = :produto"),
-		@NamedQuery(name = "itemEntrega.findByTipoProduto", query = "SELECT COUNT(i.id) FROM ItemEntrega i WHERE i.produto.produtoType = :type")
-})
+		@NamedQuery(name = "itemEntrega.findByTipoProduto", query = "SELECT COUNT(i.id) FROM ItemEntrega i WHERE i.produto.produtoType = :type") })
 public class ItemEntrega implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -57,10 +57,10 @@ public class ItemEntrega implements Serializable {
 	private Produto produto;
 
 	@NotNull
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "item_carga_FK")
 	private ItemCarga itemCarga;
-	
+
 	@ManyToOne
 	private Entrega entrega;
 
@@ -99,7 +99,7 @@ public class ItemEntrega implements Serializable {
 	public ItemCarga getItemCarga() {
 		return itemCarga;
 	}
-	
+
 	public Entrega getEntrega() {
 		return entrega;
 	}
@@ -116,7 +116,15 @@ public class ItemEntrega implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((entrega == null) ? 0 : entrega.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((itemCarga == null) ? 0 : itemCarga.hashCode());
+		result = prime * result
+				+ ((measurementType == null) ? 0 : measurementType.hashCode());
+		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
+		result = prime * result
+				+ ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
 
@@ -129,10 +137,32 @@ public class ItemEntrega implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ItemEntrega other = (ItemEntrega) obj;
+		if (entrega == null) {
+			if (other.entrega != null)
+				return false;
+		} else if (!entrega.equals(other.entrega))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (itemCarga == null) {
+			if (other.itemCarga != null)
+				return false;
+		} else if (!itemCarga.equals(other.itemCarga))
+			return false;
+		if (measurementType != other.measurementType)
+			return false;
+		if (produto == null) {
+			if (other.produto != null)
+				return false;
+		} else if (!produto.equals(other.produto))
+			return false;
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
 			return false;
 		return true;
 	}

@@ -11,10 +11,11 @@
 		<f:event listener="#{produtoEditBean.preRenderView()}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">#{msg.newProduto}</ui:define>
-	<ui:define name="content-header">#{produtoEditBean.produtoEdited ? msg.editProduto : msg.newProduto} 
-		<small>#{produtoEditBean.produtoEdited ? msg.subHeaderEditProduto : msg.subHeaderNewProduto}</small></ui:define>
-	<ui:define name="breadcrumb-active">#{msg.newProduto}</ui:define>
+	<ui:define name="title">#{produtoEditBean.produtoEdited ? 'Editar Produto de carga' : 'Novo produto de carga'}</ui:define>
+	<ui:define name="content-header">#{produtoEditBean.produtoEdited ? 'Editar Produto de carga' : 'Novo produto de carga'}
+		<small>#{produtoEditBean.produtoEdited ? 'Produto/'.concat(produtoEditBean.produto.cod) : 'Cadastrar novo produto de carga'}</small></ui:define>
+		
+	<ui:define name="breadcrumb-active">#{produtoEditBean.produtoEdited ? 'Editar Produto de carga' : 'Novo produto de carga'}</ui:define>
 
 	<ui:define name="content">
 		<div class="ui-fluid">
@@ -51,13 +52,11 @@
 					</p:panelGrid>
 					<div class="box-footer">
 						<h:panelGrid columns="5" layout="grid">
-							<p:commandButton value="Salvar" id="btSave" process="formRegisterProduto" icon="fa fa-floppy-o" styleClass="btnn btnn-primary" action="#{produtoEditBean.save}" />
+							<p:commandButton value="#{produtoEditBean.produtoEdited ? 'Editar' : 'Salvar'}" id="btSave" process="formRegisterProduto" icon="fa fa-floppy-o" styleClass="btnn btnn-primary" action="#{produtoEditBean.save}" />
 							<p:spacer width="3px" />
-							<p:button value="Cancelar" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/produto/produtos" />
+							<p:button value="Cancelar" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-danger" outcome="/pages/admin/produto/produtos" />
 							<p:spacer width="3px"/>
-							<p:button value="Buscar Produto" id="findProdutos"  styleClass="btnn btnn-primary" icon="fa fa-search" outcome="/pages/admin/produto/produtos" />
 						</h:panelGrid>
-					
 	              	</div>
 				</p:fieldset>
 			</h:form>

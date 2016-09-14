@@ -8,10 +8,6 @@
 		<!-- Seta mensagens properties no bean validation e JSF messages -->
 		<message-bundle>br.edu.ifpb.sicAgro.messages</message-bundle>
 		
-		<resource-bundle>
-		<base-name>MessagesApplication</base-name>
-		<var>msg</var>
-	   </resource-bundle>
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>

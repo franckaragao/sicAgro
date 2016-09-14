@@ -15,7 +15,8 @@ public enum TypeMachine {
 	CACAMBA("Caçamba"),
 	PATROL("Patrol"),
 	PIPA("Pipa"),
-	ENCHEDEIRA("Enchedeira");
+	ENCHEDEIRA("Enchedeira"),
+	TRATOR("Trator");
 
 	private String type;
 

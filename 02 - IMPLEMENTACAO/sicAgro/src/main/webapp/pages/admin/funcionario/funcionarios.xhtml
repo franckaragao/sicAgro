@@ -17,14 +17,21 @@
 	<ui:define name="content">
 
 		<h:form id="formFuncionarios">
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<p:dataTable id="tablefuncionarios" var="funcionario"
-				value="#{funcionarioBean.funcionarios}" paginatorPosition="bottom"
-				rows="10" paginator="true" paginatorAlwaysVisible="false"
-				widgetVar="findFuncionario" reflow="true"
+			<p:dataTable 
+				id="tablefuncionarios"
+				var="funcionario"
+				value="#{funcionarioBean.funcionarios}" 
+				paginatorPosition="bottom"
+				rows="15" 
+				paginator="true" 
+				paginatorAlwaysVisible="false"
+				widgetVar="findFuncionario" 
+				reflow="true"
 				emptyMessage="Nenhum funcionário cadastrado"
-				rowKey="#{funcionario.id}" styleClass="ui-datatable"
+				rowKey="#{funcionario.id}" 
+				styleClass="ui-datatable"
 				selectionMode="single"
 				selection="#{funcionarioBean.selectedFuncionario}">
 
@@ -36,7 +43,7 @@
 							placeholder="Buscar funcionário" />
 
 						<p:button id="buttonNewProduto" icon="fa fa-plus"
-							value="#{msg.new}" styleClass="btnn-primary"
+							value="NOVO" styleClass="btnn-primary"
 							style="float:right;font-size: 17px"
 							outcome="/pages/admin/funcionario/funcionarioEdit">
 							<p:tooltip for="buttonNewProduto"

@@ -8,20 +8,19 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/templates/__template_admin.xhtml">
 
-	<ui:define name="title">Veículos</ui:define>
-	<ui:define name="content-header">Veículo <small>Pesquisar
-			veículo cadastrado</small>
+	<ui:define name="title">Máquinas</ui:define>
+	<ui:define name="content-header">Máquinas <small>Pesquisa de máquinas cadastradas</small>
 	</ui:define>
-	<ui:define name="breadcrumb-active">Veículos</ui:define>
+	<ui:define name="breadcrumb-active">Máquinas</ui:define>
 
 	<ui:define name="content">
 
 		<h:form id="formVeiculos">
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
+			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
 			<p:dataTable id="tableVeiculos" var="veiculo"
 				value="#{veiculoBean.veiculos}" paginatorPosition="bottom"
-				rows="10" paginator="true" paginatorAlwaysVisible="false"
+				rows="15" paginator="true" paginatorAlwaysVisible="false"
 				widgetVar="findVeiculo" reflow="true"
 				emptyMessage="Nenhum veículo cadastrado"
 				rowKey="#{veiculo.id}" styleClass="ui-datatable"
@@ -36,11 +35,11 @@
 							placeholder="Filtro de pesquisa de veículo" />
 
 						<p:button id="buttonNewVeiculo" icon="fa fa-plus"
-							value="#{msg.new}" styleClass="btnn-primary"
+							value="NOVO" styleClass="btnn-primary"
 							style="float:right;font-size: 17px"
 							outcome="/pages/admin/veiculo/veiculoEdit">
 							<p:tooltip for="buttonNewVeiculo"
-								value="Cadastrar novo veícuolo" />
+								value="Cadastrar nova máquina" />
 						</p:button>
 					</div>
 				</f:facet>

@@ -13,37 +13,27 @@
 		<f:event listener="#{cargaViewBean.preRenderView}" type="preRenderView" />
 	</f:metadata>
 
-	<ui:define name="title">#{msg.produtoDetail}</ui:define>
-	<ui:define name="content-header">#{msg.produtoDetail} <small>#{msg.sub_header_produtoDetail}</small></ui:define>
-	<ui:define name="breadcrumb-active">#{msg.produtoDetail}</ui:define>
+	<ui:define name="title">Visualizar detalhes de carga</ui:define>
+	<ui:define name="content-header">Detalhes de carga<small>Visualização de detalhes de carga</small></ui:define>
+	<ui:define name="breadcrumb-active">Detalhes de carga</ui:define>
 	
 
 	<ui:define name="content">
 
 		<h:form id="detailForm">
 			<ui:include src="/WEB-INF/templates/_dialogConfirmation.xhtml"/>
+			<p:messages showDetail="true" closable="true"/>
+			<h:panelGrid columns="2">
 
-			<h:panelGrid columns="5">
-
-				<p:button value="#{msg.edit}" id="btEdit" outcome="/pages/admin/carga/cargaEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
+				<p:button value="Editar" id="btEdit" outcome="/pages/admin/carga/cargaEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="carga" value="#{cargaViewBean.carga.id}"/>	
 				</p:button>
 
-				<p:commandButton value="#{msg.remove}" id="btRemove" action="#{cargaBean.remove}" icon="fa fa-trash" styleClass="btnn btnn-primary">
-					<f:setPropertyActionListener value="#{cargaViewBean.carga}" target="#{cargaBean.selectedCarga}" />
-                     <p:tooltip for="btRemove" value="#{msg.confirmRemoveMessage}"/>
-					 <p:confirm header="#{msg.confirmRemove}" message="#{msg.confirmRemoveMessage}"/>
-    			</p:commandButton>
-
-				<p:commandButton value="#{msg.print}" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
+				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
 
-				<p:button value="#{msg.cancel}" id="cancel" icon="fa fa-ban" styleClass="btnn btnn-primary" outcome="/pages/admin/carga/cargas" />
-
 			</h:panelGrid>
-
-			<p:messages id="messages" autoUpdate="true" showDetail="true" />
 
 			<p:fieldset id="infor_detail" style="margin-top:10px;" styleClass="box box-success">
 				<div class="text-detail">
@@ -58,23 +48,23 @@
 				<div class="panel panel-default">
 				 <div class="panel-heading"><strong>Informações Gerais</strong></div>
 					<p:panelGrid columns="2" width="400" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
-					<h:outputText value="#{msg.responsabily}:"  />
+					<h:outputText value="Responsável:"  />
 					<h:outputText value="#{cargaViewBean.carga.responsibleCarga}"  />
 
-					<h:outputText value="#{msg.obs}:"  />
-					<h:outputText value="#{cargaViewBean.carga.obs}"  />
+					<h:outputText value="Observação:"  rendered="#{cargaViewBean.carga.obs != null}"/>
+					<h:outputText value="#{cargaViewBean.carga.obs}"  rendered="#{cargaViewBean.carga.obs != null}"/>
 				</p:panelGrid>
 				</div>
 				
 				<div class="panel panel-default">
 					 <div class="panel-heading"><strong>Origem da Carga</strong></div>
 						<p:panelGrid columns="2" width="400" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2">
-						<h:outputText value="#{msg.agency}:"  />
+						<h:outputText value="Orgão"  />
 						<h:outputText value="#{cargaViewBean.carga.originLoad.agency}"  />
 	
-						<h:outputText value="#{msg.city}:"  />
+						<h:outputText value="Cidade:"  />
 						<h:outputText value="#{cargaViewBean.carga.originLoad.city}"  />
-						<h:outputText value="#{msg.state}:"  />
+						<h:outputText value="UF:"  />
 						<h:outputText value="#{cargaViewBean.carga.originLoad.state}"  />
 					</p:panelGrid>
 				</div>
@@ -85,30 +75,34 @@
 						var="item" 
 						value="#{cargaViewBean.carga.itensCarga}" 
 						reflow="true" 
-						emptyMessage="#{msg.emptyMessageCarga}"
+						emptyMessage="Nenhum item de carga"
 						styleClass="ui-datatable">
 						
-						<p:column headerText="Produto" width="10%">
+						<p:column headerText="Cód" width="5%" style="background: #ffffff !important;">
+							<h:outputText id="cod" value="#{item.id}" />
+						</p:column>
+						
+						<p:column headerText="Produto" width="10%" style="background: #ffffff !important;">
 							<h:outputText id="produto" value="#{item.produto.name}" />
 						</p:column>
 		
-						<p:column headerText="Descrição do produto">
+						<p:column headerText="Descrição do produto" width="18%" style="background: #ffffff !important;">
 							<h:outputText id="descrption" value="#{item.produto.description}" />
 						</p:column>
 						
-						<p:column headerText="Tipo do produto" width="12%">
+						<p:column headerText="Tipo do produto" width="12%" style="background: #ffffff !important;">
 							<h:outputText id="type" value="#{item.produto.produtoType.type}" />
 						</p:column>
 						
-						<p:column headerText="Medida" width="8%">
+						<p:column headerText="Medida" width="8%" style="background: #ffffff !important;">
 							<h:outputText id="measurement" value="#{item.measurementType}" />
 						</p:column>
 						
-						<p:column headerText="Quantidade" width="7%">
+						<p:column headerText="Quantidade" width="7%" style="background: #ffffff !important;">
 							<h:outputText id="quant" value="#{item.quantity}" />
 						</p:column>
 						
-						<p:column headerText="Quantidade Disp." width="7%">
+						<p:column headerText="Quantidade Disp." width="7%" style="background: #ffffff !important;">
 							<h:outputText id="quantDisp" value="#{item.quantidadeDisp}" />
 						</p:column>
 				

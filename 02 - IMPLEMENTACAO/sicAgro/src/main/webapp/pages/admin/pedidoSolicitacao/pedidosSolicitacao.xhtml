@@ -10,7 +10,7 @@
 	
 
 	<ui:define name="title">Pedidos de Solicitações</ui:define>
-	<ui:define name="content-header">Pedidos de solicitações de produtores <small>Pedidos de solicitações por produtores</small>
+	<ui:define name="content-header">Pedidos de solicitações de serviços <small>Pedidos de solicitações de serviços de máquinas</small>
 	</ui:define>
 	<ui:define name="breadcrumb-active">Pedidos de solicitações</ui:define>
 
@@ -38,9 +38,9 @@
 				
 				<f:facet name="header">
 					<div align="left">
-						<p:inputText id="globalFilter" onkeyup="PF('findPedidos').filter()" style="width:300px;" placeholder="Filtro" />
+						<p:inputText id="globalFilter" onkeyup="PF('findPedidos').filter()" style="width:300px;" placeholder="Filtro pedido de solicitação" />
 
-						<p:button id="buttonNewPedido" icon="fa fa-plus" value="#{msg.new}" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/pedidoSolicitacao/pedidoSolicitacaoEdit" rendered="#{contaBean.typerUserLogged == '4'}">
+						<p:button id="buttonNewPedido" icon="fa fa-plus" value="NOVO" styleClass="btnn-primary" style="float:right;font-size: 17px" outcome="/pages/admin/pedidoSolicitacao/pedidoSolicitacaoEdit" rendered="#{contaBean.typerUserLogged == '4'}">
 							<p:tooltip for="buttonNewPedido" value="Efetuar novo pedido de solicitação" />
 						</p:button>
 					</div>

@@ -56,7 +56,8 @@ public class ProdutoEditBean implements Serializable {
 			produtoService.add(produto);
 			MessageUtils.messageSucess("Produto de carga adicionado com sucesso.");
 		}
-		JSFUtils.rederTo("produtos.xhtml");
+		JSFUtils.rederTo("produtoView.xhtml");
+		JSFUtils.setParam("produto", produto);
 	}
 	
 	public boolean isProdutoEdited(){

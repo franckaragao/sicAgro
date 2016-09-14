@@ -2,6 +2,7 @@ package br.edu.ifpb.sicAgro.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -43,6 +44,21 @@ public class FuncionarioDaoImpl extends GenericDaoImpl<Funcionario, Long> implem
 			throw new SicAgroException("erro ao tentar recuperar os motoristas pelo nome "+ e.getMessage());
 		}
 		
+		return result;
+	}
+
+	@Override
+	public Funcionario findByCPF(String cpf) throws SicAgroException {
+		Funcionario result = null;
+		try {
+			TypedQuery<Funcionario> query = entityManager.createNamedQuery("Funcionario.findByCPF", Funcionario.class);
+			query.setParameter("cpf", cpf);
+			result = query.getSingleResult();
+		} catch (NoResultException e){
+			return null;
+		} catch (PersistenceException e) {
+			throw new SicAgroException("erro ao tentar recuperar funcionário pelo CPF "+ e.getMessage());
+		}
 		return result;
 	}
 

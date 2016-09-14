@@ -22,8 +22,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("Funcionario")
 @NamedQueries({ 
 	@NamedQuery(name = "Funcionario.findByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name)"),
-	@NamedQuery(name = "Funcionario.findDriverByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name) AND f.acount.userRole = :role") 
-
+	@NamedQuery(name = "Funcionario.findDriverByName", query = "SELECT f FROM Funcionario f WHERE LOWER(f.name) LIKE LOWER(:name) AND f.acount.userRole = :role"),
+	@NamedQuery(name = "Funcionario.findByCPF", query = "SELECT f FROM Funcionario f WHERE f.cpf = :cpf")
 })
 public class Funcionario extends Pessoa {
 

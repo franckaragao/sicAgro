@@ -57,7 +57,7 @@ public class Pessoa implements Serializable {
 	@Column(name = "estado_civil")
 	protected CivelState civilState;
 
-	@CPF
+	@CPF(message = "deve ser informado no formato correto")
 	@Column(name = "cpf", nullable = false)
 	protected String cpf;
 

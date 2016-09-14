@@ -23,6 +23,10 @@ public class ProdutorViewBean implements Serializable {
 
 	private Produtor produtor;
 
+	/**
+	 * É iniciando no inicio da renderização da pagina de produtorView,
+	 * responsável por obter um produtor pelo contexto de aplicação.
+	 */
 	public void preRenderView() {
 		produtor = (Produtor) JSFUtils.getParam("produtorToDetail");
 	}

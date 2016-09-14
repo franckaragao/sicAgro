@@ -19,7 +19,6 @@ import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
  */
-
 @Named
 @ViewScoped
 public class PedidoSolicitacaoViewBean implements Serializable {
@@ -32,13 +31,19 @@ public class PedidoSolicitacaoViewBean implements Serializable {
 	private PedidoSolicitacaoService pedidoSolicitacaoService;
 
 	/**
-	 * É iniciando no inicio da renderização da pagina de produtoView,
-	 * responsável por obter um produto pelo contexto de aplicação.
+	 * É iniciando no inicio da renderização da pagina de pedidoSolicitacaoView,
+	 * responsável por obter um pedido pelo contexto de aplicação.
 	 */
 	public void preRenderView() {
 		pedidoSolicitacao = (PedidoSolicitacao) JSFUtils.getParam("pedidoSolicitacao");
 	}
 
+	/**
+	 * Método necessário para auxiliar na rejeição 
+	 * de um pedido de solicitação.
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void rejeitar() throws SicAgroException {
 		pedidoSolicitacao.setStatus(PedidoStatus.NOT_ACCEPTED);
 		pedidoSolicitacaoService.update(pedidoSolicitacao);
@@ -52,5 +57,4 @@ public class PedidoSolicitacaoViewBean implements Serializable {
 	public void setPedidoSolicitacao(PedidoSolicitacao pedidoSolicitacao) {
 		this.pedidoSolicitacao = pedidoSolicitacao;
 	}
-
 }

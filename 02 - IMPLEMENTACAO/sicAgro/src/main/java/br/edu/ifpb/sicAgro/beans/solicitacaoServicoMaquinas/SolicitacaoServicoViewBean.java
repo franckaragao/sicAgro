@@ -46,6 +46,12 @@ public class SolicitacaoServicoViewBean implements Serializable {
 		solicitacaoServico = (SolicitacaoServico) JSFUtils.getParam("solicitacao");
 	}
 	
+	/**
+	 * método é chamado quando o uma solicitação é concluída na 
+	 * pagina de visualização.
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void completarSolicitacao() throws SicAgroException{
 		if(solicitacaoServico.getTimeWorkeds() != null){
 			this.veiculoService.setHorimetroVeiculo(solicitacaoServico.getVeiculo(), solicitacaoServico.getTimeWorkeds());
@@ -58,7 +64,11 @@ public class SolicitacaoServicoViewBean implements Serializable {
 		service.update(solicitacaoServico);
 		MessageUtils.messageSucess("Solicitação finalizada com sucesso.");
 	}
-	
+	/**
+	 * Método para auxiliar no cancelamento de uma solicitação, i.e.,
+	 * diante do cadastro de uma solicitação o usuário pode concluir e em seguida desistir
+	 * de cde concluir uma solicitação, quando o mesmo desiste esse método é chamado.
+	 */
 	public void cancelConclusao(){
 		solicitacaoServico.setCompleted(false);
 		solicitacaoServico.setDateRealization(null);

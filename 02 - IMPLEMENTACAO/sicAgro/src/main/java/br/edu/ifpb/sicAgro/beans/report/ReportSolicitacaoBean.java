@@ -17,7 +17,6 @@ import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 import br.edu.ifpb.sicAgro.util.report.LoaderReport;
 
 /**
- * 
  * <p>
  * Classe Bean responsável por gerenciar a geração de relatórios de solicitação
  * </p>
@@ -42,6 +41,9 @@ public class ReportSolicitacaoBean implements Serializable {
 
 	private SolicitacaoFilter filter = SolicitacaoFilter.getInstance();
 
+	/**
+	 * Inicializa os valores do filtro por status.
+	 */
 	@PostConstruct
 	public void init() {
 		status.add(SolicitationState.COMPLETED);

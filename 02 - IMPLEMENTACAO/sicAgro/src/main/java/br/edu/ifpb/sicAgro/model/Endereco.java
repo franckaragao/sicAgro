@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import br.edu.ifpb.sicAgro.enumerations.States;
 
 /**
- * Classe que representa a entidade endereço
+ * Classe que representa a entidade endereço.
  * 
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *

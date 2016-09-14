@@ -14,6 +14,12 @@ import br.edu.ifpb.sicAgro.services.VeiculoService;
 import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
+/**
+ * Manager bean responsável por gerenciar listagem de veiculos (máquinas).
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Named
 @RequestScoped
 public class VeiculoBean implements Serializable {
@@ -27,11 +33,19 @@ public class VeiculoBean implements Serializable {
 
 	private Veiculo selectedVeiculo;
 
+	/**
+	 * Inicializa a lista de veículos.
+	 */
 	@PostConstruct
 	public void init() {
 		this.listVeiculos();
 	}
 
+	/**
+	 * Remove um veiculo.
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void remove() throws SicAgroException {
 		veiculoService.remove(selectedVeiculo);
 		MessageUtils.messageSucess("Veículo removido com sucesso.");

@@ -12,6 +12,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Representa a entidade de negócio produtor. Um produtor é a 
+ * principal entidade do sistema.
+ * 
+ * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
+ *
+ */
 @Entity
 @Table(name = "produtores")
 @DiscriminatorValue("Produtor")

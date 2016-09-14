@@ -20,7 +20,8 @@ import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 import br.edu.ifpb.sicAgro.util.userSession.UserLogged;
 
 /**
- * 
+ * Manager bean respossável por gerenciar edição de um 
+ * pedido de solicitação.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -57,15 +58,17 @@ public class PedidoSolicitacaoEditBean implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @throws SicAgroException
+	 */
 	public void save() throws SicAgroException {
 		if (isPedidoEdited()) {
 			pedidoSolicitacaoService.update(pedidoSolicitacao);
-			MessageUtils
-					.messageSucess("Pedido de solicitação atualizado com sucesso.");
+			MessageUtils.messageSucess("Pedido de solicitação atualizado com sucesso.");
 		} else {
 			pedidoSolicitacaoService.add(pedidoSolicitacao);
-			MessageUtils
-					.messageSucess("Pedido de solicitação efetuado com sucesso.");
+			MessageUtils.messageSucess("Pedido de solicitação efetuado com sucesso.");
 		}
 		JSFUtils.rederTo("pedidosSolicitacao.xhtml");
 	}
@@ -89,5 +92,4 @@ public class PedidoSolicitacaoEditBean implements Serializable {
 	public void setMaquinas(List<TypeMachine> maquinas) {
 		this.maquinas = maquinas;
 	}
-
 }

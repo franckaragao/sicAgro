@@ -10,7 +10,8 @@ import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.services.PedidoSolicitacaoService;
 
 /**
- * 
+ * Manager bean responsável por gerenciar dados referente ao
+ * gerenciamento de notificações de pedidos de solicitações.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -25,7 +26,11 @@ public class NotificationBean implements Serializable {
 	@Inject
 	private PedidoSolicitacaoService pedidoSolicitacaoService;
 
-	
+	/**
+	 * Obtém todos os pedidos de solicitações por status.
+	 * 
+	 * @return
+	 */
 	public Long getTotalPedidos() {
 		return pedidoSolicitacaoService.getTotalPedidosByStatutus(PedidoStatus.PROGRESS);
 	}
@@ -33,5 +38,4 @@ public class NotificationBean implements Serializable {
 	public Long getTotalByMessages(){
 		return pedidoSolicitacaoService.getTotalPedidosByMessages();
 	}
-
 }

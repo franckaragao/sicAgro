@@ -15,7 +15,7 @@ import br.edu.ifpb.sicAgro.services.EnderecoService;
 import br.edu.ifpb.sicAgro.services.impl.EnderecoServiceImpl;
 
 /**
- * 
+ * Manager bean responsável por gerenciar endereços.
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -32,16 +32,29 @@ public class EnderecoBean implements Serializable {
 	@Inject
 	private EnderecoService enderecoService;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<String> getCities() {
 		this.cities = EnderecoServiceImpl.cities;
 		return cities;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<States> getStates(){
 		this.states = EnderecoServiceImpl.states;
 		return states;
 	}
-	
+	/**
+	 * Busca endereços com base na rua digitada.
+	 * 
+	 * @param query
+	 * @return
+	 */
 	public List<String> completeCities(String query){
 		List<Endereco> ad =  enderecoService.findByAddress(query);
 		HashSet<String> aux = new HashSet<String>();

@@ -24,7 +24,7 @@ import br.edu.ifpb.sicAgro.enumerations.PedidoStatus;
 import br.edu.ifpb.sicAgro.enumerations.TypeMachine;
 
 /**
- * 
+ * Representa a entidade de negócio referente a pedidos de solicitações.  
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *

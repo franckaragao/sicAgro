@@ -17,6 +17,7 @@ import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
 /**
+ * Manager bean responsável por gerenciar edição de produto de carga.
  * 
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *
@@ -50,10 +51,10 @@ public class ProdutoEditBean implements Serializable {
 	public void save() throws SicAgroException {
 		if(isProdutoEdited()){
 			produtoService.update(produto);
-			MessageUtils.messageSucess("Produto atualizado com sucesso.");
+			MessageUtils.messageSucess("Produto de carga atualizado com sucesso.");
 		}else{
 			produtoService.add(produto);
-			MessageUtils.messageSucess("Produto adicionado com sucesso.");
+			MessageUtils.messageSucess("Produto de carga adicionado com sucesso.");
 		}
 		JSFUtils.rederTo("produtos.xhtml");
 	}

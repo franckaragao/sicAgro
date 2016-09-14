@@ -73,6 +73,9 @@ public class PedidoSolicitacaoBean implements Serializable {
 		JSFUtils.setParam("pedidoSolicitacao", selectedPedidoSolicitacao);
 	}
 
+	/**
+	 * Lista os pedidos com base no usuário online.
+	 */
 	public void listPedidos() {
 		if(isUserLoggedIsProdutor()){
 			this.pedidosSolicitacao = pedidoSolicitacaoService.findPedidosByProdutor(conta.getProdutor());
@@ -81,6 +84,11 @@ public class PedidoSolicitacaoBean implements Serializable {
 		}
 	}
 	
+	/**
+	 * Verifica se o usuário que está online é um produtor.
+	 * 
+	 * @return true/false
+	 */
 	public boolean isUserLoggedIsProdutor() {
 		if (conta.getUserRole().equals(UserRole.PRODUTOR))
 			return true;
@@ -88,6 +96,8 @@ public class PedidoSolicitacaoBean implements Serializable {
 	}
 	
 	/**
+	 * Atualiza as labels da datatable do status de um pedido de solicitação,
+	 * com base no estatus do mesmmo.
 	 * 
 	 * @param status
 	 * @return

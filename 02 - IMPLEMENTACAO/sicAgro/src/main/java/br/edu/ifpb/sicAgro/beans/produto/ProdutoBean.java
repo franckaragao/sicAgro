@@ -15,7 +15,7 @@ import br.edu.ifpb.sicAgro.util.jsf.JSFUtils;
 import br.edu.ifpb.sicAgro.util.messages.MessageUtils;
 
 /**
- * Manage bean responsável por gerenciar a lista de produtos
+ * Manager bean responsável por gerenciar a lista de produtos
  * 
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *

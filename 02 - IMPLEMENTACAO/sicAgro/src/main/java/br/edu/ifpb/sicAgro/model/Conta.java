@@ -25,7 +25,7 @@ import br.edu.ifpb.sicAgro.enumerations.UserRole;
 
 /**
  * Classe responsável por representar entidade de negócio Conta. Está conta diz
- * respeito ao acesso do usuário (funcionário ao sistema)
+ * respeito ao acesso do usuário (funcionário ao sistema).
  *
  * @author <a href="https://github.com/FranckAJ">Franck Aragão</a>
  *

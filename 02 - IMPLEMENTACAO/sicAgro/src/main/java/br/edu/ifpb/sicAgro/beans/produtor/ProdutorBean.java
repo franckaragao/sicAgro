@@ -100,5 +100,4 @@ public class ProdutorBean implements Serializable {
 	public void setFilter(ProdutorFilter filter) {
 		this.filter = filter;
 	}
-
 }

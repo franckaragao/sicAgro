@@ -20,7 +20,7 @@
 * JasperReports 6.x
 * Bootstrap 3.x
 * FontAwesome 4.x
-* Parse.js 1.x
+* Pase.js 1.x
 
 ### Servidor de Aplicação
 * Glassfish 4.1.1

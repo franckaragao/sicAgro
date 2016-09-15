@@ -12,7 +12,7 @@
 * JPA 2.1
 * CDI 1.x
 * Bean Validation 1.x
-* JAAX
+* JAAS
 * JSTL
 * PrimeFaces 6.x
 * PrimeFaces extensions 6.x

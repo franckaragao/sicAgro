@@ -25,6 +25,9 @@
 ### Servidor de Aplicação
 * Glassfish 4.1.1
 
+### Banco de dados
+* Postgresql 
+
 ## Funcionalidades
 * DashBoard: Relatórios de perfomace, gráficos com informações importantes sobre dados recebidos, dados distribuídos,   comportamento de informações ao longo do tempo, organizados em diferentes criterios.
 * Gerenciamento de produtos de cargas.
@@ -37,8 +40,7 @@
 * Gerenciamento de funcionários.
 * Geração de documentos em PDF.
 
-### Banco de dados
-* Postgresql 
+
 
 ```
 Copyright (c) 2016 

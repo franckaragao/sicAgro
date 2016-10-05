@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-07T22:33:25 -->
+<!-- 2016-10-05T11:13:26 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="entregas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2068a63-b280-45c5-898d-12729fdc55ff">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<subDataset name="listItens" uuid="1d97cae4-6b4a-49bf-a4fc-add1df572e09">
@@ -43,24 +43,24 @@
 	<title>
 		<band height="98" splitType="Stretch">
 			<staticText>
-				<reportElement x="90" y="22" width="272" height="18" uuid="78dae066-fcd0-4a4e-b82c-5a3df8a3cf24">
+				<reportElement x="94" y="10" width="272" height="21" uuid="78dae066-fcd0-4a4e-b82c-5a3df8a3cf24">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
-					<font fontName="DejaVu Sans" size="12" isBold="false"/>
+					<font fontName="DejaVu Sans" size="14" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Seretaria de Desenvolvimento Rural]]></text>
+				<text><![CDATA[Secretaria de Desenvolvimento Rural]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="472" y="46" width="69" height="15" uuid="2260fcc7-3bdb-4305-9e21-08d3284aa791"/>
+				<reportElement x="477" y="48" width="69" height="15" uuid="2260fcc7-3bdb-4305-9e21-08d3284aa791"/>
 				<textElement textAlignment="Left">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Referente à ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="331" y="20" width="476" height="29" uuid="855201f5-fc6f-4ee4-9683-e7aa8a850bb7">
+				<reportElement x="336" y="22" width="476" height="29" uuid="855201f5-fc6f-4ee4-9683-e7aa8a850bb7">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -70,21 +70,44 @@
 				<text><![CDATA[Relatório de Distribuição]]></text>
 			</staticText>
 			<image>
-				<reportElement x="8" y="5" width="80" height="60" uuid="290735b9-739e-4edb-ae71-50cd057fa887"/>
+				<reportElement x="5" y="8" width="86" height="63" uuid="290735b9-739e-4edb-ae71-50cd057fa887"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="91" y="43" width="205" height="15" uuid="30d08ddb-775b-4169-ae26-a7435c3d1418"/>
-				<textElement textAlignment="Left"/>
+				<reportElement x="94" y="26" width="219" height="15" uuid="30d08ddb-775b-4169-ae26-a7435c3d1418"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
 				<text><![CDATA[Prefeitura Municipal de Ouro Velho - PB]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="535" y="46" width="224" height="16" uuid="2249a107-2bab-46c6-a39c-ec7fac592256"/>
+				<reportElement x="540" y="48" width="224" height="16" uuid="2249a107-2bab-46c6-a39c-ec7fac592256"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dateInit}) +" - "+ new SimpleDateFormat("dd/MM/yyyy").format($P{dateEnd})]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="94" y="42" width="205" height="11" uuid="2d1e68a0-1cee-4780-a2b7-696db1fe47b2"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Avenida Jacinto Dantas Filho, 105, centro CEP:58560-000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="52" width="205" height="11" uuid="9e39a329-5196-492a-9fc4-abe28f3f518d"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Tel.: 3350-1028 / 33501038]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="62" width="205" height="11" uuid="f13fac22-c396-4c45-a41a-a74987ce31ca"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[E-mail:agriculturaourovelho@gmail.com]]></text>
+			</staticText>
 		</band>
 	</title>
 	<columnHeader>
@@ -120,7 +143,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome Produtor]]></text>
+				<text><![CDATA[Nome do Beneficiado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="586" y="0" width="114" height="18" uuid="9c8aa0fc-7900-4d1f-8654-211195a96325"/>
@@ -134,7 +157,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[CPF Produtor]]></text>
+				<text><![CDATA[CPF do Beneficiado]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="485" y="17" width="50" height="13" uuid="9b247d19-4aa3-4826-8406-ffa4ad4252d3"/>

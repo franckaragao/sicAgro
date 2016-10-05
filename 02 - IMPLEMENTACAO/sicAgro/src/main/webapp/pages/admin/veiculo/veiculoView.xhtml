@@ -26,7 +26,7 @@
 
 			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 
 				<p:button value="Editar" id="btEdit" outcome="/pages/admin/veiculo/veiculoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="veiculo" value="#{veiculoViewBean.veiculo.id}"/>	
@@ -40,6 +40,8 @@
 				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
+				
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/veiculo/veiculos" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
 
 			</h:panelGrid>
 

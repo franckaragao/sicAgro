@@ -20,7 +20,7 @@
 	<ui:define name="content">
 		<h:form id="detailForm">
 			<p:messages closable="true" autoUpdate="true" showDetail="true"/>
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 
 				<p:button value="Editar" id="btEdit" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary" rendered="#{!solicitacaoServicoBean.userLoggedIsDriver}">
 					<f:param name="solicitacao" value="#{solicitacaoServicoViewBean.solicitacaoServico.id}"/>	
@@ -29,13 +29,15 @@
 				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton> 
+				
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/solicitacao/solicitacoes" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
 
-						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" style="margin-top: 8px">
-							<p:outputLabel value="Concluir Solicitação" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}"/>
-							<p:inputSwitch id="completed" value="#{solicitacaoServicoViewBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}">
-								<p:ajax oncomplete="PF('dlgConclusion').show();" update="@this label_dte_realization value_dte_realization"/>
-							</p:inputSwitch>
-						</p:panelGrid>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank" style="margin-top: 8px">
+					<p:outputLabel value="Concluir Solicitação" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}"/>
+					<p:inputSwitch id="completed" value="#{solicitacaoServicoViewBean.solicitacaoServico.completed}" onLabel="Sim" offLabel="Não" rendered="#{!solicitacaoServicoViewBean.solicitacaoServico.completed}">
+						<p:ajax oncomplete="PF('dlgConclusion').show();" update="@this label_dte_realization value_dte_realization"/>
+					</p:inputSwitch>
+				</p:panelGrid>
 			</h:panelGrid>
 				
 			<div class="ui-fluid">

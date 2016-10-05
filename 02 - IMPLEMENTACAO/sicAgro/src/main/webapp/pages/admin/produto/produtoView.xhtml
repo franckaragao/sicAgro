@@ -26,7 +26,7 @@
 
 			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 
 				<p:button value="Editar" id="btEdit" outcome="/pages/admin/produto/produtoEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="produto" value="#{produtoViewBean.produto.id}"/>	
@@ -36,6 +36,9 @@
 					<f:setPropertyActionListener value="#{produtoViewBean.produto}" target="#{produtoBean.selectedProduto}" />
 					 <p:confirm header="Remover produto" message="deseja remover este produto?"/>
     			</p:commandButton>
+    			
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/produto/produtos" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
+
 
 			</h:panelGrid>
 

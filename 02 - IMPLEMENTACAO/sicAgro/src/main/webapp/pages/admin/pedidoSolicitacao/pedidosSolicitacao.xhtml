@@ -34,6 +34,8 @@
 				rowKey="#{pedido.id}" 
 				styleClass="ui-datatable"
                 selectionMode="single"
+                sortBy="#{pedido.dataPedido}"
+				sortOrder="descending"
 				selection="#{pedidoSolicitacaoBean.selectedPedidoSolicitacao}">
 				
 				<f:facet name="header">
@@ -53,7 +55,7 @@
 					<h:outputText id="id" value="#{pedido.id}" />
 				</p:column>
 				
-				<p:column headerText="Produtor" width="2%" filterBy="#{pedido.produtor.name}" filterStyle="display:none;"  rendered="#{contaBean.typerUserLogged != '4'}">
+				<p:column headerText="Produtor" width="3%" filterBy="#{pedido.produtor.name}" filterStyle="display:none;"  rendered="#{contaBean.typerUserLogged != '4'}">
 					<h:outputText id="produtor" value="#{pedido.produtor.name}" />
 				</p:column>
 				

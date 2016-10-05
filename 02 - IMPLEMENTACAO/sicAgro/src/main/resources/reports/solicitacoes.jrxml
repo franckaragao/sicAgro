@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-07T22:01:27 -->
+<!-- 2016-10-05T11:15:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="SansSerif" fontSize="50" isBold="true" pdfFontName="SansSerif"/>
@@ -187,7 +187,7 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="21">
+		<band height="20">
 			<rectangle radius="0">
 				<reportElement x="0" y="-3" width="556" height="15" forecolor="#000000" backcolor="#D1C9C9" uuid="653fc477-acea-4a7a-9470-b5f31b815e2b"/>
 				<graphicElement>
@@ -195,35 +195,35 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="5" y="-1" width="100" height="20" uuid="c9ef1b8d-8797-48f5-a6b1-cb1f07d00209"/>
+				<reportElement x="5" y="-1" width="100" height="13" uuid="c9ef1b8d-8797-48f5-a6b1-cb1f07d00209"/>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data Solicitação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="106" y="-1" width="111" height="20" uuid="0663fc1a-06cd-4b97-8ef5-b0d618785ec3"/>
+				<reportElement x="106" y="-1" width="111" height="13" uuid="0663fc1a-06cd-4b97-8ef5-b0d618785ec3"/>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Resumo Serviço]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="217" y="-1" width="108" height="20" uuid="1caaac1b-8046-4b77-9f86-e6542b2f5be8"/>
+				<reportElement x="217" y="-1" width="108" height="13" uuid="1caaac1b-8046-4b77-9f86-e6542b2f5be8"/>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Horas trabalhadas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="328" y="-1" width="108" height="20" uuid="e102ccce-72b8-4cea-a680-3c14b045be90"/>
+				<reportElement x="328" y="-1" width="108" height="13" uuid="e102ccce-72b8-4cea-a680-3c14b045be90"/>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Produtor Beneficiado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="444" y="-1" width="131" height="20" uuid="23db5442-ae73-479b-9a8a-b70456f7a19d"/>
+				<reportElement x="444" y="-1" width="131" height="13" uuid="23db5442-ae73-479b-9a8a-b70456f7a19d"/>
 				<textElement>
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
@@ -232,29 +232,29 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="30">
+		<band height="20">
 			<textField>
-				<reportElement x="5" y="0" width="100" height="18" uuid="4578b21c-268d-4d6e-904d-fe9bb9ca78e5"/>
+				<reportElement x="5" y="0" width="100" height="13" uuid="4578b21c-268d-4d6e-904d-fe9bb9ca78e5"/>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dateSolicitation})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="106" y="0" width="111" height="18" uuid="be0ceb1e-44d4-4237-9e5d-81b15f2b80bf"/>
+				<reportElement x="106" y="0" width="111" height="13" uuid="be0ceb1e-44d4-4237-9e5d-81b15f2b80bf"/>
 				<textFieldExpression><![CDATA[$F{resumoServico}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="217" y="0" width="108" height="18" uuid="e3f5d7b4-a0fa-4ef6-89a4-2337e4344ff0"/>
+				<reportElement x="217" y="0" width="108" height="13" uuid="e3f5d7b4-a0fa-4ef6-89a4-2337e4344ff0"/>
 				<textFieldExpression><![CDATA[$F{timeWorkeds}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="328" y="0" width="108" height="18" uuid="c89f2b09-0e88-46dd-b5b5-5edfa4061b90"/>
+				<reportElement x="328" y="0" width="108" height="13" uuid="c89f2b09-0e88-46dd-b5b5-5edfa4061b90"/>
 				<textFieldExpression><![CDATA[$F{produtor}.getName()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="444" y="0" width="111" height="18" uuid="644eb64e-1cc7-45ef-8bb8-eb0f347dae86"/>
+				<reportElement x="444" y="0" width="111" height="13" uuid="644eb64e-1cc7-45ef-8bb8-eb0f347dae86"/>
 				<textFieldExpression><![CDATA[$F{funcionario}.getName()]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="13" width="555" height="1" uuid="82658552-9e98-4b8c-984e-fa928228d965">
+				<reportElement x="0" y="12" width="555" height="1" uuid="82658552-9e98-4b8c-984e-fa928228d965">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

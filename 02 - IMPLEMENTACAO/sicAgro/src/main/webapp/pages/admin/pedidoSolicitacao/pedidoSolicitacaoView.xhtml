@@ -23,7 +23,7 @@
 
 			<ui:include src="/WEB-INF/templates/_mensagem_pedido_solicitacao.xhtml"/>
 			
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 			
 				<c:if test="${contaBean.typerUserLogged != '4'}">
 					<p:button id="id_accepted" value="ACEITAR" icon="fa fa-check" outcome="/pages/admin/solicitacao/solicitacaoServicoEdit" styleClass="btnn btnn-primary" disabled="#{pedidoSolicitacaoViewBean.pedidoSolicitacao.solicitacaoServico != null}">
@@ -41,6 +41,9 @@
 				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
+				
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/pedidoSolicitacao/pedidosSolicitacao" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
+
 			
 			</h:panelGrid>
 

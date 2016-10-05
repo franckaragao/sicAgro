@@ -25,7 +25,7 @@
 
 			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 
 				<p:button value="editar" id="btEdit" outcome="/pages/admin/funcionario/funcionarioEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="funcionario" value="#{funcionarioViewBean.funcionario.id}"/>	
@@ -35,6 +35,9 @@
 					<f:setPropertyActionListener value="#{funcionarioViewBean.funcionario}" target="#{funcionarioBean.selectedFuncionario}" />
 					 <p:confirm header="Remoção de funcionário" message="Deseja remover este fucionário?"/>
     			</p:commandButton>
+
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/funcionario/funcionarios" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
+
 
 			</h:panelGrid>
 

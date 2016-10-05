@@ -24,7 +24,7 @@
 
 			<p:messages id="messages" autoUpdate="true" closable="true" showDetail="true" />
 
-			<h:panelGrid columns="5">
+			<h:panelGrid columns="4">
 
 				<p:button value="Editar" id="btEdit" outcome="/pages/admin/produtor/produtorEdit" icon="fa fa-pencil" styleClass="btnn btnn-primary">
 					<f:param name="produtor" value="#{produtorViewBean.produtor.id}"/>	
@@ -39,6 +39,8 @@
 				<p:commandButton value="Imprimir" id="print" styleClass="btnn btnn-primary" icon="fa fa-print">
 					<p:printer target="infor_detail" />
 				</p:commandButton>
+				
+				<p:button value="voltar" id="btvoltar" outcome="/pages/admin/produtor/produtores" icon="fa fa-reply" styleClass="btnn btnn-primary"/>
 
 			</h:panelGrid>
 

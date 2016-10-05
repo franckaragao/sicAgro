@@ -33,6 +33,8 @@
 				rowKey="#{funcionario.id}" 
 				styleClass="ui-datatable"
 				selectionMode="single"
+                sortBy="#{funcionario.dateRegister}"
+				sortOrder="descending"
 				selection="#{funcionarioBean.selectedFuncionario}">
 
 
@@ -61,7 +63,7 @@
 					<h:outputText id="id" value="#{funcionario.id}" />
 				</p:column>
 
-				<p:column headerText="Nome" width="8%"
+				<p:column headerText="Nome" sortBy="#{funcionario.name}" width="8%"
 					filterBy="#{funcionario.name}" filterStyle="display:none;">
 					<h:outputText id="cod" value="#{funcionario.name}" />
 				</p:column>
@@ -80,7 +82,7 @@
 					<h:outputText id="phone" value="#{funcionario.phone}" />
 				</p:column>
 
-				<p:column headerText="Usuário de acesso" width="5%">
+				<p:column headerText="Usuário de acesso" sortBy="#{funcionario.acount.userName}" width="5%">
 					<h:outputText id="user" value="#{funcionario.acount.userName}" />
 				</p:column>
 			</p:dataTable>

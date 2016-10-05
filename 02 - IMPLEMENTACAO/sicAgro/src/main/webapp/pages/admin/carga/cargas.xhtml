@@ -32,7 +32,6 @@
                 selectionMode="single"
 				selection="#{cargaBean.selectedCarga}">
                 
- 
 				<f:facet name="header">
 					<div align="left">
 						<p:inputText id="globalFilter" onkeyup="PF('findCarga').filter()" style="width:300px;" placeholder="Filtro de busca" />
@@ -61,7 +60,7 @@
 					<h:outputText id="respo" value="#{carga.responsibleCarga}" />
 				</p:column>
 				
-				<p:column headerText="Obs" width="12%">
+				<p:column headerText="Obsercação" width="15%">
 					<h:outputText id="description" value="#{carga.obs}" />
 				</p:column>
 				
@@ -72,7 +71,7 @@
 				<p:column headerText="Cidade" width="7%">
 					<h:outputText id="city" value="#{carga.originLoad.city}" />
 				</p:column>
-				<p:column headerText="Estado" width="7%">
+				<p:column headerText="Estado" width="4%">
 					<h:outputText id="state" value="#{carga.originLoad.state}" />
 				</p:column>
 			</p:dataTable>

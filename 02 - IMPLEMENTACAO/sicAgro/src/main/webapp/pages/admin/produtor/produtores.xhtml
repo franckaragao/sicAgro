@@ -30,6 +30,8 @@
 				rowKey="#{produtor.id}" 
 				styleClass="ui-datatable"
                 selectionMode="single"
+                sortBy="#{produtor.dateRegister}"
+				sortOrder="descending"
 				selection="#{produtorBean.selectedProdutor}">
                 
  
@@ -49,19 +51,19 @@
 					<f:setPropertyActionListener value="#{produtor}" target="#{produtorViewBean.produtor}" />
 				</p:ajax>			
 
-				<p:column headerText="#{msg.cod}" width="4%" filterBy="#{produtor.cod}" filterStyle="display:none;">
+				<p:column headerText="Código" sortBy="#{produtor.cod}" width="4%" filterBy="#{produtor.cod}" filterStyle="display:none;">
 					<h:outputText id="cod" value="#{produtor.cod}" />
 				</p:column>
 
-				<p:column headerText="#{msg.name}" width="10%" filterBy="#{produtor.name}" filterStyle="display:none;">
+				<p:column headerText="Nome" sortBy="#{produtor.name}" width="10%" filterBy="#{produtor.name}" filterStyle="display:none;">
 					<h:outputText id="nome" value="#{produtor.name}" />
 				</p:column>
 
-				<p:column headerText="CPF" width="5%">
+				<p:column headerText="CPF" sortBy="#{produtor.cpf}" width="5%">
 					<h:outputText id="cpf" value="#{produtor.cpf}" />
 				</p:column>
 
-				<p:column headerText="Data Nascimento" width="5%">
+				<p:column headerText="Data Nascimento" sortBy="#{produtor.dateNasc}" width="5%">
 					<h:outputText id="dateNasc" value="#{produtor.dateNasc}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>

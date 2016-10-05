@@ -30,6 +30,8 @@
 				rowKey="#{entrega.id}" 
 				styleClass="ui-datatable"
                 selectionMode="single"
+                sortBy="#{entrega.dateRegister}"
+				sortOrder="descending"
 				selection="#{entregaBean.selectedEntrega}">
                 
  
@@ -62,13 +64,13 @@
 					<h:outputText id="id" value="#{entrega.id}" />
 				</p:column>	
 				
-				<p:column headerText="Data entrega" width="10%" filterBy="#{entrega.dateEntrega}" filterStyle="display:none;">
+				<p:column headerText="Data entrega" sortBy="#{entrega.dateEntrega}" width="10%" filterBy="#{entrega.dateEntrega}" filterStyle="display:none;">
 					<h:outputText id="date" value="#{entrega.dateEntrega}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Produtor Beneficiado" width="12%">
+				<p:column headerText="Produtor Beneficiado" sortBy="#{entrega.produtor.name}" width="12%">
 					<h:outputText id="produto" value="#{entrega.produtor.name}" />
 				</p:column>
 				

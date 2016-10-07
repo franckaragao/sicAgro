@@ -56,7 +56,7 @@
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Responsável" width="12%">
+				<p:column headerText="Responsável" width="12%" filterBy="#{carga.responsibleCarga}"> 
 					<h:outputText id="respo" value="#{carga.responsibleCarga}" />
 				</p:column>
 				
@@ -64,7 +64,7 @@
 					<h:outputText id="description" value="#{carga.obs}" />
 				</p:column>
 				
-				<p:column headerText="Origem" width="8%">
+				<p:column headerText="Origem" width="8%" filterBy="#{carga.originLoad.agency}">
 					<h:outputText id="origin" value="#{carga.originLoad.agency}" />
 				</p:column>
 				

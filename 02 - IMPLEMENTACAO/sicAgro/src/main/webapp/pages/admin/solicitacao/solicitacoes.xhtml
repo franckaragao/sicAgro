@@ -65,7 +65,7 @@
 					<h:outputText id="id" value="#{solicitacao.id}" />
 				</p:column>
 				
-				<p:column headerText="Resumo do serviço" width="5%" sortBy="#{solicitacao.resumoServico}" filterBy="#{solicitacao.resumoServico}" filterStyle="display:none;">
+				<p:column headerText="Resumo do serviço" width="6%" sortBy="#{solicitacao.resumoServico}" filterBy="#{solicitacao.resumoServico}" filterStyle="display:none;">
 					<h:outputText id="resume" value="#{solicitacao.resumoServico}" />
 				</p:column>
 				
@@ -83,7 +83,7 @@
 					</h:outputText>
 				</p:column>
 				
-				<p:column headerText="Data Agendamento" width="4%" sortBy="#{solicitacao.dateForRealization}" filterBy="#{solicitacao.dateForRealization}" filterStyle="display:none;">
+				<p:column headerText="Data Agendamento" width="3%" sortBy="#{solicitacao.dateForRealization}" filterBy="#{solicitacao.dateForRealization}" filterStyle="display:none;">
 					<h:outputText id="dteMa" value="#{solicitacao.dateForRealization}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 					</h:outputText>

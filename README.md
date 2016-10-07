@@ -28,7 +28,7 @@
 * Postgresql 
 
 ## Funcionalidades
-* DashBoard: Relatórios de perfomance, gráficos com informações importantes sobre dados recebidos, dados distribuídos,   comportamento de informações ao longo do tempo, organizados em diferentes criterios.
+* DashBoard: Relatórios de performance, gráficos com informações importantes sobre dados recebidos, dados distribuídos,   comportamento de informações ao longo do tempo, organizados em diferentes criterios.
 * Gerenciamento de produtos de cargas.
 * Gerenciamento de Cargas recebidas.
 * Gerenciamento de produtores.

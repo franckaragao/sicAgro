@@ -39,6 +39,21 @@
 * Gerenciamento de funcionários.
 * Geração de documentos em PDF.
 
+## Screenshots
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-22-12.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-40-29.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-48-36.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-22-46.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-26-34.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-28-24.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-31-00.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-37-19.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-38-38.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-39-47.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-39-58.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-50-45.png)
+![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/01%20-%20PROJETO/screenshots/Captura%20de%20tela%20de%202016-12-28%2020-51-28.png)
+
 
 
 ```

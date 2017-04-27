@@ -1,12 +1,12 @@
 ![Alt Text](https://github.com/FranckAJ/sicAgro/blob/master/02%20-%20IMPLEMENTACAO/sicAgro/src/main/webapp/resources/images/sigagro_new.png)
 
 
-##Sistema Comercial para controle de benefícios agrícolas 
+## Sistema Comercial para controle de benefícios agrícolas 
 
 
-##Tecnologias
+## Tecnologias
 
-###Java EE 7.0
+### Java EE 7.0
 * JSF 2.2
 * JPA 2.1
 * CDI 1.x
